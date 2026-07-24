@@ -370,6 +370,8 @@
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
       if (this.predictiveSearch && this.predictiveSearch.isOpen) return;
+      if (typeof window.dsSearchIsOpen === 'function' && window.dsSearchIsOpen()) return;
+      if (document.body.dataset.dsScrollLocked === 'true') return;
 
       if (scrollTop > this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
         this.header.classList.add('scrolled-past-header');

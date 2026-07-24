@@ -13,7 +13,7 @@
   position: fixed !important;
   left: 0 !important;
   right: 0 !important;
-  top: var(--header-height, 0px) !important;
+  top: 0;
   bottom: auto !important;
   width: 100% !important;
   height: 0;
@@ -35,6 +35,8 @@
   line-height: normal !important;
   overflow: hidden;
   will-change: height;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Open state is driven by JS (.is-open) for smooth 0 → auto height */
@@ -45,8 +47,16 @@
 
 .ds-header-search .ds-search-panel.is-open:not(.is-animating) {
   height: auto;
-  max-height: calc(100dvh - var(--header-height, 0px));
   overflow: hidden;
+}
+
+/* Keep header stable while search is open (no sticky hide/show flicker) */
+.section-header.ds-search-header-pinned {
+  transform: translateY(0) !important;
+}
+
+.section-header.ds-search-header-pinned.shopify-section-header-hidden {
+  transform: translateY(0) !important;
 }
 
 .ds-header-search .modal-overlay {
@@ -57,7 +67,7 @@
   display: block !important;
   position: fixed !important;
   inset: 0;
-  top: var(--header-height, 0px);
+  top: 0;
   z-index: -1;
   background: transparent !important;
 }
@@ -219,7 +229,7 @@
 @media screen and (max-width: 989px) {
   .ds-search-panel__inner {
     padding: 0 1.6rem !important;
-    max-height: calc(100dvh - var(--header-height, 0px));
+    max-height: 100%;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }

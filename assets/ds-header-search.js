@@ -1,53 +1,126 @@
 /**
- * Derma Space–style search: height collapse animation + trending slider.
+ * Derma Space–style search: stable under-header panel + smooth height animation.
+ * Avoids flicker by freezing header position and scroll-locking without layout jump.
  */
 
-const DS_SEARCH_DURATION = 380;
+const DS_SEARCH_DURATION = 360;
 
-function setDsHeaderHeight() {
-  const header = document.querySelector('.section-header');
-  if (!header) return;
-  // Use visible bottom edge so panel sits exactly under the header
-  const bottom = Math.round(header.getBoundingClientRect().bottom);
-  document.documentElement.style.setProperty('--header-height', `${Math.max(0, bottom)}px`);
+function getHeaderEl() {
+  return document.querySelector('.section-header');
 }
 
-function getSearchPanelMaxHeight() {
-  const headerBottom = parseFloat(
-    getComputedStyle(document.documentElement).getPropertyValue('--header-height')
-  ) || 0;
-  return Math.max(200, window.innerHeight - headerBottom);
+function isDsSearchOpen() {
+  return Boolean(document.querySelector('details-modal.ds-header-search details[open]'));
+}
+
+function getScrollbarWidth() {
+  return window.innerWidth - document.documentElement.clientWidth;
+}
+
+function lockBodyScroll() {
+  if (document.body.dataset.dsScrollLocked === 'true') return;
+
+  const scrollY = window.scrollY || window.pageYOffset;
+  const scrollbar = getScrollbarWidth();
+
+  document.body.dataset.dsScrollLocked = 'true';
+  document.body.dataset.dsScrollY = String(scrollY);
+  document.body.style.overflow = 'hidden';
+  document.body.style.position = 'relative';
+  if (scrollbar > 0) {
+    document.body.style.paddingRight = `${scrollbar}px`;
+  }
+}
+
+function unlockBodyScroll() {
+  if (document.body.dataset.dsScrollLocked !== 'true') return;
+
+  const scrollY = parseInt(document.body.dataset.dsScrollY || '0', 10);
+
+  document.body.style.overflow = '';
+  document.body.style.position = '';
+  document.body.style.paddingRight = '';
+  delete document.body.dataset.dsScrollLocked;
+  delete document.body.dataset.dsScrollY;
+
+  window.scrollTo(0, scrollY);
+}
+
+function pinHeaderForSearch() {
+  const header = getHeaderEl();
+  if (!header) return;
+
+  header.classList.add('ds-search-header-pinned');
+  header.classList.add('shopify-section-header-sticky');
+  header.classList.remove('shopify-section-header-hidden');
+  header.classList.remove('animate');
+}
+
+function unpinHeaderForSearch() {
+  const header = getHeaderEl();
+  if (!header) return;
+  header.classList.remove('ds-search-header-pinned');
+}
+
+function placePanelUnderHeader(panel) {
+  const header = getHeaderEl();
+  if (!header || !panel) return 0;
+
+  const top = Math.round(header.getBoundingClientRect().bottom);
+  panel.style.top = `${top}px`;
+  return top;
+}
+
+function getSearchPanelMaxHeight(panelTop) {
+  const top =
+    typeof panelTop === 'number'
+      ? panelTop
+      : parseFloat(panel?.style?.top) || 0;
+  return Math.max(180, window.innerHeight - top);
 }
 
 function expandSearchPanel(panel) {
   if (!panel) return;
 
-  panel.classList.add('is-animating', 'is-open');
-  panel.style.overflow = 'hidden';
-  panel.style.height = '0px';
-  panel.style.opacity = '1';
+  const top = placePanelUnderHeader(panel);
+  const maxHeight = getSearchPanelMaxHeight(top);
+
+  panel.classList.add('is-open', 'is-animating');
   panel.style.visibility = 'visible';
   panel.style.pointerEvents = 'auto';
+  panel.style.overflow = 'hidden';
+  panel.style.maxHeight = 'none';
+  panel.style.height = '0px';
 
-  // Force reflow before animating to measured height
+  // Measure full content height while at 0 (scrollHeight still works)
+  const contentHeight = panel.scrollHeight;
+  const target = Math.min(contentHeight, maxHeight);
+
+  // Force reflow, then animate
   // eslint-disable-next-line no-unused-expressions
   panel.offsetHeight;
 
-  const target = Math.min(panel.scrollHeight, getSearchPanelMaxHeight());
-  panel.style.transition = `height ${DS_SEARCH_DURATION}ms ease`;
+  panel.style.transition = `height ${DS_SEARCH_DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
   panel.style.height = `${target}px`;
 
   const onEnd = (event) => {
-    if (event.propertyName !== 'height') return;
+    if (event.target !== panel || event.propertyName !== 'height') return;
     panel.removeEventListener('transitionend', onEnd);
-    panel.style.height = '';
-    panel.style.maxHeight = `${getSearchPanelMaxHeight()}px`;
-    panel.style.overflow = 'hidden';
     panel.style.transition = '';
+    panel.style.height = 'auto';
+    panel.style.maxHeight = `${maxHeight}px`;
+    panel.style.overflow = 'hidden';
     panel.classList.remove('is-animating');
   };
 
   panel.addEventListener('transitionend', onEnd);
+  setTimeout(() => {
+    if (!panel.classList.contains('is-animating')) return;
+    panel.style.transition = '';
+    panel.style.height = 'auto';
+    panel.style.maxHeight = `${maxHeight}px`;
+    panel.classList.remove('is-animating');
+  }, DS_SEARCH_DURATION + 60);
 }
 
 function collapseSearchPanel(panel) {
@@ -63,30 +136,33 @@ function collapseSearchPanel(panel) {
       done = true;
       panel.removeEventListener('transitionend', onEnd);
       panel.classList.remove('is-open', 'is-animating');
-      panel.style.height = '';
+      panel.style.height = '0px';
       panel.style.maxHeight = '';
-      panel.style.overflow = '';
+      panel.style.overflow = 'hidden';
       panel.style.transition = '';
-      panel.style.visibility = '';
-      panel.style.pointerEvents = '';
-      panel.style.opacity = '';
+      panel.style.visibility = 'hidden';
+      panel.style.pointerEvents = 'none';
+      panel.style.top = '';
       resolve();
     };
 
     const onEnd = (event) => {
-      if (event.propertyName !== 'height') return;
+      if (event.target !== panel || event.propertyName !== 'height') return;
       finish();
     };
 
+    // Lock current pixel height before collapsing (needed when height is "auto")
+    const currentHeight = panel.getBoundingClientRect().height;
     panel.classList.add('is-animating');
+    panel.style.maxHeight = 'none';
     panel.style.overflow = 'hidden';
-    panel.style.height = `${panel.scrollHeight}px`;
+    panel.style.height = `${currentHeight}px`;
 
     // Force reflow
     // eslint-disable-next-line no-unused-expressions
     panel.offsetHeight;
 
-    panel.style.transition = `height ${DS_SEARCH_DURATION}ms ease`;
+    panel.style.transition = `height ${DS_SEARCH_DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
     panel.style.height = '0px';
 
     panel.addEventListener('transitionend', onEnd);
@@ -180,40 +256,88 @@ function bindDsSearchCollapse(modal) {
   const panel = modal.querySelector('.ds-search-panel');
   if (!details || !panel) return;
 
-  // Smooth close: animate height to 0, then run original close
+  const originalOpen = modal.open.bind(modal);
   const originalClose = modal.close.bind(modal);
+
+  modal.open = function dsAnimatedOpen(event) {
+    pinHeaderForSearch();
+    placePanelUnderHeader(panel);
+    lockBodyScroll();
+
+    originalOpen(event);
+
+    // Replace Dawn's overflow-hidden (causes scrollbar jump / header flicker)
+    document.body.classList.remove('overflow-hidden');
+    lockBodyScroll();
+  };
+
   modal.close = function dsAnimatedClose(focusToggle = true) {
     if (modal.dataset.dsClosing === 'true') return;
+
     if (!details.open) {
+      unlockBodyScroll();
+      unpinHeaderForSearch();
       originalClose(focusToggle);
       return;
     }
 
     modal.dataset.dsClosing = 'true';
+
     collapseSearchPanel(panel).then(() => {
       originalClose(focusToggle);
+      document.body.classList.remove('overflow-hidden');
+      unlockBodyScroll();
+      unpinHeaderForSearch();
       delete modal.dataset.dsClosing;
     });
   };
 
+  // Close button was bound to Dawn's original close in the constructor — intercept it
+  const closeBtn = modal.querySelector('.ds-search-form__close');
+  if (closeBtn) {
+    closeBtn.addEventListener(
+      'click',
+      (event) => {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        modal.close();
+      },
+      true
+    );
+  }
+
   details.addEventListener('toggle', () => {
     if (!details.open) return;
 
-    setDsHeaderHeight();
+    placePanelUnderHeader(panel);
     expandSearchPanel(panel);
     requestAnimationFrame(initDsTrendingSliders);
 
     const input = details.querySelector('.ds-search-form__input');
-    if (input) setTimeout(() => input.focus(), 60);
+    if (input) setTimeout(() => input.focus(), 40);
   });
 }
 
 function initDsSearchEnhancements() {
-  setDsHeaderHeight();
   initDsTrendingSliders();
   document.querySelectorAll('details-modal.ds-header-search').forEach(bindDsSearchCollapse);
 }
 
 document.addEventListener('DOMContentLoaded', initDsSearchEnhancements);
-window.addEventListener('resize', setDsHeaderHeight);
-window.addEventListener('scroll', setDsHeaderHeight, { passive: true });
+
+window.addEventListener(
+  'resize',
+  () => {
+    if (!isDsSearchOpen()) return;
+    document.querySelectorAll('.ds-search-panel.is-open').forEach((panel) => {
+      const top = placePanelUnderHeader(panel);
+      if (!panel.classList.contains('is-animating')) {
+        panel.style.maxHeight = `${getSearchPanelMaxHeight(top)}px`;
+      }
+    });
+  },
+  { passive: true }
+);
+
+// Expose for sticky-header to skip hide/reveal while search is open
+window.dsSearchIsOpen = isDsSearchOpen;
