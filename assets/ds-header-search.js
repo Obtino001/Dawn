@@ -9,52 +9,113 @@ function getHeaderEl() {
   return document.querySelector('.section-header');
 }
 
-function getAnnouncementEl() {
+function getHeaderGroupEl() {
   return (
-    document.querySelector('.announcement-bar-section') ||
-    document.querySelector('#shopify-section-announcement-bar') ||
-    document.querySelector('.shopify-section-announcement-bar') ||
-    document.querySelector('.announcement-bar')?.closest('.shopify-section') ||
-    document.querySelector('.utility-bar')?.closest('.shopify-section')
+    document.querySelector('.shopify-section-group-header-group') ||
+    document.querySelector('#shopify-section-group-header-group') ||
+    document.querySelector('[id*="header-group"]')
   );
 }
 
-function getHeaderInnerEl() {
+/**
+ * Collect every bar that can sit above the page (announcements + main header).
+ * Supports 0–N announcement bars, sticky or normal.
+ */
+function getHeaderStackItems() {
+  const items = [];
+  const seen = new Set();
+  const group = getHeaderGroupEl();
+
+  const sections = group
+    ? Array.from(group.querySelectorAll(':scope > .shopify-section'))
+    : Array.from(
+        document.querySelectorAll(
+          '.announcement-bar-section, .shopify-section-announcement-bar, [id*="announcement"], .section-header'
+        )
+      );
+
+  sections.forEach((section) => {
+    if (!section || seen.has(section)) return;
+    seen.add(section);
+
+    const el =
+      section.querySelector('sticky-header') ||
+      section.querySelector('.header-wrapper') ||
+      section.querySelector('.utility-bar') ||
+      section.querySelector('.announcement-bar') ||
+      section;
+
+    items.push({
+      section,
+      el,
+      isHeader: section.classList.contains('section-header'),
+    });
+  });
+
   const header = getHeaderEl();
-  if (!header) return null;
-  return header.querySelector('sticky-header, .header-wrapper, header.header') || header;
+  if (header && !seen.has(header)) {
+    items.push({
+      section: header,
+      el: header.querySelector('sticky-header, .header-wrapper') || header,
+      isHeader: true,
+    });
+  }
+
+  return items;
 }
 
 /**
- * Panel top = bottom of visible header stack.
- * Announcement bar height is added when it's still visible,
- * and ignored when it has scrolled away.
+ * Bottom of the contiguous top stack (all visible announcement bars + header).
+ * Handles 0–N announcement bars, sticky/non-sticky, and scrolled-away bars.
  */
 function getSearchPanelTop() {
-  const headerInner = getHeaderInnerEl();
-  const announcement = getAnnouncementEl();
+  const items = getHeaderStackItems();
+  if (!items.length) return 0;
 
-  if (!headerInner) return 0;
+  const rects = items
+    .map((item) => {
+      const rect = item.el.getBoundingClientRect();
+      const sectionRect = item.section.getBoundingClientRect();
+      // Use whichever box is actually visible in the top chrome
+      const useRect =
+        rect.height > 1 ? rect : sectionRect.height > 1 ? sectionRect : null;
+      if (!useRect || useRect.bottom <= 0) return null;
+      return { ...item, rect: useRect };
+    })
+    .filter(Boolean)
+    .sort((a, b) => a.rect.top - b.rect.top);
 
-  const headerRect = headerInner.getBoundingClientRect();
-  const headerHeight = headerRect.height;
+  if (!rects.length) return 0;
 
-  if (announcement) {
-    const annRect = announcement.getBoundingClientRect();
-    const annVisible = annRect.height > 1 && annRect.bottom > 1;
+  // Contiguous stack starting from viewport top (or first bar near top)
+  let stackBottom = 0;
+  let started = false;
 
-    if (annVisible) {
-      // Announcement still visible → top sits under announcement + header
-      // If sticky header overlapped announcement, rebuild from parts
-      if (headerRect.top < annRect.bottom - 1) {
-        return Math.max(0, Math.round(annRect.bottom + headerHeight));
+  for (const { rect } of rects) {
+    if (!started) {
+      // Accept first bar that is at/near the top of the viewport
+      if (rect.top <= 8) {
+        started = true;
+        stackBottom = rect.bottom;
       }
-      return Math.max(0, Math.round(Math.max(headerRect.bottom, annRect.bottom)));
+      continue;
+    }
+
+    // Continue stack while bars are stacked on each other
+    if (rect.top <= stackBottom + 6) {
+      stackBottom = Math.max(stackBottom, rect.bottom);
+    } else {
+      break;
     }
   }
 
-  // Announcement gone / missing → only sticky header bottom
-  return Math.max(0, Math.round(headerRect.bottom));
+  // Fallback: use main header bottom, or lowest visible stack item
+  if (!started || stackBottom <= 0) {
+    const headerItem = rects.find((item) => item.isHeader) || rects[rects.length - 1];
+    stackBottom = headerItem.rect.bottom;
+  }
+
+  return Math.max(0, Math.round(stackBottom));
 }
 
 function isDsSearchOpen() {
@@ -102,17 +163,8 @@ function pinHeaderForSearch() {
   header.classList.remove('shopify-section-header-hidden');
   header.classList.remove('animate');
 
-  const announcement = getAnnouncementEl();
-  const annVisible =
-    announcement &&
-    announcement.getBoundingClientRect().height > 1 &&
-    announcement.getBoundingClientRect().bottom > 1;
-
-  // Don't force sticky while announcement is visible — that overlaps the bar
-  // and breaks top calculation. Only pin sticky after announcement is gone.
-  if (!annVisible) {
-    header.classList.add('shopify-section-header-sticky');
-  }
+  // Keep natural stacking with announcement bars — do not force sticky.
+  // Sticky state is left as-is from scroll behavior.
 }
 
 function unpinHeaderForSearch() {
@@ -369,8 +421,13 @@ function bindDsSearchCollapse(modal) {
     if (!details.open) return;
 
     placePanelUnderHeader(panel);
-    expandSearchPanel(panel);
-    requestAnimationFrame(initDsTrendingSliders);
+    // Remeasure after layout/sticky settles (multi announcement bars)
+    requestAnimationFrame(() => {
+      placePanelUnderHeader(panel);
+      expandSearchPanel(panel);
+      initDsTrendingSliders();
+      requestAnimationFrame(() => placePanelUnderHeader(panel));
+    });
 
     const input = details.querySelector('.ds-search-form__input');
     if (input) setTimeout(() => input.focus(), 40);
