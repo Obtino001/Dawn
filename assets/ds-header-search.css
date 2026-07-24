@@ -50,6 +50,15 @@
   overflow: hidden;
 }
 
+/* Keep header search icon stable (close only inside panel, like Derma Space) */
+.ds-header-search details[open] > summary .svg-wrapper {
+  display: flex;
+}
+
+.ds-header-search details .header__icon-close {
+  display: none !important;
+}
+
 /* Keep header stable while search is open (no sticky hide/show flicker) */
 .section-header.ds-search-header-pinned {
   transform: translateY(0) !important;

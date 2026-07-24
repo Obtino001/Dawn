@@ -1,6 +1,6 @@
 /**
- * Derma Space–style search: stable under-header panel + smooth height animation.
- * Avoids flicker by freezing header position and scroll-locking without layout jump.
+ * Derma Space–style search dropdown.
+ * Panel always sits under the main header (announcement bars included via layout/sticky).
  */
 
 const DS_SEARCH_DURATION = 360;
@@ -9,113 +9,53 @@ function getHeaderEl() {
   return document.querySelector('.section-header');
 }
 
-function getHeaderGroupEl() {
+function getHeaderBarEl() {
   return (
-    document.querySelector('.shopify-section-group-header-group') ||
-    document.querySelector('#shopify-section-group-header-group') ||
-    document.querySelector('[id*="header-group"]')
+    document.querySelector('.section-header sticky-header') ||
+    document.querySelector('.section-header .header-wrapper') ||
+    document.querySelector('.section-header header.header') ||
+    getHeaderEl()
   );
 }
 
 /**
- * Collect every bar that can sit above the page (announcements + main header).
- * Supports 0–N announcement bars, sticky or normal.
- */
-function getHeaderStackItems() {
-  const items = [];
-  const seen = new Set();
-  const group = getHeaderGroupEl();
-
-  const sections = group
-    ? Array.from(group.querySelectorAll(':scope > .shopify-section'))
-    : Array.from(
-        document.querySelectorAll(
-          '.announcement-bar-section, .shopify-section-announcement-bar, [id*="announcement"], .section-header'
-        )
-      );
-
-  sections.forEach((section) => {
-    if (!section || seen.has(section)) return;
-    seen.add(section);
-
-    const el =
-      section.querySelector('sticky-header') ||
-      section.querySelector('.header-wrapper') ||
-      section.querySelector('.utility-bar') ||
-      section.querySelector('.announcement-bar') ||
-      section;
-
-    items.push({
-      section,
-      el,
-      isHeader: section.classList.contains('section-header'),
-    });
-  });
-
-  const header = getHeaderEl();
-  if (header && !seen.has(header)) {
-    items.push({
-      section: header,
-      el: header.querySelector('sticky-header, .header-wrapper') || header,
-      isHeader: true,
-    });
-  }
-
-  return items;
-}
-
-/**
- * Bottom of the contiguous top stack (all visible announcement bars + header).
- * Handles 0–N announcement bars, sticky/non-sticky, and scrolled-away bars.
+ * Top edge for the search panel = bottom of the main header bar.
+ * Announcement bars (1–N, sticky or not) sit above the header in normal/sticky
+ * layout, so header.getBoundingClientRect().bottom already clears all of them.
+ * Any other sticky top bars are also scanned and included if they extend lower.
  */
 function getSearchPanelTop() {
-  const items = getHeaderStackItems();
-  if (!items.length) return 0;
+  const headerBar = getHeaderBarEl();
+  if (!headerBar) return 0;
 
-  const rects = items
-    .map((item) => {
-      const rect = item.el.getBoundingClientRect();
-      const sectionRect = item.section.getBoundingClientRect();
-      // Use whichever box is actually visible in the top chrome
-      const useRect =
-        rect.height > 1 ? rect : sectionRect.height > 1 ? sectionRect : null;
-      if (!useRect || useRect.bottom <= 0) return null;
-      return { ...item, rect: useRect };
-    })
-    .filter(Boolean)
-    .sort((a, b) => a.rect.top - b.rect.top);
+  let top = headerBar.getBoundingClientRect().bottom;
 
-  if (!rects.length) return 0;
+  // Include any other header-group sections stuck in the top chrome
+  // (extra announcement bars, utility bars, etc.)
+  const group =
+    document.querySelector('.shopify-section-group-header-group') ||
+    document.querySelector('#shopify-section-group-header-group');
 
-  // Contiguous stack starting from viewport top (or first bar near top)
-  let stackBottom = 0;
-  let started = false;
+  const extras = group
+    ? group.querySelectorAll(':scope > .shopify-section')
+    : document.querySelectorAll(
+        '.announcement-bar-section, .shopify-section-announcement-bar, .utility-bar'
+      );
 
-  for (const { rect } of rects) {
-    if (!started) {
-      // Accept first bar that is at/near the top of the viewport
-      if (rect.top <= 8) {
-        started = true;
-        stackBottom = rect.bottom;
-      }
-      continue;
+  extras.forEach((section) => {
+    if (section.classList.contains('section-header')) return;
+    const rect = section.getBoundingClientRect();
+    if (rect.height < 1 || rect.bottom <= 0) return;
+    // Only bars that are part of the top stack (near top / above header)
+    if (rect.top <= top + 2 && rect.bottom > 0) {
+      top = Math.max(top, rect.bottom);
     }
+  });
 
-    // Continue stack while bars are stacked on each other
-    if (rect.top <= stackBottom + 6) {
-      stackBottom = Math.max(stackBottom, rect.bottom);
-    } else {
-      break;
-    }
-  }
+  // Final guarantee: never higher than the header bar bottom
+  top = Math.max(top, headerBar.getBoundingClientRect().bottom);
 
-  // Fallback: use main header bottom, or lowest visible stack item
-  if (!started || stackBottom <= 0) {
-    const headerItem = rects.find((item) => item.isHeader) || rects[rects.length - 1];
-    stackBottom = headerItem.rect.bottom;
-  }
-
-  return Math.max(0, Math.round(stackBottom));
+  return Math.max(0, Math.round(top));
 }
 
 function isDsSearchOpen() {
@@ -135,7 +75,6 @@ function lockBodyScroll() {
   document.body.dataset.dsScrollLocked = 'true';
   document.body.dataset.dsScrollY = String(scrollY);
   document.body.style.overflow = 'hidden';
-  document.body.style.position = 'relative';
   if (scrollbar > 0) {
     document.body.style.paddingRight = `${scrollbar}px`;
   }
@@ -147,7 +86,6 @@ function unlockBodyScroll() {
   const scrollY = parseInt(document.body.dataset.dsScrollY || '0', 10);
 
   document.body.style.overflow = '';
-  document.body.style.position = '';
   document.body.style.paddingRight = '';
   delete document.body.dataset.dsScrollLocked;
   delete document.body.dataset.dsScrollY;
@@ -158,24 +96,16 @@ function unlockBodyScroll() {
 function pinHeaderForSearch() {
   const header = getHeaderEl();
   if (!header) return;
-
   header.classList.add('ds-search-header-pinned');
-  header.classList.remove('shopify-section-header-hidden');
-  header.classList.remove('animate');
-
-  // Keep natural stacking with announcement bars — do not force sticky.
-  // Sticky state is left as-is from scroll behavior.
+  header.classList.remove('shopify-section-header-hidden', 'animate');
 }
 
 function unpinHeaderForSearch() {
-  const header = getHeaderEl();
-  if (!header) return;
-  header.classList.remove('ds-search-header-pinned');
+  getHeaderEl()?.classList.remove('ds-search-header-pinned');
 }
 
 function placePanelUnderHeader(panel) {
   if (!panel) return 0;
-
   const top = getSearchPanelTop();
   panel.style.top = `${top}px`;
   document.documentElement.style.setProperty('--ds-search-top', `${top}px`);
@@ -183,10 +113,7 @@ function placePanelUnderHeader(panel) {
 }
 
 function getSearchPanelMaxHeight(panelTop) {
-  const top =
-    typeof panelTop === 'number'
-      ? panelTop
-      : parseFloat(panel?.style?.top) || 0;
+  const top = typeof panelTop === 'number' ? panelTop : 0;
   return Math.max(180, window.innerHeight - top);
 }
 
@@ -203,11 +130,8 @@ function expandSearchPanel(panel) {
   panel.style.maxHeight = 'none';
   panel.style.height = '0px';
 
-  // Measure full content height while at 0 (scrollHeight still works)
-  const contentHeight = panel.scrollHeight;
-  const target = Math.min(contentHeight, maxHeight);
+  const target = Math.min(panel.scrollHeight, maxHeight);
 
-  // Force reflow, then animate
   // eslint-disable-next-line no-unused-expressions
   panel.offsetHeight;
 
@@ -262,14 +186,12 @@ function collapseSearchPanel(panel) {
       finish();
     };
 
-    // Lock current pixel height before collapsing (needed when height is "auto")
     const currentHeight = panel.getBoundingClientRect().height;
     panel.classList.add('is-animating');
     panel.style.maxHeight = 'none';
     panel.style.overflow = 'hidden';
     panel.style.height = `${currentHeight}px`;
 
-    // Force reflow
     // eslint-disable-next-line no-unused-expressions
     panel.offsetHeight;
 
@@ -338,8 +260,7 @@ class DsTrendingSlider {
   onScroll() {
     if (!this.slides[0]) return;
     const slideWidth = this.slides[0].offsetWidth + 8;
-    const index = Math.round(this.track.scrollLeft / slideWidth);
-    this.setActive(index);
+    this.setActive(Math.round(this.track.scrollLeft / slideWidth));
   }
 
   setActive(index) {
@@ -374,10 +295,7 @@ function bindDsSearchCollapse(modal) {
     pinHeaderForSearch();
     placePanelUnderHeader(panel);
     lockBodyScroll();
-
     originalOpen(event);
-
-    // Replace Dawn's overflow-hidden (causes scrollbar jump / header flicker)
     document.body.classList.remove('overflow-hidden');
     lockBodyScroll();
   };
@@ -393,7 +311,6 @@ function bindDsSearchCollapse(modal) {
     }
 
     modal.dataset.dsClosing = 'true';
-
     collapseSearchPanel(panel).then(() => {
       originalClose(focusToggle);
       document.body.classList.remove('overflow-hidden');
@@ -403,7 +320,6 @@ function bindDsSearchCollapse(modal) {
     });
   };
 
-  // Close button was bound to Dawn's original close in the constructor — intercept it
   const closeBtn = modal.querySelector('.ds-search-form__close');
   if (closeBtn) {
     closeBtn.addEventListener(
@@ -419,16 +335,12 @@ function bindDsSearchCollapse(modal) {
 
   details.addEventListener('toggle', () => {
     if (!details.open) return;
-
     placePanelUnderHeader(panel);
-    // Remeasure after layout/sticky settles (multi announcement bars)
     requestAnimationFrame(() => {
       placePanelUnderHeader(panel);
       expandSearchPanel(panel);
       initDsTrendingSliders();
-      requestAnimationFrame(() => placePanelUnderHeader(panel));
     });
-
     const input = details.querySelector('.ds-search-form__input');
     if (input) setTimeout(() => input.focus(), 40);
   });
@@ -455,5 +367,4 @@ window.addEventListener(
   { passive: true }
 );
 
-// Expose for sticky-header to skip hide/reveal while search is open
 window.dsSearchIsOpen = isDsSearchOpen;
