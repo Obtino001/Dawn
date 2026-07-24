@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'ds-header-search.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
 <link
   rel="stylesheet"
@@ -7,6 +8,7 @@
   media="print"
   onload="this.media='all'"
 >
+<script src="{{ 'ds-header-search.js' | asset_url }}" defer="defer"></script>
 
 {%- if settings.predictive_search_enabled -%}
   <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -143,7 +145,7 @@
       endif
 
       if section.settings.logo_position == 'top-center' or section.settings.menu == blank
-        render 'header-search', input_id: 'Search-In-Modal-1'
+        render 'header-search', input_id: 'Search-In-Modal-1', section: section
       endif
     -%}
 
@@ -247,7 +249,7 @@
           </localization-form>
         {%- endif -%}
       </div>
-      {% render 'header-search', input_id: 'Search-In-Modal' %}
+      {% render 'header-search', input_id: 'Search-In-Modal', section: section %}
 
       {%- if shop.customer_accounts_enabled -%}
         <a
@@ -470,7 +472,7 @@
 {
   "name": "t:sections.header.name",
   "class": "section-header",
-  "max_blocks": 3,
+  "max_blocks": 20,
   "settings": [
     {
       "type": "select",
@@ -612,6 +614,40 @@
     },
     {
       "type": "header",
+      "content": "Search dropdown"
+    },
+    {
+      "type": "text",
+      "id": "search_placeholder",
+      "label": "Search placeholder",
+      "default": "Søg blandt over 2.000 koreanske produkter..."
+    },
+    {
+      "type": "text",
+      "id": "popular_searches_heading",
+      "label": "Popular searches heading",
+      "default": "Populære søgninger"
+    },
+    {
+      "type": "text",
+      "id": "popular_brands_heading",
+      "label": "Popular brands heading",
+      "default": "Populære brands"
+    },
+    {
+      "type": "text",
+      "id": "popular_blogs_heading",
+      "label": "Popular blogs heading",
+      "default": "Efterspurgte blogs"
+    },
+    {
+      "type": "text",
+      "id": "trending_heading",
+      "label": "Trending heading",
+      "default": "Trending"
+    },
+    {
+      "type": "header",
       "content": "t:sections.all.spacing"
     },
     {
@@ -652,6 +688,79 @@
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "popular_search",
+      "name": "Popular search",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Label",
+          "default": "Anua Zero-cast"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    },
+    {
+      "type": "popular_brand",
+      "name": "Popular brand",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Brand name",
+          "default": "Anua"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    },
+    {
+      "type": "popular_blog",
+      "name": "Popular blog",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Blog title",
+          "default": "Den ultimative guide til pigmentpletter"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    },
+    {
+      "type": "trending_item",
+      "name": "Trending item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Label",
+          "default": "Bestsellers"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
     }
   ]
 }

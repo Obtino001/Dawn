@@ -1,0 +1,436 @@
+/* Derma Space–style header search dropdown */
+
+.ds-header-search {
+  position: static;
+}
+
+.ds-header-search details {
+  position: static;
+}
+
+.ds-header-search .search-modal.ds-search-panel {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: var(--header-height, 0px);
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 20;
+  margin-top: 1px;
+  background: #fff;
+  border-bottom: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.ds-header-search details[open] > .search-modal.ds-search-panel {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  animation: dsSearchOpen 0.25s ease;
+}
+
+@keyframes dsSearchOpen {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ds-header-search .modal-overlay {
+  display: none;
+}
+
+.ds-header-search details[open] .modal-overlay {
+  display: block;
+  position: fixed;
+  inset: 0;
+  top: var(--header-height, 0px);
+  z-index: -1;
+  background: transparent;
+}
+
+.ds-header-search details[open] .modal-overlay::after {
+  display: none;
+}
+
+.ds-search-panel__inner {
+  position: relative;
+  padding-inline: 2rem;
+  max-width: var(--page-width);
+  margin: 0 auto;
+}
+
+.ds-search-panel__predictive {
+  display: block;
+  width: 100%;
+  position: relative;
+}
+
+/* Search form */
+.ds-search-form {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0 0.6rem;
+}
+
+@media screen and (min-width: 750px) {
+  .ds-search-form {
+    padding-top: 1.4rem;
+  }
+}
+
+.ds-search-form__field {
+  position: relative;
+  flex: 1;
+  width: 100%;
+}
+
+.ds-search-form__icon {
+  position: absolute;
+  top: 50%;
+  left: 1.2rem;
+  transform: translateY(-50%);
+  width: 2rem;
+  height: 2rem;
+  display: inline-flex;
+  pointer-events: none;
+}
+
+.ds-search-form__icon svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.ds-search-form__input {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  background: #faf9f7;
+  border: 1px solid #e6e6e6;
+  border-radius: 0.6rem;
+  padding: 1.6rem 1.6rem 1.6rem 4.2rem;
+  font-size: 1.4rem;
+  line-height: 1.4;
+  color: #212121;
+  box-shadow: none;
+}
+
+.ds-search-form__input::placeholder {
+  color: #8a8a8a;
+}
+
+.ds-search-form__input:focus {
+  outline: none;
+  border-color: rgba(var(--color-button), 1);
+  box-shadow: 0 0 0 1px rgba(var(--color-button), 0.35);
+}
+
+.ds-search-form__input::-webkit-search-decoration,
+.ds-search-form__input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+.ds-search-form__close {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.ds-search-form__close:hover {
+  opacity: 0.9;
+}
+
+.ds-search-form__close svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+/* Discovery layout */
+.ds-search-discovery {
+  padding: 1.6rem 0 2rem;
+}
+
+.ds-search-discovery__grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1.6rem;
+}
+
+.ds-search-discovery__left {
+  grid-column: span 12;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.ds-search-discovery__right {
+  grid-column: span 12;
+}
+
+@media screen and (min-width: 990px) {
+  .ds-search-discovery__left {
+    grid-column: span 4;
+  }
+
+  .ds-search-discovery__right {
+    grid-column: span 8;
+  }
+}
+
+@media screen and (max-width: 989px) {
+  .ds-search-m-hide {
+    display: none !important;
+  }
+
+  .ds-search-discovery {
+    display: none;
+  }
+}
+
+.ds-search-group__heading {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.ds-search-group__heading h4 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #000;
+  letter-spacing: 0;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.ds-search-group__line {
+  flex: 1;
+  border-bottom: 1px solid #e6e6e6;
+  height: 0;
+}
+
+.ds-search-group__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin: 0;
+  padding: 0;
+}
+
+.ds-search-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  width: 100%;
+  padding: 0.4rem 0;
+  color: #212121;
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.ds-search-link__left {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-width: 0;
+}
+
+.ds-search-link__icon {
+  display: inline-flex;
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+}
+
+.ds-search-link__icon svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.ds-search-link__label {
+  transition: color 0.2s ease;
+}
+
+.ds-search-link__label--truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 26rem;
+}
+
+.ds-search-link:hover .ds-search-link__label {
+  color: #000;
+}
+
+.ds-search-link__arrow {
+  display: inline-flex;
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.ds-search-link__arrow svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+/* Trending slider */
+.ds-trending-slider {
+  text-align: center;
+  overflow: hidden;
+}
+
+.ds-trending-slider__track {
+  display: flex;
+  gap: 0.8rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 0.4rem;
+}
+
+.ds-trending-slider__track::-webkit-scrollbar {
+  display: none;
+}
+
+.ds-trending-slide {
+  flex: 0 0 calc(25% - 0.6rem);
+  min-width: 14rem;
+  scroll-snap-align: start;
+}
+
+@media screen and (max-width: 1199px) {
+  .ds-trending-slide {
+    flex-basis: calc(33.333% - 0.55rem);
+  }
+}
+
+.ds-trending-card {
+  display: inline-block;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.ds-trending-card__thumb {
+  margin-bottom: 0.8rem;
+  overflow: hidden;
+  border-radius: 0.4rem;
+  aspect-ratio: 658 / 955;
+  background: #f3f3f3;
+}
+
+.ds-trending-card__thumb img,
+.ds-trending-card__placeholder {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease-in-out;
+}
+
+.ds-trending-card:hover .ds-trending-card__thumb img {
+  transform: scale(1.1);
+}
+
+.ds-trending-card__label {
+  display: block;
+  font-size: 1.4rem;
+  color: #212121;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.ds-trending-slider__dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1.2rem;
+}
+
+.ds-trending-slider__dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  border: 0;
+  padding: 0;
+  background: #d9d9d9;
+  cursor: pointer;
+}
+
+.ds-trending-slider__dot.is-active {
+  background: #212121;
+}
+
+/* Predictive results inside panel */
+.ds-header-search .ds-search-results.predictive-search {
+  position: static;
+  display: none;
+  width: 100%;
+  left: auto;
+  right: auto;
+  top: auto;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  max-height: min(60vh, 52rem);
+  overflow-y: auto;
+  margin-top: 0.8rem;
+  padding-bottom: 1.6rem;
+}
+
+.ds-header-search predictive-search[open] .ds-search-results.predictive-search,
+.ds-header-search predictive-search[loading] .ds-search-results.predictive-search {
+  display: block;
+}
+
+.ds-header-search predictive-search[open] .ds-search-discovery,
+.ds-header-search predictive-search[loading] .ds-search-discovery {
+  display: none;
+}
+
+.ds-header-search .predictive-search__heading {
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+  color: #000;
+}
+
+.ds-header-search .predictive-search__item-heading {
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #212121;
+}
+
+.ds-header-search .predictive-search__item:hover .predictive-search__item-heading,
+.ds-header-search .predictive-search__item:focus .predictive-search__item-heading {
+  color: #000;
+}
+
+/* Keep sticky header visible while search is open */
+.section-header:has(.ds-header-search details[open]) {
+  z-index: 30;
+}

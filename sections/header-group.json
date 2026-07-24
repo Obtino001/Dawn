@@ -1,1 +1,137 @@
-{"name":"t:sections.header.name","type":"header","sections":{"announcement-bar":{"type":"announcement-bar","blocks":{"announcement-bar-0":{"type":"announcement","settings":{"text":"Welcome to our store","link":""}}},"block_order":["announcement-bar-0"],"settings":{"auto_rotate":false,"change_slides_speed":5,"color_scheme":"scheme-1","show_line_separator":true,"show_social":false,"enable_country_selector":false,"enable_language_selector":false}},"header":{"type":"header","settings":{"logo_position":"middle-left","mobile_logo_position":"center","menu":"main-menu","menu_type_desktop":"dropdown","sticky_header_type":"on-scroll-up","show_line_separator":true,"color_scheme":"scheme-1","menu_color_scheme":"scheme-1","enable_country_selector":true,"enable_language_selector":true,"enable_customer_avatar":true,"margin_bottom":0,"padding_top":20,"padding_bottom":20}}},"order":["announcement-bar","header"]}
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement-bar-0": {
+          "type": "announcement",
+          "settings": {
+            "text": "Welcome to our store",
+            "link": ""
+          }
+        }
+      },
+      "block_order": ["announcement-bar-0"],
+      "settings": {
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "color_scheme": "scheme-1",
+        "show_line_separator": true,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "popular_search_1": {
+          "type": "popular_search",
+          "settings": {
+            "title": "Anua Zero-cast",
+            "link": ""
+          }
+        },
+        "popular_search_2": {
+          "type": "popular_search",
+          "settings": {
+            "title": "Toner",
+            "link": ""
+          }
+        },
+        "popular_brand_1": {
+          "type": "popular_brand",
+          "settings": {
+            "title": "Anua",
+            "link": ""
+          }
+        },
+        "popular_brand_2": {
+          "type": "popular_brand",
+          "settings": {
+            "title": "Medicube",
+            "link": ""
+          }
+        },
+        "popular_blog_1": {
+          "type": "popular_blog",
+          "settings": {
+            "title": "Den ultimative guide til pigmentpletter",
+            "link": ""
+          }
+        },
+        "popular_blog_2": {
+          "type": "popular_blog",
+          "settings": {
+            "title": "Top 5 ingredienser til rødme",
+            "link": ""
+          }
+        },
+        "trending_1": {
+          "type": "trending_item",
+          "settings": {
+            "title": "Find din rutine",
+            "link": ""
+          }
+        },
+        "trending_2": {
+          "type": "trending_item",
+          "settings": {
+            "title": "Hårpleje",
+            "link": ""
+          }
+        },
+        "trending_3": {
+          "type": "trending_item",
+          "settings": {
+            "title": "Bestsellers",
+            "link": ""
+          }
+        },
+        "trending_4": {
+          "type": "trending_item",
+          "settings": {
+            "title": "Kropspleje",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "popular_search_1",
+        "popular_search_2",
+        "popular_brand_1",
+        "popular_brand_2",
+        "popular_blog_1",
+        "popular_blog_2",
+        "trending_1",
+        "trending_2",
+        "trending_3",
+        "trending_4"
+      ],
+      "settings": {
+        "logo_position": "middle-left",
+        "mobile_logo_position": "center",
+        "menu": "main-menu",
+        "menu_type_desktop": "dropdown",
+        "sticky_header_type": "on-scroll-up",
+        "show_line_separator": true,
+        "color_scheme": "scheme-1",
+        "menu_color_scheme": "scheme-1",
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "enable_customer_avatar": true,
+        "search_placeholder": "Søg blandt over 2.000 koreanske produkter...",
+        "popular_searches_heading": "Populære søgninger",
+        "popular_brands_heading": "Populære brands",
+        "popular_blogs_heading": "Efterspurgte blogs",
+        "trending_heading": "Trending",
+        "margin_bottom": 0,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    }
+  },
+  "order": ["announcement-bar", "header"]
+}
