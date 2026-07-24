@@ -1,7 +1,90 @@
 /**
- * Lightweight trending slider for Derma Space–style search panel.
- * Uses native horizontal scroll + pagination dots.
+ * Derma Space–style search: height collapse animation + trending slider.
  */
+
+const DS_SEARCH_DURATION = 380;
+
+function setDsHeaderHeight() {
+  const header = document.querySelector('.section-header');
+  if (!header) return;
+  // Use visible bottom edge so panel sits exactly under the header
+  const bottom = Math.round(header.getBoundingClientRect().bottom);
+  document.documentElement.style.setProperty('--header-height', `${Math.max(0, bottom)}px`);
+}
+
+function expandSearchPanel(panel) {
+  if (!panel) return;
+
+  panel.classList.add('is-animating', 'is-open');
+  panel.style.overflow = 'hidden';
+  panel.style.height = '0px';
+  panel.style.opacity = '1';
+  panel.style.visibility = 'visible';
+  panel.style.pointerEvents = 'auto';
+
+  // Force reflow before animating to measured height
+  // eslint-disable-next-line no-unused-expressions
+  panel.offsetHeight;
+
+  const target = panel.scrollHeight;
+  panel.style.transition = `height ${DS_SEARCH_DURATION}ms ease`;
+  panel.style.height = `${target}px`;
+
+  const onEnd = (event) => {
+    if (event.propertyName !== 'height') return;
+    panel.removeEventListener('transitionend', onEnd);
+    panel.style.height = 'auto';
+    panel.style.overflow = '';
+    panel.style.transition = '';
+    panel.classList.remove('is-animating');
+  };
+
+  panel.addEventListener('transitionend', onEnd);
+}
+
+function collapseSearchPanel(panel) {
+  return new Promise((resolve) => {
+    if (!panel) {
+      resolve();
+      return;
+    }
+
+    let done = false;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      panel.removeEventListener('transitionend', onEnd);
+      panel.classList.remove('is-open', 'is-animating');
+      panel.style.height = '';
+      panel.style.overflow = '';
+      panel.style.transition = '';
+      panel.style.visibility = '';
+      panel.style.pointerEvents = '';
+      panel.style.opacity = '';
+      resolve();
+    };
+
+    const onEnd = (event) => {
+      if (event.propertyName !== 'height') return;
+      finish();
+    };
+
+    panel.classList.add('is-animating');
+    panel.style.overflow = 'hidden';
+    panel.style.height = `${panel.scrollHeight}px`;
+
+    // Force reflow
+    // eslint-disable-next-line no-unused-expressions
+    panel.offsetHeight;
+
+    panel.style.transition = `height ${DS_SEARCH_DURATION}ms ease`;
+    panel.style.height = '0px';
+
+    panel.addEventListener('transitionend', onEnd);
+    setTimeout(finish, DS_SEARCH_DURATION + 80);
+  });
+}
+
 class DsTrendingSlider {
   constructor(root) {
     this.root = root;
@@ -72,15 +155,7 @@ class DsTrendingSlider {
   }
 }
 
-function setDsHeaderHeight() {
-  const header = document.querySelector('.section-header');
-  if (!header) return;
-  document.documentElement.style.setProperty('--header-height', `${header.offsetHeight}px`);
-}
-
-function initDsSearchEnhancements() {
-  setDsHeaderHeight();
-
+function initDsTrendingSliders() {
   document.querySelectorAll('[data-ds-trending-slider]').forEach((el) => {
     if (el.dataset.dsSliderReady) return;
     el.dataset.dsSliderReady = 'true';
@@ -88,17 +163,48 @@ function initDsSearchEnhancements() {
   });
 }
 
+function bindDsSearchCollapse(modal) {
+  if (modal.dataset.dsCollapseBound) return;
+  modal.dataset.dsCollapseBound = 'true';
+
+  const details = modal.querySelector('details');
+  const panel = modal.querySelector('.ds-search-panel');
+  if (!details || !panel) return;
+
+  // Smooth close: animate height to 0, then run original close
+  const originalClose = modal.close.bind(modal);
+  modal.close = function dsAnimatedClose(focusToggle = true) {
+    if (modal.dataset.dsClosing === 'true') return;
+    if (!details.open) {
+      originalClose(focusToggle);
+      return;
+    }
+
+    modal.dataset.dsClosing = 'true';
+    collapseSearchPanel(panel).then(() => {
+      originalClose(focusToggle);
+      delete modal.dataset.dsClosing;
+    });
+  };
+
+  details.addEventListener('toggle', () => {
+    if (!details.open) return;
+
+    setDsHeaderHeight();
+    expandSearchPanel(panel);
+    requestAnimationFrame(initDsTrendingSliders);
+
+    const input = details.querySelector('.ds-search-form__input');
+    if (input) setTimeout(() => input.focus(), 60);
+  });
+}
+
+function initDsSearchEnhancements() {
+  setDsHeaderHeight();
+  initDsTrendingSliders();
+  document.querySelectorAll('details-modal.ds-header-search').forEach(bindDsSearchCollapse);
+}
+
 document.addEventListener('DOMContentLoaded', initDsSearchEnhancements);
 window.addEventListener('resize', setDsHeaderHeight);
-
-// Re-init when search opens (details toggle) so widths are correct
-document.querySelectorAll('.ds-header-search details').forEach((details) => {
-  details.addEventListener('toggle', () => {
-    if (details.open) {
-      setDsHeaderHeight();
-      requestAnimationFrame(initDsSearchEnhancements);
-      const input = details.querySelector('.ds-search-form__input');
-      if (input) setTimeout(() => input.focus(), 50);
-    }
-  });
-});
+window.addEventListener('scroll', setDsHeaderHeight, { passive: true });
