@@ -12,6 +12,13 @@ function setDsHeaderHeight() {
   document.documentElement.style.setProperty('--header-height', `${Math.max(0, bottom)}px`);
 }
 
+function getSearchPanelMaxHeight() {
+  const headerBottom = parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue('--header-height')
+  ) || 0;
+  return Math.max(200, window.innerHeight - headerBottom);
+}
+
 function expandSearchPanel(panel) {
   if (!panel) return;
 
@@ -26,15 +33,16 @@ function expandSearchPanel(panel) {
   // eslint-disable-next-line no-unused-expressions
   panel.offsetHeight;
 
-  const target = panel.scrollHeight;
+  const target = Math.min(panel.scrollHeight, getSearchPanelMaxHeight());
   panel.style.transition = `height ${DS_SEARCH_DURATION}ms ease`;
   panel.style.height = `${target}px`;
 
   const onEnd = (event) => {
     if (event.propertyName !== 'height') return;
     panel.removeEventListener('transitionend', onEnd);
-    panel.style.height = 'auto';
-    panel.style.overflow = '';
+    panel.style.height = '';
+    panel.style.maxHeight = `${getSearchPanelMaxHeight()}px`;
+    panel.style.overflow = 'hidden';
     panel.style.transition = '';
     panel.classList.remove('is-animating');
   };
@@ -56,6 +64,7 @@ function collapseSearchPanel(panel) {
       panel.removeEventListener('transitionend', onEnd);
       panel.classList.remove('is-open', 'is-animating');
       panel.style.height = '';
+      panel.style.maxHeight = '';
       panel.style.overflow = '';
       panel.style.transition = '';
       panel.style.visibility = '';

@@ -45,6 +45,8 @@
 
 .ds-header-search .ds-search-panel.is-open:not(.is-animating) {
   height: auto;
+  max-height: calc(100dvh - var(--header-height, 0px));
+  overflow: hidden;
 }
 
 .ds-header-search .modal-overlay {
@@ -195,7 +197,7 @@
   grid-column: span 12;
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1.6rem;
 }
 
 .ds-search-discovery__right {
@@ -205,6 +207,7 @@
 @media screen and (min-width: 990px) {
   .ds-search-discovery__left {
     grid-column: span 4;
+    gap: 1.2rem;
   }
 
   .ds-search-discovery__right {
@@ -212,13 +215,57 @@
   }
 }
 
+/* Mobile: same stacked layout as Derma Space */
 @media screen and (max-width: 989px) {
-  .ds-search-m-hide {
-    display: none !important;
+  .ds-search-panel__inner {
+    padding: 0 1.6rem !important;
+    max-height: calc(100dvh - var(--header-height, 0px));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .ds-search-discovery {
-    display: none;
+    padding: 0.8rem 0 2.4rem;
+  }
+
+  .ds-search-discovery__grid {
+    gap: 2rem;
+  }
+
+  .ds-search-form {
+    padding: 1.2rem 0 0.8rem;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: #fff;
+  }
+
+  .ds-search-form__input {
+    padding: 1.4rem 1.4rem 1.4rem 4rem !important;
+    font-size: 1.3rem !important;
+  }
+
+  .ds-search-link {
+    padding: 0.6rem 0;
+    font-size: 1.4rem;
+  }
+
+  .ds-search-link__label--truncate {
+    max-width: none;
+    white-space: normal;
+  }
+
+  .ds-trending-slide {
+    flex: 0 0 calc(50% - 0.4rem);
+    min-width: calc(50% - 0.4rem);
+  }
+
+  .ds-trending-card__label {
+    font-size: 1.2rem;
+  }
+
+  .ds-trending-slider__dots {
+    margin-top: 1rem;
   }
 }
 
