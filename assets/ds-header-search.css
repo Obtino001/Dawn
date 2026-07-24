@@ -1,35 +1,44 @@
-/* Derma Space–style header search dropdown */
+/* Derma Space–style header search dropdown
+   Overrides Dawn's default full-screen search modal */
 
 .ds-header-search {
-  position: static;
+  position: static !important;
 }
 
 .ds-header-search details {
-  position: static;
+  position: static !important;
 }
 
-.ds-header-search .search-modal.ds-search-panel {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: var(--header-height, 0px);
-  width: 100%;
-  height: auto;
-  min-height: 0;
+.ds-header-search .ds-search-panel {
+  position: fixed !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: var(--header-height, 0px) !important;
+  bottom: auto !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   z-index: 20;
-  margin-top: 1px;
-  background: #fff;
-  border-bottom: none;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  margin: 1px 0 0 !important;
+  padding: 0 !important;
+  background: #fff !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+  display: block !important;
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  line-height: normal !important;
 }
 
-.ds-header-search details[open] > .search-modal.ds-search-panel {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
+.ds-header-search details[open] > .ds-search-panel {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
   animation: dsSearchOpen 0.25s ease;
 }
 
@@ -45,27 +54,32 @@
 }
 
 .ds-header-search .modal-overlay {
-  display: none;
+  display: none !important;
 }
 
 .ds-header-search details[open] .modal-overlay {
-  display: block;
-  position: fixed;
+  display: block !important;
+  position: fixed !important;
   inset: 0;
   top: var(--header-height, 0px);
   z-index: -1;
-  background: transparent;
+  background: transparent !important;
 }
 
 .ds-header-search details[open] .modal-overlay::after {
-  display: none;
+  display: none !important;
+  content: none !important;
 }
 
 .ds-search-panel__inner {
   position: relative;
-  padding-inline: 2rem;
+  display: block !important;
+  width: 100% !important;
   max-width: var(--page-width);
+  height: auto !important;
   margin: 0 auto;
+  padding: 0 2rem !important;
+  box-sizing: border-box;
 }
 
 .ds-search-panel__predictive {
@@ -76,10 +90,13 @@
 
 /* Search form */
 .ds-search-form {
-  display: flex;
+  display: flex !important;
   align-items: center;
   gap: 1rem;
+  width: 100% !important;
+  max-width: none !important;
   padding: 1rem 0 0.6rem;
+  margin: 0;
 }
 
 @media screen and (min-width: 750px) {
@@ -103,6 +120,7 @@
   height: 2rem;
   display: inline-flex;
   pointer-events: none;
+  z-index: 1;
 }
 
 .ds-search-form__icon svg {
@@ -111,27 +129,31 @@
 }
 
 .ds-search-form__input {
-  width: 100%;
+  width: 100% !important;
   appearance: none;
   -webkit-appearance: none;
-  background: #faf9f7;
-  border: 1px solid #e6e6e6;
-  border-radius: 0.6rem;
-  padding: 1.6rem 1.6rem 1.6rem 4.2rem;
-  font-size: 1.4rem;
-  line-height: 1.4;
-  color: #212121;
-  box-shadow: none;
+  background: #faf9f7 !important;
+  border: 1px solid #e6e6e6 !important;
+  border-radius: 0.6rem !important;
+  padding: 1.6rem 1.6rem 1.6rem 4.2rem !important;
+  font-size: 1.4rem !important;
+  line-height: 1.4 !important;
+  color: #212121 !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  min-height: 0 !important;
+  height: auto !important;
 }
 
 .ds-search-form__input::placeholder {
   color: #8a8a8a;
+  opacity: 1;
 }
 
 .ds-search-form__input:focus {
-  outline: none;
-  border-color: rgba(var(--color-button), 1);
-  box-shadow: 0 0 0 1px rgba(var(--color-button), 0.35);
+  outline: none !important;
+  border-color: #212121 !important;
+  box-shadow: none !important;
 }
 
 .ds-search-form__input::-webkit-search-decoration,
@@ -141,14 +163,18 @@
 
 .ds-search-form__close {
   flex-shrink: 0;
-  display: inline-flex;
+  display: inline-flex !important;
   align-items: center;
   justify-content: center;
   padding: 0.6rem;
-  background: transparent;
-  border: 0;
+  background: transparent !important;
+  border: 0 !important;
   cursor: pointer;
   line-height: 0;
+  position: static !important;
+  margin: 0 !important;
+  width: auto !important;
+  height: auto !important;
 }
 
 .ds-search-form__close:hover {
@@ -231,6 +257,7 @@
   gap: 0.8rem;
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 .ds-search-link {
@@ -385,30 +412,30 @@
 
 /* Predictive results inside panel */
 .ds-header-search .ds-search-results.predictive-search {
-  position: static;
+  position: static !important;
   display: none;
-  width: 100%;
-  left: auto;
-  right: auto;
-  top: auto;
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
-  background: transparent;
+  width: 100% !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
   max-height: min(60vh, 52rem);
   overflow-y: auto;
   margin-top: 0.8rem;
-  padding-bottom: 1.6rem;
+  padding: 0 0 1.6rem !important;
 }
 
 .ds-header-search predictive-search[open] .ds-search-results.predictive-search,
 .ds-header-search predictive-search[loading] .ds-search-results.predictive-search {
-  display: block;
+  display: block !important;
 }
 
 .ds-header-search predictive-search[open] .ds-search-discovery,
 .ds-header-search predictive-search[loading] .ds-search-discovery {
-  display: none;
+  display: none !important;
 }
 
 .ds-header-search .predictive-search__heading {
@@ -430,7 +457,16 @@
   color: #000;
 }
 
-/* Keep sticky header visible while search is open */
+/* Keep sticky header above page while search is open */
 .section-header:has(.ds-header-search details[open]) {
   z-index: 30;
+}
+
+/* Kill Dawn's default search-modal rules when our panel is used */
+.ds-header-search details[open] > .ds-search-panel.search-modal,
+.ds-header-search .search-modal__content,
+.ds-header-search .search-modal__content-bottom,
+.ds-header-search .search-modal__content-top {
+  height: auto !important;
+  min-height: 0 !important;
 }
