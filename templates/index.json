@@ -9,480 +9,104 @@
  */
 {
   "sections": {
-    "custom_banner_XE8idV": {
-      "type": "custom-banner",
+    "image_banner": {
+      "type": "image-banner",
       "blocks": {
-        "heading_VWVA4z": {
+        "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Arvenixo™ LumiTherm Pro"
+            "heading": "Browse our latest products",
+            "heading_size": "h0"
           }
         },
-        "subheading_DAaYnw": {
-          "type": "subheading",
-          "settings": {
-            "subheading": "<p>Advanced beauty technology for your daily routine — considered, effective, and built to last.</p>"
-          }
-        },
-        "buttons_qkDF6J": {
+        "button": {
           "type": "buttons",
           "settings": {
-            "button_text": "Shop LumiTherm Pro",
-            "button_link": "shopify://collections/all",
-            "button_text2": "Shop devices",
-            "button_link2": "shopify://collections/all"
+            "button_label_1": "Shop all",
+            "button_link_1": "shopify://collections/all",
+            "button_style_secondary_1": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
           }
         }
       },
       "block_order": [
-        "heading_VWVA4z",
-        "subheading_DAaYnw",
-        "buttons_qkDF6J"
+        "heading",
+        "button"
       ],
-      "name": "Image Custom Banner",
       "settings": {
-        "color_scheme": "scheme-a48757f2-b0ca-4125-aa9d-572aa6225a09",
-        "media_type": "video",
-        "video": "shopify://files/videos/Facial_care_device_commercial_202608201120.mp4",
-        "image": "shopify://shop_images/Device_demonstrating_light_thera__202608201120.jpg",
-        "overlay_opacity": 30,
-        "heading_size_desktop": 48,
-        "subheading_size_desktop": 16,
-        "content_width": 650,
-        "min_height_desktop": 950,
-        "adapt_height_desktop": false,
-        "heading_size_mobile": 28,
-        "min_height_mobile": 600,
-        "adapt_height_mobile": false,
-        "show_mobile_content_below": false,
-        "text_position_top": 90,
-        "text_position_left": 3,
-        "text_alignment": "left"
+        "media": "image",
+        "image_overlay_opacity": 40,
+        "image_height": "large",
+        "image_behavior": "none",
+        "desktop_content_position": "bottom-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-3",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
       }
     },
-    "pill_marquee_KrybN8": {
-      "type": "pill-marquee",
-      "blocks": {
-        "badge_npDpFf": {
-          "type": "badge",
-          "settings": {
-            "image": "shopify://shop_images/worldwide_shipping.avif",
-            "fallback_image_url": "",
-            "text": "Free Standard Shipping"
-          }
-        },
-        "badge_3QYtBW": {
-          "type": "badge",
-          "settings": {
-            "image": "shopify://shop_images/Free_Return.avif",
-            "fallback_image_url": "",
-            "text": "30-day returns"
-          }
-        },
-        "badge_VXCyAr": {
-          "type": "badge",
-          "settings": {
-            "image": "shopify://shop_images/secure_payments.avif",
-            "fallback_image_url": "",
-            "text": "Secure checkout"
-          }
-        },
-        "badge_aDT3tR": {
-          "type": "badge",
-          "settings": {
-            "image": "shopify://shop_images/warranty.avif",
-            "fallback_image_url": "",
-            "text": "Email support"
-          }
-        }
-      },
-      "block_order": [
-        "badge_npDpFf",
-        "badge_3QYtBW",
-        "badge_VXCyAr",
-        "badge_aDT3tR"
-      ],
-      "name": "Pill Marquee",
-      "settings": {
-        "bg_color": "#f6f5f0",
-        "padding_top": 40,
-        "padding_bottom": 40
-      }
-    },
-    "collections_tabs_X6mbxf": {
+    "collections_tabs_FTGpaq": {
       "type": "collections-tabs",
       "blocks": {
-        "collection_RVRjx3": {
+        "collection_9LazVj": {
           "type": "collection",
           "settings": {
-            "tab_title": "All products",
-            "collection": "all-products"
+            "tab_title": "",
+            "collection": "all"
           }
         },
-        "collection_Vq98xC": {
+        "collection_ak7zVy": {
           "type": "collection",
           "settings": {
-            "tab_title": "Beauty Devices",
-            "collection": "beauty-devices"
+            "tab_title": "",
+            "collection": "all"
           }
         }
       },
       "block_order": [
-        "collection_RVRjx3",
-        "collection_Vq98xC"
+        "collection_9LazVj",
+        "collection_ak7zVy"
       ],
       "name": "Collection Tabs",
       "settings": {
-        "title": "Shop",
-        "heading_size": "h2",
+        "title": "Our Collections",
+        "heading_size": "h1",
         "description": "",
         "description_style": "body",
         "products_to_show": 8,
         "columns_desktop": 4,
-        "columns_mobile": "1",
+        "columns_mobile": "2",
         "spacing": 20,
-        "overflow": true,
+        "overflow": false,
         "full_width": false,
         "enable_slider_desktop": true,
         "enable_slider_mobile": true,
-        "show_controls_desktop": false,
-        "show_controls_mobile": false,
+        "show_controls_desktop": true,
+        "show_controls_mobile": true,
         "controls_position": "bottom",
         "enable_autoplay": false,
-        "autoplay_interval": 7,
+        "autoplay_interval": 3,
         "enable_loop": false,
-        "image_ratio": "square",
+        "image_ratio": "adapt",
         "image_shape": "default",
-        "show_secondary_image": true,
+        "show_secondary_image": false,
         "show_vendor": false,
-        "show_rating": true,
-        "quick_add": "standard",
+        "show_rating": false,
+        "quick_add": "none",
         "show_view_all": true,
         "view_all_style": "solid",
         "color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 36
       }
-    },
-    "washing_guide_JwqBHy": {
-      "type": "washing-guide",
-      "blocks": {
-        "category_QWpdXJ": {
-          "type": "category",
-          "settings": {
-            "image": "shopify://shop_images/Active_MG_4608_e39cf02c-e83c-4cb9-945c-fd41bfdd100c.webp",
-            "title": "Cases",
-            "link": "shopify://collections/phone-cases-example-products"
-          }
-        },
-        "category_743MJV": {
-          "type": "category",
-          "settings": {
-            "image": "shopify://shop_images/bags.webp",
-            "title": "Carry",
-            "link": "shopify://collections/all"
-          }
-        },
-        "category_dRwE3A": {
-          "type": "category",
-          "settings": {
-            "image": "shopify://shop_images/Woman_using_LED_sculpting_device_202608201128.jpg",
-            "title": "Beauty",
-            "link": "shopify://collections/all"
-          }
-        },
-        "category_R3zfiF": {
-          "type": "category",
-          "settings": {
-            "image": "shopify://shop_images/Smartphone_case_with_desktop_stand_202608201156.jpg",
-            "title": "Protect",
-            "link": "shopify://collections/phone-cases-example-products"
-          }
-        }
-      },
-      "block_order": [
-        "category_QWpdXJ",
-        "category_743MJV",
-        "category_dRwE3A",
-        "category_R3zfiF"
-      ],
-      "name": "How to care for your electronics",
-      "settings": {
-        "bg_color": "#f6f5f0",
-        "heading": "Shop by world",
-        "subheading": "Charge / Carry / Protect",
-        "text": "<p>Arvenixo makes MagSafe protection and beauty tech that is meant to be used every day — slim, tactile, and built with intention.</p><p>We choose materials for how they feel in the hand and how long they last. Less clutter. Longer life. Objects you actually want to keep.</p>",
-        "button_text": "See all products",
-        "button_link": "shopify://collections/all",
-        "padding_top": 60,
-        "padding_bottom": 60
-      }
-    },
-    "testimonials_qqDXbK": {
-      "type": "testimonials",
-      "blocks": {
-        "review_kVJhXx": {
-          "type": "review",
-          "settings": {
-            "review_text": "<p>The LumiTherm Pro has completely transformed my skincare routine. My skin feels rejuvenated and glowing. Highly recommend!</p>",
-            "author_name": "STEVE J",
-            "show_verified": true
-          }
-        },
-        "image_fwHkwT": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/Woman_using_facial_device_202608201120.jpg"
-          }
-        },
-        "review_riFiDT": {
-          "type": "review",
-          "settings": {
-            "review_text": "<p>The LumiTherm Pro has completely transformed my skincare routine. My skin feels rejuvenated and glowing. Highly recommend!</p>",
-            "author_name": "STEVE J",
-            "show_verified": true
-          }
-        },
-        "image_BNGL7G": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/ax-cat-charger.png"
-          }
-        },
-        "review_ntN3QL": {
-          "type": "review",
-          "settings": {
-            "review_text": "<p>The LumiTherm Pro has completely transformed my skincare routine. My skin feels rejuvenated and glowing. Highly recommend!</p>",
-            "author_name": "STEVE J",
-            "show_verified": true
-          }
-        },
-        "image_PiFyAz": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/ax-about-beginnings.png"
-          }
-        },
-        "review_ACeL33": {
-          "type": "review",
-          "settings": {
-            "review_text": "<p>The LumiTherm Pro has completely transformed my skincare routine. My skin feels rejuvenated and glowing. Highly recommend!</p>",
-            "author_name": "STEVE J",
-            "show_verified": true
-          }
-        },
-        "image_AjbtaL": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/ax-review-carry.png"
-          }
-        },
-        "review_iMUAV3": {
-          "type": "review",
-          "settings": {
-            "review_text": "<p>The LumiTherm Pro has completely transformed my skincare routine. My skin feels rejuvenated and glowing. Highly recommend!</p>",
-            "author_name": "STEVE J",
-            "show_verified": true
-          }
-        },
-        "review_WejKQV": {
-          "type": "review",
-          "settings": {
-            "review_text": "<p>The LumiTherm Pro has completely transformed my skincare routine. My skin feels rejuvenated and glowing. Highly recommend!</p>",
-            "author_name": "STEVE J",
-            "show_verified": true
-          }
-        },
-        "image_BUjmnf": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/ax-cat-bags.png"
-          }
-        },
-        "review_r4YBxd": {
-          "type": "review",
-          "settings": {
-            "review_text": "<p>The LumiTherm Pro has completely transformed my skincare routine. My skin feels rejuvenated and glowing. Highly recommend!</p>",
-            "author_name": "STEVE J",
-            "show_verified": true
-          }
-        }
-      },
-      "block_order": [
-        "review_kVJhXx",
-        "image_fwHkwT",
-        "review_riFiDT",
-        "image_BNGL7G",
-        "review_ntN3QL",
-        "image_PiFyAz",
-        "review_ACeL33",
-        "image_AjbtaL",
-        "review_iMUAV3",
-        "review_WejKQV",
-        "image_BUjmnf",
-        "review_r4YBxd"
-      ],
-      "name": "Masonry Reviews",
-      "settings": {
-        "bg_color": "#f9f8f6",
-        "show_header_stars": true,
-        "heading": "Customer reviews",
-        "button_text": "READ MORE REVIEWS",
-        "button_link": "",
-        "padding_top": 60,
-        "padding_bottom": 60
-      }
-    },
-    "who_is_fRJAyc": {
-      "type": "who-is",
-      "blocks": {
-        "heading_YVCYUK": {
-          "type": "heading",
-          "settings": {
-            "heading": "Who is Arvenixo?"
-          }
-        },
-        "text_zh9EYh": {
-          "type": "text",
-          "settings": {
-            "text": "<p><strong>Welcome to Arvenixo</strong></p><p>At Arvenixo, we believe everyday life should feel smarter, easier, and more enjoyable.</p><p>We carefully select practical products, modern gadgets, and lifestyle essentials designed to bring convenience, quality, and style to your daily routine. Every product is chosen with usefulness, reliability, and value in mind.</p><p>Our goal is simple: to offer products that make everyday living better while providing a smooth and trustworthy shopping experience.</p>"
-          }
-        },
-        "subheading_Qrfa4L": {
-          "type": "subheading",
-          "settings": {
-            "subheading": "What we stand by"
-          }
-        },
-        "feature_KNUKjh": {
-          "type": "feature",
-          "settings": {
-            "icon_image": "shopify://shop_images/worldwide_shipping.avif",
-            "title": "Free Standard Shipping",
-            "text": "<p>Orders leave our warehouse promptly, with tracking once they are on the way.</p>"
-          }
-        },
-        "feature_rXBHeP": {
-          "type": "feature",
-          "settings": {
-            "icon_image": "shopify://shop_images/Free_Return.avif",
-            "title": "Simple checkout",
-            "text": "<p>Pay with major cards or Shop Pay. Encrypted, no fuss.</p>"
-          }
-        },
-        "feature_nQkBFe": {
-          "type": "feature",
-          "settings": {
-            "icon_image": "shopify://shop_images/secure_payments.avif",
-            "title": "Real support",
-            "text": "<p>Questions about an order or a product — we answer. No scripts, no runaround.</p>"
-          }
-        },
-        "feature_XTHeHP": {
-          "type": "feature",
-          "settings": {
-            "icon_image": "shopify://shop_images/warranty.avif",
-            "title": "30-day returns",
-            "text": "<p>If it is not right, send it back within 30 days. Straightforward, no drama.</p>"
-          }
-        },
-        "button_6AaNqK": {
-          "type": "button",
-          "settings": {
-            "button_label": "Our story",
-            "button_link": "/pages/about"
-          }
-        }
-      },
-      "block_order": [
-        "heading_YVCYUK",
-        "text_zh9EYh",
-        "subheading_Qrfa4L",
-        "feature_KNUKjh",
-        "feature_rXBHeP",
-        "feature_nQkBFe",
-        "feature_XTHeHP",
-        "button_6AaNqK"
-      ],
-      "name": "Who is Arvenixo",
-      "settings": {
-        "color_scheme": "",
-        "image": "shopify://shop_images/ax-cat-bags.png",
-        "desktop_image_position": "left",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "tabbed_hero_slider_aD8UBn": {
-      "type": "tabbed-hero-slider",
-      "blocks": {
-        "slide_pHhDPX": {
-          "type": "slide",
-          "settings": {
-            "tab_title": "INNOVATION",
-            "image": "shopify://shop_images/tech_review_2.jpg",
-            "heading": "ENGINEERED FOR THE FUTURE. BUILT TO LAST.",
-            "heading_size": "h0",
-            "description": "Every device is crafted with precision — curated by experts and selected with care to deliver unmatched durability and peak performance."
-          }
-        },
-        "slide_pQrQKC": {
-          "type": "slide",
-          "settings": {
-            "tab_title": "PERFORMANCE",
-            "image": "shopify://shop_images/ax-about-earth.png",
-            "heading": "ADVANCED TECH FOR SEAMLESS EXPERIENCES.",
-            "heading_size": "h0",
-            "description": "Every device is crafted with precision — curated by experts and selected with care to deliver unmatched durability and peak performance."
-          }
-        },
-        "slide_jLd9c9": {
-          "type": "slide",
-          "settings": {
-            "tab_title": "DURABILITY",
-            "image": "shopify://shop_images/ax-about-hero.png",
-            "heading": "RELIABLE DEVICES FOR EVERYDAY USE.",
-            "heading_size": "h0",
-            "description": "Every device is crafted with precision — curated by experts and selected with care to deliver unmatched durability and peak performance."
-          }
-        },
-        "slide_hi8KKd": {
-          "type": "slide",
-          "settings": {
-            "tab_title": "SECURITY",
-            "image": "shopify://shop_images/ax-review-pocket.png",
-            "heading": "YOUR DATA, ALWAYS PROTECTED.",
-            "heading_size": "h0",
-            "description": "Every device is crafted with precision — curated by experts and selected with care to deliver unmatched durability and peak performance."
-          }
-        }
-      },
-      "block_order": [
-        "slide_pHhDPX",
-        "slide_pQrQKC",
-        "slide_jLd9c9",
-        "slide_hi8KKd"
-      ],
-      "name": "Tabbed Hero Slider",
-      "settings": {
-        "color_scheme": "scheme-a48757f2-b0ca-4125-aa9d-572aa6225a09",
-        "desktop_height": 800,
-        "mobile_height": 600,
-        "overlay_opacity": 70,
-        "enable_autoplay": true,
-        "autoplay_interval": 5,
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
     }
   },
   "order": [
-    "custom_banner_XE8idV",
-    "pill_marquee_KrybN8",
-    "collections_tabs_X6mbxf",
-    "washing_guide_JwqBHy",
-    "testimonials_qqDXbK",
-    "who_is_fRJAyc",
-    "tabbed_hero_slider_aD8UBn"
+    "image_banner",
+    "collections_tabs_FTGpaq"
   ]
 }
