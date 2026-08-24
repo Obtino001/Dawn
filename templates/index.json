@@ -37,13 +37,14 @@
       ],
       "settings": {
         "media": "image",
+        "image": "shopify://shop_images/review-image4.png",
         "image_overlay_opacity": 40,
         "image_height": "large",
         "image_behavior": "none",
         "desktop_content_position": "bottom-center",
         "desktop_content_alignment": "center",
         "show_text_box": false,
-        "color_scheme": "scheme-3",
+        "color_scheme": "scheme-7bb5237c-90bc-4ff8-b9c6-9f6059b3117a",
         "stack_images_on_mobile": false,
         "mobile_content_alignment": "center",
         "show_text_below": false
