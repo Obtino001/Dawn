@@ -1,3 +1,7 @@
+* {
+  font-family: 'GT America Mono', monospace !important;
+}
+
 :root {
   --alpha-button-background: 1;
   --alpha-button-border: 1;
