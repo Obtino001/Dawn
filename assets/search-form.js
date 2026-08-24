@@ -25,7 +25,7 @@ class SearchForm extends HTMLElement {
   }
 
   onChange() {
-    if (this.resetButton) this.toggleResetButton();
+    this.toggleResetButton();
   }
 
   shouldResetForm() {

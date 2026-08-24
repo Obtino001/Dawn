@@ -1,0 +1,74 @@
+{%- style -%}
+.benefit-list-container-{{ block.id }} { 
+  display: grid; 
+  grid-template-columns: repeat(2, auto); /* 2 Columns */
+  gap: 16px 40px; 
+  justify-content: start; /* Aligns the grid neatly */
+  margin: 20px 0;
+}
+
+.benefit-list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: inherit; /* Inherits your theme's font */
+  font-weight: 500;
+  font-size: 14px;
+  color: {{ block.settings.text_color | default: '#282828' }}; /* Matches the plum color */
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.benefit-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+}
+
+.benefit-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5; /* Makes the checkmark bold like the image */
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Mobile Layout */
+@media (max-width: 768px) {
+  .benefit-list-container-{{ block.id }} { 
+    gap: 14px; 
+  }
+  .benefit-list-item {
+    font-size: 15px;
+    white-space: normal; /* Allows text to wrap on small screens */
+  }
+}
+{%- endstyle -%}
+
+<div class="benefit-list-container-{{ block.id }}" {{ block.shopify_attributes }}>
+  {%- for i in (1..6) -%}
+    {%- capture benefit_text_key -%}benefit_{{ i }}{%- endcapture -%}
+    {%- assign benefit_text = block.settings[benefit_text_key] -%}
+    
+    {%- if benefit_text != blank -%}
+      <div class="benefit-list-item">
+        <div class="benefit-icon">
+          {%- if block.settings.custom_svg != blank -%}
+            {{ block.settings.custom_svg }}
+          {%- else -%}
+            <svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          {%- endif -%}
+        </div>
+        <span>{{ benefit_text }}</span>
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+</div>

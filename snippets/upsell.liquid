@@ -1,0 +1,84 @@
+{%- comment -%} Check if the metafield has values {%- endcomment -%}
+{% if product.metafields.custom.product_upsell != blank %}
+  <div class="drawer__upsell-container-mobile upsell-pdp">
+    <div class="drawer__upsell-wrapper-mobile">
+      <div class="drawer__upsell-inner">
+        <ma-slider class="template-slider-section" data-block-id="{{ block.id }}">
+          <div class="slider-wrapper relative-container">
+            <div class="swiper-custom-header">
+              <p class="swiper-custom-heading-upsell-pdp">
+                {%- if block.settings.upsell__heading != blank -%}
+                  {{ block.settings.upsell__heading }}
+                {%- endif -%}
+              </p>
+
+              <div
+                class="swiper-custom-controls-upsell-pdp"
+                style="{% if block.settings.drawer_mobile_arrows %}margin-right: -13px;{% endif %}"
+              >
+                <div
+                  class="
+                    swiper-custom-prev
+                    {% unless block.settings.drawer_mobile_arrows %}hide-on-mobile{% endunless %}
+                    {% unless block.settings.drawer_mobile_arrows %}hide-on-desktop{% endunless %}
+                  "
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M20 12L4 12M4 12L10 6M4 12L10 18" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </div>
+                <div
+                  class="
+                    swiper-custom-next
+                    {% unless block.settings.drawer_mobile_arrows %}hide-on-mobile{% endunless %}
+                    {% unless block.settings.drawer_mobile_arrows %}hide-on-desktop{% endunless %}
+                  "
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 12L20 12M20 12L14 18M20 12L14 6" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="swiper js-swiper-template"
+              data-swiper-config='
+                {
+                    "autoplay": {{ block.settings.drawer_enable_autoplay | default: false }},
+                    "autoplayInterval": {{ block.settings.drawer_autoplay_interval | times: 1000 | default: 3000 }},
+                    "mobileSlides": {{ block.settings.drawer_mobile_slides | default: 2.2 }},
+                    "mobileSpacing": {{ block.settings.drawer_mobile_spacing | default: 16 }},
+                    "desktopSlides": {{ block.settings.drawer_desktop_slides | default: 4 }},
+                    "tabletSlides": {{ block.settings.drawer_tablet_slides | default: 3 }},
+                    "desktopSpacing": {{ block.settings.drawer_desktop_spacing | default: 24 }}
+                }
+              '
+            >
+              <div class="swiper-wrapper">
+                {%- comment -%}
+                  Loop through Metafield List
+                  Note: .value is required for List Mixed Reference metafields
+                {%- endcomment -%}
+                {% for item in product.metafields.custom.product_upsell.value %}
+                  <div class="swiper-slide">
+                    {% render 'card-product-item',
+                      card_product: item,
+                      show_vendor: section.settings.show_vendor,
+                      media_aspect_ratio: section.settings.image_ratio,
+                      image_shape: section.settings.image_shape,
+                      lazy_load: false,
+                      placeholder_image: placeholder_image
+                    %}
+                  </div>
+                {%- endfor -%}
+              </div>
+            </div>
+          </div>
+        </ma-slider>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% comment %} Styles moved to sereluna.css {% endcomment %}

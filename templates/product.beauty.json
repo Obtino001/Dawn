@@ -1,0 +1,579 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "product_reviews_XX9YT4": {
+          "type": "product-reviews",
+          "settings": {
+            "flow_text": "",
+            "flow_bg_color": "#f6f5f0",
+            "star_width": 70,
+            "review_text": "",
+            "link_url": "",
+            "text_color": "#000000",
+            "margin_top": 0,
+            "margin_bottom": 10
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "text_YJpJae": {
+          "type": "text",
+          "settings": {
+            "text": "Use as directed on the product page. Cosmetic devices are for skincare routines only — results vary. Check charging and care notes before first use.",
+            "text_style": "body"
+          }
+        },
+        "multi_icon_xn8fhg": {
+          "type": "multi-icon",
+          "settings": {
+            "icon-1": "shopify://shop_images/Free_Return.avif",
+            "icon_size_1": 46,
+            "icon_size_m_1": 30,
+            "text-1": "30 Days Return",
+            "icon-2": "shopify://shop_images/secure_payments.avif",
+            "icon_size_2": 46,
+            "icon_size_m_2": 30,
+            "text-2": "100% Secure Payments",
+            "icon-3": "shopify://shop_images/warranty.avif",
+            "icon_size_3": 46,
+            "icon_size_m_3": 30,
+            "text-3": "Email support",
+            "text-size": 14
+          }
+        },
+        "inventory_9gdd8V": {
+          "type": "inventory",
+          "settings": {
+            "text_style": "body",
+            "inventory_threshold": 10,
+            "show_inventory_quantity": true
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle",
+            "show_variant_images_in_swatches": false,
+            "size_guide_page": false,
+            "trigger_tag": "",
+            "trigger_label": "Compatibility",
+            "color_primary": "#282828",
+            "color_secondary": "#282828",
+            "color_tertiary": "#f6f5f0",
+            "title": "Compatibility",
+            "show_xs": true,
+            "val_xs_int": "34 - 36",
+            "val_xs_cm": "88 - 93",
+            "show_s": true,
+            "val_s_int": "38",
+            "val_s_cm": "94 - 99",
+            "show_m": true,
+            "val_m_int": "40 - 42",
+            "val_m_cm": "100 - 105",
+            "show_l": true,
+            "val_l_int": "44",
+            "val_l_cm": "106 - 111",
+            "show_xl": true,
+            "val_xl_int": "46",
+            "val_xl_cm": "112 - 117",
+            "show_xxl": true,
+            "val_xxl_int": "48 - 50",
+            "val_xxl_cm": "118 - 123",
+            "box_title": "Specifications",
+            "bullet_1": "Check the detailed tech specs.",
+            "bullet_2": "Ensure compatibility before purchase.",
+            "bullet_3": "Contact support if you need help.",
+            "note_text": "If you need help choosing, please reach out to us."
+          }
+        },
+        "shipping_info_FbM7ih": {
+          "type": "shipping-info",
+          "settings": {
+            "icon_width": 14,
+            "status_text": "In Stock",
+            "pre_date_text": "Order today and get it by",
+            "text_color": "#333333",
+            "font_size": 14,
+            "date_type": "hardcoded",
+            "hardcoded_text": "2-3 days",
+            "delivery_days": 9,
+            "padding_bottom": 16
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "delivery_payment_mB6BTN": {
+          "type": "delivery_payment",
+          "settings": {
+            "text": "Ships in 1–2 business days. Delivery time depends on your region.",
+            "margin_bottom": 16
+          }
+        },
+        "pills_xFGRwJ": {
+          "type": "pills",
+          "disabled": true,
+          "settings": {
+            "text_color": "#282828",
+            "custom_svg": "",
+            "benefit_1": "30-day returns",
+            "benefit_2": "Cosmetic use only",
+            "benefit_3": "Tracked shipping",
+            "benefit_4": "Care notes below",
+            "benefit_5": "",
+            "benefit_6": ""
+          }
+        },
+        "faq_blocks_NkWNgc": {
+          "type": "faq-blocks",
+          "name": "Product Description",
+          "settings": {
+            "question": "Product Description",
+            "faq_content_type": "product_description",
+            "answer": ""
+          }
+        },
+        "faq_blocks_CkKVjD": {
+          "type": "faq-blocks",
+          "name": "Materials & Care",
+          "settings": {
+            "question": "Materials & Care",
+            "faq_content_type": "manual",
+            "answer": "<p>Wipe with a soft dry cloth. Avoid solvents, extreme heat, and leaving rechargeable devices on charge overnight. Check the product description for material details and any water-resistance notes — do not assume a product is waterproof unless it says so.</p>"
+          }
+        },
+        "faq_blocks_FN9CnF": {
+          "type": "faq-blocks",
+          "name": "Shipping",
+          "settings": {
+            "question": "Shipping",
+            "faq_content_type": "manual",
+            "answer": "<p>Most orders ship within 1–2 business days. Delivery time depends on your region and is shown at checkout. You receive tracking once the order is on the way.</p>"
+          }
+        },
+        "faq_blocks_k8EnCc": {
+          "type": "faq-blocks",
+          "name": "Returns & warranty",
+          "settings": {
+            "question": "Returns & warranty",
+            "faq_content_type": "manual",
+            "answer": "<p>Unused items can be returned within 30 days. Start a return from your order email or the contact page. Manufacturer warranty, if offered, is listed on the product — we do not claim a blanket multi-year warranty on every item.</p>"
+          }
+        },
+        "upsell_product_jgWVE7": {
+          "type": "upsell_product",
+          "settings": {
+            "upsell__heading": "You might also need",
+            "drawer_mobile_arrows": false,
+            "drawer_enable_autoplay": false,
+            "drawer_autoplay_interval": 3,
+            "drawer_mobile_slides": 1.5,
+            "drawer_tablet_slides": 2,
+            "drawer_desktop_slides": 2,
+            "drawer_mobile_spacing": 10,
+            "drawer_desktop_spacing": 10
+          }
+        }
+      },
+      "block_order": [
+        "product_reviews_XX9YT4",
+        "title",
+        "price",
+        "text_YJpJae",
+        "multi_icon_xn8fhg",
+        "inventory_9gdd8V",
+        "variant_picker",
+        "shipping_info_FbM7ih",
+        "buy_buttons",
+        "delivery_payment_mB6BTN",
+        "pills_xFGRwJ",
+        "faq_blocks_NkWNgc",
+        "faq_blocks_CkKVjD",
+        "faq_blocks_FN9CnF",
+        "faq_blocks_k8EnCc",
+        "upsell_product_jgWVE7"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-4",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "cover",
+        "gallery_layout": "columns",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "full_popup",
+        "hide_variants": true,
+        "enable_video_looping": true,
+        "show_main_arrows": true,
+        "show_main_pagination": true,
+        "show_thumbs_arrows": true,
+        "enable_group_by_color": true,
+        "color_option_name": "Color",
+        "fancybox_show_all": false,
+        "trigger_label": "Compatibility",
+        "default_metric": true,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "pill_marquee_KrybN8": {
+      "type": "pill-marquee",
+      "blocks": {
+        "badge_npDpFf": {
+          "type": "badge",
+          "settings": {
+            "image": "shopify://shop_images/worldwide_shipping.avif",
+            "fallback_image_url": "",
+            "text": "Worldwide Shipping"
+          }
+        },
+        "badge_3QYtBW": {
+          "type": "badge",
+          "settings": {
+            "image": "shopify://shop_images/Free_Return.avif",
+            "fallback_image_url": "",
+            "text": "30 Days Return"
+          }
+        },
+        "badge_VXCyAr": {
+          "type": "badge",
+          "settings": {
+            "image": "shopify://shop_images/secure_payments.avif",
+            "fallback_image_url": "",
+            "text": "100% Secure Payments"
+          }
+        },
+        "badge_aDT3tR": {
+          "type": "badge",
+          "settings": {
+            "image": "shopify://shop_images/warranty.avif",
+            "fallback_image_url": "",
+            "text": "Email support"
+          }
+        }
+      },
+      "block_order": [
+        "badge_npDpFf",
+        "badge_3QYtBW",
+        "badge_VXCyAr",
+        "badge_aDT3tR"
+      ],
+      "name": "Pill Marquee",
+      "settings": {
+        "bg_color": "#f6f5f0",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "our_values_7aAqFj": {
+      "type": "our-values",
+      "blocks": {
+        "row_8yCfXU": {
+          "type": "row",
+          "settings": {
+            "title": "Therapy Types",
+            "col_2_text": "Hot & Cold Therapy",
+            "col_3_text": "Cold only",
+            "col_4_text": "None"
+          }
+        },
+        "row_rwPnUp": {
+          "type": "row",
+          "settings": {
+            "title": "Product Absorption",
+            "col_2_text": "Deep Penetration",
+            "col_3_text": "Surface Level",
+            "col_4_text": "Wastes Product"
+          }
+        },
+        "row_WWDYeX": {
+          "type": "row",
+          "settings": {
+            "title": "Skin Tightening",
+            "col_2_text": "Visible Lifting",
+            "col_3_text": "Temporary Depuffing",
+            "col_4_text": "None"
+          }
+        },
+        "row_GCXiet": {
+          "type": "row",
+          "settings": {
+            "title": "LED Light Therapy",
+            "col_2_text": "Built-in",
+            "col_3_text": "None",
+            "col_4_text": "None"
+          }
+        }
+      },
+      "block_order": [
+        "row_8yCfXU",
+        "row_rwPnUp",
+        "row_WWDYeX",
+        "row_GCXiet"
+      ],
+      "disabled": true,
+      "name": "Comparison Table 1:1",
+      "settings": {
+        "card_bg_color": "rgba(0,0,0,0)",
+        "header_1": "US VS. THEM",
+        "header_2": "LUMITHERM PRO",
+        "header_3": "CHEAP ROLLERS",
+        "header_4": "BARE HANDS",
+        "guarantee_text": "BACKED BY OUR 30-DAY\nRETURNS",
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "unique_features_YCBxQX": {
+      "type": "unique-features",
+      "blocks": {
+        "feature_3FqJ9D": {
+          "type": "feature",
+          "settings": {
+            "icon_width": 65,
+            "title": "Designed by Arvenixo",
+            "text": "MagSafe protection and everyday devices made to be used, not replaced every season."
+          }
+        },
+        "feature_TfTYCV": {
+          "type": "feature",
+          "settings": {
+            "icon_width": 65,
+            "title": "30-day returns",
+            "text": "If it is not right, send unused items back within 30 days."
+          }
+        },
+        "feature_rp8MLg": {
+          "type": "feature",
+          "settings": {
+            "icon_width": 65,
+            "title": "Real support",
+            "text": "Questions about an order, a model, or a return — email support@arvenixo.com."
+          }
+        },
+        "feature_FfLgjG": {
+          "type": "feature",
+          "settings": {
+            "icon_width": 65,
+            "title": "Secure Payments",
+            "text": "Multiple secure payment gateways to keep your data safe."
+          }
+        },
+        "feature_WwiqwD": {
+          "type": "feature",
+          "settings": {
+            "icon_width": 65,
+            "title": "Tracked shipping",
+            "text": "Orders leave promptly. Delivery time depends on your region; tracking is sent when it ships."
+          }
+        },
+        "feature_wGHEmh": {
+          "type": "feature",
+          "settings": {
+            "icon_width": 65,
+            "title": "30-Day Return Policy",
+            "text": "Not satisfied? Return it within 30 days for a full refund."
+          }
+        },
+        "button_8afKXT": {
+          "type": "button",
+          "settings": {
+            "button_label": "Explore our products",
+            "button_link": "shopify://collections/all",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "feature_3FqJ9D",
+        "feature_TfTYCV",
+        "feature_rp8MLg",
+        "feature_FfLgjG",
+        "feature_WwiqwD",
+        "feature_wGHEmh",
+        "button_8afKXT"
+      ],
+      "name": "Unique Features",
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "Why shop with Arvenixo",
+        "wave_top_pos": 75,
+        "wave_opacity": 100,
+        "center_image": "shopify://shop_images/ax-newsletter-lifestyle.png",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "testimonials_qqDXbK": {
+      "type": "testimonials",
+      "blocks": {
+        "review_kVJhXx": {
+          "type": "review",
+          "settings": {
+            "review_text": "<p>I'm very happy with this purchase, they are a quality product. They feel great and are very comfortable.</p>",
+            "author_name": "STEVE J",
+            "show_verified": true
+          }
+        },
+        "image_fwHkwT": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ax-about-earth.png"
+          }
+        },
+        "review_riFiDT": {
+          "type": "review",
+          "settings": {
+            "review_text": "<p>I'm very happy with this purchase, they are a quality product. They feel great and are very comfortable.</p>",
+            "author_name": "STEVE J",
+            "show_verified": true
+          }
+        },
+        "image_BNGL7G": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ax-cat-charger.png"
+          }
+        },
+        "review_ntN3QL": {
+          "type": "review",
+          "settings": {
+            "review_text": "<p>I'm very happy with this purchase, they are a quality product. They feel great and are very comfortable.</p>",
+            "author_name": "STEVE J",
+            "show_verified": true
+          }
+        },
+        "image_PiFyAz": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ax-about-beginnings.png"
+          }
+        },
+        "review_ACeL33": {
+          "type": "review",
+          "settings": {
+            "review_text": "<p>I'm very happy with this purchase, they are a quality product. They feel great and are very comfortable.</p>",
+            "author_name": "STEVE J",
+            "show_verified": true
+          }
+        },
+        "image_AjbtaL": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ax-review-carry.png"
+          }
+        },
+        "review_iMUAV3": {
+          "type": "review",
+          "settings": {
+            "review_text": "<p>I'm very happy with this purchase, they are a quality product. They feel great and are very comfortable.</p>",
+            "author_name": "STEVE J",
+            "show_verified": true
+          }
+        },
+        "review_WejKQV": {
+          "type": "review",
+          "settings": {
+            "review_text": "<p>I'm very happy with this purchase, they are a quality product. They feel great and are very comfortable.</p>",
+            "author_name": "STEVE J",
+            "show_verified": true
+          }
+        },
+        "image_BUjmnf": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ax-cat-bags.png"
+          }
+        },
+        "review_r4YBxd": {
+          "type": "review",
+          "settings": {
+            "review_text": "<p>I'm very happy with this purchase, they are a quality product. They feel great and are very comfortable.</p>",
+            "author_name": "STEVE J",
+            "show_verified": true
+          }
+        }
+      },
+      "block_order": [
+        "review_kVJhXx",
+        "image_fwHkwT",
+        "review_riFiDT",
+        "image_BNGL7G",
+        "review_ntN3QL",
+        "image_PiFyAz",
+        "review_ACeL33",
+        "image_AjbtaL",
+        "review_iMUAV3",
+        "review_WejKQV",
+        "image_BUjmnf",
+        "review_r4YBxd"
+      ],
+      "name": "Masonry Reviews",
+      "settings": {
+        "bg_color": "#f9f8f6",
+        "show_header_stars": true,
+        "heading": "Customer reviews",
+        "button_text": "READ MORE REVIEWS",
+        "button_link": "",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "177282877365881db0": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "main",
+    "pill_marquee_KrybN8",
+    "our_values_7aAqFj",
+    "unique_features_YCBxQX",
+    "testimonials_qqDXbK",
+    "177282877365881db0",
+    "related-products"
+  ]
+}

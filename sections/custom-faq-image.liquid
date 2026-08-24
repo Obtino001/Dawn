@@ -1,0 +1,204 @@
+<style>
+  .custom-faq-image {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: {{ section.settings.bg_color }};
+  }
+  .custom-faq-image__left,
+  .custom-faq-image__right {
+    flex: 1 1 50%;
+    width: 50%;
+  }
+  .custom-faq-image__left {
+    min-height: 400px;
+  }
+  .custom-faq-image__left img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .custom-faq-image__left svg {
+    width: 100%;
+    height: 100%;
+    background-color: #e2e2e2;
+  }
+  .custom-faq-image__right {
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .custom-faq-image__content {
+    max-width: 500px;
+    width: 100%;
+  }
+  .custom-faq-image__heading {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #282828;
+    text-transform: none;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+  }
+  .custom-faq-image__footer {
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  
+  @media screen and (max-width: 768px) {
+    .custom-faq-image__left,
+    .custom-faq-image__right {
+      flex: 1 1 100%;
+      width: 100%;
+    }
+    .custom-faq-image__right {
+      padding: 40px 20px;
+    }
+    .custom-faq-image__heading {
+      font-size: 28px;
+    }
+  }
+</style>
+
+<div class="page-width">
+<div class="custom-faq-image" id="CustomFaqImage-{{ section.id }}">
+  <div class="custom-faq-image__left">
+    {%- if section.settings.image != blank -%}
+      <img src="{{ section.settings.image | image_url: width: 1500 }}" alt="{{ section.settings.image.alt | escape }}" loading="lazy" width="{{ section.settings.image.width }}" height="{{ section.settings.image.height }}">
+    {%- else -%}
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- endif -%}
+  </div>
+  
+  <div class="custom-faq-image__right">
+    <div class="custom-faq-image__content">
+      <h2 class="custom-faq-image__heading title">{{ section.settings.heading | replace: '\n', '<br>' }}</h2>
+      
+      {%- if section.settings.note_text != blank -%}
+        <div class="custom-faq-note" style="margin-bottom: 20px; font-size: 15px; color: #444;">
+          {{ section.settings.note_text }}
+        </div>
+      {%- endif -%}
+      
+      <div class="custom-faq-accordion">
+        {%- for block in section.blocks -%}
+          {%- assign is_first = forloop.first -%}
+          {% render 'Faq-blocks', block: block, is_first: is_first %}
+        {%- endfor -%}
+      </div>
+      
+      {%- if section.settings.button_label != blank -%}
+        <div class="custom-faq-image__footer">
+          <a href="{{ section.settings.button_link }}" class="button button-primary">
+            {{ section.settings.button_label }}
+          </a>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+</div>
+
+{% schema %}
+{
+  "name": "Image + FAQ",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Left Image"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "YOUR QUESTIONS\nANSWERED"
+    },
+    {
+      "type": "richtext",
+      "id": "note_text",
+      "label": "Note Text",
+      "default": "<p><strong><em>Note:</em></strong> <em>The 60-day guarantee applies to new customers and covers one pair only.</em></p>"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F6F5F0"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "READ ALL FAQS"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "WHY DOES OUR PRODUCT PERFORM BETTER?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>We use premium materials and modern engineering.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image + FAQ",
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "question": "HOW DOES LUMITHERM PRO WORK?",
+            "answer": "<p>It uses advanced hot and cold therapy combined with LED light technology to open pores, deeply absorb skincare products, and tighten your skin.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "IS IT SAFE FOR SENSITIVE SKIN?",
+            "answer": "<p>Yes! The temperature settings are optimized for all skin types, and the smooth massage head ensures a gentle experience without irritation.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "HOW LONG SHOULD I USE IT DAILY?",
+            "answer": "<p>We recommend using the device for 5-10 minutes a day as part of your morning or evening skincare routine for the best visible results.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "IS IT WATERPROOF?",
+            "answer": "<p>The massage head is water-resistant and easy to clean, but the main body and charging port should not be submerged in water.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

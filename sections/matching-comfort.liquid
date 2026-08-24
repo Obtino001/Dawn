@@ -1,0 +1,314 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+
+{% schema %}
+{
+  "name": "Matching Comfort",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "product_list",
+      "id": "product_list",
+      "label": "Select Products",
+      "limit": 2,
+      "info": "Select exactly 2 products for the best layout."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Matching comfort, head to toe"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Our matching Livia bralettes are designed to pair perfectly with your Arvenixo electronic gadgets — combining comfort, support, and the same premium feel you already love."
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 52
+    },
+     {
+      "type": "header",
+      "content": "Product Card"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        { "value": "adapt", "label": "Adapt to image" },
+        { "value": "portrait", "label": "Portrait" },
+        { "value": "square", "label": "Square" }
+      ],
+      "default": "adapt",
+      "label": "Image ratio"
+    },
+    {
+      "type": "select",
+      "id": "image_shape",
+      "options": [
+        { "value": "default", "label": "Default" },
+        { "value": "arch", "label": "Arch" },
+        { "value": "blob", "label": "Blob" },
+        { "value": "chevronleft", "label": "Chevron left" },
+        { "value": "chevronright", "label": "Chevron right" },
+        { "value": "diamond", "label": "Diamond" },
+        { "value": "parallelogram", "label": "Parallelogram" },
+        { "value": "round", "label": "Round" }
+      ],
+      "default": "default",
+      "label": "Image shape"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": false,
+      "label": "Show second image on hover"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "Show product vendor"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": false,
+      "label": "Show product rating"
+    },
+    {
+      "type": "select",
+      "id": "quick_add",
+      "default": "none",
+      "label": "Quick add",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "standard", "label": "Standard" },
+        { "value": "bulk", "label": "Bulk" }
+      ]
+    },
+  ],
+  "blocks": [
+    {
+      "type": "list_item",
+      "name": "Feature List Item",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Soft, stretchy fabric for everyday comfort"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Matching Comfort",
+      "blocks": [
+        { "type": "list_item", "settings": { "text": "Soft, stretchy fabric for everyday comfort" } },
+        { "type": "list_item", "settings": { "text": "Perfect for daily wear and lounging" } },
+        { "type": "list_item", "settings": { "text": "Breathable and gentle on the skin" } },
+        { "type": "list_item", "settings": { "text": "Feels good all day, with no wires or digging" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="sr-matching-section section-{{ section.id }}-padding">
+  <div class="page-width">
+    
+    <div class="sr-matching-container color-{{ section.settings.color_scheme }} gradient">
+      
+      <div class="sr-matching-products">
+        {%- if section.settings.product_list != blank -%}
+          {%- for product in section.settings.product_list -%}
+            <div class="sr-matching-product-item">
+             {% render 'card-product',
+                card_product: product,
+                media_aspect_ratio: section.settings.image_ratio,
+                image_shape: section.settings.image_shape,
+                show_secondary_image: section.settings.show_secondary_image,
+                show_rating: section.settings.show_rating,
+                section_id: section.id,
+                quick_add: section.settings.quick_add
+              %}
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          {%- for i in (1..2) -%}
+            <div class="sr-matching-product-item">
+              <div class="card-wrapper">
+                {{ 'product-' | append: i | placeholder_svg_tag: 'placeholder-svg' }}
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+
+      <div class="sr-matching-content">
+        <h2 class="sr-matching-heading h1">
+          {{ section.settings.heading | escape }}
+        </h2>
+        <p class="sr-matching-desc">
+          {{ section.settings.description | escape }}
+        </p>
+        {%- if section.blocks.size > 0 -%}
+          <ul class="sr-matching-list">
+            {%- for block in section.blocks -%}
+              <li class="sr-matching-list-item" {{ block.shopify_attributes }}>
+                <svg class="sr-matching-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L14.2 4.4L17.5 4.2L18.6 7.3L21.5 8.9L20.2 12L21.5 15.1L18.6 16.7L17.5 19.8L14.2 19.6L12 22L9.8 19.6L6.5 19.8L5.4 16.7L2.5 15.1L3.8 12L2.5 8.9L5.4 7.3L6.5 4.2L9.8 4.4L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M8.5 12L11 14.5L16 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="sr-matching-list-text">{{ block.settings.text }}</span>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+.sr-matching-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    border-radius: 24px;
+    padding: 40px 30px 0px;
+    overflow: hidden;
+}
+  {% comment %} .sr-matching-container .card-overlay-droplet{
+    display: none;
+  } {% endcomment %}
+    .sr-matching-container .card-overlay-badge{
+    display: none;
+  }
+  .sr-matching-products {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  /* Prevents Dawn's card styles from adding unwanted margins */
+  .sr-matching-product-item .card-wrapper {
+    height: 100%;
+  }
+  .sr-matching-product-item .card {
+    height: 100%;
+  }
+.sr-matching-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 50px;
+}
+  .sr-matching-desc {
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0 0 30px 0;
+    color: inherit;
+  }
+
+  /* --- List Styles --- */
+  .sr-matching-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+.sr-matching-list-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: inherit;
+    line-height: 120%;
+}
+  .sr-matching-icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    color: inherit; /* Adopts the scheme color automatically */
+  }
+
+  /* --- Responsive Layout --- */
+  @media screen and (max-width: 990px) {
+    .sr-matching-container {
+      grid-template-columns: 1fr;
+      padding: 30px 15px;
+      gap: 30px;
+    }
+    
+ .sr-matching-content {
+    padding: 0;
+    order: 1;
+    align-items: center;
+}
+  .sr-matching-desc {
+    text-align: center;
+  }
+.sr-matching-heading.h1 {
+    text-align: center;
+    padding-inline: 20px;
+}
+    .sr-matching-products {
+      order: 2;
+      max-width: 600px;
+      margin: 0 auto;
+      width: 100%;
+    }
+  }
+</style>

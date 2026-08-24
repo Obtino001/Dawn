@@ -1,0 +1,538 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .tabbed-hero-wrapper {
+    position: relative;
+    width: 100%;
+    height: {{ section.settings.mobile_height }}px;
+    overflow: hidden;
+  }
+
+  @media screen and (min-width: 990px) {
+    .tabbed-hero-wrapper {
+      height: {{ section.settings.desktop_height }}px;
+    }
+  }
+
+  /* Swiper Container adjustments */
+  .tabbed-hero-wrapper swiper-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .tabbed-hero-wrapper swiper-slide {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .th-slide-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  .th-slide-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(to top, rgba(0, 0, 0, {{ section.settings.overlay_opacity | divided_by: 100.0 }}) 0%, rgba(0, 0, 0, 0) 50%);
+  }
+
+  .th-slide-content {
+    position: absolute;
+    z-index: 3;
+    bottom: 80px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: var(--page-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--page-gutter, 1.5rem);
+    padding-right: var(--page-gutter, 1.5rem);
+    box-sizing: border-box;
+  }
+
+  @media screen and (min-width: 990px) {
+    .th-slide-content {
+      bottom: 120px;
+    }
+  }
+
+  .th-slide-content .hero-features__heading,
+  .th-description {
+    max-width: 60rem;
+  }
+
+  .th-description {
+    font-size: clamp(14px, 1.5vw, 16px);
+    margin: 0;
+    line-height: 1.5;
+    opacity: 0.9;
+  }
+
+  .th-avatar {
+    position: absolute;
+    top: 20%;
+    right: 20%;
+    z-index: 4;
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    overflow: hidden;
+    border: 2px solid rgba(var(--color-foreground), 0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    background: rgba(var(--color-foreground), 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .th-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* --- Navigation Tabs --- */
+  .th-nav-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: var(--page-width);
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 5;
+    background: transparent;
+    padding-bottom: 32px;
+    padding-left: var(--page-gutter, 1.5rem);
+    padding-right: var(--page-gutter, 1.5rem);
+    box-sizing: border-box;
+  }
+
+  @media screen and (min-width: 990px) {
+    .th-nav-wrapper {
+      padding-bottom: 48px;
+    }
+  }
+
+  .th-nav-list {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid rgba(var(--color-foreground), 0.2);
+    width: 100%;
+    gap: 0;
+  }
+
+  .th-nav-item {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 20px 0 0 0;
+    margin: 0;
+    text-align: left;
+    color: currentColor;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+  }
+
+  .th-nav-item:hover {
+    opacity: 0.8;
+  }
+
+  .th-nav-item.is-active {
+    opacity: 1;
+  }
+
+  /* Active state yellow line */
+  .th-nav-item::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background-color: #fff;
+    transition: width 0.3s ease;
+  }
+
+  .th-nav-item.is-active::before {
+    width: 100%;
+  }
+
+  .th-nav-index {
+    opacity: 0.7;
+    margin-right: 5px;
+    font-weight: 400;
+  }
+
+  .th-mobile-active-text {
+    display: none;
+  }
+
+  /* --- Mobile Overrides to Match Mockup --- */
+  @media screen and (max-width: 767px) {
+    .th-nav-list {
+      flex-wrap: nowrap;
+      border-top: none;
+      gap: 8px; /* Gap between line segments */
+      margin-bottom: 16px;
+    }
+    
+    .th-nav-item {
+      flex: 1;
+      padding: 0;
+      height: 3px;
+      background-color: rgba(255, 255, 255, 0.2); /* Inactive gray line */
+      border: none;
+      opacity: 1;
+    }
+    
+    .th-nav-item.is-active {
+      background-color: #ffe600; /* Active yellow line */
+    }
+    
+    .th-nav-item::before {
+      display: none; /* Hide the desktop line */
+    }
+    
+    .th-nav-text-content {
+      display: none; /* Hide button text to make it a line segment */
+    }
+    
+    .th-mobile-active-text {
+      display: block;
+      color: currentColor;
+      font-size: 16px;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .th-mobile-active-text .js-mobile-index {
+      margin-right: 4px;
+    }
+
+    .th-slide-content {
+      bottom: 100px; /* Push content up slightly to make room for new text layout */
+    }
+  }
+{%- endstyle -%}
+
+<div class="section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} gradient">
+  <custom-slider class="tabbed-hero-slider">
+    <div class="tabbed-hero-wrapper">
+      
+      <swiper-container 
+        init="false"
+        class="js-swiper-template"
+        data-swiper-config='{
+          "autoplay": {{ section.settings.enable_autoplay | default: false }},
+          "autoplayInterval": {{ section.settings.autoplay_interval | times: 1000 | default: 5000 }},
+          "mobileSlides": 1,
+          "desktopSlides": 1,
+          "tabletSlides": 1,
+          "mobileSpacing": 0,
+          "desktopSpacing": 0,
+          "loop": false,
+          "effect": "fade"
+        }'
+      >
+        {%- for block in section.blocks -%}
+          <swiper-slide {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}
+              <img
+                src="{{ block.settings.image | image_url: width: 2000 }}"
+                alt="{{ block.settings.image.alt | escape }}"
+                class="th-slide-image"
+                loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                width="{{ block.settings.image.width }}"
+                height="{{ block.settings.image.height }}"
+              >
+            {%- else -%}
+              {{ 'lifestyle-1' | placeholder_svg_tag: 'th-slide-image placeholder-svg' }}
+            {%- endif -%}
+
+            <div class="th-slide-overlay"> </div>
+
+            {%- if block.settings.avatar_image != blank -%}
+              <div class="th-avatar">
+                <img src="{{ block.settings.avatar_image | image_url: width: 160 }}" alt="" width="80" height="80" loading="lazy">
+              </div>
+            {%- endif -%}
+
+            <div class="th-slide-content page-width">
+              {%- if block.settings.heading != blank -%}
+                <h2 class="hero-features__heading h1 {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
+                  {{ block.settings.heading }}
+                </h2>
+              {%- endif -%}
+              {%- if block.settings.description != blank -%}
+                <div class="th-description">{{ block.settings.description }}</div>
+              {%- endif -%}
+            </div>
+          </swiper-slide>
+        {%- endfor -%}
+      </swiper-container>
+
+      <div class="th-nav-wrapper page-width">
+        <div class="th-nav-list">
+          {%- for block in section.blocks -%}
+            <button class="th-nav-item {% if forloop.first %}is-active{% endif %}" data-index="{{ forloop.index0 }}" data-title="{{ block.settings.tab_title | default: 'Tab' | escape }}">
+              <span class="th-nav-text-content">
+                <span class="th-nav-index">0{{ forloop.index }}.</span> {{ block.settings.tab_title | default: "Tab" }}
+              </span>
+            </button>
+          {%- endfor -%}
+        </div>
+        
+        <div class="th-mobile-active-text">
+          <span class="js-mobile-index">01.</span>
+          <span class="js-mobile-title">{{ section.blocks.first.settings.tab_title | default: "Tab" }}</span>
+        </div>
+      </div>
+
+    </div>
+  </custom-slider>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sliders = document.querySelectorAll('.tabbed-hero-slider');
+  
+  sliders.forEach(slider => {
+    const swiperEl = slider.querySelector('swiper-container');
+    const tabs = slider.querySelectorAll('.th-nav-item');
+    const mobileIndex = slider.querySelector('.js-mobile-index');
+    const mobileTitle = slider.querySelector('.js-mobile-title');
+
+    if (!swiperEl || tabs.length === 0) return;
+
+    // Wait for Swiper to initialize via custom.js
+    const checkSwiper = setInterval(() => {
+      if (swiperEl.swiper) {
+        clearInterval(checkSwiper);
+        
+        // Handle Tab Clicks
+        tabs.forEach((tab) => {
+          tab.addEventListener('click', () => {
+            const index = parseInt(tab.getAttribute('data-index'));
+            swiperEl.swiper.slideTo(index);
+          });
+        });
+
+        // Handle Swiper Slide Changes
+        swiperEl.addEventListener('swiperslidechange', (e) => {
+          const activeIndex = e.detail[0].activeIndex;
+          
+          tabs.forEach(tab => tab.classList.remove('is-active'));
+          
+          if (tabs[activeIndex]) {
+            tabs[activeIndex].classList.add('is-active');
+            
+            // Update Mobile Text
+            if (mobileIndex && mobileTitle) {
+              const newTitle = tabs[activeIndex].getAttribute('data-title');
+              mobileIndex.textContent = `0${activeIndex + 1}.`;
+              mobileTitle.textContent = newTitle;
+            }
+          }
+        });
+      }
+    }, 100);
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Tabbed Hero Slider",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "min": 400,
+      "max": 1000,
+      "step": 20,
+      "unit": "px",
+      "label": "Desktop Height",
+      "default": 800
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "min": 300,
+      "max": 800,
+      "step": 20,
+      "unit": "px",
+      "label": "Mobile Height",
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay Opacity",
+      "default": 70
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_autoplay",
+      "label": "Enable Autoplay",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "autoplay_interval",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Autoplay Interval",
+      "default": 5
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title",
+          "default": "INNOVATION"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "ENGINEERED FOR THE FUTURE. BUILT TO LAST."
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            { "value": "h2", "label": "Small" },
+            { "value": "h1", "label": "Medium" },
+            { "value": "h0", "label": "Large" },
+            { "value": "hxl", "label": "Extra Large" },
+            { "value": "hxxl", "label": "Extra Extra Large" }
+          ],
+          "default": "h0",
+          "label": "t:sections.all.heading_size.label"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Every device is crafted with precision — designed by experts and assembled with care to deliver unmatched durability and peak performance."
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar_image",
+          "label": "Avatar Overlay Image (Optional)",
+          "info": "Upload an image (like a face avatar) to float above the content."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tabbed Hero Slider",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "tab_title": "INNOVATION",
+            "heading": "ENGINEERED FOR THE FUTURE. BUILT TO LAST."
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "tab_title": "PERFORMANCE",
+            "heading": "ADVANCED TECH FOR SEAMLESS EXPERIENCES."
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "tab_title": "DURABILITY",
+            "heading": "RELIABLE DEVICES FOR EVERYDAY USE."
+          }
+        },
+        {
+          "type": "slide",
+          "settings": {
+            "tab_title": "SECURITY",
+            "heading": "YOUR DATA, ALWAYS PROTECTED."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

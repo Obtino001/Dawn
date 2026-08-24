@@ -1,0 +1,275 @@
+{{ 'black-friday-newsletter.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign section_height = section.settings.section_height
+  assign overlay_opacity = section.settings.overlay_opacity | divided_by: 100.0
+  assign enable_blur = section.settings.enable_blur
+%}
+
+<div class="ma-bf-hero ma-bf-hero--{{ section_height }} {% if enable_blur %}ma-has-blur-overlay{% endif %}" id="ma-bf-section-{{ section.id }}">
+  <div class="ma-bf-background">
+    {% if section.settings.media_type == "video" %}
+      {{ section.settings.video_url | video_tag:
+        autoplay: true,
+        loop: true,
+        muted: true,
+        controls: false,
+        class: 'ma-bf-video'
+        }}
+    {% else %}
+      <img 
+        class="ma-bf-image" 
+        src="{{ section.settings.background_image | image_url: width: 1920 }}"
+        srcset="{{ section.settings.background_image | image_url: width: 600 }} 600w,
+                {{ section.settings.background_image | image_url: width: 1200 }} 1200w,
+                {{ section.settings.background_image | image_url: width: 1920 }} 1920w"
+        sizes="100vw"
+        alt="{{ section.settings.background_image.alt | escape }}"
+        loading="lazy" width="auto" height="auto">
+    {% endif %}
+    <div class="ma-bf-overlay" style="opacity: {{ overlay_opacity }};"> </div>
+  </div>
+
+  <div class="ma-bf-frame">
+    {% if section.settings.show_early_access_badge %}
+      <p class="ma-bf-kicker">{{ section.settings.early_access_text }}</p>
+    {% endif %}
+
+    <div class="ma-knockout-heading">
+      <p>
+        {% if section.settings.heading_line_1 != blank %}{{ section.settings.heading_line_1 }}{% endif %}
+      </p>
+    </div>
+
+    {% if section.settings.subheading != blank %}
+      <p class="ma-bf-subheading">{{ section.settings.subheading }}</p>
+    {% endif %}
+
+    {% form 'customer', class: 'ma-bf-form', id: "ma-bf-newsletter-form" %}
+        <input name="contact[tags]" type="hidden" value="newsletter" />
+      <!-- Step 1: Country or Email Input -->
+      {%- if form.posted_successfully? -%}
+            <div class="ma-bf-message ma-bf-message--success" id="Newsletter-success--{{ section.id }}">
+                {% render 'svg-icons' with 'thb-success' %} {{ 'newsletter.success' | t }}
+            </div>
+
+        {% else %}
+        
+      <div class="ma-bf-step-1">
+        <div class="ma-bf-form-inner ma-bf-form-name">
+            <input 
+              type="text" 
+              name="contact[name]"
+              id="ma-bf-name-{{ section.id }}" 
+              class="ma-bf-input"
+              placeholder="{{ section.settings.name_placeholder }}">
+          </div>
+        <div class="ma-bf-form-inner">
+              <input
+					placeholder="{{ section.settings.email_placeholder }}"
+					type="email"
+					id="NewsletterForm--{{ section.id }}"
+					name="contact[email]"
+					autocorrect="off"
+					autocapitalize="off"
+					value="{{ form.email }}"
+					pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,10})(\]?)$"
+					title="xxx@xxx.xxx"
+					{% if form.errors %}
+						autofocus
+						aria-invalid="true"
+						aria-describedby="Newsletter-error--{{ section.id }}"
+					{% elsif form.posted_successfully? %}
+						aria-describedby="Newsletter-success--{{ section.id }}"
+					{% endif %}
+					required
+                    class="ma-bf-input" 
+				/>
+        </div>
+        <button type="submit" aria-label="Next" class="ma-bf-arrow-btn ma-bf-submit-step-1">
+            Tilmeld
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 12" fill="none">
+              <path d="M0 6h34M30 2l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+    {%- endif -%}
+
+      <!-- Step 2: Name Input (if enabled) or direct submission -->
+      {% if section.settings.show_name_field %}
+        <div class="ma-bf-step-2">
+          <h3 class="ma-bf-step2-subheading">{{ section.settings.step2_heading }}</h3>
+          <p class="ma-bf-step2-paragraph">{{ section.settings.step2_text }}</p>
+          
+        </div>
+      {% endif %}
+
+
+      
+      
+      {%- if form.errors -%}
+				<div class="ma-bf-message ma-bf-message--error" id="Newsletter-error--{{ section.id }}">
+					{% render 'svg-icons' with 'thb-error' %} {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}
+				</div>
+			{%- endif -%}
+    {% endform %}
+
+    {% if section.settings.bottom_text != blank %}
+      <div class="ma-bf-disclaimer">{{ section.settings.bottom_text }}</div>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll(".ma-bf-input").forEach(function(el) {
+    const text = el.getAttribute("placeholder") || el.dataset.placeholder || "Enter here";
+    if (!el.value) el.value = text;
+
+    el.addEventListener("focus", function() {
+      if (el.value === text) el.value = "";
+    });
+    el.addEventListener("blur", function() {
+      if (el.value === "") el.value = text;
+    });
+  });
+});
+</script>
+
+
+
+{% schema %}
+{
+    "name": "Black Friday Newsletter",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Background Settings"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "label": "Overlay Opacity",
+          "default": 0
+        },
+        {
+            "type": "select",
+            "id": "media_type",
+            "label": "Media type",
+            "options": [
+                {
+                    "label": "Image",
+                    "value": "image",
+                },
+                {
+                    "label": "Video",
+                    "value": "video"
+                }
+            ],
+        "default": "image",
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image",
+      "visible_if": "{{section.settings.media_type == 'image'}}"
+    },
+    {
+      "type": "video",
+      "id": "video_url",
+      "label": "Video",
+      "visible_if": "{{section.settings.media_type == 'video'}}"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_blur",
+      "label": "Enable Video Blur Effect",
+      "default": false,
+      "info": "Adds a subtle blur to background video",
+      "visible_if": "{{section.settings.media_type == 'video'}}"
+    },
+    {
+      "type": "select",
+      "id": "section_height",
+      "label": "Section Height",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "Adapt to content"
+        },
+        {
+          "value": "70vh",
+          "label": "70vh"
+        },
+        {
+          "value": "100vh",
+          "label": "100vh (Full screen)"
+        }
+      ],
+      "default": "100vh"
+    },
+    {
+      "type": "header",
+      "content": "Content Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_early_access_badge",
+      "label": "Show Early Access Badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "early_access_text",
+      "label": "Early Access Text",
+      "default": "Sign up for early access"
+    },
+    {
+      "type": "text",
+      "id": "heading_line_1",
+      "label": "Heading",
+      "default": "BLACK"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "SAVE UP TO 50%"
+    },
+    {
+      "type": "richtext",
+      "id": "bottom_text",
+      "label": "Bottom Text",
+      "default": "<p>Sign up for early access and be first in line - save up to 50% at our Black Friday Sale. Early access opens November 20, and we'll notify you the moment it begins.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Form Settings"
+    },
+    {
+      "type": "text",
+      "id": "name_placeholder",
+      "label": "Name Placeholder",
+      "default": "Your name"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email Placeholder",
+      "default": "Email"
+    },
+  ],
+  "presets": [
+    {
+      "name": "Black Friday Newsletter",
+      "category": "Morecosmetics"
+    }
+  ]
+}
+{% endschema %}

@@ -1,137 +1,84 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
-    "announcement-bar": {
-      "type": "announcement-bar",
+    "marquee_8K6ULj": {
+      "type": "marquee",
       "blocks": {
-        "announcement-bar-0": {
-          "type": "announcement",
+        "text_block_qHp4DL": {
+          "type": "text_block",
           "settings": {
-            "text": "Welcome to our store",
-            "link": ""
-          }
-        }
-      },
-      "block_order": ["announcement-bar-0"],
-      "settings": {
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "color_scheme": "scheme-1",
-        "show_line_separator": true,
-        "show_social": false,
-        "enable_country_selector": false,
-        "enable_language_selector": false
-      }
-    },
-    "header": {
-      "type": "header",
-      "blocks": {
-        "popular_search_1": {
-          "type": "popular_search",
-          "settings": {
-            "title": "Anua Zero-cast",
-            "link": ""
+            "text": "Secure checkout"
           }
         },
-        "popular_search_2": {
-          "type": "popular_search",
+        "text_block_j4Rnqf": {
+          "type": "text_block",
           "settings": {
-            "title": "Toner",
-            "link": ""
+            "text": "30-day money-back guarantee"
           }
         },
-        "popular_brand_1": {
-          "type": "popular_brand",
+        "text_block_iQ6NwT": {
+          "type": "text_block",
           "settings": {
-            "title": "Anua",
-            "link": ""
-          }
-        },
-        "popular_brand_2": {
-          "type": "popular_brand",
-          "settings": {
-            "title": "Medicube",
-            "link": ""
-          }
-        },
-        "popular_blog_1": {
-          "type": "popular_blog",
-          "settings": {
-            "title": "Den ultimative guide til pigmentpletter",
-            "link": ""
-          }
-        },
-        "popular_blog_2": {
-          "type": "popular_blog",
-          "settings": {
-            "title": "Top 5 ingredienser til rødme",
-            "link": ""
-          }
-        },
-        "trending_1": {
-          "type": "trending_item",
-          "settings": {
-            "title": "Find din rutine",
-            "link": ""
-          }
-        },
-        "trending_2": {
-          "type": "trending_item",
-          "settings": {
-            "title": "Hårpleje",
-            "link": ""
-          }
-        },
-        "trending_3": {
-          "type": "trending_item",
-          "settings": {
-            "title": "Bestsellers",
-            "link": ""
-          }
-        },
-        "trending_4": {
-          "type": "trending_item",
-          "settings": {
-            "title": "Kropspleje",
-            "link": ""
+            "text": "Email support"
           }
         }
       },
       "block_order": [
-        "popular_search_1",
-        "popular_search_2",
-        "popular_brand_1",
-        "popular_brand_2",
-        "popular_blog_1",
-        "popular_blog_2",
-        "trending_1",
-        "trending_2",
-        "trending_3",
-        "trending_4"
+        "text_block_qHp4DL",
+        "text_block_j4Rnqf",
+        "text_block_iQ6NwT"
       ],
+      "name": "Scrolling banner",
+      "settings": {
+        "color_scheme": "scheme-7bb5237c-90bc-4ff8-b9c6-9f6059b3117a",
+        "scroll_speed": 30,
+        "font_size": 14,
+        "padding_top": 12,
+        "padding_bottom": 12
+      }
+    },
+    "header": {
+      "type": "header",
       "settings": {
         "logo_position": "middle-left",
         "mobile_logo_position": "center",
         "menu": "main-menu",
-        "menu_type_desktop": "dropdown",
+        "menu_type_desktop": "mega",
+        "enable_center_menu": true,
         "sticky_header_type": "on-scroll-up",
         "show_line_separator": true,
-        "color_scheme": "scheme-1",
-        "menu_color_scheme": "scheme-1",
+        "enable_transparent_header": true,
+        "enable_full_width": true,
+        "color_scheme": "scheme-3",
+        "menu_color_scheme": "scheme-3",
         "enable_country_selector": true,
         "enable_language_selector": true,
         "enable_customer_avatar": true,
-        "search_placeholder": "Søg blandt over 2.000 koreanske produkter...",
-        "popular_searches_heading": "Populære søgninger",
-        "popular_brands_heading": "Populære brands",
-        "popular_blogs_heading": "Efterspurgte blogs",
-        "trending_heading": "Trending",
+        "heading": "Shop with a clear return",
+        "text_1": "<p>If it is not right, unused items can be returned within 30 days.</p>",
+        "text_2": "<p>We can help with orders, compatibility, or a refund. Write us anytime.</p>",
+        "drawer_show_footer": true,
+        "drawer_promo_image": "shopify://shop_images/ax-story-magsafe.png",
+        "drawer_promo_link": "",
+        "drawer_promo_button": "Read more",
         "margin_bottom": 0,
-        "padding_top": 20,
-        "padding_bottom": 20
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     }
   },
-  "order": ["announcement-bar", "header"]
+  "order": [
+    "marquee_8K6ULj",
+    "header"
+  ]
 }

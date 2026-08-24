@@ -1,0 +1,98 @@
+
+{%- style -%}
+  /* --- Static Base Styles --- */
+.product-top-review {
+margin-top: var(--margin-top) !important;
+margin-bottom: var(--margin-bottom) !important;
+display: flex;
+align-items: center;
+gap: 16px;
+justify-content: space-between;
+}
+
+.flow-indicator-cc {
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.flow-pill {
+background-color: var(--flow-bg);
+padding: 5px;
+border-radius: 50px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.flow-pill img {
+height: 16px;
+width: auto;
+object-fit: contain;
+display: block;
+}
+
+.product-top-review span, 
+.reviews-wrapper a {
+font-family: Inter, sans-serif;
+font-weight: 500;
+font-size: 14px;
+line-height: 1;
+color: var(--text-color);
+}
+
+.reviews-wrapper {
+align-items: center;
+gap: 6px;
+}
+.flow-indicator-cc span{
+white-space: nowrap;
+}
+.reviews-wrapper img {
+width: var(--star-width) !important;
+height: auto;
+object-fit: contain;
+display: block;
+}
+
+.reviews-wrapper a {
+text-decoration: none;
+transition: opacity 0.2s ease;
+}
+
+.reviews-wrapper a:hover {
+opacity: 0.8;
+}
+@media (max-width:990px){
+.reviews-wrapper {
+display: flex;
+}
+}
+{%- endstyle -%}
+
+<div class="product-top-review" 
+     style="
+      --margin-top: {{ block.settings.margin_top }}px; 
+      --margin-bottom: {{ block.settings.margin_bottom }}px;
+      --flow-bg: {{ block.settings.flow_bg_color }};
+      --text-color: {{ block.settings.text_color }};
+      --star-width: {{ block.settings.star_width }}px;
+     ">
+  
+  {%- if product.metafields.custom.period_level != blank -%}
+    <div class="flow-indicator-cc">
+        <div class="card-overlay-droplet-c">
+          {% render 'level' , count: product.metafields.custom.period_level.value.level %}
+        </div>
+      {%- if product.metafields.custom.period_level.value.text != blank -%}
+        <span>{{ product.metafields.custom.period_level.value.text }}</span>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <div class="reviews-wrapper">
+      <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}' data-auto-install='false'>
+    {{ product.metafields.judgeme.badge }}
+    </div>
+    </div>
+</div>

@@ -1,0 +1,135 @@
+{% doc %}
+Renders a mobile sticky add-to-cart bar that submits the main product form.
+@param {product} product - The product
+@param {string} product_form_id - The product form id
+@param {string} section_id - The product section id
+@example
+{% render 'sticky-atc', product: product, product_form_id: product_form_id, section_id: section.id %}
+{% enddoc %}
+
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign sticky_available = true
+  if current_variant == null or current_variant.available == false
+    assign sticky_available = false
+  endif
+-%}
+
+<div
+  class="ax-sticky-atc"
+  id="AxStickyAtc-{{ section_id }}"
+  hidden
+  data-sticky-atc
+  data-form-id="{{ product_form_id }}"
+  data-submit-id="ProductSubmitButton-{{ section_id }}"
+>
+  <div class="ax-sticky-atc__info">
+    <p class="ax-sticky-atc__title">{{ product.title | escape }}</p>
+    <p class="ax-sticky-atc__price">{{ current_variant.price | money }}</p>
+  </div>
+  <button
+    type="button"
+    class="button button--primary ax-sticky-atc__button"
+    {% unless sticky_available %}
+      disabled
+    {% endunless %}
+    data-sticky-atc-submit
+  >
+    {%- if sticky_available -%}
+      {{ 'products.product.add_to_cart' | t }}
+    {%- else -%}
+      {{ 'products.product.sold_out' | t }}
+    {%- endif -%}
+  </button>
+</div>
+
+{%- style -%}
+  .ax-sticky-atc {
+    display: none;
+  }
+
+  @media screen and (max-width: 989px) {
+    .ax-sticky-atc {
+      display: flex;
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 20;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+      background: rgb(var(--color-background));
+      border-top: 1px solid rgba(var(--color-foreground), 0.12);
+    }
+
+    .ax-sticky-atc[hidden] {
+      display: none;
+    }
+
+    .ax-sticky-atc__info {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .ax-sticky-atc__title,
+    .ax-sticky-atc__price {
+      margin: 0;
+      font-size: 1.3rem;
+      line-height: 1.3;
+    }
+
+    .ax-sticky-atc__title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: 500;
+    }
+
+    .ax-sticky-atc__button {
+      flex-shrink: 0;
+      min-height: 44px;
+      min-width: 44px;
+      padding-inline: 18px;
+    }
+
+    body.ax-sticky-atc-visible {
+      padding-bottom: 76px;
+    }
+  }
+{%- endstyle -%}
+
+<script>
+  (function () {
+    var bar = document.getElementById('AxStickyAtc-{{ section_id }}');
+    if (!bar) return;
+
+    var submitId = bar.getAttribute('data-submit-id');
+    var mainButton = document.getElementById(submitId);
+    var stickyButton = bar.querySelector('[data-sticky-atc-submit]');
+    if (!mainButton || !stickyButton) return;
+
+    if (window.matchMedia('(min-width: 990px)').matches) return;
+
+    var observer = new IntersectionObserver(
+      function (entries) {
+        var visible = entries[0] && entries[0].isIntersecting;
+        if (visible) {
+          bar.setAttribute('hidden', '');
+          document.body.classList.remove('ax-sticky-atc-visible');
+        } else {
+          bar.removeAttribute('hidden');
+          document.body.classList.add('ax-sticky-atc-visible');
+        }
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(mainButton);
+
+    stickyButton.addEventListener('click', function () {
+      if (stickyButton.disabled) return;
+      mainButton.click();
+    });
+  })();
+</script>

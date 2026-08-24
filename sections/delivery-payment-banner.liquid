@@ -1,0 +1,78 @@
+<div class="delivery-payment-container-{{ block.id }}" {{ block.shopify_attributes }}>
+  <div class="dp-left">
+    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+      <path d="M3.94971 9.76106C3.96941 9.83227 4.00294 9.8989 4.04839 9.95715C4.09384 10.0154 4.15031 10.0641 4.2146 10.1006C4.27888 10.137 4.3497 10.1604 4.42303 10.1694C4.49636 10.1785 4.57075 10.173 4.64196 10.1533C4.71317 10.1336 4.7798 10.1001 4.83805 10.0546C4.8963 10.0092 4.94503 9.9527 4.98145 9.88842C5.01788 9.82414 5.04128 9.75331 5.05033 9.67999C5.05939 9.60666 5.05391 9.53227 5.03421 9.46106L3.94971 9.76106ZM0.720209 1.85606C0.64872 1.83518 0.573795 1.8287 0.499783 1.837C0.425771 1.84531 0.354145 1.86823 0.289061 1.90443C0.223976 1.94063 0.166729 1.9894 0.120641 2.04791C0.0745531 2.10641 0.0405417 2.17348 0.0205804 2.24523C0.000619055 2.31699 -0.00489482 2.39199 0.00435873 2.46589C0.0136123 2.53979 0.037449 2.61111 0.0744858 2.67573C0.111523 2.74034 0.161022 2.79696 0.220112 2.84229C0.279203 2.88762 0.346707 2.92077 0.418709 2.93981L0.720209 1.85606ZM13.4612 10.1061C13.5345 10.0891 13.6036 10.0577 13.6644 10.0136C13.7253 9.96948 13.7768 9.91363 13.8157 9.84932C13.8546 9.78501 13.8803 9.71355 13.8911 9.63916C13.9019 9.56477 13.8978 9.48896 13.8788 9.41621C13.8599 9.34347 13.8265 9.27525 13.7808 9.21561C13.735 9.15597 13.6778 9.1061 13.6124 9.06896C13.547 9.03182 13.4749 9.00816 13.4002 8.99937C13.3256 8.99059 13.2499 8.99685 13.1777 9.01781L13.4612 10.1061ZM5.96796 11.4816C6.20046 12.3216 5.69046 13.2088 4.78746 13.4436L5.07021 14.5318C6.55296 14.1471 7.45896 12.6553 7.05246 11.1816L5.96796 11.4816ZM4.78746 13.4436C3.87846 13.6798 2.96646 13.1518 2.73246 12.3043L1.64796 12.6043C2.05296 14.0706 3.59346 14.9158 5.07021 14.5318L4.78746 13.4436ZM2.73246 12.3043C2.49996 11.4643 3.00996 10.5771 3.91296 10.3423L3.63021 9.25481C2.14746 9.63956 1.24071 11.1306 1.64796 12.6043L2.73246 12.3043ZM3.91296 10.3423C4.82196 10.1061 5.73396 10.6341 5.96796 11.4816L7.05246 11.1816C6.64746 9.71531 5.10696 8.87006 3.63021 9.25406L3.91296 10.3423ZM5.03421 9.46106L3.42021 3.61856L2.33571 3.91856L3.94971 9.76106L5.03421 9.46106ZM1.99821 2.21006L0.720209 1.85606L0.418709 2.93981L1.69746 3.29456L1.99821 2.21006ZM3.42021 3.61856C3.32485 3.28105 3.14378 2.97395 2.8946 2.72714C2.64542 2.48033 2.33661 2.30219 1.99821 2.21006L1.69896 3.29456C2.01771 3.38306 2.25471 3.62531 2.33571 3.91856L3.42021 3.61856ZM6.65271 11.8761L13.4612 10.1061L13.1785 9.01781L6.36921 10.7878L6.65271 11.8761Z" fill="#282828"/>
+      <path d="M5.49378 4.85985C5.13003 3.5436 4.94853 2.8851 5.25753 2.36685C5.56578 1.84785 6.24453 1.6716 7.60203 1.31835L9.04203 0.94485C10.3995 0.59235 11.0783 0.41535 11.613 0.7146C12.1478 1.0146 12.33 1.67235 12.693 2.98935L13.0793 4.38585C13.443 5.7021 13.6253 6.3606 13.3163 6.8796C13.0073 7.39785 12.3285 7.57485 10.971 7.92735L9.53103 8.3016C8.17353 8.6541 7.49478 8.83035 6.96003 8.5311C6.42528 8.2311 6.24378 7.57335 5.88003 6.2571L5.49378 4.85985Z" stroke="#282828" stroke-width="1.125"/>
+    </svg>
+    <span class="dp-text">{{ block.settings.text | default: 'Ships in 1–2 business days. Delivery time depends on your region.' }}</span>
+  </div>
+
+  <div class="dp-right-payments">
+    <span class="dp-payment-label">We accept</span>
+    <div class="dp-payment-list">
+      {% comment %} Replace this explicit array with 'shop.enabled_payment_types' if you want it dynamically pulled from your store settings {% endcomment %}
+      {% assign active_payments = 'american_express,apple_pay,google_pay,master,paypal,shop_pay,unionpay,visa' | split: ',' %}
+      {% for type in active_payments %}
+        {{ type | payment_type_svg_tag: class: 'dp-payment-icon' }}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{%- style -%}
+  .delivery-payment-container-{{ block.id }} {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: {{ block.settings.margin_bottom | default: 0 }}px;
+    flex-wrap: wrap;
+  }
+  
+  .dp-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  /* Container styling for the payment section */
+  .dp-right-payments {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .dp-payment-label {
+    font-size: 1.4rem;
+    color: inherit;
+  }
+  
+  .dp-payment-list {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  
+  .dp-payment-icon {
+    width: 38px;
+    height: auto;
+    display: block;
+  }
+
+  quick-add-modal .delivery-payment-container-{{ block.id }} {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: -10px;
+    gap: 10px;
+  }
+  
+  @media screen and (max-width: 749px) {
+    .delivery-payment-container-{{ block.id }} {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 10px;
+    }
+  }
+{%- endstyle -%}

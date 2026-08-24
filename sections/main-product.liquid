@@ -77,6 +77,7 @@
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
       <div class="grid__item product__media-wrapper">
         {% render 'product-media-gallery', variant_images: variant_images %}
+        {% comment %} {% render 'product-media-gallery-swiper', variant_images: variant_images %} {% endcomment %}
       </div>
       <div class="product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         <section
@@ -96,18 +97,21 @@
                 >
                   {{- block.settings.text -}}
                 </p>
-              {%- when 'title' -%}
-                <div class="product__title" {{ block.shopify_attributes }}>
-                  <h1>{{ product.title | escape }}</h1>
-                  <a href="{{ product.url }}" class="product__title">
-                    <h2 class="h1">
-                      {{ product.title | escape }}
-                    </h2>
-                  </a>
-                </div>
+           {%- when 'title' -%}
+  <div class="product__title-wrapper" {{ block.shopify_attributes }}>
+    <h1 class="product__title">
+      {{ product.title | escape }}
+    </h1>
+    
+    {%- if product.metafields.custom.badge != blank -%}
+      <div class="product__custom-badge">
+        {{ product.metafields.custom.badge }}
+      </div>
+    {%- endif -%}
+  </div>
               {%- when 'price' -%}
                 <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
-                  {%- render 'price',
+                  {%- render 'custom-price',
                     product: product,
                     use_variant: true,
                     show_badges: true,
@@ -140,6 +144,26 @@
                     {{ form | payment_terms }}
                   {%- endform -%}
                 </div>
+              {%- when 'product-reviews' -%}
+                {% render 'product-reviews', block: block %}
+              {%- when 'delivery_payment' -%}
+                {% render 'delivery-payment-banner', block: block %}
+              {%- when 'multi-icon' -%}
+                {% render 'multi-icon', block: block %}
+              {%- when 'Payments' -%}
+                {% render 'Payments', block: block %}
+              {%- when 'shipping-info' -%}
+                {% render 'shipping-info', block: block %}
+              {%- when 'pills' -%}
+                {% render 'pills', block: block %}
+              {% when 'faq-blocks' %}
+                {% render 'Faq-blocks', block: block %}
+              {% when 'size-chart' %}
+                {% render 'size-chart', block: block %}
+              {%- when 'trust-card' -%}
+                {% render 'trust-card', block: block %}
+              {%- when 'upsell_product' -%}
+                {% render 'upsell', block: block %}
               {%- when 'inventory' -%}
                 <p
                   class="product__inventory{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.inventory_management != 'shopify' %} visibility-hidden{% endif %}"
@@ -227,6 +251,10 @@
                     </div>
                   </details>
                 </div>
+                {% comment %}
+                  {% when 'upsell' %}
+                  {% render 'complementary_products', block: block %}
+                {% endcomment %}
               {%- when 'quantity_selector' -%}
                 <div
                   id="Quantity-Form-{{ section.id }}"
@@ -477,6 +505,23 @@
 
               {%- when 'variant_picker' -%}
                 {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
+                            {%- when 'inventory_urgency' -%}
+                {%- assign random_seed = product.id | modulo: 6 -%}
+                {%- assign inventory_left = random_seed | plus: 4 -%}
+                <div class="cro-inventory-urgency" {{ block.shopify_attributes }}>
+                  <span class="cro-pulse-dot"></span>
+                  <span class="cro-inventory-text">Only <strong>{{ inventory_left }}</strong> left in stock - order soon!</span>
+                </div>
+              {%- when 'countdown_timer' -%}
+                <div class="cro-pdp-countdown" {{ block.shopify_attributes }}>
+                  <div class="cro-countdown-inner">
+                    <span class="cro-countdown-icon">
+                      <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </span>
+                    <span class="cro-countdown-text">{{ block.settings.text }}</span>
+                    <span class="cro-countdown-timer" data-hours="{{ block.settings.hours }}">00h 00m 00s</span>
+                  </div>
+                </div>
               {%- when 'buy_buttons' -%}
                 {%- render 'buy-buttons',
                   block: block,
@@ -712,6 +757,38 @@
       </modal-dialog>
     {%- endfor -%}
 
+    {%- assign variant_pickers = section.blocks | where: 'type', 'variant_picker' -%}
+    {%- for block in variant_pickers -%}
+      {%- if block.settings.size_guide_page != blank -%}
+        <modal-dialog
+          id="PopupModal-{{ block.id }}-size-guide"
+          class="product-popup-modal"
+          {{ block.shopify_attributes }}
+        >
+          <div
+            role="dialog"
+            aria-label="{{ block.settings.size_guide_page.title | escape }}"
+            aria-modal="true"
+            class="product-popup-modal__content"
+            tabindex="-1"
+          >
+            <button
+              id="ModalClose-{{ block.id }}-size-guide"
+              type="button"
+              class="product-popup-modal__toggle"
+              aria-label="{{ 'accessibility.close' | t }}"
+            >
+              {{- 'icon-close.svg' | inline_asset_content -}}
+            </button>
+            <div class="product-popup-modal__content-info">
+              <h1 class="h2">{{ block.settings.size_guide_page.title | escape }}</h1>
+              {{ block.settings.size_guide_page.content }}
+            </div>
+          </div>
+        </modal-dialog>
+      {%- endif -%}
+    {%- endfor -%}
+
     {%- if product.media.size > 0 -%}
       <script src="{{ 'product-modal.js' | asset_url }}" defer="defer"></script>
       <script src="{{ 'media-gallery.js' | asset_url }}" defer="defer"></script>
@@ -737,6 +814,30 @@
     </script>
   </div>
 </product-info>
+
+{%- assign sticky_form_id = 'product-form-' | append: section.id -%}
+{% render 'sticky-atc', product: product, product_form_id: sticky_form_id, section_id: section.id %}
+
+{% comment %} Styles moved to Arvenixo.css {% endcomment %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const isMobile = window.innerWidth <= 768;
+    Fancybox.bind('[data-fancybox="gallery"]', {
+      Thumbs: !isMobile,
+      Image: {
+        zoom: !isMobile,
+      },
+      Toolbar: {
+        display: isMobile ? [] : ['zoom', 'slideshow', 'fullscreen', 'close'],
+      },
+      Buttons: isMobile ? [] : ['prev', 'next', 'close'],
+      Nav: {
+        arrows: !isMobile,
+      },
+    });
+  });
+</script>
 
 {% schema %}
 {
@@ -788,6 +889,647 @@
       "type": "price",
       "name": "t:sections.main-product.blocks.price.name",
       "limit": 1
+    },
+    {
+      "type": "product-reviews",
+      "name": "Product Reviews",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Flow Indicator (Left Side)"
+        },
+        {
+          "type": "image_picker",
+          "id": "flow_image",
+          "label": "Flow Icon Image",
+          "info": "Upload the water drop image here."
+        },
+        {
+          "type": "text",
+          "id": "flow_text",
+          "label": "Flow Text",
+          "default": "Heavy periods"
+        },
+        {
+          "type": "color",
+          "id": "flow_bg_color",
+          "label": "Flow Pill Background Color",
+          "default": "#F6F5F0"
+        },
+        {
+          "type": "header",
+          "content": "Reviews (Right Side)"
+        },
+        {
+          "type": "image_picker",
+          "id": "star_image",
+          "label": "Star Rating Image"
+        },
+        {
+          "type": "range",
+          "id": "star_width",
+          "min": 40,
+          "max": 150,
+          "step": 2,
+          "unit": "px",
+          "label": "Star Image Width",
+          "default": 80
+        },
+        {
+          "type": "text",
+          "id": "review_text",
+          "label": "Review Text",
+          "default": "4.7 (92 Reviews)"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Review Link URL"
+        },
+        {
+          "type": "header",
+          "content": "Global Settings"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#000"
+        },
+        {
+          "type": "range",
+          "id": "margin_top",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Margin Top",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Margin Bottom",
+          "default": 10
+        }
+      ]
+    },
+    {
+      "type": "shipping-info",
+      "name": "Shipping Info",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Icon Settings"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Custom Icon",
+          "info": "Leave empty to use the default Green Dot."
+        },
+        {
+          "type": "range",
+          "id": "icon_width",
+          "min": 10,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Icon/Dot Width",
+          "default": 14
+        },
+        {
+          "type": "header",
+          "content": "Text Settings"
+        },
+        {
+          "type": "text",
+          "id": "status_text",
+          "label": "Status Text (Bold)",
+          "default": "In Stock"
+        },
+        {
+          "type": "text",
+          "id": "pre_date_text",
+          "label": "Text Before Date",
+          "default": "Order today and get it by"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#333333"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "min": 10,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "label": "Font Size",
+          "default": 14
+        },
+        {
+          "type": "header",
+          "content": "Date Calculation"
+        },
+        {
+          "type": "radio",
+          "id": "date_type",
+          "label": "Delivery Text Type",
+          "options": [
+            {
+              "value": "dynamic",
+              "label": "Dynamic Calculated Date"
+            },
+            {
+              "value": "hardcoded",
+              "label": "Hardcoded Text"
+            }
+          ],
+          "default": "dynamic"
+        },
+        {
+          "type": "text",
+          "id": "hardcoded_text",
+          "label": "Hardcoded Text",
+          "default": "2-3 days",
+          "info": "Only shows if 'Hardcoded Text' is selected above."
+        },
+        {
+          "type": "number",
+          "id": "delivery_days",
+          "label": "Days until delivery",
+          "default": 9,
+          "info": "Only used if 'Dynamic Calculated Date' is selected."
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Bottom Margin",
+          "default": 16
+        }
+      ]
+    },
+    {
+      "type": "faq-blocks",
+      "name": "Faq Blocks",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Icon Settings"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_image",
+          "label": "Custom Icon Image"
+        },
+        {
+          "type": "header",
+          "content": "Content Settings"
+        },
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Product Description"
+        },
+        {
+          "type": "select",
+          "id": "faq_content_type",
+          "label": "Content Type",
+          "options": [
+            {
+              "value": "manual",
+              "label": "Manual Text"
+            },
+            {
+              "value": "product_description",
+              "label": "Product Description"
+            },
+            {
+              "value": "product_schema",
+              "label": "Schema / Metafield Content"
+            }
+          ],
+          "default": "manual"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    },
+    {
+      "type": "Payments",
+      "name": "Payments",
+      "settings": []
+    },
+    {
+      "type": "subscribe-save-heading",
+      "name": "Text Headings",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Block Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Add details about your product or brand here.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Appearance"
+        },
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "Layout",
+          "options": [
+            {
+              "value": "stacked",
+              "label": "Stacked"
+            },
+            {
+              "value": "inline",
+              "label": "Inline"
+            }
+          ],
+          "default": "stacked"
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "label": "Text Alignment",
+          "options": [
+            {
+              "value": "text-left",
+              "label": "Left"
+            },
+            {
+              "value": "text-center",
+              "label": "Center"
+            },
+            {
+              "value": "text-right",
+              "label": "Right"
+            }
+          ],
+          "default": "text-left"
+        },
+        {
+          "type": "header",
+          "content": "Typography"
+        },
+        {
+          "type": "select",
+          "id": "heading_font_size",
+          "label": "Heading Size",
+          "options": [
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            },
+            {
+              "value": "body",
+              "label": "Body"
+            }
+          ],
+          "default": "h3"
+        },
+        {
+          "type": "select",
+          "id": "text_font_size",
+          "label": "Text Size",
+          "options": [
+            {
+              "value": "body-small",
+              "label": "Small"
+            },
+            {
+              "value": "body",
+              "label": "Normal"
+            },
+            {
+              "value": "body-large",
+              "label": "Large"
+            }
+          ],
+          "default": "body"
+        }
+      ]
+    },
+    {
+      "type": "upsell_product",
+      "name": "Upsell Products",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "upsell__heading",
+          "label": "Heading",
+          "default": "You might also like"
+        },
+        {
+          "type": "header",
+          "content": "Slider Configuration"
+        },
+        {
+          "type": "checkbox",
+          "id": "drawer_mobile_arrows",
+          "label": "Show Arrows",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "drawer_enable_autoplay",
+          "label": "Enable Autoplay",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "drawer_autoplay_interval",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "unit": "s",
+          "label": "Autoplay Interval",
+          "default": 3
+        },
+        {
+          "type": "header",
+          "content": "Layout"
+        },
+        {
+          "type": "range",
+          "id": "drawer_mobile_slides",
+          "min": 1,
+          "max": 4,
+          "step": 0.1,
+          "label": "Slides per view (Mobile)",
+          "default": 2.2
+        },
+        {
+          "type": "range",
+          "id": "drawer_tablet_slides",
+          "min": 1,
+          "max": 5,
+          "step": 0.1,
+          "label": "Slides per view (Tablet)",
+          "default": 3
+        },
+        {
+          "type": "range",
+          "id": "drawer_desktop_slides",
+          "min": 1,
+          "max": 6,
+          "step": 0.1,
+          "label": "Slides per view (Desktop)",
+          "default": 4
+        },
+        {
+          "type": "range",
+          "id": "drawer_mobile_spacing",
+          "min": 0,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Spacing (Mobile)",
+          "default": 16
+        },
+        {
+          "type": "range",
+          "id": "drawer_desktop_spacing",
+          "min": 0,
+          "max": 100,
+          "step": 2,
+          "unit": "px",
+          "label": "Spacing (Desktop)",
+          "default": 24
+        }
+      ]
+    },
+    {
+      "type": "pills",
+      "name": "Pills",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text & Icon Color",
+          "default": "#282828"
+        },
+        {
+          "type": "html",
+          "id": "custom_svg",
+          "label": "Custom SVG Icon",
+          "info": "Paste SVG code here to override the default checkmark. Leave blank to use the default."
+        },
+        {
+          "type": "text",
+          "id": "benefit_1",
+          "label": "Benefit 1",
+          "default": "60 days return guarantee"
+        },
+        {
+          "type": "text",
+          "id": "benefit_2",
+          "label": "Benefit 2",
+          "default": "Tracked shipping"
+        },
+        {
+          "type": "text",
+          "id": "benefit_3",
+          "label": "Benefit 3",
+          "default": "Free shipping over NOK 800"
+        },
+        {
+          "type": "text",
+          "id": "benefit_4",
+          "label": "Benefit 4",
+          "default": "Pay in Installments"
+        },
+        {
+          "type": "text",
+          "id": "benefit_5",
+          "label": "Benefit 5"
+        },
+        {
+          "type": "text",
+          "id": "benefit_6",
+          "label": "Benefit 6"
+        }
+      ]
+    },
+    {
+      "type": "multi-icon",
+      "name": "Multi icons",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon-1",
+          "label": "Icon"
+        },
+        {
+          "type": "range",
+          "id": "icon_size_1",
+          "label": "Icon Size (px)",
+          "min": 1,
+          "max": 100,
+          "default": 46
+        },
+        {
+          "type": "range",
+          "id": "icon_size_m_1",
+          "label": "Icon Size Mobile (px)",
+          "min": 1,
+          "max": 100,
+          "default": 30
+        },
+        {
+          "type": "text",
+          "id": "text-1",
+          "label": "Text"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon-2",
+          "label": "Icon"
+        },
+        {
+          "type": "range",
+          "id": "icon_size_2",
+          "label": "Icon Size (px)",
+          "min": 1,
+          "max": 100,
+          "default": 46
+        },
+        {
+          "type": "range",
+          "id": "icon_size_m_2",
+          "label": "Icon Size Mobile (px)",
+          "min": 1,
+          "max": 100,
+          "default": 30
+        },
+        {
+          "type": "text",
+          "id": "text-2",
+          "label": "Text"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon-3",
+          "label": "Icon"
+        },
+        {
+          "type": "range",
+          "id": "icon_size_3",
+          "label": "Icon Size (px)",
+          "min": 1,
+          "max": 100,
+          "default": 46
+        },
+        {
+          "type": "range",
+          "id": "icon_size_m_3",
+          "label": "Icon Size Mobile (px)",
+          "min": 1,
+          "max": 100,
+          "default": 30
+        },
+        {
+          "type": "text",
+          "id": "text-3",
+          "label": "Text"
+        },
+        {
+          "type": "header",
+          "content": "text setting"
+        },
+        {
+          "type": "range",
+          "id": "text-size",
+          "label": "Text Size",
+          "min": 0,
+          "max": 50,
+          "default": 14
+        }
+      ]
+    },
+    {
+      "type": "trust-card",
+      "name": "Trust card",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "textarea",
+          "id": "review_text",
+          "label": "Endorsement Quote",
+          "default": "VIVORUM Cellular Renewal is one of the most thoughtfully formulated nightly supplements I've reviewed."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author Name & Title",
+          "default": "Dr. A. Reynolds, MD"
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "Doctor Avatar"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge Text",
+          "default": "Recommended by doctors"
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#000000"
+        }
+      ]
     },
     {
       "type": "sku",
@@ -904,6 +1646,242 @@
             }
           ],
           "default": "circle"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_variant_images_in_swatches",
+          "default": true,
+          "label": "Show variant images in swatches",
+          "info": "Replaces color swatches with the actual variant image."
+        },
+        {
+          "type": "header",
+          "content": "Size Chart"
+        },
+        {
+          "type": "checkbox",
+          "id": "size_guide_page",
+          "label": "Show"
+        },
+        {
+          "type": "text",
+          "id": "trigger_tag",
+          "label": "Product Tag Trigger",
+          "info": "Leave blank to show on all products"
+        },
+        {
+          "type": "text",
+          "id": "trigger_label",
+          "label": "Button Text",
+          "default": "Size Guide"
+        },
+        {
+          "type": "header",
+          "content": "Colors (Match Image)"
+        },
+        {
+          "type": "color",
+          "id": "color_primary",
+          "label": "Dark Magenta",
+          "default": "#282828"
+        },
+        {
+          "type": "color",
+          "id": "color_secondary",
+          "label": "Bright Pink",
+          "default": "#282828"
+        },
+        {
+          "type": "color",
+          "id": "color_tertiary",
+          "label": "Light Pink",
+          "default": "#F6F5F0"
+        },
+        {
+          "type": "header",
+          "content": "Header Content"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Modal Title",
+          "default": "Size Guide"
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar_image",
+          "label": "Center Avatar Image"
+        },
+        {
+          "type": "header",
+          "content": "Table Data: XS"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_xs",
+          "label": "Show XS Row",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "val_xs_int",
+          "label": "Int. Sizes",
+          "default": "34 - 36"
+        },
+        {
+          "type": "text",
+          "id": "val_xs_cm",
+          "label": "cm",
+          "default": "88 - 93"
+        },
+        {
+          "type": "header",
+          "content": "Table Data: S"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_s",
+          "label": "Show S Row",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "val_s_int",
+          "label": "Int. Sizes",
+          "default": "38"
+        },
+        {
+          "type": "text",
+          "id": "val_s_cm",
+          "label": "cm",
+          "default": "94 - 99"
+        },
+        {
+          "type": "header",
+          "content": "Table Data: M"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_m",
+          "label": "Show M Row",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "val_m_int",
+          "label": "Int. Sizes",
+          "default": "40 - 42"
+        },
+        {
+          "type": "text",
+          "id": "val_m_cm",
+          "label": "cm",
+          "default": "100 - 105"
+        },
+        {
+          "type": "header",
+          "content": "Table Data: L"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_l",
+          "label": "Show L Row",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "val_l_int",
+          "label": "Int. Sizes",
+          "default": "44"
+        },
+        {
+          "type": "text",
+          "id": "val_l_cm",
+          "label": "cm",
+          "default": "106 - 111"
+        },
+        {
+          "type": "header",
+          "content": "Table Data: XL"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_xl",
+          "label": "Show XL Row",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "val_xl_int",
+          "label": "Int. Sizes",
+          "default": "46"
+        },
+        {
+          "type": "text",
+          "id": "val_xl_cm",
+          "label": "cm",
+          "default": "112 - 117"
+        },
+        {
+          "type": "header",
+          "content": "Table Data: XXL"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_xxl",
+          "label": "Show XXL Row",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "val_xxl_int",
+          "label": "Int. Sizes",
+          "default": "48 - 50"
+        },
+        {
+          "type": "text",
+          "id": "val_xxl_cm",
+          "label": "cm",
+          "default": "118 - 123"
+        },
+        {
+          "type": "header",
+          "content": "Footer Section"
+        },
+        {
+          "type": "text",
+          "id": "box_title",
+          "label": "Instructions Title",
+          "default": "How to measure?"
+        },
+        {
+          "type": "textarea",
+          "id": "bullet_1",
+          "label": "Bullet Point 1",
+          "default": "Stand naturally and measure around your hips at the widest point, where your body is fullest."
+        },
+        {
+          "type": "textarea",
+          "id": "bullet_2",
+          "label": "Bullet Point 2",
+          "default": "Keep the measuring tape snug but not tight, and make sure it's level all the way around."
+        },
+        {
+          "type": "textarea",
+          "id": "bullet_3",
+          "label": "Bullet Point 3",
+          "default": "For best accuracy, measure directly on your body or over thin clothing, and measure twice to be sure."
+        },
+        {
+          "type": "textarea",
+          "id": "note_text",
+          "label": "Note Text",
+          "default": "If you come between the two sizes, choose the small one."
+        },
+        {
+          "type": "image_picker",
+          "id": "illustration_image",
+          "label": "Measurement Illustration Image"
         }
       ]
     },
@@ -1189,6 +2167,236 @@
         {
           "type": "paragraph",
           "content": "t:sections.main-product.blocks.rating.settings.paragraph.content"
+        }
+      ]
+    },
+    {
+      "type": "size-chart",
+      "name": "Design Size Guide",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Trigger Settings"
+        },
+        {
+          "type": "text",
+          "id": "trigger_tag",
+          "label": "Product Tag Trigger",
+          "info": "Leave blank to show on all products"
+        },
+        {
+          "type": "text",
+          "id": "trigger_label",
+          "label": "Button Text",
+          "default": "Size Guide"
+        },
+        {
+          "type": "header",
+          "content": "Colors (Match Image)"
+        },
+        {
+          "type": "color",
+          "id": "color_primary",
+          "label": "Dark Magenta",
+          "default": "#282828"
+        },
+        {
+          "type": "color",
+          "id": "color_secondary",
+          "label": "Bright Pink",
+          "default": "#282828"
+        },
+        {
+          "type": "color",
+          "id": "color_tertiary",
+          "label": "Light Pink",
+          "default": "#F6F5F0"
+        },
+        {
+          "type": "header",
+          "content": "Header Content"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Modal Title",
+          "default": "Size Guide"
+        },
+        {
+          "type": "image_picker",
+          "id": "avatar_image",
+          "label": "Center Avatar Image"
+        },
+        {
+          "type": "header",
+          "content": "Table Data: XS"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_xs",
+          "label": "Show XS Row",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "val_xs_int",
+          "label": "Int. Sizes",
+          "default": "34 - 36"
+        },
+        {
+          "type": "text",
+          "id": "val_xs_cm",
+          "label": "cm",
+          "default": "88 - 93"
+        },
+        {
+          "type": "header",
+          "content": "Table Data: S"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_s",
+          "label": "Show S Row",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "val_s_int",
+          "label": "Int. Sizes",
+          "default": "38"
+        },
+        {
+          "type": "text",
+          "id": "val_s_cm",
+          "label": "cm",
+          "default": "94 - 99"
+        },
+        {
+          "type": "header",
+          "content": "Table Data: M"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_m",
+          "label": "Show M Row",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "val_m_int",
+          "label": "Int. Sizes",
+          "default": "40 - 42"
+        },
+        {
+          "type": "text",
+          "id": "val_m_cm",
+          "label": "cm",
+          "default": "100 - 105"
+        },
+        {
+          "type": "header",
+          "content": "Table Data: L"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_l",
+          "label": "Show L Row",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "val_l_int",
+          "label": "Int. Sizes",
+          "default": "44"
+        },
+        {
+          "type": "text",
+          "id": "val_l_cm",
+          "label": "cm",
+          "default": "106 - 111"
+        },
+        {
+          "type": "header",
+          "content": "Table Data: XL"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_xl",
+          "label": "Show XL Row",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "val_xl_int",
+          "label": "Int. Sizes",
+          "default": "46"
+        },
+        {
+          "type": "text",
+          "id": "val_xl_cm",
+          "label": "cm",
+          "default": "112 - 117"
+        },
+        {
+          "type": "header",
+          "content": "Table Data: XXL"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_xxl",
+          "label": "Show XXL Row",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "val_xxl_int",
+          "label": "Int. Sizes",
+          "default": "48 - 50"
+        },
+        {
+          "type": "text",
+          "id": "val_xxl_cm",
+          "label": "cm",
+          "default": "118 - 123"
+        },
+        {
+          "type": "header",
+          "content": "Footer Section"
+        },
+        {
+          "type": "text",
+          "id": "box_title",
+          "label": "Instructions Title",
+          "default": "How to measure?"
+        },
+        {
+          "type": "textarea",
+          "id": "bullet_1",
+          "label": "Bullet Point 1",
+          "default": "Stand naturally and measure around your hips at the widest point, where your body is fullest."
+        },
+        {
+          "type": "textarea",
+          "id": "bullet_2",
+          "label": "Bullet Point 2",
+          "default": "Keep the measuring tape snug but not tight, and make sure it's level all the way around."
+        },
+        {
+          "type": "textarea",
+          "id": "bullet_3",
+          "label": "Bullet Point 3",
+          "default": "For best accuracy, measure directly on your body or over thin clothing, and measure twice to be sure."
+        },
+        {
+          "type": "textarea",
+          "id": "note_text",
+          "label": "Note Text",
+          "default": "If you come between the two sizes, choose the small one."
+        },
+        {
+          "type": "image_picker",
+          "id": "illustration_image",
+          "label": "Measurement Illustration Image"
         }
       ]
     },
@@ -2086,6 +3294,56 @@
           "info": "t:sections.main-product.blocks.icon_with_text.settings.heading.info"
         }
       ]
+    },
+    {
+      "type": "delivery_payment",
+      "name": "Delivery & Payments",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "default": "Ships in 1\u20132 business days. Delivery time depends on your region.",
+          "label": "Banner Text"
+        },
+        {
+          "type": "range",
+          "id": "margin_bottom",
+          "min": 0,
+          "max": 100,
+          "step": 4,
+          "unit": "px",
+          "label": "Bottom Margin",
+          "default": 16
+        }
+      ]
+    },
+    {
+      "type": "inventory_urgency",
+      "name": "Urgency Inventory (CRO)",
+      "limit": 1
+    },
+    {
+      "type": "countdown_timer",
+      "name": "Countdown Timer (CRO)",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "default": "Order now for same day dispatch in:",
+          "label": "Text"
+        },
+        {
+          "type": "range",
+          "id": "hours",
+          "min": 1,
+          "max": 24,
+          "step": 1,
+          "label": "Reset hours (countdown duration)",
+          "default": 12
+        }
+      ]
     }
   ],
   "settings": [
@@ -2212,6 +3470,10 @@
       "id": "image_zoom",
       "options": [
         {
+          "label": "Fancybox Lightbox",
+          "value": "full_popup"
+        },
+        {
           "value": "lightbox",
           "label": "t:sections.main-product.settings.image_zoom.options__1.label"
         },
@@ -2238,6 +3500,73 @@
       "id": "enable_video_looping",
       "default": false,
       "label": "t:sections.main-product.settings.enable_video_looping.label"
+    },
+    {
+      "type": "header",
+      "content": "Swiper Gallery Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_main_arrows",
+      "default": true,
+      "label": "Show Main Gallery Arrows"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_main_pagination",
+      "default": true,
+      "label": "Show Main Gallery Pagination"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_thumbs_arrows",
+      "default": false,
+      "label": "Show Thumbnail Arrows"
+    },
+    {
+      "type": "header",
+      "content": "Color Grouping"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_group_by_color",
+      "default": false,
+      "label": "Filter images by selected color",
+      "info": "Only show images where the Alt Text matches the selected color name."
+    },
+    {
+      "type": "text",
+      "id": "color_option_name",
+      "default": "Color",
+      "label": "Color Option Name",
+      "info": "Enter the exact name of your color option (e.g. Color, Colour, Shade)."
+    },
+    {
+      "type": "checkbox",
+      "id": "fancybox_show_all",
+      "default": false,
+      "label": "Fancybox: Show all images",
+      "info": "Show all product images in lightbox even if filtered."
+    },
+    {
+      "type": "header",
+      "content": "Button Settings"
+    },
+    {
+      "type": "text",
+      "id": "trigger_label",
+      "label": "Trigger Button Label",
+      "default": "Size Guide"
+    },
+    {
+      "type": "header",
+      "content": "Default Unit"
+    },
+    {
+      "type": "checkbox",
+      "id": "default_metric",
+      "label": "Default to Metric (CM)",
+      "default": true
     },
     {
       "type": "header",

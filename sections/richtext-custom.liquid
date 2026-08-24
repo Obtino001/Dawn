@@ -1,0 +1,243 @@
+{%- style -%}
+.section-{{ section.id }}-padding { padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px; padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px; }
+@media screen and (min-width: 750px) { .section-{{ section.id }}-padding { padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; } }
+.srt-wrapper { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.5rem; max-width: 800px; margin: 0 auto; }
+.srt-heading { font-size: clamp(32px, 5vw, 48px); margin: 0; line-height: 1.2; color: inherit; }
+.srt-text { font-size: 16px; line-height: 1.6; margin: 0; color: inherit; opacity: 0.9; }
+.srt-text p { margin: 0; }
+.srt-features-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; list-style: none; padding: 0; margin: 0.5rem 0 0 0; }
+.srt-feature-item { display: flex; align-items: center; gap: 8px; font-size: 14px; color: inherit; }
+.srt-feature-icon { width: 16px; height: 16px; object-fit: contain; display: block; flex-shrink: 0; }
+.srt-rating-wrapper { display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 1rem; }
+.srt-stars { width: 100px; height: auto; object-fit: contain; display: block; }
+.srt-rating-label { font-size: 18px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; margin: 0; color: inherit; }
+.srt-trust-wrapper { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 0.5rem; }
+.srt-trust-text { font-size: 14px; margin: 0; color: inherit; opacity: 0.9; }
+.srt-trust-badge { height: 20px; width: auto; object-fit: contain; display: block; }
+@media screen and (max-width: 750px){
+  .srt-features-list {
+    gap: 0.5rem;
+    align-items: center;
+    flex-direction: column;
+    align-items: start;
+}
+.srt-stars { width: 70px;}
+
+}
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  <div class="page-width">
+    <div class="srt-wrapper">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          
+          {%- when 'heading' -%}
+            {%- if block.settings.title != blank -%}
+              <h2 class="srt-heading" {{ block.shopify_attributes }}>{{ block.settings.title }}</h2>
+            {%- endif -%}
+
+          {%- when 'text' -%}
+            {%- if block.settings.text != blank -%}
+              <div class="srt-text" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
+            {%- endif -%}
+
+          {%- when 'features' -%}
+            <ul class="srt-features-list" {{ block.shopify_attributes }}>
+              {%- if block.settings.feature_1 != blank -%}
+                <li class="srt-feature-item">
+                  {%- if block.settings.icon_image != blank -%}
+                    <img src="{{ block.settings.icon_image | image_url: width: 50 }}" alt="" loading="lazy" class="srt-feature-icon">
+                  {%- endif -%}
+                  <span>{{ block.settings.feature_1 }}</span>
+                </li>
+              {%- endif -%}
+              {%- if block.settings.feature_2 != blank -%}
+                <li class="srt-feature-item">
+                  {%- if block.settings.icon_image != blank -%}
+                    <img src="{{ block.settings.icon_image | image_url: width: 50 }}" alt="" loading="lazy" class="srt-feature-icon">
+                  {%- endif -%}
+                  <span>{{ block.settings.feature_2 }}</span>
+                </li>
+              {%- endif -%}
+              {%- if block.settings.feature_3 != blank -%}
+                <li class="srt-feature-item">
+                  {%- if block.settings.icon_image != blank -%}
+                    <img src="{{ block.settings.icon_image | image_url: width: 50 }}" alt="" loading="lazy" class="srt-feature-icon">
+                  {%- endif -%}
+                  <span>{{ block.settings.feature_3 }}</span>
+                </li>
+              {%- endif -%}
+            </ul>
+
+          {%- when 'rating' -%}
+            <div class="srt-rating-wrapper" {{ block.shopify_attributes }}>
+              {%- if block.settings.stars_image != blank -%}
+                <img src="{{ block.settings.stars_image | image_url: width: 200 }}" alt="Stars" loading="lazy" class="srt-stars">
+              {%- endif -%}
+              {%- if block.settings.rating_label != blank -%}
+                <p class="srt-rating-label">{{ block.settings.rating_label }}</p>
+              {%- endif -%}
+            </div>
+
+          {%- when 'trust_score' -%}
+            <div class="srt-trust-wrapper" {{ block.shopify_attributes }}>
+              {%- if block.settings.trust_text != blank -%}
+                <p class="srt-trust-text">{{ block.settings.trust_text }}</p>
+              {%- endif -%}
+              {%- if block.settings.trust_badge != blank -%}
+                <img src="{{ block.settings.trust_badge | image_url: width: 150 }}" alt="Trust Score" loading="lazy" class="srt-trust-badge">
+              {%- endif -%}
+            </div>
+
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Rich Text",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Period panties"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Feel safe, comfortable, and confident during your period. Our electronic gadgets offer reliable protection without bulk, so you can move freely all day.</p>"
+        }
+      ]
+    },
+    {
+      "type": "features",
+      "name": "Features List",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon Image (Checkmark)"
+        },
+        {
+          "type": "text",
+          "id": "feature_1",
+          "label": "Feature 1",
+          "default": "Everyday underwear comfort"
+        },
+        {
+          "type": "text",
+          "id": "feature_2",
+          "label": "Feature 2",
+          "default": "Leak-proof protection"
+        },
+        {
+          "type": "text",
+          "id": "feature_3",
+          "label": "Feature 3",
+          "default": "PFAS-free & European quality"
+        }
+      ]
+    },
+    {
+      "type": "rating",
+      "name": "Star Rating",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "stars_image",
+          "label": "Stars Image"
+        },
+        {
+          "type": "text",
+          "id": "rating_label",
+          "label": "Rating Label",
+          "default": "EXCELLENT"
+        }
+      ]
+    },
+    {
+      "type": "trust_score",
+      "name": "Trust Score",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "trust_text",
+          "label": "Review Text",
+          "default": "Rated 4.8/5 by 471 customers"
+        },
+        {
+          "type": "image_picker",
+          "id": "trust_badge",
+          "label": "Trust Badge Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Rich Text",
+      "blocks": [
+        { "type": "heading" },
+        { "type": "text" },
+        { "type": "features" },
+        { "type": "rating" },
+        { "type": "trust_score" }
+      ]
+    }
+  ]
+}
+{% endschema %}

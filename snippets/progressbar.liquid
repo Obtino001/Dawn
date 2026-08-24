@@ -1,0 +1,341 @@
+{% if settings.free_gift or settings.free_shipping %}
+  {% assign show_shipping_bar = settings.free_shipping %}
+  {% assign swap_layout = false %}
+  {% assign use_fixed_positions = settings.fixed_icon_positions | default: false %}
+
+  {% comment %} Styles moved to sereluna.css {% endcomment %}
+
+  {% assign free_shipping_minimum = settings.free_shipping_minimum | times: 100 %}
+  {% assign free_gift_minimum = settings.free_gift_minimum | times: 100 %}
+
+  <free-shipping
+    class="free-shipping {% if swap_layout %}layout-swapped{% endif %}"
+    data-cart-total="{{ cart.total_price }}"
+    data-minimum="{{ free_shipping_minimum }}"
+    data-gift-minimum="{{ free_gift_minimum }}"
+    data-gift-variant-id="{{ all_products[settings.free_gift_product].selected_or_first_available_variant.id }}"
+    data-show-gift="{{ settings.free_gift | json }}"
+    data-show-shipping="{{ show_shipping_bar | json }}"
+    data-fixed-icons="{{ use_fixed_positions }}"
+    data-locale="{{ localization.language.iso_code }}-{{ localization.country.iso_code }}"
+    data-currency="{{ localization.country.currency.iso_code }}"
+    style="{% if settings.free_shipping_text != blank or settings.free_gift_texts != blank %}margin-bottom: 44px;{% endif %}"
+  >
+    <div class="free-shipping--text">
+      <div class="fs-shipping-messages fs-hidden">
+        <div class="free-shipping--text-remaining">
+          {{ settings.free_shipping_not_met | replace: 'amount', '<span></span>' }}
+        </div>
+        <div class="free-shipping--text-full">
+          <span>{{ settings.free_shipping_met }}</span>
+        </div>
+      </div>
+
+      {% if settings.free_gift %}
+        <div class="fs-gift-messages fs-hidden">
+          <div class="free-gift--text-remaining">
+            {{ settings.free_gift_not_met | replace: 'amount', '<span></span>' }}
+          </div>
+          <div class="free-gift--text-full">{{ settings.free_gift_met }}</div>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="free-shipping--bar">
+      {% if show_shipping_bar %}
+        <div class="truck-icon shipping-milestone fs-hidden">
+          <div class="shipping-truck-indicator" style="left: 47.2031%;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="12" viewBox="0 0 16 12" fill="none">
+          <path d="M0.977857 0H9.36772C9.62691 0.000307251 9.87541 0.103409 10.0587 0.286691C10.242 0.469972 10.3451 0.718466 10.3454 0.977665V2.21099H12.8341C13.1329 2.21071 13.4262 2.29171 13.6825 2.44534C13.9388 2.59897 14.1485 2.81942 14.2892 3.0831L15.6515 5.63113C15.8571 6.01683 15.9649 6.44715 15.9653 6.88425V9.55188C15.965 9.81108 15.8619 10.0596 15.6787 10.2429C15.4954 10.4261 15.2469 10.5292 14.9877 10.5295H13.8353C13.7759 10.9034 13.5851 11.2439 13.2972 11.4897C13.0093 11.7356 12.6431 11.8706 12.2646 11.8706C11.886 11.8706 11.5198 11.7356 11.2319 11.4897C10.944 11.2439 10.7532 10.9034 10.6938 10.5295H4.72958C4.67024 10.9034 4.47946 11.2439 4.19154 11.4897C3.90362 11.7356 3.53745 11.8706 3.15886 11.8706C2.78027 11.8706 2.4141 11.7356 2.12618 11.4897C1.83826 11.2439 1.64748 10.9034 1.58813 10.5295H0.305652C0.265523 10.5296 0.225783 10.5217 0.188705 10.5063C0.151627 10.491 0.117937 10.4685 0.0895624 10.4401C0.0611868 10.4117 0.0386829 10.378 0.0233383 10.341C0.00799274 10.3039 0.000106812 10.2641 0.000131607 10.224V0.977726C0.000422478 0.718506 0.103526 0.469987 0.286822 0.286691C0.470119 0.103395 0.718637 0.000291113 0.977857 0ZM13.9384 3.72295H11.7601L12.0804 5.83446H15.0675L13.9384 3.72295ZM12.2645 11.2595C12.4594 11.2595 12.6499 11.2017 12.812 11.0934C12.9741 10.9852 13.1004 10.8313 13.175 10.6512C13.2496 10.4711 13.2691 10.273 13.2311 10.0818C13.193 9.89062 13.0992 9.71502 12.9614 9.5772C12.8235 9.43937 12.6479 9.34551 12.4568 9.30748C12.2656 9.26946 12.0675 9.28897 11.8874 9.36356C11.7073 9.43815 11.5534 9.56446 11.4451 9.72652C11.3368 9.88859 11.279 10.0791 11.279 10.274C11.2794 10.5353 11.3833 10.7857 11.568 10.9705C11.7528 11.1552 12.0032 11.2592 12.2645 11.2595ZM3.15884 11.2595C3.35375 11.2595 3.54429 11.2017 3.70636 11.0934C3.86842 10.9852 3.99474 10.8313 4.06933 10.6512C4.14393 10.4711 4.16345 10.273 4.12543 10.0818C4.08741 9.89062 3.99355 9.71502 3.85573 9.5772C3.71791 9.43937 3.54231 9.34551 3.35114 9.30748C3.15998 9.26946 2.96183 9.28897 2.78175 9.36356C2.60168 9.43815 2.44776 9.56446 2.33947 9.72652C2.23119 9.88859 2.17339 10.0791 2.17339 10.274C2.17374 10.5353 2.27768 10.7857 2.46241 10.9705C2.64714 11.1552 2.89759 11.2592 3.15884 11.2595ZM0.611172 9.91828H1.60546C1.68527 9.56594 1.88249 9.25119 2.16476 9.02571C2.44703 8.80023 2.79757 8.6774 3.15884 8.6774C3.52012 8.6774 3.87066 8.80023 4.15293 9.02571C4.43519 9.25119 4.63242 9.56594 4.71223 9.91828H10.711C10.7909 9.56594 10.9881 9.25121 11.2704 9.02573C11.5526 8.80026 11.9032 8.67744 12.2644 8.67744C12.6257 8.67744 12.9762 8.80026 13.2585 9.02573C13.5408 9.25121 13.738 9.56594 13.8178 9.91828H14.9876C15.0848 9.91819 15.178 9.87953 15.2467 9.8108C15.3155 9.74206 15.3541 9.64887 15.3542 9.55166V9.18143H14.6045C14.5234 9.18143 14.4457 9.14924 14.3884 9.09195C14.3311 9.03465 14.2989 8.95694 14.2989 8.87591C14.2989 8.79488 14.3311 8.71717 14.3884 8.65987C14.4457 8.60258 14.5234 8.57039 14.6045 8.57039H15.3543V6.88392C15.3533 6.73638 15.3363 6.58939 15.3037 6.4455H11.8177C11.7447 6.44546 11.6741 6.41925 11.6187 6.3716C11.5633 6.32396 11.5268 6.25804 11.5158 6.18581L11.1026 3.46328C11.0959 3.41978 11.0987 3.37535 11.1108 3.33303C11.1229 3.29071 11.144 3.25152 11.1727 3.21814C11.2014 3.18475 11.237 3.15798 11.277 3.13965C11.317 3.12131 11.3605 3.11186 11.4045 3.11194H13.5515C13.3588 2.92619 13.1017 2.82226 12.8341 2.82194H10.3454V8.93976C10.3454 9.02079 10.3133 9.0985 10.256 9.1558C10.1987 9.2131 10.1209 9.24529 10.0399 9.24529C9.95889 9.24529 9.88118 9.2131 9.82388 9.1558C9.76659 9.0985 9.7344 9.02079 9.7344 8.93976V0.977726C9.7343 0.880521 9.69565 0.787325 9.62691 0.71859C9.55818 0.649856 9.46498 0.611198 9.36778 0.611101H0.977857C0.880651 0.611198 0.787456 0.649856 0.718721 0.71859C0.649986 0.787325 0.611329 0.880521 0.611232 0.977726L0.611172 9.91828Z" fill="#272727"></path>
+          </svg>
+              </div>
+    <span>{{ settings.free_shipping_text }}</span>
+        </div>
+      {% endif %}
+
+      {% if settings.free_gift %}
+        <div class="truck-icon gift-milestone fs-hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" enable-background="new 0 0 256 256">
+            <g><path fill="#000000" d="M128,18.4c60.4,0,109.6,49.2,109.6,109.6c0,60.4-49.2,109.6-109.6,109.6c-60.4,0-109.6-49.2-109.6-109.6C18.4,67.6,67.6,18.4,128,18.4 M128,10C62.8,10,10,62.8,10,128c0,65.2,52.8,118,118,118c65.2,0,118-52.8,118-118C246,62.8,193.2,10,128,10L128,10z"/><path fill="#000000" d="M171.4,90.8c1.8-2.9,3.4-6.7,3.1-10.6c-0.2-2.6-1.5-6.3-6-9.3c-3.8-2.5-8.6-3.1-14-1.7c-9.2,2.3-19.7,10.3-26.5,19.5c-6.8-9.2-17.3-17.2-26.5-19.5c-5.4-1.3-10.2-0.7-14,1.7c-4.5,3-5.7,6.7-6,9.2c-0.4,3.9,1.3,7.7,3.1,10.6h-4.9c-6.2,0-11.1,5-11.1,11.1v14.9c0,5.2,3.5,9.5,8.3,10.7c-0.5,1.3-0.8,2.7-0.8,4.1v44.6c0,6.1,5,11.2,11.1,11.2H128c0,0,40.9,0,40.9,0c6.1,0,11.1-5,11.1-11.2v-44.6c0-1.5-0.3-2.9-0.8-4.2c4.7-1.3,8.2-5.6,8.2-10.7V102c0-6.1-5-11.1-11.2-11.1L171.4,90.8L171.4,90.8z M156.3,76.4c3.3-0.9,6.1-0.6,8.1,0.7c2.2,1.4,2.6,2.8,2.6,3.7c0.4,3.7-3.6,8.5-5.1,9.9h-26.2C141.5,84,149.6,78.1,156.3,76.4L156.3,76.4L156.3,76.4z M88.9,80.9c0.1-0.9,0.5-2.3,2.7-3.7c2-1.3,4.7-1.6,8.1-0.7c6.7,1.7,14.8,7.6,20.5,14.4H94C92.5,89.3,88.5,84.5,88.9,80.9L88.9,80.9L88.9,80.9z M76.7,102.7c0-1.9,1.7-3.4,3.6-3.4h43.6v20.5H87.6h-7.3c-2,0-3.6-1.5-3.6-3.4V102.7L76.7,102.7L76.7,102.7z M84.9,175.6v-44c0-2,1.6-3.7,3.6-3.7h35.4v51.3H88.5C86.5,179.3,84.9,177.7,84.9,175.6L84.9,175.6L84.9,175.6z M171.1,175.6c0,2-1.6,3.7-3.5,3.7h-35.4V128h35.4c2,0,3.5,1.7,3.5,3.7V175.6L171.1,175.6L171.1,175.6z M179.3,116.4c0,1.9-1.6,3.4-3.6,3.4h-7.3h-36.3V99.3h43.6c2,0,3.6,1.5,3.6,3.4V116.4L179.3,116.4L179.3,116.4z"/></g>
+          </svg>
+          <span>{{ settings.free_gift_texts }}</span>
+        </div>
+      {% endif %}
+
+      <div class="free-shipping--percentage"> </div>
+    </div>
+  </free-shipping>
+
+  <script>
+    function formatMoney(amount, locale, currency) {
+      const loc = locale || 'en-US';
+      const curr = currency || 'USD';
+
+      return new Intl.NumberFormat(loc, {
+        style: 'currency',
+        currency: curr,
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(amount / 100);
+    }
+
+    if (!customElements.get('free-shipping')) {
+      class FreeShipping extends HTMLElement {
+        constructor() {
+          super();
+          this.giftAdded = false;
+          this.processingGift = false;
+          this.locale = 'en-US';
+          this.currency = 'USD';
+          this.fixedIcons = false;
+        }
+
+        connectedCallback() {
+          let total = parseInt(this.dataset.cartTotal, 10);
+          let showGift = this.dataset.showGift === 'true';
+          let showShipping = this.dataset.showShipping === 'true';
+          this.fixedIcons = this.dataset.fixedIcons === 'true';
+
+          this.locale = this.dataset.locale;
+          this.currency = this.dataset.currency;
+
+          let shippingMinimum = Math.round(parseInt(this.dataset.minimum, 10) * (Shopify.currency.rate || 1));
+          let giftMinimum = this.dataset.giftMinimum
+            ? Math.round(parseInt(this.dataset.giftMinimum, 10) * (Shopify.currency.rate || 1))
+            : 0;
+          let giftVariantId = this.dataset.giftVariantId;
+
+          let activeGoals = [];
+
+          if (showShipping) {
+            activeGoals.push({
+              type: 'shipping',
+              value: shippingMinimum,
+            });
+          }
+          if (showGift && giftMinimum > 0) {
+            activeGoals.push({
+              type: 'gift',
+              value: giftMinimum,
+            });
+          }
+
+          activeGoals.sort((a, b) => a.value - b.value);
+
+          let maxThreshold = activeGoals.length > 0 ? activeGoals[activeGoals.length - 1].value : shippingMinimum;
+
+          let percentage = this.calculateBarPercentage(total, activeGoals, maxThreshold);
+          this.style.setProperty('--percentage', percentage);
+
+          this.updateIcons(activeGoals, maxThreshold, total);
+
+          let nextGoal = null;
+
+          for (let goal of activeGoals) {
+            if (total < goal.value) {
+              nextGoal = goal;
+              break;
+            }
+          }
+
+          if (nextGoal) {
+            if (nextGoal.type === 'shipping') {
+              this.showShippingProgress(total, nextGoal.value);
+            } else {
+              this.showGiftProgress(total, nextGoal.value);
+            }
+          } else {
+            if (activeGoals.length > 0) {
+              let lastGoal = activeGoals[activeGoals.length - 1];
+              if (lastGoal.type === 'shipping') {
+                this.showShippingSuccess();
+              } else {
+                this.showGiftSuccess();
+              }
+            } else {
+              if (showShipping) this.showShippingSuccess();
+            }
+          }
+
+          if (showGift && giftMinimum > 0 && total >= giftMinimum) {
+            if (giftVariantId && !this.giftAdded && !this.processingGift) {
+              this.addGiftToCart(giftVariantId);
+            }
+          }
+        }
+
+        calculateBarPercentage(total, activeGoals, maxThreshold) {
+          if (!this.fixedIcons || activeGoals.length < 2) {
+            return maxThreshold > 0 ? Math.min(total / maxThreshold, 1) : 1;
+          }
+
+          const goal1 = activeGoals[0].value;
+          const goal2 = activeGoals[1].value;
+
+          if (total < goal1) {
+            return (total / goal1) * 0.5;
+          } else if (total >= goal1 && total < goal2) {
+            const range = goal2 - goal1;
+            const progressInRange = total - goal1;
+            const relativePercent = progressInRange / range;
+            return 0.5 + relativePercent * 0.5;
+          } else {
+            return 1;
+          }
+        }
+
+        showShippingProgress(total, threshold) {
+          this.hideAllTexts();
+          const container = this.querySelector('.fs-shipping-messages');
+          const remainingText = container.querySelector('.free-shipping--text-remaining');
+          const amountSpan = remainingText.querySelector('span');
+
+          if (container) container.classList.remove('fs-hidden');
+          if (remainingText) remainingText.style.display = 'block';
+
+          let diff = threshold - total;
+          if (amountSpan) amountSpan.innerHTML = formatMoney(diff, this.locale, this.currency);
+
+          const fullText = container.querySelector('.free-shipping--text-full');
+          if (fullText) fullText.style.display = 'none';
+        }
+
+        showGiftProgress(total, threshold) {
+          this.hideAllTexts();
+          const container = this.querySelector('.fs-gift-messages');
+          const remainingText = container.querySelector('.free-gift--text-remaining');
+          const amountSpan = remainingText.querySelector('span');
+
+          if (container) container.classList.remove('fs-hidden');
+          if (remainingText) remainingText.style.display = 'block';
+
+          let diff = threshold - total;
+          if (amountSpan) amountSpan.innerHTML = formatMoney(diff, this.locale, this.currency);
+
+          const fullText = container.querySelector('.free-gift--text-full');
+          if (fullText) fullText.style.display = 'none';
+        }
+
+        showShippingSuccess() {
+          this.hideAllTexts();
+          const container = this.querySelector('.fs-shipping-messages');
+          const remainingText = container.querySelector('.free-shipping--text-remaining');
+          const fullText = container.querySelector('.free-shipping--text-full');
+
+          if (container) container.classList.remove('fs-hidden');
+          if (remainingText) remainingText.style.display = 'none';
+          if (fullText) fullText.style.display = 'block';
+        }
+
+        showGiftSuccess() {
+          this.hideAllTexts();
+          const container = this.querySelector('.fs-gift-messages');
+          const remainingText = container.querySelector('.free-gift--text-remaining');
+          const fullText = container.querySelector('.free-gift--text-full');
+
+          if (container) container.classList.remove('fs-hidden');
+          if (remainingText) remainingText.style.display = 'none';
+          if (fullText) fullText.style.display = 'block';
+        }
+
+        hideAllTexts() {
+          const shipMsg = this.querySelector('.fs-shipping-messages');
+          const giftMsg = this.querySelector('.fs-gift-messages');
+          if (shipMsg) shipMsg.classList.add('fs-hidden');
+          if (giftMsg) giftMsg.classList.add('fs-hidden');
+        }
+
+        updateIcons(activeGoals, maxThreshold, total) {
+          const shippingIcon = this.querySelector('.shipping-milestone');
+          const giftIcon = this.querySelector('.gift-milestone');
+
+          if (shippingIcon) shippingIcon.classList.add('fs-hidden');
+          if (giftIcon) giftIcon.classList.add('fs-hidden');
+
+          activeGoals.forEach((goal, index) => {
+            let icon = goal.type === 'shipping' ? shippingIcon : giftIcon;
+            if (icon) {
+              icon.classList.remove('fs-hidden');
+              let pos;
+
+              if (this.fixedIcons) {
+                if (activeGoals.length > 1) {
+                  pos = index === 0 ? 50 : 100;
+                } else {
+                  pos = 100;
+                }
+              } else {
+                pos = (goal.value / maxThreshold) * 100;
+              }
+
+              icon.style.left = `${pos}%`;
+
+              if (total >= goal.value) icon.classList.add('achieved');
+              else icon.classList.remove('achieved');
+            }
+          });
+        }
+
+        async addGiftToCart(variantId) {
+          this.processingGift = true;
+          try {
+            const cartResponse = await fetch('/cart.js');
+            const cart = await cartResponse.json();
+
+            const giftInCart = cart.items.some((item) => item.variant_id === parseInt(variantId));
+
+            if (giftInCart) {
+              this.giftAdded = true;
+              this.processingGift = false;
+              return;
+            }
+
+            const formData = {
+              items: [
+                {
+                  id: variantId,
+                  quantity: 1,
+                },
+              ],
+            };
+
+            const response = await fetch('/cart/add.js', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+              this.giftAdded = true;
+              if (typeof window.theme !== 'undefined' && window.theme.cart) window.theme.cart.refresh();
+              else {
+                document.dispatchEvent(new CustomEvent('cart:refresh'));
+                document.dispatchEvent(new CustomEvent('theme:cartchanged'));
+              }
+              this.showGiftNotification();
+            }
+          } catch (error) {
+            console.error(error);
+          } finally {
+            this.processingGift = false;
+          }
+        }
+
+        showGiftNotification() {
+          const notification = document.createElement('div');
+          notification.className = 'free-gift-notification';
+          notification.innerHTML = '🎁 Free gift added to your cart!';
+          document.body.appendChild(notification);
+          setTimeout(() => notification.classList.add('show'), 100);
+          setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => notification.remove(), 300);
+          }, 3000);
+        }
+      }
+      customElements.define('free-shipping', FreeShipping);
+    }
+  </script>
+{% endif %}

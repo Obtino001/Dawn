@@ -1,1 +1,198 @@
-{"name":"t:sections.footer.name","type":"footer","sections":{"footer":{"type":"footer","settings":{"color_scheme":"scheme-1","newsletter_enable":true,"newsletter_heading":"Subscribe to our emails","enable_follow_on_shop":true,"show_social":true,"enable_country_selector":true,"enable_language_selector":true,"payment_enable":true,"show_policy":true,"margin_top":0,"padding_top":36,"padding_bottom":36}}},"order":["footer"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "instagram_gallery_jrn7kP": {
+      "type": "instagram-gallery",
+      "blocks": {
+        "image_ptiR6n": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/tech_review_2.jpg",
+            "link": ""
+          }
+        },
+        "image_WFDVxM": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/tech_review_3.jpg",
+            "link": ""
+          }
+        },
+        "image_BU6qpL": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ax-review-pocket.png",
+            "link": ""
+          }
+        },
+        "image_gnwqTC": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ax-cat-cables.png",
+            "link": ""
+          }
+        },
+        "image_6Q9dGy": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ax-about-lifestyle.png",
+            "link": ""
+          }
+        },
+        "image_Uc8f86": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ax-about-future.png",
+            "link": ""
+          }
+        },
+        "image_PmP4aQ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ax-world-protect.png",
+            "link": ""
+          }
+        },
+        "image_Wxw8jh": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ax-review-charge.png",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_ptiR6n",
+        "image_WFDVxM",
+        "image_BU6qpL",
+        "image_gnwqTC",
+        "image_6Q9dGy",
+        "image_Uc8f86",
+        "image_PmP4aQ",
+        "image_Wxw8jh"
+      ],
+      "name": "Social Auto-Slider",
+      "settings": {
+        "bg_color": "#f6f5f0",
+        "heading": "In the world",
+        "hashtag": "#Arvenixo",
+        "show_facebook": true,
+        "facebook_link": "",
+        "show_instagram": true,
+        "instagram_link": "",
+        "show_tiktok": true,
+        "tiktok_link": "",
+        "autoplay_speed": 55,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "keep_discovering_Yg4MWd": {
+      "type": "keep-discovering",
+      "blocks": {
+        "external_link_jDb4RK": {
+          "type": "external_link",
+          "settings": {
+            "title": "Beauty Devices",
+            "link": "shopify://collections/all"
+          }
+        },
+        "standard_card_ADPT8p": {
+          "type": "standard_card",
+          "settings": {
+            "title": "ACCESSORIES",
+            "link": "shopify://collections"
+          }
+        },
+        "standard_card_qxADrQ": {
+          "type": "standard_card",
+          "settings": {
+            "title": "SHOP DEVICES",
+            "link": ""
+          }
+        },
+        "standard_card_FqJxPp": {
+          "type": "standard_card",
+          "settings": {
+            "title": "SUPPORT",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "external_link_jDb4RK",
+        "standard_card_ADPT8p",
+        "standard_card_qxADrQ",
+        "standard_card_FqJxPp"
+      ],
+      "name": "Keep Discovering Hero",
+      "settings": {
+        "color_scheme": "scheme-a48757f2-b0ca-4125-aa9d-572aa6225a09",
+        "image": "shopify://shop_images/ax-newsletter-lifestyle.png",
+        "desktop_height": 80,
+        "mobile_height": 80,
+        "overlay_color": "#000000",
+        "overlay_opacity": 80,
+        "overlay_solid_height": 40,
+        "heading": "KEEP DISCOVERING",
+        "heading_size": "h1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "link_list_1": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Shop",
+            "menu": "main-menu"
+          }
+        },
+        "link_list_2": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Learn",
+            "menu": "footer"
+          }
+        },
+        "link_list_3": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Support",
+            "menu": ""
+          }
+        }
+      },
+      "block_order": [
+        "link_list_1",
+        "link_list_2",
+        "link_list_3"
+      ],
+      "settings": {
+        "newsletter_image": "shopify://shop_images/ax-newsletter-lifestyle.png",
+        "newsletter_heading": "Stay in touch",
+        "newsletter_subheading": "New releases and the occasional note. No noise.",
+        "newsletter_disclaimer": "<p>You can unsubscribe at any time. <a href=\"/policies/privacy-policy\">View Privacy Policy</a>.</p>",
+        "brand_text": "ARVENIXO",
+        "bottom_menu": "main-menu"
+      }
+    }
+  },
+  "order": [
+    "instagram_gallery_jrn7kP",
+    "keep_discovering_Yg4MWd",
+    "footer"
+  ]
+}

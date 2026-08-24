@@ -1,0 +1,172 @@
+{%- style -%}
+  /* Layout & Grid Logic */
+  .collection-grid-item.grid-item-span-2 { 
+    width: calc(100% - var(--grid-desktop-horizontal-spacing) * 3 / 4);
+    max-width: calc(100% - var(--grid-desktop-horizontal-spacing) * 3 / 4);
+  }
+  .grid-item-span-2 { grid-column: span 1; }
+  
+  @media screen and (min-width: 750px) { 
+    .grid-item-span-2 { grid-column: span 2; } 
+    .collection-grid-item.grid-item-span-2 { 
+      width: calc(50% - var(--grid-desktop-horizontal-spacing) * 3 / 4);
+      max-width: calc(50% - var(--grid-desktop-horizontal-spacing) * 3 / 4);
+    }
+  }
+.header__drawer-promotion .bmsm-container {
+    display: flex;
+    flex-direction: column;
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+    background-color: #282828;
+    background-size: contain;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+  /* Main Container */
+  .bmsm-container { display: flex; flex-direction: column; border-radius: 24px; overflow: hidden; position: relative; z-index: 1; box-sizing: border-box; background-color: #F6F5F0; background-size: contain; background-position: right; background-repeat: no-repeat; }
+  @media screen and (min-width: 990px) { 
+.bmsm-container {
+    flex-direction: row;
+    height: calc(100% - 20px);
+    align-items: stretch;
+}
+    .bmsm-container--reverse { flex-direction: row-reverse; } 
+  }
+  @media screen and (max-width: 750px){ .bmsm-container {
+    max-height: 280px;
+    margin-block: 20px;
+} }
+
+  /* Content Column */
+  .bmsm-content-col { flex: 1; padding: 3rem 1.5rem; display: flex; align-items: center; position: relative; z-index: 2; overflow: hidden; }
+  @media screen and (min-width: 990px) { .bmsm-content-col { padding: 4rem; } }
+
+  /* Images & Shapes Base */
+  .bmsm-shape, .bmsm-panty-top, .bmsm-panty-bottom { position: absolute; pointer-events: none; object-fit: contain; z-index: 1; }
+  .bmsm-panty-top, .bmsm-panty-bottom { z-index: -1; }
+
+  /* The Promo Card */
+  .bmsm-card { position: relative; z-index: 1; border-radius: 20px; padding: 3rem 2rem; text-align: center; width: 100%; max-width: 40%; background: #FFB3C7; }
+  @media screen and (max-width: 750px){ .bmsm-card { max-width: 50%; } }
+
+  .bmsm-heading { font-family: Inter, sans-serif; font-weight: 500; color: #000; font-size: 18px; line-height: 120%; text-align: center; margin-bottom: 1rem; }
+  .bmsm-tier-wrap { display: flex; flex-direction: column; }
+  .bmsm-tier { display: flex; flex-direction: column; gap: 4px; padding: 1.5rem 0; position: relative; }
+  .bmsm-tier:first-child { padding-top: 0; }
+  .bmsm-tier:last-child { padding-bottom: 0; }
+  .bmsm-tier:not(:last-child)::after { content: ''; position: absolute; bottom: 0; left: 15%; right: 15%; height: 1px; background-color: currentColor; opacity: 0.15; }
+  
+  .bmsm-qty { font-size: 16px; font-weight: 500; margin: 0; color: #000; }
+  .bmsm-discount { font-size: clamp(28px, 4vw, 36px); font-weight: 700; margin: 0; line-height: 1.1; letter-spacing: -0.5px; color: #282828; }
+
+  .bmsm-image-col { flex: 1; position: relative; min-height: 350px; pointer-events: none; z-index: 1; }
+  @media screen and (min-width: 750px) { .bmsm-image-col { min-height: 450px; } }
+  @media screen and (max-width: 750px) {
+    .bmsm-discount {
+    font-size: 18px;
+}
+    .bmsm-heading {
+    font-size: 14px;
+}
+.bmsm-tier {
+    padding: 0.5rem 0;
+}
+.bmsm-qty {
+    font-size: 12px;
+    font-weight: 500;
+    margin: 0;
+    color: #000;
+}
+.bmsm-card {
+    padding: 2rem 1rem;
+    margin-block: 2rem;
+}
+  }
+
+{%- endstyle -%}
+{%- style -%}
+/* --- Mobile Styles (Default) --- */
+.bmsm-shape {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  object-fit: contain;
+  
+  /* Use Mobile Variables */
+  bottom: var(--shape-bottom-mob, 0%);
+  left: var(--shape-left-mob, 0%);
+  width: var(--shape-width-mob, 20%);
+}
+
+/* --- Desktop Styles (750px and up) --- */
+@media screen and (min-width: 750px) {
+  .bmsm-shape {
+    /* Switch to Desktop Variables */
+    bottom: var(--shape-bottom-desk, 0%);
+    left: var(--shape-left-desk, 0%);
+    width: var(--shape-width-desk, 20%);
+  }
+}
+{%- endstyle -%}
+
+<li class="grid__item collection-grid-item grid-item-span-2" 
+    style="padding-top: {{ block.settings.padding_top }}px; padding-bottom: {{ block.settings.padding_bottom }}px;">
+  
+  <div class="bmsm-container color-{{ block.settings.color_scheme }} gradient {% if block.settings.desktop_image_position == 'left' %}bmsm-container--reverse{% endif %}" 
+       style="{% if block.settings.image != blank %}background-image: url('{{ block.settings.image | image_url: width: 2000 }}');{% endif %}"
+       {{ block.shopify_attributes }}>
+
+{%- if block.settings.shape_image != blank -%}
+  <img src="{{ block.settings.shape_image | image_url: width: 600 }}" 
+       alt="" 
+       loading="lazy" 
+       class="bmsm-shape"
+       style="
+         --shape-bottom-mob: {{ block.settings.shape_mobile_top }}%; 
+         --shape-left-mob: {{ block.settings.shape_mobile_left }}%; 
+         --shape-width-mob: {{ block.settings.shape_mobile_width }}%;
+         --shape-bottom-desk: {{ block.settings.shape_desktop_top }}%; 
+         --shape-left-desk: {{ block.settings.shape_desktop_left }}%; 
+         --shape-width-desk: {{ block.settings.shape_desktop_width }}%;
+       ">
+{%- endif -%}
+    <div class="bmsm-content-col">
+      <div class="bmsm-card color-{{ block.settings.card_color_scheme }} gradient">
+        
+        {%- if block.settings.panty_top_image != blank -%}
+          <img src="{{ block.settings.panty_top_image | image_url: width: 600 }}" alt="" loading="lazy" class="bmsm-panty-top"
+               style="top: {{ block.settings.panty_top_mobile_top }}%; left: {{ block.settings.panty_top_mobile_left }}%; width: {{ block.settings.panty_top_mobile_width }}%;">
+        {%- endif -%}
+  
+        {%- if block.settings.panty_bottom_image != blank -%}
+          <img src="{{ block.settings.panty_bottom_image | image_url: width: 600 }}" alt="" loading="lazy" class="bmsm-panty-bottom"
+               style="bottom: {{ block.settings.panty_bottom_mobile_bottom }}%; right: {{ block.settings.panty_bottom_mobile_right }}%; width: {{ block.settings.panty_bottom_mobile_width }}%;">
+        {%- endif -%}
+
+        {%- if block.settings.heading != blank -%}
+          <h2 class="bmsm-heading">{{ block.settings.heading }}</h2>
+        {%- endif -%}
+
+        <div class="bmsm-tier-wrap">
+          {%- for i in (1..3) -%}
+            {%- assign qty_key = 'tier_' | append: i | append: '_qty_text' -%}
+            {%- assign disc_key = 'tier_' | append: i | append: '_discount_text' -%}
+            
+            {%- if block.settings[qty_key] != blank or block.settings[disc_key] != blank -%}
+              <div class="bmsm-tier">
+                <p class="bmsm-qty">{{ block.settings[qty_key] }}</p>
+                <p class="bmsm-discount">{{ block.settings[disc_key] }}</p>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+
+    <div class="bmsm-image-col"></div>
+  </div>
+</li>

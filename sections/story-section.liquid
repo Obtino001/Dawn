@@ -1,0 +1,457 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 1.5 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  {% if section.settings.text_color != blank and section.settings.text_color != 'rgba(0,0,0,0)' %}
+    .section-{{ section.id }}-padding .sect-story-heading,
+    .section-{{ section.id }}-padding .sect-story-body,
+    .section-{{ section.id }}-padding .sect-story-body p {
+      color: {{ section.settings.text_color }};
+    }
+  {% endif %}
+
+  @media screen and (min-width: 990px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .sect-story-container {
+    border-radius: {{ section.settings.container_radius }}px;
+    position: relative;
+    padding: 3rem 1.5rem;
+  }
+
+  @media screen and (min-width: 990px) {
+    .sect-story-container {
+      padding: 6rem;
+    }
+  }
+
+  .sect-story-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  @media screen and (min-width: 990px) {
+    .sect-story-grid {
+      flex-direction: {% if section.settings.layout == 'text_first' %}row-reverse{% else %}row{% endif %};
+      align-items: center;
+      gap: 6rem;
+    }
+  }
+
+  @media screen and (min-width: 1300px) {
+    .sect-story-grid {
+      justify-content: center;
+      gap: 8rem;
+    }
+    .sect-story-media-wrapper,
+    .sect-story-content-wrapper {
+      max-width: 550px;
+    }
+  }
+
+  .sect-story-media-wrapper {
+    flex: 1;
+    position: relative;
+    width: 100%;
+    margin-top: -{{ section.settings.image_overlap_mobile }}px;
+    padding: 0 1rem;
+  }
+
+  @media screen and (min-width: 990px) {
+    .sect-story-media-wrapper {
+        margin-top: -{{ section.settings.image_overlap_desktop_top }}px;
+        margin-bottom: -{{ section.settings.image_overlap_desktop_bottom }}px;
+        padding: 0;
+    }
+  }
+
+  .sect-story-media {
+    position: relative;
+    z-index: 2;
+    border-radius: {{ section.settings.image_radius }}px;
+    overflow: hidden;
+  }
+
+.sect-story-media img, .sect-story-media svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+    max-height: 600px;
+}
+
+  .sect-story-shape {
+    position: absolute;
+    z-index: 1;
+  }
+
+  .sect-story-content-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  @media screen and (min-width: 990px) {
+    .sect-story-content-wrapper {
+      text-align: left;
+    }
+  }
+
+  .sect-story-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .sect-story-heading {
+    margin: 0;
+  }
+
+  .sect-story-body {
+    margin: 0;
+  }
+  
+  .sect-story-body p {
+    margin: 0;
+    line-height: 1.6;
+  }
+{%- endstyle -%}
+
+<div class="section-{{ section.id }}-padding">
+  <div class="page-width">
+    <div class="sect-story-container color-{{ section.settings.color_scheme }} gradient">
+      <div class="sect-story-grid">
+
+        <div class="sect-story-media-wrapper">
+          <div class="sect-story-media">
+            {%- if section.settings.image != blank -%}
+              {{ section.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy' }}
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </div>
+
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'shape' -%}
+              {%- style -%}
+                .shape-block-{{ block.id }} {
+                  width: {{ block.settings.shape_width }}px;
+                  {%- if block.settings.position == 'top_left' -%}
+                    top: {{ block.settings.offset_y }}%; left: {{ block.settings.offset_x }}%;
+                  {%- elsif block.settings.position == 'top_right' -%}
+                    top: {{ block.settings.offset_y }}%; right: {{ block.settings.offset_x }}%;
+                  {%- elsif block.settings.position == 'bottom_left' -%}
+                    bottom: {{ block.settings.offset_y }}%; left: {{ block.settings.offset_x }}%;
+                  {%- elsif block.settings.position == 'bottom_right' -%}
+                    bottom: {{ block.settings.offset_y }}%; right: {{ block.settings.offset_x }}%;
+                  {%- endif -%}
+                }
+                @media screen and (max-width: 768px){
+                  .shape-block-{{ block.id }} {
+  width: {{ block.settings.shape_width }}px;
+  {%- if block.settings.position == 'top_left' -%}
+    top: {{ block.settings.offset_y | plus: 5 }}%; left: {{ block.settings.offset_x | plus: 5 }}%;
+  {%- elsif block.settings.position == 'top_right' -%}
+    top: {{ block.settings.offset_y | plus: 5 }}%; right: {{ block.settings.offset_x | plus: 5 }}%;
+  {%- elsif block.settings.position == 'bottom_left' -%}
+    bottom: {{ block.settings.offset_y | plus: 5 }}%; left: {{ block.settings.offset_x | plus: 5 }}%;
+  {%- elsif block.settings.position == 'bottom_right' -%}
+    bottom: {{ block.settings.offset_y | plus: 5 }}%; right: {{ block.settings.offset_x | plus: 5 }}%;
+  {%- endif -%}
+}
+                }
+              {%- endstyle -%}
+              {%- if block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 300 }}"
+                     alt="{{ block.settings.image.alt | escape }}"
+                     class="sect-story-shape shape-block-{{ block.id }}"
+                     loading="lazy"
+                     {{ block.shopify_attributes }}>
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg sect-story-shape shape-block-' | append: block.id }}
+              {%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+        <div class="sect-story-content-wrapper">
+          <div class="sect-story-content">
+            {%- for block in section.blocks -%}
+              {%- case block.type -%}
+                {%- when 'heading' -%}
+                  <h2 class="sect-story-heading {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
+                    {{ block.settings.heading }}
+                  </h2>
+                {%- when 'text' -%}
+                  <div class="sect-story-body rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
+                    {{ block.settings.text }}
+                  </div>
+              {%- endcase -%}
+            {%- endfor -%}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Story Section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Main Image"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "options": [
+        {
+          "value": "image_first",
+          "label": "Image first"
+        },
+        {
+          "value": "text_first",
+          "label": "Text first"
+        }
+      ],
+      "default": "image_first",
+      "label": "Desktop image placement"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-2"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color Override",
+      "info": "Leave empty to use the scheme's default text color."
+    },
+    {
+      "type": "range",
+      "id": "container_radius",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Container Border Radius",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "image_overlap_desktop_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Image Overlap Top (Desktop)",
+      "info": "How much the image breaks out of the container top and bottom",
+      "default": 80
+    },
+        {
+      "type": "range",
+      "id": "image_overlap_desktop_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Image Overlap Bottom (Desktop)",
+      "info": "How much the image breaks out of the container top and bottom",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "image_overlap_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Image Overlap (Mobile)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "image_radius",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Image Border Radius",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "shape",
+      "name": "Shape Image",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Shape Image"
+        },
+        {
+          "type": "select",
+          "id": "position",
+          "label": "Anchor Position",
+          "options": [
+            { "value": "top_left", "label": "Top Left" },
+            { "value": "top_right", "label": "Top Right" },
+            { "value": "bottom_left", "label": "Bottom Left" },
+            { "value": "bottom_right", "label": "Bottom Right" }
+          ],
+          "default": "bottom_left"
+        },
+        {
+          "type": "range",
+          "id": "offset_x",
+          "min": -50,
+          "max": 50,
+          "step": 1,
+          "unit": "%",
+          "label": "Offset X",
+          "default": -10
+        },
+        {
+          "type": "range",
+          "id": "offset_y",
+          "min": -50,
+          "max": 50,
+          "step": 1,
+          "unit": "%",
+          "label": "Offset Y",
+          "default": -10
+        },
+        {
+          "type": "range",
+          "id": "shape_width",
+          "min": 20,
+          "max": 600,
+          "step": 10,
+          "unit": "px",
+          "label": "Shape Width",
+          "default": 150
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "name": "t:sections.image-with-text.blocks.heading.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "How Arvenixo started",
+          "label": "t:sections.image-with-text.blocks.heading.settings.heading.label"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            {
+              "value": "h2",
+              "label": "t:sections.all.heading_size.options__1.label"
+            },
+            {
+              "value": "h1",
+              "label": "t:sections.all.heading_size.options__2.label"
+            },
+            {
+              "value": "h0",
+              "label": "t:sections.all.heading_size.options__3.label"
+            }
+          ],
+          "default": "h2",
+          "label": "t:sections.all.heading_size.label"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "t:sections.image-with-text.blocks.text.name",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Arvenixo was founded in 2022 by tech enthusiasts who struggled to find premium and reliable charging accessories. While tech accessories was already popular in other European countries, it was still hard to find in Norway.</p>",
+          "label": "t:sections.image-with-text.blocks.text.settings.text.label"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            {
+              "value": "body",
+              "label": "t:sections.image-with-text.blocks.text.settings.text_style.options__1.label"
+            },
+            {
+              "value": "subtitle",
+              "label": "t:sections.image-with-text.blocks.text.settings.text_style.options__2.label"
+            }
+          ],
+          "default": "body",
+          "label": "t:sections.image-with-text.blocks.text.settings.text_style.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Story Section",
+      "blocks": [
+        { "type": "shape", "settings": { "position": "top_right", "offset_x": -10, "offset_y": -10 } },
+        { "type": "shape", "settings": { "position": "bottom_left", "offset_x": -10, "offset_y": -10 } },
+        { "type": "heading", "settings": { "heading": "How Arvenixo started" } },
+        { "type": "text", "settings": { "text": "<p>Arvenixo was founded in 2022 by tech enthusiasts who struggled to find premium and reliable charging accessories. While tech accessories was already popular in other European countries, it was still hard to find in Norway.</p>" } },
+        { "type": "text", "settings": { "text": "<p>Arvenixo was created to change that — by offering high-quality electronics designed to perform perfectly, built with premium materials, and gentle on both your devices and the environment.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

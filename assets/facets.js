@@ -363,3 +363,64 @@ class FacetRemove extends HTMLElement {
 }
 
 customElements.define('facet-remove', FacetRemove);
+
+// ── Accordion handler for filter groups inside the drawer ────────────────────
+document.addEventListener('click', (event) => {
+  const target = event.target;
+  const isSummary = target.closest('summary');
+
+  // Only act on summaries that are part of a js-filter details element.
+  // If the summary belongs to the outer mobile drawer toggle or anything else,
+  // bail out and let the browser handle it naturally.
+  const details = isSummary ? isSummary.closest('details.js-filter') : null;
+  if (isSummary && !details) return;
+
+  if (details && isSummary) {
+    event.preventDefault();
+
+    if (details.hasAttribute('open')) {
+      // Close this one
+      closeFilterDetails(details);
+    } else {
+      // Close any other open sibling filter first (one-open-at-a-time)
+      const form = details.closest('form, .mobile-facets__main');
+      if (form) {
+        form.querySelectorAll('details.js-filter[open]').forEach((openDetails) => {
+          if (openDetails !== details) closeFilterDetails(openDetails);
+        });
+      }
+      details.setAttribute('open', '');
+    }
+  } else if (!isSummary) {
+    // Clicked outside — close all open filter dropdowns (desktop only)
+    if (!target.closest('details.js-filter') && !target.closest('.mobile-facets__inner')) {
+      document.querySelectorAll('details.js-filter[open]').forEach(closeFilterDetails);
+    }
+  }
+});
+
+function closeFilterDetails(details) {
+  const submenu = details.querySelector('.mobile-facets__submenu, .facets__display, .facets__display-vertical');
+  if (submenu) {
+    // Add a tiny class so CSS can optionally animate away if needed
+    details.classList.add('is-closing');
+    const done = () => {
+      details.classList.remove('is-closing');
+      details.removeAttribute('open');
+    };
+    // Wait for the CSS transition (max-height / opacity) to finish
+    const onEnd = (e) => {
+      if (['max-height', 'opacity', 'transform'].includes(e.propertyName)) {
+        submenu.removeEventListener('transitionend', onEnd);
+        done();
+      }
+    };
+    submenu.addEventListener('transitionend', onEnd);
+    // Fallback — in case transitionend never fires
+    setTimeout(() => {
+      if (details.classList.contains('is-closing')) done();
+    }, 400);
+  } else {
+    details.removeAttribute('open');
+  }
+}

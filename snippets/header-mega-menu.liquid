@@ -5,90 +5,309 @@
   {% render 'header-mega-menu' %}
 {% endcomment %}
 
-<nav class="header__inline-menu">
-  <ul class="list-menu list-menu--inline" role="list">
+<style>
+   details-menu{
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    right: 0px;
+    top: 100%;
+    padding-top: 30px;
+    background-color: #fff;
+    transition: visibility 0.3s, opacity 0.3s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  nav-container{
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  nav-container:hover details-menu{
+    visibility: visible;
+    opacity: 1;
+    transition: all .2s linear;
+  }
+  .desktopMenu-Item{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 10px;
+    
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 14px;
+    leading-trim: NONE;
+    line-height: 100%;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    color: #282828;
+  }
+  .desktopMenu-Item svg{
+    width: 14px;
+    height: 12px;
+  }
+/* Default state: white icons */
+.header-transparent .desktopMenu-Item svg path {
+  fill: white;
+}
+ .desktopMenu-Item svg path {
+ fill:rgba(var(--color-foreground));
+}
+/* Scrolled or Hovered state: black icons */
+.header-transparent.header-scrolled .desktopMenu-Item svg path, 
+.header-transparent.header-hovered .desktopMenu-Item svg path {
+  fill:rgba(var(--color-foreground));
+}
+  .desktopMenu-Inner{
+    display: flex;
+    gap: 20px;
+    padding-bottom: 30px;
+  }
+  .desktopMenu-title{
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .desktopMenu-linkList a{
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .header .mega-menu__link--level-2 {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .header__menu-item_new {
+    padding: 20px 14px;
+  }
+  .header-menu-1{
+    padding-left: 0;
+  }
+  /* .desktopMenu-banner img,
+  .desktopMenu-banner{
+    aspect-ratio: 1 /1;
+  } */
+  .desktopMenu-banner img{
+    border-radius: 10px;
+    max-height: 250px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .desktopBanner-title a{
+    text-decoration: none;
+    font-weight: 500;
+    display: block;
+    font-size: 18px;
+    line-height: 25px;
+    color: #272B28;
+    margin-bottom: 5px;
+  }
+  .desktopBanner_button{
+    cursor: pointer;
+  }
+  .desktopBanner_button .link-animate{
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 10px;
+  }
+  .desktopBanner_button svg{
+    width: 20px;
+    margin-left: 10px;
+    transition: margin-left 0.4s ease-in-out;
+  }
+  .desktopBanner_button:hover svg{
+    margin-left: 6px;
+    transition: margin-left 0.4s ease-in-out;
+  }
+  @media screen and (max-width: 990px){
+    .desktopBanner-container{
+      padding: 1.1rem 3rem;
+      display: flex;
+      gap: 10px;
+    }
+    .desktopMenu-banner{
+      height: 100%;
+    }
+  }
+  @media screen and (max-width: 990px){
+    .header_navigation_new{
+      display: none;
+    }
+  }
+</style>
+
+<nav class="header_navigation_new header__inline-menu">
+  <ul class="list-menu list-menu--inline Header_menu_mainleft_new" role="list">
     {%- for link in section.settings.menu.links -%}
-      <li>
-        {%- if link.links != blank -%}
-          <header-menu>
-            <details id="Details-HeaderMenu-{{ forloop.index }}" class="mega-menu">
-              <summary
-                id="HeaderMenu-{{ link.handle }}"
-                class="header__menu-item list-menu__item link focus-inset"
-              >
-                <span
-                  {%- if link.child_active %}
-                    class="header__active-menu-item"
-                  {% endif %}
-                >
-                  {{- link.title | escape -}}
-                </span>
-                {{- 'icon-caret.svg' | inline_asset_content -}}
-              </summary>
-              <div
-                id="MegaMenu-Content-{{ forloop.index }}"
-                class="mega-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup"
-                tabindex="-1"
-              >
-                <ul
-                  class="mega-menu__list page-width{% if link.levels == 1 %} mega-menu__list--condensed{% endif %}"
-                  role="list"
-                >
-                  {%- for childlink in link.links -%}
-                    <li>
-                      <a
-                        id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
-                        href="{{ childlink.url }}"
-                        class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% endif %}"
-                        {% if childlink.current %}
-                          aria-current="page"
-                        {% endif %}
-                      >
-                        {{ childlink.title | escape }}
-                      </a>
-                      {%- if childlink.links != blank -%}
-                        <ul class="list-unstyled" role="list">
-                          {%- for grandchildlink in childlink.links -%}
-                            <li>
-                              <a
-                                id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
-                                href="{{ grandchildlink.url }}"
-                                class="mega-menu__link link{% if grandchildlink.current %} mega-menu__link--active{% endif %}"
-                                {% if grandchildlink.current %}
-                                  aria-current="page"
-                                {% endif %}
-                              >
-                                {{ grandchildlink.title | escape }}
-                              </a>
-                            </li>
-                          {%- endfor -%}
-                        </ul>
-                      {%- endif -%}
-                    </li>
-                  {%- endfor -%}
-                </ul>
-              </div>
-            </details>
-          </header-menu>
-        {%- else -%}
-          <a
-            id="HeaderMenu-{{ link.handle }}"
-            href="{{ link.url }}"
-            class="header__menu-item list-menu__item link link--text focus-inset"
-            {% if link.current %}
-              aria-current="page"
+      
+        {% assign hasBlock = false %}
+        {% for block in section.blocks %}
+          {% if block.type == 'megamenu' or block.type == 'collections' or block.type == 'categories' or block.type == 'bottom' or block.type == 'image-cards-grid' or block.type == 'text-column' %}
+            {% assign matched_link = block.settings.title | downcase %}
+            {% assign menu_link = link.title | downcase %}
+            {%- if matched_link == menu_link -%}
+              {% assign hasBlock = true %}
             {% endif %}
-          >
-            <span
-              {%- if link.current %}
-                class="header__active-menu-item"
-              {% endif %}
-            >
-              {{- link.title | escape -}}
-            </span>
-          </a>
-        {%- endif -%}
-      </li>
+          {% endif %}
+        {% endfor %}
+      
+        <li>
+        {% unless hasBlock == true or link.links != blank %}
+          <span
+                id="HeaderMenu-{{ link.handle }}"
+                class="header__menu-item list-menu__item link focus-inset header__menu-item_new {% if forloop.first %}header-menu-1{% endif %}" normal
+              >
+                <span>
+                  <a class="desktopMenu-Item" href="{{ link.url }}">{{- link.title | strip_html -}}</a>
+                </span>
+          </span>
+        {% else %}
+            <nav-container id="Details-{{ forloop.index }}">
+              <menu-item>
+                <span
+                      id="HeaderMenu-{{ link.handle }}"
+                      class="header__menu-item list-menu__item link focus-inset navigation__item {% if forloop.first %}header-menu-1{% endif %}"
+                    >
+                      <span>
+                        <a class="desktopMenu-Item" href="{{ link.url }}">{{- link.title | strip_html -}}
+                          <svg fill="none" height="7" viewBox="0 0 12 7" width="12" xmlns="http://www.w3.org/2000/svg"><g fill="#000"><path d="m1.2334.554688 5.65685 5.656852-.7071.70711-5.656858-5.65686z"></path><path d="m11.8247 1.26221-5.65685 5.65685-.7071-.70711 5.65685-5.65685z"></path></g></svg>
+                        </a>
+                      </span>
+                </span>
+              </menu-item>
+              <details-menu id="Menu-{{ forloop.index }}">
+                <div class="desktopMenu-Nav page-width">
+                  <div class="desktopMenu-Inner ">
+                      {%- if link.links != blank -%}
+                        {%- for childlink in link.links -%}
+                          <div class="desktopMenu-container padding-with" style="flex: 1;">
+                            <a
+                              id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
+                              href="{{ childlink.url }}"
+                              class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% endif %}"
+                              {% if childlink.current %}
+                                aria-current="page"
+                              {% endif %}
+                            >
+                              {{ childlink.title | escape }}
+                            </a>
+                            {%- if childlink.links != blank -%}
+                              <ul class="list-unstyled" role="list">
+                                {%- for grandchildlink in childlink.links -%}
+                                  <li>
+                                    <a
+                                      id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                                      href="{{ grandchildlink.url }}"
+                                      class="mega-menu__link link{% if grandchildlink.current %} mega-menu__link--active{% endif %}"
+                                      {% if grandchildlink.current %}
+                                        aria-current="page"
+                                      {% endif %}
+                                    >
+                                      {{ grandchildlink.title | escape }}
+                                    </a>
+                                  </li>
+                                {%- endfor -%}
+                              </ul>
+                            {%- endif -%}
+                          </div>
+                        {%- endfor -%}
+                      {%- endif -%}
+
+                      {%- if hasBlock == true -%}
+                        {% for block in section.blocks %}
+                          {% assign matched_link = block.settings.title | downcase %}
+                          {% assign menu_link = link.title | downcase %}
+                          {%- if matched_link == menu_link and block.type != 'bottom' -%}
+                            <div class="desktopMenu-linkList-container" style="width: {{ block.settings.column_size }};">
+                            {% case block.type %}
+                            {% when 'megamenu' %}
+                              {% if block.settings.widget == 'menu' %}
+                                  <div class="desktopMenu-linkList">
+                                    <div class="desktopMenu-title">{{ block.settings.menu_link_list_child.title }}</div>
+                                    {%- for childlink in block.settings.menu_link_list_child.links -%}
+                                        <a
+                                          id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
+                                          href="{{ childlink.url }}"
+                                          class="mega-menu__link link{% if childlink.current %} mega-menu__link--active{% endif %}"
+                                          {% if childlink.current %}
+                                            aria-current="page"
+                                          {% endif %}
+                                        >
+                                          {{ childlink.title | escape }}
+                                        </a>
+                                    {%- endfor -%}
+                                  </div>
+                                {% else %}
+                                  <div class="desktopMenu-banner">
+                                    <img src="{{ block.settings.image | img_url: '600x' }}" width="100%" height="100%"/>
+                                    <div class="desktopBanner-title">
+                                      <a href="{{ block.settings.banner_link }}">{{ block.settings.banner_title }}</a>
+                                    </div>
+                                    <span class="desktopBanner_button">
+                                      <div class="link-animate">
+                                        <span>{{ block.settings.banner_button }}</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="21.776" height="11.387" viewBox="0 0 21.776 11.387">
+                                          <g id="login-122_11dec90d-e3bd-4526-8cf2-574f67aae53b" transform="translate(-9.25 -22.941)">
+                                            <path id="layer2" d="M25.062,24l5.214,4.635-5.214,4.635M10,28.635H30.276" transform="translate(0 0)" fill="none" stroke="#202020" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"></path>
+                                          </g>
+                                        </svg>
+                                      </div>
+                                    </span>
+                                  </div>
+                                {% endif %}
+                                {% when 'collections' %}
+                                  <div class="desktopMenu-linkList">
+                                    <div class="desktopMenu-title">{{ block.settings.heading }}</div>
+                                    {% render 'featured-collection', block: block %}
+                                  </div>
+                                {% when 'categories' %}
+                                  <div class="desktopMenu-linkList">
+                                    <div class="desktopMenu-title">{{ block.settings.heading }}</div>
+                                    {% render 'shop-by-categories', block: block %}
+                                  </div>
+                                {% when 'image-cards-grid' %}
+                                  <div class="desktopMenu-linkList">
+                                    <div class="desktopMenu-title">{{ block.settings.heading }}</div>
+                                    {% render 'images-grid', block: block %}
+                                  </div>
+                                {% when 'text-column' %}
+                                  <div class="desktopMenu-linkList">
+                                    <div class="desktopMenu-title">{{ block.settings.heading }}</div>
+                                    {% render 'megamenu-text-column', block: block %}
+                                  </div>
+                                {% endcase %}
+                              </div>
+                              {% endif %}
+                        {% endfor %}
+                      {%- endif -%}
+                    {% if hasBlock == true %}
+                      {% for block in section.blocks %}
+                        {% assign matched_link = block.settings.title | downcase %}
+                        {% assign menu_link = link.title | downcase %}
+                        {%- if matched_link == menu_link -%}
+                          {% case block.type %}
+                          {% when 'bottom' %}
+                            {% render 'megamenu-bottom', block: block %}
+                        {% endcase %}
+                        {% endif %}
+                      {% endfor %}
+                    {% endif %}
+                </div>
+              </details-menu>
+            </nav-container>
+        {% endunless %}
+        </li>
     {%- endfor -%}
   </ul>
+  {%- if section.settings.main_right_detail_text != blank -%}
+    <div class="Header_menu_mainright_new">
+      <div class="Header_menu_innerright_new">
+        {{ section.settings.main_right_detail_text }}
+      </div>
+    </div>
+  {%- endif -%}
 </nav>

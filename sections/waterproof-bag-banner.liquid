@@ -1,0 +1,323 @@
+{% schema %}
+{
+  "name": "Waterproof Bag Banner",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Desktop Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_bg_image",
+      "label": "Mobile Background Image",
+      "info": "This image will be used as the background on mobile devices."
+    },
+    {
+      "type": "color",
+      "id": "fallback_bg_color",
+      "label": "Fallback Background Color",
+      "default": "#fa3d6b",
+      "info": "Shows behind the image or if no image is uploaded."
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Heading",
+          "default": "Discreet. Waterproof.\nAlways with you."
+        }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "Description text",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "The Arvenixo waterproof bag keeps used tech accessories safely stored when you're on the go — no leaks, no worries."
+        }
+      ]
+    },
+    {
+      "type": "list_item",
+      "name": "Checkmark List Item",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "List Text",
+          "default": "Feature text goes here"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "btn_text",
+          "label": "Button Text",
+          "default": "Shop Waterproof Bag"
+        },
+        {
+          "type": "url",
+          "id": "btn_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Waterproof Bag Banner",
+      "blocks": [
+        { "type": "heading" },
+        { "type": "description" },
+        { "type": "list_item", "settings": { "text": "100% waterproof & leak-proof" } },
+        { "type": "list_item", "settings": { "text": "Hygienic & easy to clean" } },
+        { "type": "list_item", "settings": { "text": "Perfect for work, school & travel" } },
+        { "type": "button" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{%- capture desktop_bg -%}
+  {%- if section.settings.bg_image != blank -%}url('{{ section.settings.bg_image | image_url: width: 2000 }}'){%- else -%}none{%- endif -%}
+{%- endcapture -%}
+
+{%- capture mobile_bg -%}
+  {%- if section.settings.mobile_bg_image != blank -%}
+    url('{{ section.settings.mobile_bg_image | image_url: width: 1000 }}')
+  {%- elsif section.settings.bg_image != blank -%}
+    url('{{ section.settings.bg_image | image_url: width: 1000 }}')
+  {%- else -%}
+    none
+  {%- endif -%}
+{%- endcapture -%}
+
+<div class="sr-bag-banner-section page-width section-{{ section.id }}-padding">
+  <div class="sr-bag-banner-wrapper color-{{ section.settings.color_scheme }} gradient" 
+       style="--desktop-bg-img: {{ desktop_bg }}; --mobile-bg-img: {{ mobile_bg }}; background-color: {{ section.settings.fallback_bg_color }};">
+    
+    <div class="sr-bag-banner-content">
+      
+      {% assign list_opened = false %}
+      
+      {% for block in section.blocks %}
+        
+        {% if block.type == 'list_item' %}
+          {% unless list_opened %}
+            <ul class="sr-bag-banner-list">
+            {% assign list_opened = true %}
+          {% endunless %}
+          <li class="sr-bag-banner-list-item" {{ block.shopify_attributes }}>
+            <svg class="sr-matching-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L14.2 4.4L17.5 4.2L18.6 7.3L21.5 8.9L20.2 12L21.5 15.1L18.6 16.7L17.5 19.8L14.2 19.6L12 22L9.8 19.6L6.5 19.8L5.4 16.7L2.5 15.1L3.8 12L2.5 8.9L5.4 7.3L6.5 4.2L9.8 4.4L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M8.5 12L11 14.5L16 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+            <span class="sr-bag-banner-list-text">{{ block.settings.text }}</span>
+          </li>
+        {% else %}
+          {% if list_opened %}
+            </ul>
+            {% assign list_opened = false %}
+          {% endif %}
+
+          {% case block.type %}
+            
+            {% when 'heading' %}
+              <h2 class="sr-bag-banner-title h1" {{ block.shopify_attributes }}>
+                {{ block.settings.text | newline_to_br }}
+              </h2>
+            
+            {% when 'description' %}
+              <p class="sr-bag-banner-desc" {{ block.shopify_attributes }}>
+                {{ block.settings.text }}
+              </p>
+
+            {% when 'button' %}
+              {% if block.settings.btn_text != blank %}
+                <div class="sr-bag-btn-wrapper" {{ block.shopify_attributes }}>
+                  <a href="{{ block.settings.btn_link }}" class="button button--primary">
+                    {{ block.settings.btn_text }}
+                  </a>
+                </div>
+              {% endif %}
+
+          {% endcase %}
+        {% endif %}
+
+      {% endfor %}
+      
+      {% if list_opened %}</ul>{% endif %}
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 991px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .sr-bag-banner-section {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .sr-bag-banner-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-radius: 30px;
+    overflow: hidden;
+    background-image: var(--desktop-bg-img);
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+    min-height: 650px;
+    position: relative;
+    background-attachment: local;
+  }
+
+  .sr-bag-banner-content {
+    width: 100%;
+    max-width: 640px;
+    padding: 60px 20px 60px 10%;
+    color: #ffffff;
+    z-index: 2;
+  }
+
+  .sr-bag-banner-desc {
+
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 140%;
+    color: #ffffff;
+    margin-bottom: 20px;
+  }
+
+  .sr-bag-banner-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 35px 0;
+  }
+
+  .sr-bag-banner-list-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .sr-matching-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  .sr-bag-banner-custom-btn {
+    display: inline-block;
+    background-color: #8c286e; 
+    color: #ffffff;
+    padding: 14px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+  .sr-bag-banner-custom-btn:hover {
+    transform: scale(1.02);
+    color: #ffffff;
+  }
+
+  /* Mobile Adjustments */
+  @media (max-width: 990px) {
+    .sr-bag-banner-wrapper {
+      /* Uses the new mobile background image setting */
+      background-image: var(--mobile-bg-img) !important;
+      background-position: center; 
+      min-height: 600px; /* Adjust this to give enough height for the hand in your background */
+    }
+    .sr-bag-banner-content {
+      padding: 50px 10px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      justify-content: space-between; /* Spreads out text to allow middle area for the BG image */
+    }
+ .sr-bag-banner-title {
+    margin: 0;
+    margin-bottom: 10px;
+}
+    .sr-bag-banner-list {
+      display: inline-block;
+      text-align: left;
+      margin-top: 250px; /* Creates a gap in the center so the background image shows through */
+      margin-bottom: 10px;
+    }
+    .sr-bag-banner-list-item {
+      margin-bottom: 12px;
+    }
+  }
+</style>

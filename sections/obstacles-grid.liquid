@@ -1,0 +1,400 @@
+{%- style -%}
+  .my-swiper-{{ section.id }} {
+    width: 100%;
+    overflow: visible; /* Prevents shadow and partial card cutoffs on mobile */
+  }
+
+  .my-swiper-{{ section.id }} .swiper-slide {
+    height: auto;
+    display: flex;
+  }
+  
+  /* Prevent full-page scrollbar due to overflow */
+  .sect-feature-blocks-padding-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    overflow-x: hidden;
+  }
+  
+  @media screen and (min-width: 750px) {
+    .sect-feature-blocks-padding-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .sect-feature-blocks-heading {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  /* Rest of styling... */
+  
+  .sect-feature-blocks-item {
+    position: relative;
+    border-radius: {{ section.settings.card_radius }}px;
+    padding: 5rem 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .shape-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    border-radius: inherit;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .sect-feature-blocks-shape {
+    position: absolute;
+    z-index: 0;
+    max-width: none; /* Prevents theme constraints on shape size */
+  }
+ .page-width-sect-feature-blocks-heading {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+  .sect-feature-blocks-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+  }
+
+  .sect-feature-blocks-title {
+    margin: 0 0 1rem 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+
+  .sect-feature-blocks-subtitle {
+    margin: 0 0 2rem 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+
+  .sect-feature-blocks-text {
+    font-size: 1.4rem;
+    line-height: 1.6;
+  }
+
+  /* Swiper Pagination Styling */
+  .swiper-pagination-bullet {
+    background-color: #d8b4c4;
+    opacity: 1;
+  }
+  .swiper-pagination-bullet-active {
+    background-color: #8c1d54;
+  }
+  .feature-swiper-pagination-{{ section.id }} {
+    position: relative;
+    margin-top: 24px;
+    text-align: center;
+    display: block;
+  }
+  
+  @media screen and (min-width: 750px) {
+    .feature-swiper-pagination-{{ section.id }} {
+      display: none;
+    }
+    .page-width-sect-feature-blocks-heading {
+        padding-inline-start: 1.5rem;
+    }
+  }
+
+  
+{%- endstyle -%}
+
+<div class="sect-feature-blocks-padding-{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width-sect-feature-blocks-heading">
+    
+    {%- if section.settings.heading != blank -%}
+      <div class="sect-feature-blocks-heading">
+        <h2 class="{{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
+      </div>
+    {%- endif -%}
+
+    <div class="swiper my-swiper-{{ section.id }}">
+      <div class="swiper-wrapper">
+        {%- for block in section.blocks -%}
+          {%- style -%}
+            /* Mobile Positioning (Default) */
+            .shape-1-{{ block.id }} {
+              width: {{ block.settings.shape_1_width_mobile }}px;
+              top: {{ block.settings.shape_1_y_mobile }}%;
+              left: {{ block.settings.shape_1_x_mobile }}%;
+              transform: translate(-50%, -50%);
+            }
+            .shape-2-{{ block.id }} {
+              width: {{ block.settings.shape_2_width_mobile }}px;
+              top: {{ block.settings.shape_2_y_mobile }}%;
+              left: {{ block.settings.shape_2_x_mobile }}%;
+              transform: translate(-50%, -50%);
+            }
+            .shape-3-{{ block.id }} {
+              width: {{ block.settings.shape_3_width_mobile }}px;
+              top: {{ block.settings.shape_3_y_mobile }}%;
+              left: {{ block.settings.shape_3_x_mobile }}%;
+              transform: translate(-50%, -50%);
+            }
+
+            /* Desktop Positioning Override */
+            @media screen and (min-width: 750px) {
+              .shape-1-{{ block.id }} {
+                width: {{ block.settings.shape_1_width }}px;
+                top: {{ block.settings.shape_1_y }}%;
+                left: {{ block.settings.shape_1_x }}%;
+              }
+              .shape-2-{{ block.id }} {
+                width: {{ block.settings.shape_2_width }}px;
+                top: {{ block.settings.shape_2_y }}%;
+                left: {{ block.settings.shape_2_x }}%;
+              }
+              .shape-3-{{ block.id }} {
+                width: {{ block.settings.shape_3_width }}px;
+                top: {{ block.settings.shape_3_y }}%;
+                left: {{ block.settings.shape_3_x }}%;
+              }
+            }
+          {%- endstyle -%}
+          
+          <div class="swiper-slide" {{ block.shopify_attributes }}>
+            <div class="sect-feature-blocks-item color-{{ block.settings.color_scheme }} gradient">
+              
+              <div class="shape-container">
+                {%- if block.settings.shape_1 != blank -%}
+                  <img src="{{ block.settings.shape_1 | image_url: width: 800 }}" 
+                       alt="{{ block.settings.shape_1.alt | escape }}" 
+                       class="sect-feature-blocks-shape shape-1-{{ block.id }}" 
+                       loading="lazy">
+                {%- endif -%}
+
+                {%- if block.settings.shape_2 != blank -%}
+                  <img src="{{ block.settings.shape_2 | image_url: width: 800 }}" 
+                       alt="{{ block.settings.shape_2.alt | escape }}" 
+                       class="sect-feature-blocks-shape shape-2-{{ block.id }}" 
+                       loading="lazy">
+                {%- endif -%}
+
+                {%- if block.settings.shape_3 != blank -%}
+                  <img src="{{ block.settings.shape_3 | image_url: width: 800 }}" 
+                       alt="{{ block.settings.shape_3.alt | escape }}" 
+                       class="sect-feature-blocks-shape shape-3-{{ block.id }}" 
+                       loading="lazy">
+                {%- endif -%}
+              </div>
+              
+              <div class="sect-feature-blocks-content">
+                {%- if block.settings.title != blank -%}
+                  <h3 class="sect-feature-blocks-title h4">{{ block.settings.title }}</h3>
+                {%- endif -%}
+                
+                {%- if block.settings.subtitle != blank -%}
+                  <div class="sect-feature-blocks-subtitle">{{ block.settings.subtitle }}</div>
+                {%- endif -%}
+
+                {%- if block.settings.text != blank -%}
+                  <div class="sect-feature-blocks-text rte">{{ block.settings.text }}</div>
+                {%- endif -%}
+              </div>
+              
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+      
+      <div class="swiper-pagination feature-swiper-pagination-{{ section.id }}"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const swiperInstance = new Swiper('.my-swiper-{{ section.id }}', {
+      slidesPerView: 1.1,
+      spaceBetween: 16,
+      slidesOffsetBefore: 20, /* Adds left padding on scroll */
+      slidesOffsetAfter: 20, /* Adds right padding on scroll */
+      pagination: {
+        el: '.feature-swiper-pagination-{{ section.id }}',
+        clickable: true,
+      },
+      breakpoints: {
+        950: {
+          slidesPerView: 3,
+          spaceBetween: 24,
+          slidesOffsetBefore: 0,
+          slidesOffsetAfter: 0,
+          enabled: false 
+        }
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Custom Feature Blocks",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What is Arvenixo"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1",
+      "label": "Heading Size"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Section Color Scheme",
+      "default": "background-1"
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Card Border Radius",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 60
+    }
+  ],
+"blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Card",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "Card Color Scheme",
+          "default": "scheme-2"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Arvenixo is quality"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "We control the entire value chain"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Description",
+          "default": "<p>Your compelling description here.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Shape 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "shape_1",
+          "label": "Shape Image"
+        },
+        { "type": "range", "id": "shape_1_width", "min": 10, "max": 410, "step": 5, "unit": "px", "label": "Desktop Width", "default": 150 },
+        { "type": "range", "id": "shape_1_x", "min": -50, "max": 100, "step": 2, "unit": "%", "label": "Desktop X Position", "default": 20 },
+        { "type": "range", "id": "shape_1_y", "min": -50, "max": 100, "step": 2, "unit": "%", "label": "Desktop Y Position", "default": 20 },
+        { "type": "range", "id": "shape_1_width_mobile", "min": 10, "max": 410, "step": 5, "unit": "px", "label": "Mobile Width", "default": 130 },
+        { "type": "range", "id": "shape_1_x_mobile", "min": -50, "max": 100, "step": 2, "unit": "%", "label": "Mobile X Position", "default": 20 },
+        { "type": "range", "id": "shape_1_y_mobile", "min": -50, "max": 100, "step": 2, "unit": "%", "label": "Mobile Y Position", "default": 20 },
+        
+        {
+          "type": "header",
+          "content": "Shape 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "shape_2",
+          "label": "Shape Image"
+        },
+        { "type": "range", "id": "shape_2_width", "min": 10, "max": 410, "step": 5, "unit": "px", "label": "Desktop Width", "default": 150 },
+        { "type": "range", "id": "shape_2_x", "min": -50, "max": 100, "step": 2, "unit": "%", "label": "Desktop X Position", "default": 80 },
+        { "type": "range", "id": "shape_2_y", "min": -50, "max": 100, "step": 2, "unit": "%", "label": "Desktop Y Position", "default": 80 },
+        { "type": "range", "id": "shape_2_width_mobile", "min": 10, "max": 410, "step": 5, "unit": "px", "label": "Mobile Width", "default": 130 },
+        { "type": "range", "id": "shape_2_x_mobile", "min": -50, "max": 100, "step": 2, "unit": "%", "label": "Mobile X Position", "default": 80 },
+        { "type": "range", "id": "shape_2_y_mobile", "min": -50, "max": 100, "step": 2, "unit": "%", "label": "Mobile Y Position", "default": 80 },
+        
+        {
+          "type": "header",
+          "content": "Shape 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "shape_3",
+          "label": "Shape Image"
+        },
+        { "type": "range", "id": "shape_3_width", "min": 10, "max": 410, "step": 5, "unit": "px", "label": "Desktop Width", "default": 150 },
+        { "type": "range", "id": "shape_3_x", "min": -50, "max": 100, "step": 2, "unit": "%", "label": "Desktop X Position", "default": 50 },
+        { "type": "range", "id": "shape_3_y", "min": -50, "max": 100, "step": 2, "unit": "%", "label": "Desktop Y Position", "default": 50 },
+        { "type": "range", "id": "shape_3_width_mobile", "min": 10, "max": 410, "step": 5, "unit": "px", "label": "Mobile Width", "default": 130 },
+        { "type": "range", "id": "shape_3_x_mobile", "min": -50, "max": 100, "step": 2, "unit": "%", "label": "Mobile X Position", "default": 50 },
+        { "type": "range", "id": "shape_3_y_mobile", "min": -50, "max": 100, "step": 2, "unit": "%", "label": "Mobile Y Position", "default": 50 }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Feature Blocks",
+      "blocks": [
+        { "type": "feature" },
+        { "type": "feature" },
+        { "type": "feature" }
+      ]
+    }
+  ]
+}
+{% endschema %}

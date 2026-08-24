@@ -104,12 +104,22 @@
           </span>
         {%- endunless -%}
         <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
-        <span class="price-item price-item--sale price-item--last">
+        <span class="price-item price-item--sale price-item--last woc-price-sale">
           {{ money_price }}
+          {%- if compare_at_price > price -%}
+            {%- assign save_amount = compare_at_price | minus: price -%}
+            {%- assign save_percent = save_amount | times: 100.0 | divided_by: compare_at_price | round -%}
+            <span class="woc-premium-sale-badge">
+              Save {{ save_percent }}%
+            </span>
+          {%- endif -%}
         </span>
       </div>
       {%- if product.selected_or_first_available_variant.unit_price_measurement -%}
-        {% render 'unit-price', price: product.selected_or_first_available_variant.unit_price, measurement: product.selected_or_first_available_variant.unit_price_measurement %}
+        {% render 'unit-price',
+          price: product.selected_or_first_available_variant.unit_price,
+          measurement: product.selected_or_first_available_variant.unit_price_measurement
+        %}
       {%- endif -%}
     </div>
     {%- if show_badges -%}

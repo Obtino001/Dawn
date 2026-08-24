@@ -6,7 +6,24 @@ class DetailsModal extends HTMLElement {
 
     this.detailsContainer.addEventListener('keyup', (event) => event.code.toUpperCase() === 'ESCAPE' && this.close());
     this.summaryToggle.addEventListener('click', this.onSummaryClick.bind(this));
-    this.querySelector('button[type="button"]').addEventListener('click', this.close.bind(this));
+
+    if (this.classList.contains('ds-header-search')) {
+      this.querySelectorAll('[data-ds-search-close]').forEach((btn) => {
+        btn.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          this.close();
+        });
+      });
+    } else {
+      const closeButton = this.querySelector('button[type="button"]');
+      if (closeButton) {
+        closeButton.addEventListener('click', (event) => {
+          event.preventDefault();
+          this.close();
+        });
+      }
+    }
 
     this.summaryToggle.setAttribute('role', 'button');
   }
@@ -21,6 +38,16 @@ class DetailsModal extends HTMLElement {
   }
 
   onBodyClick(event) {
+    if (this.classList.contains('ds-header-search')) {
+      if (
+        event.target.classList.contains('ds-search-backdrop') ||
+        event.target.closest('[data-ds-search-close]') ||
+        !this.contains(event.target)
+      ) {
+        this.close(false);
+      }
+      return;
+    }
     if (!this.contains(event.target) || event.target.classList.contains('modal-overlay')) this.close(false);
   }
 
@@ -28,7 +55,9 @@ class DetailsModal extends HTMLElement {
     this.onBodyClickEvent = this.onBodyClickEvent || this.onBodyClick.bind(this);
     event.target.closest('details').setAttribute('open', true);
     document.body.addEventListener('click', this.onBodyClickEvent);
-    document.body.classList.add('overflow-hidden');
+    if (!this.classList.contains('ds-header-search')) {
+      document.body.classList.add('overflow-hidden');
+    }
 
     trapFocus(
       this.detailsContainer.querySelector('[tabindex="-1"]'),

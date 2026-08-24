@@ -1,0 +1,304 @@
+{%- style -%}
+size-guide-modal {
+    display: flex;
+    justify-content: end;
+}
+.sg-btn {
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+  
+  /* Modal & Overlay */
+  .sg-overlay {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.5); z-index: 99998;
+    opacity: 0; visibility: hidden; transition: opacity 0.3s ease;
+  }
+  .sg-overlay.is-open { opacity: 1; visibility: visible; }
+
+  .sg-modal {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -45%);
+    z-index: 99999; width: 95%; max-width: 750px;
+    opacity: 0; visibility: hidden; transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  .sg-modal.is-open { opacity: 1; visibility: visible; transform: translate(-50%, -50%); }
+  
+  .sg-card {
+    background: #ffffff; 
+    width: 100%; 
+    max-height: 90vh; 
+    overflow-y: auto;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    padding: 30px;
+    font-family: inherit;
+  }
+
+  /* Header Section */
+  .sg-header {
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+    margin-bottom: 25px;
+  }
+  .sg-title { 
+    margin: 0; 
+    font-size: 32px; 
+    color: {{ block.settings.color_primary }}; 
+    font-weight: 400;
+  }
+  .sg-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .sg-close { 
+    background: none; 
+    border: none; 
+    cursor: pointer; 
+    padding: 5px; 
+    color: {{ block.settings.color_primary }};
+    transition: transform 0.2s;
+  }
+  .sg-close:hover { transform: rotate(90deg); }
+
+  /* Pill-Shaped Table Rows */
+  .sg-table-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 30px;
+  }
+
+  .sg-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-radius: 12px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .sg-cell {
+    padding: 14px 10px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  /* Vertical Separators inside the rows */
+  .sg-cell:not(:first-child) {
+    border-left: 1px solid;
+  }
+
+  /* Specific Row Colors */
+  .sg-row-header {
+    background-color: {{ block.settings.color_primary }};
+    color: #ffffff;
+  }
+  .sg-row-header .sg-cell:not(:first-child) { border-left-color: rgba(255,255,255,0.3); }
+
+  .sg-row-light {
+    background-color: {{ block.settings.color_tertiary }};
+    color: {{ block.settings.color_primary }};
+  }
+  .sg-row-light .sg-cell:not(:first-child) { border-left-color: rgba(139, 34, 104, 0.15); }
+
+  .sg-row-bright {
+    background-color: {{ block.settings.color_secondary }};
+    color: #ffffff;
+  }
+  .sg-row-bright .sg-cell:not(:first-child) { border-left-color: rgba(255,255,255,0.3); }
+
+  /* Bottom Section: Instructions & Image */
+  .sg-footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: start;
+  }
+
+  .sg-instructions-box {
+    background-color: {{ block.settings.color_tertiary }};
+    border-radius: 16px;
+    padding: 25px;
+    color: {{ block.settings.color_primary }};
+  }
+
+  .sg-instructions-title {
+    font-size: 20px;
+    margin: 0 0 15px 0;
+    font-weight: 500;
+  }
+
+  .sg-instructions-list {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  
+  .sg-instructions-list li {
+    margin-bottom: 12px;
+  }
+
+  .sg-note {
+    font-size: 14px;
+    color: {{ block.settings.color_primary }};
+    margin-top: 15px;
+  }
+
+  .sg-illustration {
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  /* Responsive styling */
+  @media(max-width: 600px) {
+    .sg-card { padding: 20px 15px; }
+    .sg-footer { grid-template-columns: 1fr; }
+    .sg-illustration { max-width: 200px; }
+    .sg-title { font-size: 24px; }
+  }
+  .sg--lock { overflow: hidden; }
+{%- endstyle -%}
+
+<size-guide-modal>
+  <button type="button" class="sg-btn" data-trigger>
+              {% if block.settings.avatar_image %}
+            <img src="{{ block.settings.avatar_image | image_url: width: 100 }}" class="sg-avatar" alt="Stylist Avatar" loading="lazy">
+          {% endif %}
+    {{ block.settings.trigger_label | default: "Size Guide" }}
+  </button>
+
+  <div data-teleport-target hidden>
+    <div class="sg-overlay" data-overlay> </div>
+    <div class="sg-modal" data-modal>
+      <div class="sg-card">
+        
+        <div class="sg-header">
+          <h2 class="sg-title">{{ block.settings.title }}</h2>
+          
+
+
+          <button type="button" class="sg-close" data-close>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        
+        <div class="sg-table-stack">
+          <div class="sg-row sg-row-header">
+            <div class="sg-cell">Size</div>
+            <div class="sg-cell">Int. sizes</div>
+            <div class="sg-cell">cm</div>
+          </div>
+
+          {% assign sizes = "xs,s,m,l,xl,xxl" | split: "," %}
+          
+          {% for size in sizes %}
+            {% capture show_key %}show_{{ size }}{% endcapture %}
+            
+            {% if block.settings[show_key] %}
+              {% capture int_key %}val_{{ size }}_int{% endcapture %}
+              {% capture cm_key %}val_{{ size }}_cm{% endcapture %}
+              
+              <div class="sg-row {% cycle 'sg-row-light', 'sg-row-bright' %}">
+                <div class="sg-cell">{{ size | upcase }}</div>
+                <div class="sg-cell">{{ block.settings[int_key] }}</div>
+                <div class="sg-cell">{{ block.settings[cm_key] }}</div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <div class="sg-footer">
+          <div>
+            <div class="sg-instructions-box">
+              <h3 class="sg-instructions-title">{{ block.settings.box_title }}</h3>
+              <ul class="sg-instructions-list">
+                {% if block.settings.bullet_1 != blank %}<li>{{ block.settings.bullet_1 }}</li>{% endif %}
+                {% if block.settings.bullet_2 != blank %}<li>{{ block.settings.bullet_2 }}</li>{% endif %}
+                {% if block.settings.bullet_3 != blank %}<li>{{ block.settings.bullet_3 }}</li>{% endif %}
+              </ul>
+            </div>
+            
+            {% if block.settings.note_text != blank %}
+              <div class="sg-note">
+                <strong>Note:</strong> {{ block.settings.note_text }}
+              </div>
+            {% endif %}
+          </div>
+
+          {% if block.settings.illustration_image %}
+            <img src="{{ block.settings.illustration_image | image_url: width: 400 }}" class="sg-illustration" alt="How to measure" loading="lazy">
+          {% endif %}
+        </div>
+
+      </div>
+    </div>
+  </div>
+</size-guide-modal>
+
+<script>
+  if (!customElements.get('size-guide-modal')) {
+    customElements.define('size-guide-modal', class extends HTMLElement {
+      connectedCallback() {
+        this.triggerBtn = this.querySelector('[data-trigger]');
+        this.overlay = this.querySelector('[data-overlay]');
+        this.modal = this.querySelector('[data-modal]');
+        this.closeBtns = this.querySelectorAll('[data-close], [data-overlay]');
+
+        this.open = this.open.bind(this);
+        this.close = this.close.bind(this);
+        this.handleKeydown = this.handleKeydown.bind(this);
+
+        if (this.triggerBtn) this.triggerBtn.addEventListener('click', this.open);
+        this.closeBtns.forEach(btn => btn.addEventListener('click', this.close));
+      }
+
+      open() {
+        if (!this.teleported) {
+          document.body.appendChild(this.overlay);
+          document.body.appendChild(this.modal);
+          this.teleported = true;
+        }
+        requestAnimationFrame(() => {
+          this.overlay.hidden = false;
+          this.modal.hidden = false;
+          setTimeout(() => {
+            this.overlay.classList.add('is-open');
+            this.modal.classList.add('is-open');
+            document.body.classList.add('sg--lock');
+            document.addEventListener('keydown', this.handleKeydown);
+          }, 10);
+        });
+      }
+
+      close() {
+        this.overlay.classList.remove('is-open');
+        this.modal.classList.remove('is-open');
+        document.body.classList.remove('sg--lock');
+        document.removeEventListener('keydown', this.handleKeydown);
+        setTimeout(() => {
+          this.overlay.hidden = true;
+          this.modal.hidden = true;
+        }, 400);
+      }
+
+      handleKeydown(e) {
+        if (e.key === 'Escape') this.close();
+      }
+    });
+  }
+</script>

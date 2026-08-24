@@ -132,6 +132,77 @@ variant-selects {
   box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0 0.5rem rgba(var(--color-foreground), 0.55);
 }
 
+.product-form__input--models {
+  min-width: 0;
+}
+
+.model-picker__current {
+  display: block;
+  margin: 0.35rem 0 0;
+  font-weight: 400;
+  font-size: 1.3rem;
+  color: rgba(var(--color-foreground), 0.65);
+}
+
+.model-picker__current::before {
+  content: none;
+}
+
+.model-series {
+  display: flex;
+  gap: 0.6rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  margin: 0.4rem 0 1rem;
+  padding: 0.2rem 0 0.4rem;
+}
+
+.model-series::-webkit-scrollbar {
+  display: none;
+}
+
+.model-series__btn {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0.75rem 1.3rem;
+  border: 1px solid rgba(var(--color-foreground), 0.18);
+  border-radius: 999px;
+  background: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
+  font-family: inherit;
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.model-series__btn.is-active {
+  background: rgb(var(--color-foreground));
+  border-color: rgb(var(--color-foreground));
+  color: rgb(var(--color-background));
+}
+
+.model-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.product-form__input--models input[type='radio'] + label {
+  margin: 0;
+  padding: 0.9rem 1.4rem;
+  font-size: 1.3rem;
+  letter-spacing: 0;
+}
+
+.product-form__input--models input.is-series-hidden,
+.product-form__input--models label.is-series-hidden {
+  display: none !important;
+}
+
 /* Custom styles for Swatch display type */
 .product-form__input--swatch {
   display: flex;

@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "settings_schema": {
     "global": {
@@ -1100,6 +1109,22 @@
         },
         "show_line_separator": {
           "label": "Separator line"
+        },
+        "transparent_header": {
+          "header": {
+            "content": "Transparent header"
+          },
+          "enable": {
+            "label": "Enable transparent header",
+            "info": "Make the header transparent on the homepage. Logo and menu items will be white, and show with background on scroll."
+          },
+          "logo": {
+            "label": "Transparent logo",
+            "info": "Upload a logo for transparent header. If not set, the default logo will be used."
+          },
+          "full_width": {
+            "label": "Full width header"
+          }
         },
         "header__1": {
           "content": "Color"

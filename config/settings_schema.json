@@ -2,7 +2,7 @@
   {
     "name": "theme_info",
     "theme_name": "Dawn",
-    "theme_version": "15.4.1",
+    "theme_version": "15.4.0",
     "theme_author": "Shopify",
     "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
     "theme_support_url": "https://support.shopify.com/"
@@ -153,7 +153,7 @@
         "type": "range",
         "id": "page_width",
         "min": 1000,
-        "max": 1600,
+        "max": 2000,
         "step": 100,
         "default": 1200,
         "unit": "px",
@@ -1385,6 +1385,332 @@
     ]
   },
   {
+    "name": "Search Drawer",
+    "settings": [
+      {
+        "type": "text",
+        "id": "search_placeholder",
+        "label": "Search placeholder",
+        "default": "Search MagSafe cases and beauty tech"
+      },
+      {
+        "type": "text",
+        "id": "popular_searches_heading",
+        "label": "Popular searches heading",
+        "default": "Popular searches"
+      },
+      {
+        "type": "link_list",
+        "id": "popular_searches_menu",
+        "label": "Popular searches menu"
+      },
+      {
+        "type": "text",
+        "id": "popular_brands_heading",
+        "label": "Categories heading",
+        "default": "Shop"
+      },
+      {
+        "type": "link_list",
+        "id": "popular_brands_menu",
+        "label": "Popular brands menu"
+      },
+      {
+        "type": "text",
+        "id": "popular_blogs_heading",
+        "label": "Help links heading",
+        "default": "Help"
+      },
+      {
+        "type": "link_list",
+        "id": "popular_blogs_menu",
+        "label": "Popular blogs menu"
+      },
+      {
+        "type": "text",
+        "id": "trending_heading",
+        "label": "Trending heading",
+        "default": "Trending"
+      },
+      {
+        "type": "collection_list",
+        "id": "trending_collections",
+        "label": "Trending collections (Optional)",
+        "limit": 4
+      },
+      {
+        "type": "header",
+        "content": "Trending Fallback Items"
+      },
+      {
+        "type": "image_picker",
+        "id": "trending_1_image",
+        "label": "Trending 1 Image"
+      },
+      {
+        "type": "text",
+        "id": "trending_1_title",
+        "label": "Trending 1 Title"
+      },
+      {
+        "type": "url",
+        "id": "trending_1_link",
+        "label": "Trending 1 Link"
+      },
+      {
+        "type": "image_picker",
+        "id": "trending_2_image",
+        "label": "Trending 2 Image"
+      },
+      {
+        "type": "text",
+        "id": "trending_2_title",
+        "label": "Trending 2 Title"
+      },
+      {
+        "type": "url",
+        "id": "trending_2_link",
+        "label": "Trending 2 Link"
+      },
+      {
+        "type": "image_picker",
+        "id": "trending_3_image",
+        "label": "Trending 3 Image"
+      },
+      {
+        "type": "text",
+        "id": "trending_3_title",
+        "label": "Trending 3 Title"
+      },
+      {
+        "type": "url",
+        "id": "trending_3_link",
+        "label": "Trending 3 Link"
+      },
+      {
+        "type": "image_picker",
+        "id": "trending_4_image",
+        "label": "Trending 4 Image"
+      },
+      {
+        "type": "text",
+        "id": "trending_4_title",
+        "label": "Trending 4 Title"
+      },
+      {
+        "type": "url",
+        "id": "trending_4_link",
+        "label": "Trending 4 Link"
+      }
+    ]
+  },
+  {
+    "name": "Cart drawer",
+    "settings": [
+      {
+        "type": "checkbox",
+        "label": "Show/hide Upsell container",
+        "id": "upsell__container"
+      },
+      {
+        "type": "header",
+        "content": "Upsell"
+      },
+      {
+        "type": "text",
+        "id": "upsell__heading",
+        "label": "Heading",
+        "default": "Vi anbefaler"
+      },
+      {
+        "type": "product_list",
+        "id": "upsell__products",
+        "label": "Products list",
+      },
+      {
+        "type": "header",
+        "content": "Mobile slider"
+      },
+      { "type": "text", "id": "drawer_block_heading", "label": "Heading", "default": "Swiper template" },
+      { "type": "header", "content": "⚙️ Slider Configuration" },
+      { "type": "checkbox", "id": "drawer_enable_autoplay", "label": "Enable Autoplay", "default": false },
+      { "type": "range", "id": "drawer_autoplay_interval", "min": 2, "max": 10, "step": 1, "unit": "s", "label": "Autoplay Interval", "default": 3 },
+      { "type": "range", "id": "drawer_mobile_slides", "min": 1, "max": 6, "step": 0.1, "label": "Slides per view", "default": 1.2 },
+      { "type": "range", "id": "drawer_mobile_spacing", "min": 0, "max": 50, "label": "Spacing (px)", "default": 10 },
+      { "type": "checkbox", "id": "drawer_mobile_arrows", "label": "Show Arrows", "default": false },
+      { "type": "checkbox", "id": "drawer_mobile_dots", "label": "Show Dots", "default": false },
+      {
+        "type": "header",
+        "content": "Upsell points",
+      },
+      {
+        "type": "checkbox",
+        "label": "Show/hide Upsell points",
+        "id": "upsell__points"
+      },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#121212"
+    },
+    {
+      "type": "header",
+      "content": "Icon Size & Spacing"
+    },
+    {
+      "type": "range",
+      "id": "icon_width",
+      "min": 20,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "label": "Icon Width",
+      "default": 35
+    },
+    {
+        "type": "text",
+        "id": "upsell__points-heading",
+        "label": "Heading",
+        "default": "Inkluderet i dit køb"
+      },
+    {
+      "type": "header",
+      "content": "--- ITEM 1 ---"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_1",
+      "label": "Icon 1"
+    },
+    {
+      "type": "text",
+      "id": "title_1",
+      "label": "Text 1",
+      "default": "FREE FAST SHIPPING"
+    },
+    {
+      "type": "header",
+      "content": "--- ITEM 2 ---"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_2",
+      "label": "Icon 2"
+    },
+    {
+      "type": "text",
+      "id": "title_2",
+      "label": "Text 2",
+      "default": "Hassle free returns"
+    },
+    {
+      "type": "header",
+      "content": "--- ITEM 3 ---"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_3",
+      "label": "Icon 3"
+    },
+    {
+      "type": "text",
+      "id": "title_3",
+      "label": "Text 3",
+      "default": "Quality natural fabrics"
+    },
+      {
+        "type": "header",
+        "content": "Free shipping message"
+      },
+      {
+        "type": "checkbox",
+        "id": "free_shipping",
+        "label": "Show free shipping message",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "free_shipping_minimum",
+        "label": "Free shipping minimum amount",
+        "default": "250",
+        "info": "Enter the value without a currency symbol and use a decimal to separate dollars and cents. Example: '100.00'"
+      },
+      {
+        "type": "text",
+        "id": "free_shipping_not_met",
+        "label": "Free shipping remaining text",
+        "info": "Add 'amount' text to show the remaining amount",
+        "default": "Køb for <strong>amount</strong> mere for at få gratis fragt"
+      },
+      {
+        "type": "text",
+        "id": "free_shipping_met",
+        "label": "Free shipping unlocked text",
+        "default": "Du har opnået gratis fragt!"
+      },
+      {
+        "type": "text",
+        "id": "free_shipping_text",
+        "label": "Free shipping icon text",
+        "default": "Gratis fragt"
+      },
+      {
+        "type": "header",
+        "content": "Free gift message"
+      },
+      {
+        "type": "checkbox",
+        "id": "free_gift",
+        "label": "Show free gift message",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "free_gift_minimum",
+        "label": "Free gift minimum amount",
+        "default": "500",
+        "info": "Enter the value without a currency symbol and use a decimal to separate dollars and cents. Example: '100.00'"
+      },
+      {
+        "type": "product",
+        "label": "Free gift product",
+        "id": "free_gift_product"
+      },
+      {
+        "type": "text",
+        "id": "free_gift_not_met",
+        "label": "Free gift remaining text",
+        "info": "Add 'amount' text to show the remaining amount",
+        "default": "Køb for <strong>amount</strong> mere for at få en gratis gave"
+      },
+      {
+        "type": "text",
+        "id": "free_gift_met",
+        "label": "Free gift unlocked text",
+        "default": "Du har opnået en gratis gave!"
+      },
+      {
+        "type": "text",
+        "id": "free_gift_texts",
+        "label": "Free gift icon text",
+        "default": "Gratis gave"
+      },
+      {
+        "type": "checkbox",
+        "id": "fixed_icon_positions",
+        "label": "Fixed icon positions",
+        "default": false
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.currency_format.name",
     "settings": [
       {
@@ -1433,6 +1759,20 @@
         "id": "show_cart_note",
         "label": "t:settings_schema.cart.settings.show_cart_note.label",
         "default": false
+      },
+      {
+        "type": "header",
+        "content": "Recommended products"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_recommendations",
+        "label": "Show/hide"
+      },
+      {
+        "type": "product_list",
+        "id": "recommended_products",
+        "label": "Products"
       },
       {
         "type": "header",

@@ -1,0 +1,23 @@
+<div class="btn-custom-banner-1">
+  {%- if block.settings.link_1_text != blank -%}
+    <a href="{{ block.settings.link_1_url }}" 
+       class="button button--primary btn-style-pill" 
+       style="color: {{ block.settings.link_color_1 }};">
+      {{ block.settings.link_1_text }}
+    </a>
+  {%- endif -%}
+
+  {%- if block.settings.link_2_text != blank -%}
+    <a href="{{ block.settings.link_2_url }}" 
+       class="button button--primary btn-style-pill" 
+       style="color: {{ block.settings.link_color_2 }}; margin-left: 10px;">
+      {{ block.settings.link_2_text }}
+    </a>
+  {%- endif -%}
+</div>
+<style>
+.btn-custom-banner-1 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+</style>

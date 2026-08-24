@@ -1,0 +1,187 @@
+{%- doc -%}
+  Renders header mega-menu blocks inside a Skin Bay–style mobile panel.
+  Matches blocks whose "Menu Trigger Name" equals the parent nav link title.
+
+  @param {object} parent_link - Top-level navigation link
+  @param {object} section - Header section
+{%- enddoc -%}
+
+{%- liquid
+  assign menu_link = parent_link.title | downcase
+-%}
+
+{%- for block in section.blocks -%}
+  {%- assign matched_link = block.settings.title | downcase -%}
+  {%- if matched_link == menu_link and block.type != 'bottom' and block.type != 'drawer_promotion' -%}
+    {%- case block.type -%}
+      {%- when 'megamenu' -%}
+        {%- if block.settings.widget == 'menu' -%}
+          {%- if block.settings.menu_heading != blank -%}
+            <p class="nlk-group-heading">{{ block.settings.menu_heading | escape }}</p>
+          {%- endif -%}
+          {%- if block.settings.menu_link_list_child != blank -%}
+            {%- for childlink in block.settings.menu_link_list_child.links -%}
+              <div class="nlk-item">
+                <div class="nlk-bar">
+                  {%- if childlink.links != blank -%}
+                    {%- capture nlk_panel_id -%}nlk-mega-{{ block.id }}-{{ childlink.handle }}{%- endcapture -%}
+                    {% render 'nlk-menu-row', link: childlink, chevron: 'inside', panel_id: nlk_panel_id %}
+                  {%- else -%}
+                    {% render 'nlk-menu-row', link: childlink, chevron: 'inside' %}
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endfor -%}
+          {%- endif -%}
+        {%- elsif block.settings.widget == 'image' -%}
+          <a href="{{ block.settings.banner_link | default: '#' }}" class="nlk-mega-banner">
+            {%- if block.settings.image != blank -%}
+              {{
+                block.settings.image
+                | image_url: width: 900
+                | image_tag:
+                  loading: 'lazy',
+                  alt: block.settings.banner_title
+              }}
+            {%- endif -%}
+            {%- if block.settings.banner_title != blank or block.settings.banner_button != blank -%}
+              <span class="nlk-mega-banner__copy">
+                {%- if block.settings.banner_title != blank -%}
+                  <span class="nlk-mega-banner__title">{{ block.settings.banner_title | escape }}</span>
+                {%- endif -%}
+                {%- if block.settings.banner_button != blank -%}
+                  <span class="nlk-mega-banner__btn">{{ block.settings.banner_button | escape }}</span>
+                {%- endif -%}
+              </span>
+            {%- endif -%}
+          </a>
+        {%- endif -%}
+
+      {%- when 'collections' -%}
+        {%- if block.settings.heading != blank -%}
+          <p class="nlk-group-heading">{{ block.settings.heading | escape }}</p>
+        {%- endif -%}
+        {%- for i in (1..5) -%}
+          {%- capture col_id -%}collection_{{ i }}{%- endcapture -%}
+          {%- capture img_id -%}custom_image_{{ i }}{%- endcapture -%}
+          {%- capture title_id -%}custom_title_{{ i }}{%- endcapture -%}
+          {%- assign col = block.settings[col_id] -%}
+          {%- assign img = block.settings[img_id] -%}
+          {%- assign custom_title = block.settings[title_id] -%}
+          {%- if col != blank -%}
+            {%- liquid
+              assign row_title = custom_title | default: col.title
+              assign row_img = img
+              if row_img == blank and col.image != blank
+                assign row_img = col.image
+              endif
+              if row_img == blank
+                assign nlk_first = col.products.first
+                if nlk_first != blank and nlk_first.featured_image != blank
+                  assign row_img = nlk_first.featured_image
+                endif
+              endif
+            -%}
+            <div class="nlk-item">
+              <div class="nlk-bar">
+                {% render 'nlk-menu-row', title: row_title, url: col.url, image: row_img, chevron: 'inside' %}
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+
+      {%- when 'categories' -%}
+        {%- if block.settings.heading != blank -%}
+          <p class="nlk-group-heading">{{ block.settings.heading | escape }}</p>
+        {%- endif -%}
+        {%- for i in (1..8) -%}
+          {%- capture col_id -%}collection_{{ i }}{%- endcapture -%}
+          {%- capture title_id -%}custom_title_{{ i }}{%- endcapture -%}
+          {%- assign col = block.settings[col_id] -%}
+          {%- assign custom_title = block.settings[title_id] -%}
+          {%- if col != blank or custom_title != blank -%}
+            {%- liquid
+              assign row_title = custom_title
+              if row_title == blank and col != blank
+                assign row_title = col.title
+              endif
+              assign row_url = '#'
+              assign row_img = nil
+              if col != blank
+                assign row_url = col.url
+                if col.image != blank
+                  assign row_img = col.image
+                else
+                  assign nlk_first = col.products.first
+                  if nlk_first != blank and nlk_first.featured_image != blank
+                    assign row_img = nlk_first.featured_image
+                  endif
+                endif
+              endif
+            -%}
+            <div class="nlk-item">
+              <div class="nlk-bar">
+                {% render 'nlk-menu-row', title: row_title, url: row_url, image: row_img, chevron: 'inside' %}
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+
+      {%- when 'image-cards-grid' -%}
+        {%- if block.settings.heading != blank -%}
+          <p class="nlk-group-heading">{{ block.settings.heading | escape }}</p>
+        {%- endif -%}
+        {%- for i in (1..6) -%}
+          {%- capture img_id -%}item_image_{{ i }}{%- endcapture -%}
+          {%- capture title_id -%}item_title_{{ i }}{%- endcapture -%}
+          {%- capture link_id -%}item_link_{{ i }}{%- endcapture -%}
+          {%- if block.settings[title_id] != blank -%}
+            {%- assign card_title = block.settings[title_id] -%}
+            {%- assign card_url = block.settings[link_id] -%}
+            {%- assign card_img = block.settings[img_id] -%}
+            <div class="nlk-item">
+              <div class="nlk-bar">
+                {% render 'nlk-menu-row', title: card_title, url: card_url, image: card_img, chevron: 'inside' %}
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+
+      {%- when 'text-column' -%}
+        <div class="nlk-text-block">
+          {%- if block.settings.heading != blank -%}
+            <p class="nlk-group-heading">{{ block.settings.heading | escape }}</p>
+          {%- endif -%}
+          {%- if block.settings.mm_title != blank -%}
+            <p class="nlk-text-block__title">{{ block.settings.mm_title | escape }}</p>
+          {%- endif -%}
+          {%- if block.settings.mm_desc != blank -%}
+            <div class="nlk-text-block__desc">{{ block.settings.mm_desc }}</div>
+          {%- endif -%}
+          {%- if block.settings.mm_link_text != blank -%}
+            <a href="{{ block.settings.mm_link_url | default: '#' }}" class="nlk-text-block__link">
+              {{ block.settings.mm_link_text | escape }}
+            </a>
+          {%- endif -%}
+        </div>
+    {%- endcase -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- for block in section.blocks -%}
+  {%- assign matched_link = block.settings.title | downcase -%}
+  {%- if matched_link == menu_link and block.type == 'bottom' -%}
+    <div class="nlk-bottom-links">
+      {%- if block.settings.link_1_text != blank -%}
+        <a href="{{ block.settings.link_1_url | default: '#' }}" class="nlk-bottom-link">
+          {{ block.settings.link_1_text | escape }}
+        </a>
+      {%- endif -%}
+      {%- if block.settings.link_2_text != blank -%}
+        <a href="{{ block.settings.link_2_url | default: '#' }}" class="nlk-bottom-link">
+          {{ block.settings.link_2_text | escape }}
+        </a>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+{%- endfor -%}

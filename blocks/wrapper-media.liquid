@@ -1,0 +1,19 @@
+<div class="image-with-text__media-item image-with-text__media-item--{{ section.settings.desktop_image_width }} image-with-text__media-item--{{ section.settings.desktop_content_position }}">
+  {% content_for 'blocks' %}
+</div>
+
+{% schema %}
+{
+  "name": "Media Wrapper",
+  "tag": "div",
+  "class": "grid__item",
+  "blocks": [
+    { "type": "image-with-text-image" },
+    { "type": "image-with-text-video" },
+    { "type": "@app" } 
+  ],
+  "presets": [
+    { "name": "Media Wrapper" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,93 @@
+<section class="qs-35b-section-wrapper" id="qs-section-{{ block.id }}">
+  <div class="qs-35b-container">
+    {% capture icon %}
+        <div class="qs-35b-icon-box">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17L4 12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+    {% endcapture %}
+
+    <div class="qs-35b-list">
+      {% if block.settings.h1 != blank %}
+        <div class="qs-35b-item">
+          {% if block.settings.type == 'check' %}
+            {{ icon }}
+          {% else %}
+            <div class="qs-35b-icon-box">
+              <span>01</span>
+            </div>
+          {% endif %}
+          <div class="qs-35b-text-content">
+            <h3 class="qs-35b-item-heading">{{ block.settings.h1 }}</h3>
+            <p class="qs-35b-item-desc">{{ block.settings.p1 }}</p>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.h2 != blank %}
+        <div class="qs-35b-item">
+          {% if block.settings.type == 'check' %}
+            {{ icon }}
+          {% else %}
+            <div class="qs-35b-icon-box">
+              <span>02</span>
+            </div>
+          {% endif %}
+          <div class="qs-35b-text-content">
+            <h3 class="qs-35b-item-heading">{{ block.settings.h2 }}</h3>
+            <p class="qs-35b-item-desc">{{ block.settings.p2 }}</p>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.h3 != blank %}
+        <div class="qs-35b-item">
+          {% if block.settings.type == 'check' %}
+            {{ icon }}
+          {% else %}
+            <div class="qs-35b-icon-box">
+              <span>03</span>
+            </div>
+          {% endif %}
+          <div class="qs-35b-text-content">
+            <h3 class="qs-35b-item-heading">{{ block.settings.h3 }}</h3>
+            <p class="qs-35b-item-desc">{{ block.settings.p3 }}</p>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.h4 != blank %}
+        <div class="qs-35b-item">
+          {% if block.settings.type == 'check' %}
+            {{ icon }}
+          {% else %}
+            <div class="qs-35b-icon-box">
+              <span>04</span>
+            </div>
+          {% endif %}
+          <div class="qs-35b-text-content">
+            <h3 class="qs-35b-item-heading">{{ block.settings.h4 }}</h3>
+            <p class="qs-35b-item-desc">{{ block.settings.p4 }}</p>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if block.settings.h4 != blank %}
+        <div class="qs-35b-item">
+          {% if block.settings.type == 'check' %}
+            {{ icon }}
+          {% else %}
+            <div class="qs-35b-icon-box">
+              <span>05</span>
+            </div>
+          {% endif %}
+          <div class="qs-35b-text-content">
+            <h3 class="qs-35b-item-heading">{{ block.settings.h5 }}</h3>
+            <p class="qs-35b-item-desc">{{ block.settings.p5 }}</p>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% comment %} Styles moved to sereluna.css {% endcomment %}

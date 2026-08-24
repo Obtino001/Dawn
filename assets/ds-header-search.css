@@ -13,7 +13,7 @@
   position: fixed !important;
   left: 0 !important;
   right: 0 !important;
-  top: 0;
+  top: var(--ds-search-top, 0);
   bottom: auto !important;
   width: 100% !important;
   height: 0;
@@ -22,10 +22,10 @@
   opacity: 1;
   visibility: hidden;
   pointer-events: none;
-  z-index: 20;
+  z-index: 21;
   margin: 0 !important;
   padding: 0 !important;
-  background: #fff !important;
+  background: #F6F5F0;
   border: 0 !important;
   border-radius: 0 !important;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
@@ -34,20 +34,23 @@
   justify-content: flex-start !important;
   line-height: normal !important;
   overflow: hidden;
-  will-change: height;
-  transform: translateZ(0);
-  backface-visibility: hidden;
 }
 
-/* Open state is driven by JS (.is-open) for smooth 0 → auto height */
-.ds-header-search .ds-search-panel.is-open {
+.ds-header-search details:not([open]) > .ds-search-panel {
+  visibility: hidden !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+.ds-header-search details[open] > .ds-search-panel,
+.ds-header-search details[open] > .ds-search-panel.is-open,
+.ds-header-search details[open] > .ds-search-panel.is-animating {
   visibility: visible !important;
   pointer-events: auto !important;
-}
-
-.ds-header-search .ds-search-panel.is-open:not(.is-animating) {
-  height: auto;
-  overflow: hidden;
+  height: auto !important;
+  max-height: min(90vh, calc(100dvh - var(--ds-search-top, 7rem))) !important;
+  overflow: auto !important;
 }
 
 /* Keep header search icon stable (close only inside panel, like Derma Space) */
@@ -60,30 +63,20 @@
 }
 
 /* Keep header stable while search is open (no sticky hide/show flicker) */
-.section-header.ds-search-header-pinned {
-  transform: translateY(0) !important;
+.section-header.ds-search-header-pinned,
+.section-header.ds-search-header-pinned sticky-header,
+.section-header.ds-search-header-pinned .header-wrapper,
+.section-header.ds-search-header-pinned .header {
+  transform: none !important;
 }
 
 .section-header.ds-search-header-pinned.shopify-section-header-hidden {
-  transform: translateY(0) !important;
+  transform: none !important;
+  top: 0 !important;
 }
 
 .ds-header-search .modal-overlay {
   display: none !important;
-}
-
-.ds-header-search details[open] .modal-overlay {
-  display: block !important;
-  position: fixed !important;
-  inset: 0;
-  top: 0;
-  z-index: -1;
-  background: transparent !important;
-}
-
-.ds-header-search details[open] .modal-overlay::after {
-  display: none !important;
-  content: none !important;
 }
 
 .ds-search-panel__inner {
@@ -93,7 +86,6 @@
   max-width: var(--page-width);
   height: auto !important;
   margin: 0 auto;
-  padding: 0 2rem !important;
   box-sizing: border-box;
 }
 
@@ -129,7 +121,7 @@
 .ds-search-form__icon {
   position: absolute;
   top: 50%;
-  left: 1.2rem;
+  left: 2.2rem;
   transform: translateY(-50%);
   width: 2rem;
   height: 2rem;
@@ -149,7 +141,7 @@
   -webkit-appearance: none;
   background: #faf9f7 !important;
   border: 1px solid #e6e6e6 !important;
-  border-radius: 0.6rem !important;
+  border-radius: 3.6rem !important;
   padding: 1.6rem 1.6rem 1.6rem 4.2rem !important;
   font-size: 1.4rem !important;
   line-height: 1.4 !important;
@@ -181,24 +173,93 @@
   display: inline-flex !important;
   align-items: center;
   justify-content: center;
-  padding: 0.6rem;
+  gap: 0.6rem;
+  padding: 0.8rem 1.2rem !important;
   background: transparent !important;
   border: 0 !important;
   cursor: pointer;
-  line-height: 0;
+  line-height: 1;
   position: static !important;
   margin: 0 !important;
   width: auto !important;
+  min-width: 4.4rem;
+  min-height: 4.4rem;
   height: auto !important;
+  color: #111 !important;
+  z-index: 3;
+  pointer-events: auto !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.ds-search-form__close-text {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #111;
 }
 
 .ds-search-form__close:hover {
-  opacity: 0.9;
+  opacity: 0.7;
 }
 
 .ds-search-form__close svg {
-  width: 2rem;
-  height: 2rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  display: block;
+}
+
+.ds-search-backdrop {
+  display: none;
+}
+
+.ds-header-search details[open] > .ds-search-backdrop {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 18;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+}
+
+.ds-search-close-float {
+  display: none;
+}
+
+.ds-header-search details[open] > .ds-search-close-float {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  position: fixed;
+  top: 1.2rem;
+  right: 1.2rem;
+  z-index: 42;
+  min-width: 4.4rem;
+  min-height: 4.4rem;
+  padding: 0.8rem 1.2rem;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  color: #111;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.ds-header-search details[open] > .ds-search-close-float svg {
+  width: 1.6rem;
+  height: 1.6rem;
+  display: block;
 }
 
 /* Discovery layout */
@@ -237,7 +298,6 @@
 /* Mobile: same stacked layout as Derma Space */
 @media screen and (max-width: 989px) {
   .ds-search-panel__inner {
-    padding: 0 1.6rem !important;
     max-height: 100%;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -256,7 +316,7 @@
     position: sticky;
     top: 0;
     z-index: 2;
-    background: #fff;
+    /* background: #fff; */
   }
 
   .ds-search-form__input {
@@ -424,7 +484,6 @@
   margin-bottom: 0.8rem;
   overflow: hidden;
   border-radius: 0.4rem;
-  aspect-ratio: 658 / 955;
   background: #f3f3f3;
 }
 
@@ -520,6 +579,12 @@
 /* Keep sticky header above page while search is open */
 .section-header:has(.ds-header-search details[open]) {
   z-index: 30;
+  overflow: visible !important;
+}
+
+.section-header:has(.ds-header-search details[open]) sticky-header,
+.section-header:has(.ds-header-search details[open]) .header-wrapper {
+  overflow: visible !important;
 }
 
 /* Kill Dawn's default search-modal rules when our panel is used */
@@ -529,4 +594,156 @@
 .ds-header-search .search-modal__content-top {
   height: auto !important;
   min-height: 0 !important;
+}
+
+.predictive-search__results-groups-wrapper {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 3rem;
+  padding: 1.5rem 0 2rem;
+  border-bottom: none;
+}
+
+@media screen and (max-width: 989px) {
+  .predictive-search__results-groups-wrapper {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.ds-predictive-queries {
+  border-right: 1px solid #e5e5e5;
+  padding-right: 2.5rem;
+}
+
+@media screen and (max-width: 989px) {
+  .ds-predictive-queries {
+    border-right: none;
+    padding-right: 0;
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 1.5rem;
+  }
+}
+
+.ds-predictive-queries__heading {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #000;
+  margin: 0 0 1.2rem 0;
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: inherit;
+}
+
+.ds-predictive-queries__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ds-predictive-queries__item {
+  margin-bottom: 0.4rem;
+}
+
+.ds-predictive-queries__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  color: #212121;
+  font-size: 1.4rem;
+  padding: 0.6rem 0;
+  transition: color 0.15s ease;
+}
+
+.ds-predictive-queries__link:hover {
+  color: #000;
+}
+
+.ds-predictive-queries__left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ds-predictive-queries__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  color: #111;
+}
+
+.ds-predictive-queries__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  color: #666;
+}
+
+.ds-predictive-products__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.ds-predictive-products__heading {
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #000;
+  margin: 0;
+  font-family: inherit;
+}
+
+.ds-predictive-products__see-all {
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #000;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.ds-predictive-products__see-all:hover {
+  opacity: 0.7;
+}
+
+.ds-predictive-products__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+@media screen and (max-width: 1100px) {
+  .ds-predictive-products__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .ds-predictive-products__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+.ds-predictive-product-item .card-wrapper {
+  height: 100%;
+}
+
+.ds-predictive-product-item .card__media {
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.ds-predictive-product-item .card__content {
+  padding-top: 0.8rem;
 }

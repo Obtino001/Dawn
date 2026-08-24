@@ -1,0 +1,31 @@
+<div class="lx_productCard_main" data-url="{{ product_obj.url }}">
+    <div class="recommendation-item">
+        <a href="{{ product_obj.url }}" class="recommendation-item_image">
+            <img src="{{ product_obj.featured_image | image_url  }}" width="auto" height="auto" loading="lazy" alt="{{ product_obj.title }}">
+        </a>
+        <div class="cart__drawer__re_info">
+            <a href="{{ product_obj.url }}" class="cart__drawer__re_info_left">
+                <h3>{{ product_obj.title }}</h3>
+                <div class="recom___price">
+                    {%- render 'price',
+                        product: product_obj,
+                        use_variant: true,
+                        show_badges: true,
+                        price_class: 'price--large'
+                    -%}
+                </div>
+            </a>
+            {%- assign product_form_id = 'product-form-' | append: product.id -%}
+
+            <div class="cart__drawer__re_info_right">
+                {%- render 'buy-buttons',
+                    block: block,
+                    product: product_obj,
+                    product_form_id: product_form_id,
+                    section_id: section.id,
+                    show_pickup_availability: true
+                -%}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+{% if settings.show_recommendations and settings.recommended_products != blank %}
+    <swiper-component
+        data-desktop-slides="auto"
+        data-desktop-spacebetween="20"
+        data-desktop-arrows="false"
+        data-desktop-pagination="false"
+        data-desktop-loop="false"
+
+        data-mobile-slides="auto"
+        data-mobile-spacebetween="10"
+        data-mobile-arrows="false"
+        data-mobile-pagination="false"
+        data-mobile-loop="false"
+        class="swiper--desktop swiper--tablet"
+    >
+        <h5>{{ settings.recommendations_heading }}</h5>
+        <div class="swiper-wrapper">
+        {% for product in settings.recommended_products %}
+            <div class="swiper-slide upsell_col">
+                {% render 'lx_productCard', product_obj: product %}
+            </div>
+            {%- endfor -%}
+        </div>
+    </swiper-component>
+{% endif %}

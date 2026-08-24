@@ -1,0 +1,118 @@
+{%- doc -%}
+  Skin Bay–style mobile menu row: thumbnail + title + chevron.
+  Accepts a Shopify navigation `link`, or custom title/url/image for mega menu slots.
+
+  @param {object} [link] - Navigation link
+  @param {string} [title] - Custom label
+  @param {string} [url] - Custom URL
+  @param {object} [image] - Custom image
+  @param {string} [chevron] - 'inside' (default) or 'none'
+  @param {string} [panel_id] - When set, renders a button that opens this panel
+{%- enddoc -%}
+
+{%- liquid
+  assign nlk_title = title
+  if nlk_title == blank and link != blank
+    assign nlk_title = link.title
+  endif
+
+  assign nlk_url = url
+  if nlk_url == blank and link != blank
+    assign nlk_url = link.url
+  endif
+
+  assign nlk_img = image
+  assign nlk_alt = nlk_title | escape
+  assign nlk_current = false
+  if link != blank and link.current
+    assign nlk_current = true
+  endif
+
+  if nlk_img == blank and link != blank
+    if link.type == 'collection_link' and link.object != blank
+      if link.object.image != blank
+        assign nlk_img = link.object.image
+      else
+        assign nlk_first = link.object.products.first
+        if nlk_first != blank and nlk_first.featured_image != blank
+          assign nlk_img = nlk_first.featured_image
+        endif
+      endif
+    elsif link.type == 'product_link' and link.object.featured_image != blank
+      assign nlk_img = link.object.featured_image
+    elsif link.type == 'article_link' and link.object.image != blank
+      assign nlk_img = link.object.image
+    elsif link.url contains '/collections/'
+      assign nlk_handle = link.url | split: '/collections/' | last | split: '?' | first | split: '/' | first
+      assign nlk_col = collections[nlk_handle]
+      if nlk_col != blank
+        if nlk_col.image != blank
+          assign nlk_img = nlk_col.image
+        else
+          assign nlk_first = nlk_col.products.first
+          if nlk_first != blank and nlk_first.featured_image != blank
+            assign nlk_img = nlk_first.featured_image
+          endif
+        endif
+      endif
+    endif
+
+    if nlk_img == blank
+      assign nlk_title_handle = nlk_title | handleize
+      assign nlk_by_title = collections[nlk_title_handle]
+      if nlk_by_title != blank
+        if nlk_by_title.image != blank
+          assign nlk_img = nlk_by_title.image
+        else
+          assign nlk_first = nlk_by_title.products.first
+          if nlk_first != blank and nlk_first.featured_image != blank
+            assign nlk_img = nlk_first.featured_image
+          endif
+        endif
+      endif
+    endif
+  endif
+
+  if chevron == blank
+    assign chevron = 'inside'
+  endif
+
+  assign nlk_title_handle = nlk_title | handleize
+  assign nlk_is_sale = false
+  if nlk_title_handle == 'sale'
+    assign nlk_is_sale = true
+  endif
+-%}
+
+{%- if panel_id != blank -%}
+<button
+  type="button"
+  class="nlk-row nlk-row--trigger{% if nlk_current %} nlk-row--current{% endif %}"
+  data-nlk-open="{{ panel_id }}"
+  aria-label="{{ nlk_alt }}"
+>
+{%- else -%}
+<a
+  href="{{ nlk_url | default: '#' }}"
+  class="nlk-row{% if nlk_current %} nlk-row--current{% endif %}"
+  {% if nlk_current %}aria-current="page"{% endif %}
+>
+{%- endif -%}
+  <span class="nlk-thumb{% if nlk_is_sale %} nlk-thumb--sale{% endif %}">
+    {%- if nlk_img != blank -%}
+      {{ nlk_img | image_url: width: 160, height: 160, crop: 'center' | image_tag: loading: 'lazy', alt: nlk_alt }}
+    {%- elsif nlk_is_sale -%}
+      <span class="nlk-thumb__text">Sale</span>
+    {%- endif -%}
+  </span>
+  <span class="nlk-label">{{ nlk_title | escape }}</span>
+  {%- if chevron == 'inside' -%}
+    <span class="nlk-chevron" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </span>
+  {%- endif -%}
+{%- if panel_id != blank -%}
+</button>
+{%- else -%}
+</a>
+{%- endif -%}

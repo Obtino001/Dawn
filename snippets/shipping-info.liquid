@@ -1,0 +1,117 @@
+{%- style -%}
+  .stock-block-{{ block.id }} {
+    margin-block: {{ block.settings.padding_bottom }}px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-family: inherit;
+  }
+
+  .stock-block-{{ block.id }} .info-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  /* Icon wrapper */
+  .stock-block-{{ block.id }} .info-icon {
+    width: {{ block.settings.icon_width }}px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .stock-block-{{ block.id }} .info-icon img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Fallback Green Dot Style */
+  .green-dot-fallback {
+    width: 10px;
+    height: 10px;
+    background-color: #26D07C;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px #d9fbe8;
+  }
+
+  /* Text Styling */
+  .stock-block-{{ block.id }} .info-text {
+    font-size: {{ block.settings.font_size }}px;
+    color: {{ block.settings.text_color }};
+    line-height: 1.2;
+    font-weight: 400; 
+    letter-spacing: 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  
+  /* Bold "In Stock" styling */
+  .stock-status-bold {
+    font-weight: 700;
+    color: {{ block.settings.text_color }};
+  }
+
+  .dynamic-date {
+     font-weight: 400;
+  }
+{%- endstyle -%}
+
+<div class="stock-block-{{ block.id }}" {{ block.shopify_attributes }}>
+  <div class="info-row">
+    <div class="info-icon">
+      {%- if block.settings.icon_image != blank -%}
+        {{ block.settings.icon_image | image_url: width: 100 | image_tag: loading: 'lazy' }}
+      {%- else -%}
+        <div class="green-dot-fallback"></div>
+      {%- endif -%}
+    </div>
+
+    <div class="info-text">
+      <span class="stock-status-bold">{{ block.settings.status_text }}</span> 
+      {{ block.settings.pre_date_text }} 
+      
+      {%- if block.settings.date_type == 'dynamic' -%}
+        <span class="dynamic-date" id="date-{{ block.id }}">...</span>
+      {%- else -%}
+        <span class="dynamic-date">{{ block.settings.hardcoded_text }}</span>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{%- if block.settings.date_type == 'dynamic' -%}
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const deliveryDaysEnd = parseInt({{ block.settings.delivery_days | default: 8 }}); 
+    const deliveryDaysStart = deliveryDaysEnd - 2; 
+    
+    const today = new Date();
+    
+    // Calculate Start Date
+    const startDate = new Date();
+    startDate.setDate(today.getDate() + deliveryDaysStart);
+    
+    // Calculate End Date
+    const endDate = new Date();
+    endDate.setDate(today.getDate() + deliveryDaysEnd);
+    
+    // Formatting function
+    const formatDate = (date) => date.getDate();
+    const month = endDate.toLocaleString('en-GB', { month: 'short' }).toLowerCase();
+    const year = endDate.getFullYear();
+    
+    const dateElement = document.getElementById("date-{{ block.id }}");
+    
+    if(dateElement) {
+      dateElement.textContent = `${formatDate(startDate)} - ${formatDate(endDate)} ${month}, ${year}`;
+    }
+  });
+</script>
+{%- endif -%}

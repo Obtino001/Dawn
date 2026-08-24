@@ -1,0 +1,171 @@
+{%- style -%}
+  .block-{{ block.id }} {
+    padding-top: {{ block.settings.padding_top }}px;
+    padding-bottom: {{ block.settings.padding_bottom }}px;
+    color: rgb(var(--color-foreground));
+    background-color: rgb(var(--color-background));
+  }
+
+  .block-{{ block.id }} .icon-wrapper svg, 
+  .block-{{ block.id }} .icon-wrapper img {
+    width: {{ block.settings.icon_width }}px;
+    height: auto;
+    display: block;
+  }
+
+  .block-{{ block.id }} .icon-wrapper svg path {
+    stroke: currentColor; /* Matches the text color automatically */
+  }
+
+  .i-w-t-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  @media (max-width: 768px){
+  .block-{{ block.id }} .icon-wrapper svg, 
+  .block-{{ block.id }} .icon-wrapper img {
+    width: 70px;
+    height: auto;
+    display: block;
+  }
+  .i-w-t-wrapper {
+    gap: 0.5rem;
+  }
+  .accordion.i-w-t {
+    padding-top: 20px;
+}
+.image-with-text__content {
+    padding: 0rem calc(4rem / var(--font-body-scale)) 5rem;
+}
+  }
+{%- endstyle -%}
+
+<div class="accordion i-w-t block-{{ block.id }} color-{{ block.settings.color_scheme }} gradient" {{ block.shopify_attributes }}>
+  <div class="i-w-t-wrapper">
+    
+    <div class="icon-wrapper">
+      {%- if block.settings.custom_svg_code != blank -%}
+        {{ block.settings.custom_svg_code }}
+      {%- elsif block.settings.custom_icon_image != blank -%}
+        {{ block.settings.custom_icon_image | image_url: width: block.settings.icon_width | image_tag: loading: 'lazy', class: 'icon-accordion-custom' }}
+      {%- elsif block.settings.icon != 'none' -%}
+        {% render 'icon-accordion', icon: block.settings.icon %}
+      {%- endif -%}
+    </div>
+
+    <div class="content-wrapper">
+      <div class="accordion__title inline-richtext">
+        {{ block.settings.heading | escape }}
+      </div>
+      {%- if block.settings.text != blank -%}
+        <div class="rte accordion__desc">{{ block.settings.text }}</div>
+      {%- endif -%}
+    </div>
+
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Icon with text",
+  "class": "w-full",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "default": "Icon with text heading",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h4", "label": "Small" },
+        { "value": "h3", "label": "Medium" },
+        { "value": "h2", "label": "Large" }
+      ],
+      "default": "h4",
+      "label": "Heading size"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Add descriptive text here to explain your icon.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Icon Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_icon_image",
+      "label": "Custom Icon Image",
+      "info": "Upload PNG/JPG if not using SVG code."
+    },
+    {
+      "type": "range",
+      "id": "icon_width",
+      "min": 10,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "label": "Icon Width",
+      "default": 30
+    },
+    {
+      "type": "select",
+      "id": "icon",
+      "label": "Theme Icon Picker",
+      "info": "Used only if both SVG code and Image are empty.",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "apple", "label": "Apple" },
+        { "value": "check_mark", "label": "Check Mark" },
+        { "value": "heart", "label": "Heart" },
+        { "value": "leaf", "label": "Leaf" },
+        { "value": "map_pin", "label": "Map Pin" },
+        { "value": "return", "label": "Return" },
+        { "value": "truck", "label": "Truck" }
+      ],
+      "default": "check_mark"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 16
+    }
+  ],
+  "presets": [
+    {
+      "name": "Icon with text",
+      "category": "Global"
+    }
+  ]
+}
+{% endschema %}

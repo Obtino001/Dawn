@@ -1,0 +1,352 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .faqrs-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .faqrs-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .faqrs-grid.faqrs-grid--no-heading {
+      grid-template-columns: minmax(0, 800px);
+      justify-content: center;
+    }
+  }
+
+  .faqrs-heading {
+    margin: 0;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 500;
+    letter-spacing: 0px;
+    line-height: 1.1;
+  }
+
+  .faqrs-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .faqrs-item {
+    display: block;
+    border-bottom: 1px solid rgba(var(--color-foreground), 0.08);
+  }
+
+  .faqrs-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 24px;
+    padding: 15px 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: 17.6px;
+    color: currentColor;
+    transition: opacity 0.2s ease;
+  }
+
+  .faqrs-question:hover {
+    opacity: 0.8;
+  }
+
+  .faqrs-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .faqrs-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .faqrs-icon-minus {
+    display: none;
+  }
+
+  faq-item.faqrs-active .faqrs-icon-plus {
+    display: none;
+  }
+  
+  faq-item.faqrs-active .faqrs-icon-minus {
+    display: flex;
+  }
+
+  .faqrs-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .faqrs-answer-inner {
+    padding-bottom: 24px;
+    padding-left: 48px;
+    font-size: 15.2px;
+    line-height: 1.6;
+    color: rgba(var(--color-foreground), 0.75);
+  }
+  
+  .faqrs-answer-inner p {
+    margin: 0;
+  }
+{%- endstyle -%}
+
+<div class="section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} gradient" id="product-faq">
+  <div class="faqrs-container page-width">
+    <div class="faqrs-grid {% if section.settings.heading == blank %}faqrs-grid--no-heading{% endif %}">
+      
+      {%- if section.settings.heading != blank -%}
+        <div class="faqrs-grid-left">
+          <h2 class="hero-features__heading {{ section.settings.heading_size }}">{{ section.settings.heading | newline_to_br }}</h2>
+        </div>
+      {%- endif -%}
+
+      <div class="faqrs-grid-right">
+        <div class="faqrs-list">
+          {%- for block in section.blocks -%}
+            <faq-item class="faqrs-item" {{ block.shopify_attributes }}>
+              <div class="faqrs-question" aria-expanded="false">
+                <span class="faqrs-icon faqrs-icon-plus">
+                  <!-- Added xmlns attribute here -->
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <rect x="2" y="2" width="20" height="20" rx="4"></rect>
+                    <line x1="12" y1="8" x2="12" y2="16"></line>
+                    <line x1="8" y1="12" x2="16" y2="12"></line>
+                  </svg>
+                </span>
+                <span class="faqrs-icon faqrs-icon-minus">
+                  <!-- Added xmlns attribute here -->
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <rect x="2" y="2" width="20" height="20" rx="4"></rect>
+                    <line x1="8" y1="12" x2="16" y2="12"></line>
+                  </svg>
+                </span>
+                <span class="faqrs-q-text">{{ block.settings.question | escape }}</span>
+              </div>
+              
+              <div class="faqrs-answer">
+                <div class="faqrs-answer-inner">
+                  {{ block.settings.answer }}
+                </div>
+              </div>
+            </faq-item>
+          {%- endfor -%}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  if (!customElements.get('faq-item')) {
+    class FAQItem extends HTMLElement {
+      constructor() {
+        super();
+        this.handleToggle = this.handleToggle.bind(this);
+      }
+
+      connectedCallback() {
+        this.question = this.querySelector(".faqrs-question");
+        this.answer = this.querySelector(".faqrs-answer");
+        if (this.question && this.answer) {
+          this.question.addEventListener("click", this.handleToggle);
+        }
+      }
+
+      disconnectedCallback() {
+        if (this.question) {
+          this.question.removeEventListener("click", this.handleToggle);
+        }
+      }
+
+      handleToggle() {
+        const isActive = this.classList.contains("faqrs-active");
+        const allItems = document.querySelectorAll("faq-item");
+        
+        allItems.forEach(item => item.close());
+        
+        if (!isActive) {
+          this.open();
+        }
+      }
+
+      open() {
+        this.classList.add("faqrs-active");
+        this.answer.style.maxHeight = this.answer.scrollHeight + "px";
+        this.question.setAttribute("aria-expanded", "true");
+      }
+
+      close() {
+        this.classList.remove("faqrs-active");
+        if (this.answer) {
+          this.answer.style.maxHeight = null;
+        }
+        if (this.question) {
+          this.question.setAttribute("aria-expanded", "false");
+        }
+      }
+    }
+    customElements.define("faq-item", FAQItem);
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Custom FAQ Split",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "FREQUENTLY ASKED\nQUESTIONS",
+      "info": "Leave blank to center the FAQ list"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+            { "value": "h2", "label": "Small" },
+            { "value": "h1", "label": "Medium" },
+            { "value": "h0", "label": "Large" },
+            { "value": "hxl", "label": "Extra Large" },
+            { "value": "hxxl", "label": "Extra Extra Large" }
+          ],
+      "default": "h1",
+      "label": "Heading Size"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Question text goes here?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Answer text goes here. Provide a clear and concise response.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom FAQ Split",
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What kind of performance can I expect?",
+            "answer": "<p>Our devices feature state-of-the-art processors designed for seamless multitasking, high-speed gaming, and lightning-fast app loading times.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What battery life can I expect on a full charge?",
+            "answer": "<p>Depending on the model and usage patterns, you can typically expect an all-day battery life, ranging from 12 to 18 hours on a single charge.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "How long does the device take to charge?",
+            "answer": "<p>With our advanced fast-charging technology, a full charge takes approximately 1 to 2 hours using the included standard adapter.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Are these devices travel-friendly?",
+            "answer": "<p>Yes, our gadgets are designed with portability in mind, featuring lightweight materials and slim profiles that easily fit into any backpack or carry-on.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What warranty do I get?",
+            "answer": "<p>All our electronic devices come with a standard 1-year warranty covering manufacturing defects and internal hardware failures.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Do you provide technical support or repair services?",
+            "answer": "<p>Yes, we have certified repair centers and provide 24/7 online technical support to ensure your devices are always running at their best.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Can I return the device if I'm not satisfied?",
+            "answer": "<p>We offer a 30-day money-back guarantee. If you're not completely satisfied with your gadget, you can return it for a full refund.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,76 @@
+<div class="shop-cat__section">
+  <div class="shop-cat__list">
+    {%- for i in (1..6) -%}
+      {%- assign col_id = 'collection_' | append: i -%}
+      {%- assign title_id = 'custom_title_' | append: i -%}
+      {%- assign desc_id = 'custom_desc_' | append: i -%}
+      
+      {%- assign col = block.settings[col_id] -%}
+      {%- assign custom_title = block.settings[title_id] -%}
+      {%- assign custom_desc = block.settings[desc_id] -%}
+
+      {%- if col != blank -%}
+          <div class="shop-cat__text-stack">
+              <a href="{{ col.url }}" class="shop-cat__link-item">
+            <span class="shop-cat__label">
+              {%- if custom_title != blank -%}{{ custom_title }}{%- else -%}{{ col.title }}{%- endif -%}
+            </span>
+        </a>
+            <div class="shop-cat__subtext">
+              {%- if custom_desc != blank -%}{{ custom_desc }}{%- else -%}{{ col.description }}{%- endif -%}
+            </div>
+          </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+<style>
+
+  .shop-cat__list {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .shop-cat__link-item {
+    text-decoration: none !important;
+    display: block;
+    color: inherit;
+    transition: opacity 0.2s ease-in-out;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 6px;
+  }
+
+  .shop-cat__link-item:hover {
+    opacity: 0.6;
+  }
+
+  .shop-cat__text-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .shop-cat__label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    line-height: 1.2;
+    display: block;
+  }
+
+  .shop-cat__subtext *{
+    font-size: 15px;
+    font-weight: 400;
+    color: #7d7d7d;
+    line-height: 1.4;
+    margin: 0px;
+    text-decoration: none;
+  }
+  .shop-cat__subtext a:hover{
+    color: #000;
+  }
+</style>

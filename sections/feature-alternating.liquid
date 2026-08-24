@@ -1,0 +1,477 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 990px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+  .custom-alternating-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: var(--page-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--page-gutter, 1.5rem);
+    padding-right: var(--page-gutter, 1.5rem);
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  .alternating-row { display: flex; flex-wrap: wrap; width: 100%; align-items: center; }
+  .alternating-row.layout-right { flex-direction: row-reverse; }
+  .alternating-image { width: 50%; font-size: 0; position: relative; }
+  .alternating-image img, .alternating-image video { width: 100%; height: 100%; display: block; }
+
+  /* Media Fit Options */
+  .alternating-image img.img-fit-contain, .alternating-image video.img-fit-contain { object-fit: contain; }
+  .alternating-image img.img-fit-cover, .alternating-image video.img-fit-cover { object-fit: cover; }
+  .alternating-image video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    aspect-ratio: 1.1;
+    border-radius: 10px;
+  }
+  .alternating-image svg { width: 100%; height: 100%; background-color: rgba(var(--color-foreground), 0.05); }
+  .alternating-content { width: 50%; padding: 5rem clamp(2rem, 4vw, 5rem); box-sizing: border-box; }
+  .alternating-heading { font-family: inherit; font-size: 35.2px; font-weight: 900; text-transform: uppercase; margin-bottom: 24px; line-height: 1.1; letter-spacing: -0.02em; }
+  .alternating-timeline { list-style: none; padding: 0; margin: 0; }
+  .timeline-item { position: relative; padding-left: 40px; padding-bottom: 48px; font-size: 16.8px; line-height: 1.6; color: currentColor; opacity: 0.85; }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-item::before { content: ''; position: absolute; left: 0; top: 6.4px; width: 14px; height: 14px; background-color: #FFD100; border-radius: 50%; z-index: 2; }
+  .timeline-item:not(:last-child)::after { content: ''; position: absolute; left: 6px; top: 22.4px; bottom: -3.2px; width: 2px; background-color: rgba(var(--color-foreground), 0.15); z-index: 1; }
+  
+  /* Fixed invalid CSS values here */
+  .alternating-text { font-weight: 400; font-style: normal; font-size: 16px; line-height: 150%; max-width: 500px; }
+  
+  .feature-list-wrapper { margin-bottom: 32px; }
+  .list-heading { font-size: 15.2px; font-weight: 500; color: currentColor; margin-bottom: 12.8px; }
+  .check-list { list-style: none; padding: 0; margin: 0; }
+  .check-list-item { display: flex; align-items: flex-start; gap: 12px; font-size: 15.2px; color: currentColor; opacity: 0.85; margin-bottom: 12.8px; line-height: 1.4; }
+  .check-icon { flex-shrink: 0; width: 20px; height: 20px; margin-top: 2px; }
+
+  /* Button Group Layout */
+  .button-group { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 24px; }
+
+  @media screen and (max-width: 990px) {
+    .timeline-item { font-size: 14px; }
+    .alternating-row { flex-direction: column !important; margin-bottom: 32px; }
+    .alternating-image, .alternating-content { width: 100%; }
+    .alternating-content { padding: 2.4rem 0; }
+    .alternating-heading { font-size: 25.6px; margin-bottom: 16px; }
+    .alternating-text { font-size: 13.6px; margin-bottom: 19.2px; }
+    .check-list-item { font-size: 13.6px; gap: 8px; }
+    .custom-alternating-section .hero-features__heading { text-align: left; }
+    .check-icon { width: 16px; height: 16px; }
+  }
+{%- endstyle -%}
+
+<section class="custom-alternating-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} gradient">
+  {% for block in section.blocks %}
+    {%- capture media_fit_class -%}img-fit-{{ block.settings.image_fit }}{%- endcapture -%}
+    
+    <div class="alternating-row color-{{ block.settings.color_scheme }} gradient {% if block.settings.layout == 'right' %}layout-right{% endif %}" {{ block.shopify_attributes }}>
+      
+      <div class="alternating-image">
+        {% if block.settings.video != blank %}
+          {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: media_fit_class }}
+        {% elsif block.settings.image != blank %}
+          {{ block.settings.image | image_url: width: 1500 | image_tag: loading: 'lazy', class: media_fit_class, sizes: '(min-width: 990px) 50vw, 100vw' }}
+        {% else %}
+          {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+      </div>
+
+      <div class="alternating-content">
+        {% if block.settings.heading != blank %}
+          <h2 class="hero-features__heading {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>{{ block.settings.heading | escape }}</h2>
+        {% endif %}
+
+        {% if block.type == 'timeline_row' %}
+          <ul class="alternating-timeline">
+            {% if block.settings.bullet_1 != blank %}
+              <li class="timeline-item">{{ block.settings.bullet_1 }}</li>
+            {% endif %}
+            {% if block.settings.bullet_2 != blank %}
+              <li class="timeline-item">{{ block.settings.bullet_2 }}</li>
+            {% endif %}
+          </ul>
+
+        {% elsif block.type == 'text_row' %}
+          {% if block.settings.text != blank %}
+            <div class="alternating-text">
+              {{ block.settings.text }}
+            </div>
+          {% endif %}
+
+        {% elsif block.type == 'feature_block' %}
+          {% if block.settings.text != blank %}
+            <div class="alternating-text">
+              {{ block.settings.text }}
+            </div>
+          {% endif %}
+
+          {% if block.settings.list_item_1 != blank or block.settings.list_item_2 != blank or block.settings.list_item_3 != blank or block.settings.list_item_4 != blank %}
+            <div class="feature-list-wrapper">
+              {% if block.settings.list_heading != blank %}
+                <div class="list-heading">{{ block.settings.list_heading }}</div>
+              {% endif %}
+              
+              <ul class="check-list">
+                {% for i in (1..4) %}
+                  {% capture list_item_key %}list_item_{{ i }}{% endcapture %}
+                  {% assign list_item = block.settings[list_item_key] %}
+                  
+                  {% if list_item != blank %}
+                    <li class="check-list-item">
+                      <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M8 12L11 15L16 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      {{ list_item }}
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+
+          {% if block.settings.button_label != blank or block.settings.button_label_2 != blank %}
+            <div class="button-group">
+              {% if block.settings.button_label != blank %}
+                <a href="{{ block.settings.button_link }}" class="button button--primary">
+                  {{ block.settings.button_label }}
+                </a>
+              {% endif %}
+              {% if block.settings.button_label_2 != blank %}
+                <a href="{{ block.settings.button_link_2 }}" class="button button--secondary">
+                  {{ block.settings.button_label_2 }}
+                </a>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endif %}
+      </div>
+      
+    </div>
+  {% endfor %}
+</section>
+
+{% schema %}
+{
+  "name": "Alternating Features",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "timeline_row",
+      "name": "Timeline Row",
+      "settings": [
+        {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "Color scheme",
+          "default": "scheme-1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video (Overrides Image)"
+        },
+        {
+          "type": "select",
+          "id": "image_fit",
+          "label": "Media Fit",
+          "options": [
+            { "value": "contain", "label": "Contain" },
+            { "value": "cover", "label": "Cover" }
+          ],
+          "default": "contain"
+        },
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "Media Placement",
+          "options": [
+            { "value": "left", "label": "Media on Left" },
+            { "value": "right", "label": "Media on Right" }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "FROM A STARTUP TO A PREMIER GADGET DESTINATION"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            { "value": "h2", "label": "Small" },
+            { "value": "h1", "label": "Medium" },
+            { "value": "h0", "label": "Large" },
+            { "value": "hxl", "label": "Extra Large" },
+            { "value": "hxxl", "label": "Extra Extra Large" }
+          ],
+          "default": "h0",
+          "label": "Heading Size"
+        },
+        {
+          "type": "textarea",
+          "id": "bullet_1",
+          "label": "First Bullet Text",
+          "default": "Curating the latest in tech innovation, from smart home devices to portable powerhouses."
+        },
+        {
+          "type": "textarea",
+          "id": "bullet_2",
+          "label": "Second Bullet Text",
+          "default": "Empowering our customers with next-generation electronics designed to simplify daily life."
+        }
+      ]
+    },
+    {
+      "type": "text_row",
+      "name": "Text Row",
+      "settings": [
+        {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "Color scheme",
+          "default": "scheme-1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video (Overrides Image)"
+        },
+        {
+          "type": "select",
+          "id": "image_fit",
+          "label": "Media Fit",
+          "options": [
+            { "value": "contain", "label": "Contain" },
+            { "value": "cover", "label": "Cover" }
+          ],
+          "default": "contain"
+        },
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "Media Placement",
+          "options": [
+            { "value": "left", "label": "Media on Left" },
+            { "value": "right", "label": "Media on Right" }
+          ],
+          "default": "right"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "BUILT FOR MODERN TECH ENTHUSIASTS"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            { "value": "h2", "label": "Small" },
+            { "value": "h1", "label": "Medium" },
+            { "value": "h0", "label": "Large" },
+            { "value": "hxl", "label": "Extra Large" },
+            { "value": "hxxl", "label": "Extra Extra Large" }
+          ],
+          "default": "h0",
+          "label": "Heading Size"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>From smart home integration to portable productivity, our devices are designed to seamlessly power your everyday life.</p>"
+        }
+      ]
+    },
+    {
+      "type": "feature_block",
+      "name": "Rich Feature Block",
+      "settings": [
+        {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "Color scheme",
+          "default": "scheme-1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Video (Overrides Image)"
+        },
+        {
+          "type": "select",
+          "id": "image_fit",
+          "label": "Media Fit",
+          "options": [
+            { "value": "contain", "label": "Contain" },
+            { "value": "cover", "label": "Cover" }
+          ],
+          "default": "contain"
+        },
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "Media Placement",
+          "options": [
+            { "value": "left", "label": "Media on Left" },
+            { "value": "right", "label": "Media on Right" }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "COMPREHENSIVE PROTECTION FOR YOUR DEVICES."
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            { "value": "h2", "label": "Small" },
+            { "value": "h1", "label": "Medium" },
+            { "value": "h0", "label": "Large" },
+            { "value": "hxl", "label": "Extra Large" },
+            { "value": "hxxl", "label": "Extra Extra Large" }
+          ],
+          "default": "h0",
+          "label": "Heading Size"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Paragraph Text",
+          "default": "<p>Your tech is an essential part of your daily routine. With our premium care plans, your gadgets are protected against the unexpected.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Checkmark List"
+        },
+        {
+          "type": "text",
+          "id": "list_heading",
+          "label": "List Title",
+          "default": "What's covered:"
+        },
+        {
+          "type": "text",
+          "id": "list_item_1",
+          "label": "List Item 1",
+          "default": "Extended hardware warranty"
+        },
+        {
+          "type": "text",
+          "id": "list_item_2",
+          "label": "List Item 2",
+          "default": "Accidental damage coverage"
+        },
+        {
+          "type": "text",
+          "id": "list_item_3",
+          "label": "List Item 3",
+          "default": "24/7 priority tech support"
+        },
+        {
+          "type": "text",
+          "id": "list_item_4",
+          "label": "List Item 4 (Optional)"
+        },
+        {
+          "type": "header",
+          "content": "Buttons"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Primary Button Label",
+          "default": "EXPLORE CARE PLANS"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Primary Button Link"
+        },
+        {
+          "type": "text",
+          "id": "button_label_2",
+          "label": "Secondary Button Label",
+          "default": "LEARN MORE"
+        },
+        {
+          "type": "url",
+          "id": "button_link_2",
+          "label": "Secondary Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alternating Features",
+      "blocks": [
+        { "type": "feature_block" },
+        { "type": "feature_block", "settings": { "layout": "right", "heading": "UNLEASH NEXT-GENERATION PERFORMANCE" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

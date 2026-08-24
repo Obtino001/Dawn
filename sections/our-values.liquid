@@ -1,0 +1,472 @@
+{% style %}
+  .custom-comparison-wrap-{{ section.id }} {
+    position: relative;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    overflow: hidden;
+  }
+
+  /* Full Width Background Image */
+  .custom-comparison-bg-{{ section.id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  /* Inner Card Container */
+  .custom-comparison-card-{{ section.id }} {
+    position: relative;
+    z-index: 1;
+    background-color: {{ section.settings.card_bg_color }};
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 50px;
+    border-radius: 8px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+  }
+
+  /* Relative wrapper holds the absolute highlight background */
+  .comparison-inner-relative-{{ section.id }} {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Deep Highlight Background Box (Absolutely Positioned) */
+  .comparison-highlight-bg-{{ section.id }} {
+    position: absolute;
+    top: -30px;
+    bottom: -35px;  /* Extended slightly to ensure footer text is covered */
+    left: 22%;      /* Matches column 2 start */
+    width: 34%;     /* Matches column 2 width */
+    background-color: #222222;
+    border-radius: 12px;
+    z-index: -1;    /* Sits perfectly behind the text */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    overflow: hidden;
+  }
+
+  /* Apply same styling to both Image and Video */
+  .comparison-highlight-bg-{{ section.id }} img,
+  .comparison-highlight-bg-{{ section.id }} video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+    pointer-events: none; /* Prevents users from pausing/clicking the video */
+  }
+
+  /* The Grid Setup */
+  .comparison-grid-{{ section.id }} {
+    display: grid;
+    grid-template-columns: 22% 34% 22% 22%; /* Exact column widths */
+    z-index: 1;
+  }
+
+  /* Individual Cells */
+  .comparison-cell-{{ section.id }} {
+    padding: 25px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Borders between rows */
+  .col-1-{{ section.id }}, 
+  .col-3-{{ section.id }}, 
+  .col-4-{{ section.id }} {
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+  }
+  
+  .comparison-last-row-{{ section.id }} {
+    border-bottom: none !important;
+  }
+
+  /* Header specific styling */
+  .comparison-header-{{ section.id }} {
+    font-size: clamp(18px, 2vw, 24px);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-top: 10px;
+    padding-bottom: 25px;
+    line-height: 1;
+    margin: 0;
+  }
+  
+  .col-1-{{ section.id }}.comparison-header-{{ section.id }} {
+    color: #1a1a1a;
+    justify-content: center;
+  }
+
+  .col-2-{{ section.id }}.comparison-header-{{ section.id }} {
+    color: #ffffff;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .col-3-{{ section.id }}.comparison-header-{{ section.id }},
+  .col-4-{{ section.id }}.comparison-header-{{ section.id }} {
+    color: #1a1a1a;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Row Feature Title */
+  .comparison-feature-name-{{ section.id }} {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #1a1a1a;
+  }
+
+  /* Text & Icon Wrapper */
+  .comparison-desc-wrap-{{ section.id }} {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .comparison-icon-{{ section.id }} {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .comparison-icon-{{ section.id }} svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .comparison-desc-text-{{ section.id }} {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.4;
+  }
+
+  .col-2-{{ section.id }} .comparison-desc-text-{{ section.id }} {
+    color: #ffffff;
+  }
+
+  .col-3-{{ section.id }} .comparison-desc-text-{{ section.id }},
+  .col-4-{{ section.id }} .comparison-desc-text-{{ section.id }} {
+    color: #1a1a1a;
+  }
+
+  /* Footer Guarantee Row */
+  .comparison-footer-row-{{ section.id }} {
+    padding-top: 25px;
+    padding-bottom: 20px;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .comparison-footer-text-{{ section.id }} {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* Mobile Handling */
+  @media screen and (max-width: 900px) {
+    .custom-comparison-card-{{ section.id }} {
+      padding: 40px 20px;
+      overflow-x: auto;
+      border-radius: 0;
+    }
+    .comparison-inner-relative-{{ section.id }} {
+      min-width: 850px; /* Forces layout and enables touch scrolling */
+      margin: 20px 0;
+    }
+  }
+{% endstyle %}
+
+<div class="custom-comparison-wrap-{{ section.id }}">
+  
+  <!-- Main Background Image -->
+  {% if section.settings.bg_image != blank %}
+    {% assign bg_class = 'custom-comparison-bg-' | append: section.id %}
+    {{ section.settings.bg_image | image_url: width: 2000 | image_tag: class: bg_class, loading: 'lazy' }}
+  {% endif %}
+
+  <div class="page-width">
+    <div class="custom-comparison-card-{{ section.id }}">
+      
+      <div class="comparison-inner-relative-{{ section.id }}">
+        
+        <!-- Background Highlight Box (Video or Image) -->
+        <div class="comparison-highlight-bg-{{ section.id }}">
+          {% if section.settings.highlight_bg_video != blank %}
+            <video autoplay loop muted playsinline>
+              {% for source in section.settings.highlight_bg_video.sources %}
+                <source src="{{ source.url }}" type="{{ source.mime_type }}">
+              {% endfor %}
+            </video>
+          {% elsif section.settings.highlight_bg_image != blank %}
+            {{ section.settings.highlight_bg_image | image_url: width: 600 | image_tag: loading: 'lazy' }}
+          {% endif %}
+        </div>
+
+        <div class="comparison-grid-{{ section.id }}">
+          
+          <!-- HEADERS -->
+          <div class="comparison-cell-{{ section.id }} col-1-{{ section.id }} comparison-header-{{ section.id }}">
+            {{ section.settings.header_1 }}
+          </div>
+          <div class="comparison-cell-{{ section.id }} col-2-{{ section.id }} comparison-header-{{ section.id }}">
+            {{ section.settings.header_2 }}
+          </div>
+          <div class="comparison-cell-{{ section.id }} col-3-{{ section.id }} comparison-header-{{ section.id }}">
+            {{ section.settings.header_3 }}
+          </div>
+          <div class="comparison-cell-{{ section.id }} col-4-{{ section.id }} comparison-header-{{ section.id }}">
+            {{ section.settings.header_4 }}
+          </div>
+
+          <!-- ROWS -->
+          {% for block in section.blocks %}
+            {% assign is_last = forloop.last %}
+            
+            <!-- Column 1 -->
+            <div class="comparison-cell-{{ section.id }} col-1-{{ section.id }} {% if is_last %}comparison-last-row-{{ section.id }}{% endif %}" {{ block.shopify_attributes }}>
+              <span class="comparison-feature-name-{{ section.id }}">{{ block.settings.title }}</span>
+            </div>
+            
+            <!-- Column 2 (Highlight) -->
+            <div class="comparison-cell-{{ section.id }} col-2-{{ section.id }}">
+              <div class="comparison-desc-wrap-{{ section.id }}">
+                <div class="comparison-icon-{{ section.id }}">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="12" fill="#ffffff"/>
+                    <path d="M7 12.5L10.5 16L17 8" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <span class="comparison-desc-text-{{ section.id }}">{{ block.settings.col_2_text }}</span>
+              </div>
+            </div>
+            
+            <!-- Column 3 -->
+            <div class="comparison-cell-{{ section.id }} col-3-{{ section.id }} {% if is_last %}comparison-last-row-{{ section.id }}{% endif %}">
+              <div class="comparison-desc-wrap-{{ section.id }}">
+                <div class="comparison-icon-{{ section.id }}">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="12" fill="#333333"/>
+                    <path d="M8 8L16 16M16 8L8 16" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <span class="comparison-desc-text-{{ section.id }}">{{ block.settings.col_3_text }}</span>
+              </div>
+            </div>
+            
+            <!-- Column 4 -->
+            <div class="comparison-cell-{{ section.id }} col-4-{{ section.id }} {% if is_last %}comparison-last-row-{{ section.id }}{% endif %}">
+              <div class="comparison-desc-wrap-{{ section.id }}">
+                <div class="comparison-icon-{{ section.id }}">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="12" fill="#333333"/>
+                    <path d="M8 8L16 16M16 8L8 16" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <span class="comparison-desc-text-{{ section.id }}">{{ block.settings.col_4_text }}</span>
+              </div>
+            </div>
+          {% endfor %}
+
+          <!-- FOOTER ROW (Inside Highlight Box Only) -->
+          <div class="comparison-cell-{{ section.id }} col-1-{{ section.id }} comparison-last-row-{{ section.id }}"></div>
+          <div class="comparison-cell-{{ section.id }} col-2-{{ section.id }} comparison-footer-row-{{ section.id }}">
+            {% if section.settings.guarantee_text != blank %}
+              <span class="comparison-footer-text-{{ section.id }}">{{ section.settings.guarantee_text | newline_to_br }}</span>
+            {% endif %}
+          </div>
+          <div class="comparison-cell-{{ section.id }} col-3-{{ section.id }} comparison-last-row-{{ section.id }}"></div>
+          <div class="comparison-cell-{{ section.id }} col-4-{{ section.id }} comparison-last-row-{{ section.id }}"></div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Comparison Table 1:1",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Main Background Image (Landscape)"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Card Background Color",
+      "default": "transparent"
+    },
+    {
+      "type": "header",
+      "content": "Highlight Column Background"
+    },
+    {
+      "type": "video",
+      "id": "highlight_bg_video",
+      "label": "Highlight Video (Autoplays, Replaces Image)"
+    },
+    {
+      "type": "image_picker",
+      "id": "highlight_bg_image",
+      "label": "Highlight Image (Fallback if no video)"
+    },
+    {
+      "type": "header",
+      "content": "Table Headers"
+    },
+    {
+      "type": "text",
+      "id": "header_1",
+      "label": "Column 1 Header",
+      "default": "US VS. THEM"
+    },
+    {
+      "type": "text",
+      "id": "header_2",
+      "label": "Column 2 Header (Highlight)",
+      "default": "LUMITHERM PRO"
+    },
+    {
+      "type": "text",
+      "id": "header_3",
+      "label": "Column 3 Header",
+      "default": "CHEAP ROLLERS"
+    },
+    {
+      "type": "text",
+      "id": "header_4",
+      "label": "Column 4 Header",
+      "default": "BARE HANDS"
+    },
+    {
+      "type": "textarea",
+      "id": "guarantee_text",
+      "label": "Footer Text (Highlight Column)",
+      "default": "BACKED BY OUR 60-DAY\nGUARANTEE"
+    },
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 150,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 100
+    }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Feature Row",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Feature Name",
+          "default": "Feature Name"
+        },
+        {
+          "type": "text",
+          "id": "col_2_text",
+          "label": "Column 2 Text (Highlight)",
+          "default": "Hot & Cold Therapy"
+        },
+        {
+          "type": "text",
+          "id": "col_3_text",
+          "label": "Column 3 Text",
+          "default": "Cold only"
+        },
+        {
+          "type": "text",
+          "id": "col_4_text",
+          "label": "Column 4 Text",
+          "default": "None"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comparison Table 1:1",
+      "blocks": [
+        {
+          "type": "row",
+          "settings": {
+            "title": "Therapy Types",
+            "col_2_text": "Hot & Cold Therapy",
+            "col_3_text": "Cold only",
+            "col_4_text": "None"
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "title": "Product Absorption",
+            "col_2_text": "Deep Penetration",
+            "col_3_text": "Surface Level",
+            "col_4_text": "Wastes Product"
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "title": "Skin Tightening",
+            "col_2_text": "Visible Lifting",
+            "col_3_text": "Temporary Depuffing",
+            "col_4_text": "None"
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "title": "LED Light Therapy",
+            "col_2_text": "Built-in",
+            "col_3_text": "None",
+            "col_4_text": "None"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -32,22 +32,26 @@
         aria-label="{{ 'sections.header.announcement' | t }}"
         {{ section.blocks.first.shopify_attributes }}
       >
-        {%- if section.blocks.first.settings.text != blank -%}
-          {%- if section.blocks.first.settings.link != blank -%}
-            <a
-              href="{{ section.blocks.first.settings.link }}"
-              class="announcement-bar__link link link--text focus-inset animate-arrow"
-            >
-          {%- endif -%}
-          <p class="announcement-bar__message h5">
-            <span>{{ section.blocks.first.settings.text | escape }}</span>
+        {%- if section.blocks.first.type == 'announcement' -%}
+          {%- if section.blocks.first.settings.text != blank -%}
             {%- if section.blocks.first.settings.link != blank -%}
-              {{- 'icon-arrow.svg' | inline_asset_content -}}
+              <a href="{{ section.blocks.first.settings.link }}" class="announcement-bar__link link link--text focus-inset animate-arrow">
             {%- endif -%}
-          </p>
-          {%- if section.blocks.first.settings.link != blank -%}
-            </a>
+            <p class="announcement-bar__message h5">
+              <span>{{ section.blocks.first.settings.text | escape }}</span>
+              {%- if section.blocks.first.settings.link != blank -%}
+                {{- 'icon-arrow.svg' | inline_asset_content -}}
+              {%- endif -%}
+            </p>
+            {%- if section.blocks.first.settings.link != blank -%}
+              </a>
+            {%- endif -%}
           {%- endif -%}
+        {%- elsif section.blocks.first.type == 'countdown' -%}
+          <div class="announcement-bar__message h5 countdown-timer-wrapper">
+            <span>{{ section.blocks.first.settings.text | escape }}</span>
+            <span class="cro-countdown-timer" data-hours="{{ section.blocks.first.settings.hours }}">00h 00m 00s</span>
+          </div>
         {%- endif -%}
       </div>
     {%- elsif section.blocks.size > 1 -%}
@@ -92,22 +96,26 @@
                   role="region"
                   aria-label="{{ 'sections.header.announcement' | t }}"
                 >
-                  {%- if block.settings.text != blank -%}
-                    {%- if block.settings.link != blank -%}
-                      <a
-                        href="{{ block.settings.link }}"
-                        class="announcement-bar__link link link--text focus-inset animate-arrow"
-                      >
-                    {%- endif -%}
-                    <p class="announcement-bar__message h5">
-                      <span>{{ block.settings.text | escape }}</span>
+                  {%- if block.type == 'announcement' -%}
+                    {%- if block.settings.text != blank -%}
                       {%- if block.settings.link != blank -%}
-                        {{- 'icon-arrow.svg' | inline_asset_content -}}
+                        <a href="{{ block.settings.link }}" class="announcement-bar__link link link--text focus-inset animate-arrow">
                       {%- endif -%}
-                    </p>
-                    {%- if block.settings.link != blank -%}
-                      </a>
+                      <p class="announcement-bar__message h5">
+                        <span>{{ block.settings.text | escape }}</span>
+                        {%- if block.settings.link != blank -%}
+                          {{- 'icon-arrow.svg' | inline_asset_content -}}
+                        {%- endif -%}
+                      </p>
+                      {%- if block.settings.link != blank -%}
+                        </a>
+                      {%- endif -%}
                     {%- endif -%}
+                  {%- elsif block.type == 'countdown' -%}
+                    <div class="announcement-bar__message h5 countdown-timer-wrapper">
+                      <span>{{ block.settings.text | escape }}</span>
+                      <span class="cro-countdown-timer" data-hours="{{ block.settings.hours }}">00h 00m 00s</span>
+                    </div>
                   {%- endif -%}
                 </div>
               </div>
@@ -244,6 +252,27 @@
           "type": "url",
           "id": "link",
           "label": "t:sections.announcement-bar.blocks.announcement.settings.link.label"
+        }
+      ]
+    },
+    {
+      "type": "countdown",
+      "name": "Countdown Timer",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "default": "Order now for same day dispatch in:",
+          "label": "Text"
+        },
+        {
+          "type": "range",
+          "id": "hours",
+          "min": 1,
+          "max": 24,
+          "step": 1,
+          "label": "Reset hours (countdown duration)",
+          "default": 12
         }
       ]
     }

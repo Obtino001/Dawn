@@ -1,0 +1,321 @@
+{% style %}
+  .custom-showcase-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  .showcase-container-{{ section.id }} {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  @media screen and (min-width: 769px) {
+    .showcase-container-{{ section.id }} {
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+  }
+
+  /* Left Column: Text Content */
+  @media screen and (max-width: 768px) {
+    .showcase-text-col-{{ section.id }} {
+      max-width: none;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .showcase-btn-{{ section.id }} {
+      display: inline-block;
+    }
+  }
+
+  .showcase-heading-{{ section.id }} {
+    font-family: var(--font-heading-family);
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 500;
+    
+    color: #1a1a1a;
+    margin: 0 0 5px 0;
+    line-height: 1.2;
+  }
+
+  .showcase-subheading-{{ section.id }} {
+    font-family: var(--font-body-family);
+    font-size: 14px;
+    color: #666666;
+    margin: 0 0 25px 0;
+  }
+
+  .showcase-rte-{{ section.id }} {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333333;
+    margin-bottom: 30px;
+  }
+
+  .showcase-rte-{{ section.id }} p {
+    margin-bottom: 15px;
+  }
+
+  .showcase-rte-{{ section.id }} p:last-child {
+    margin-bottom: 0;
+  }
+
+  .showcase-btn-{{ section.id }} {
+    display: inline-block;
+    background-color: #111111;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 50px; /* Pill shape */
+    transition: background-color 0.3s ease;
+  }
+
+  .showcase-btn-{{ section.id }}:hover {
+    background-color: #333333;
+  }
+
+  /* Right Column: 2x2 Image Grid */
+  .showcase-image-grid-{{ section.id }} {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px; /* Tight gap as seen in design */
+  }
+
+  .showcase-card-{{ section.id }} {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    display: block;
+    background-color: #eaeaea;
+  }
+  .showcase-card-{{ section.id }} img{
+
+        width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .showcase-card-image-{{ section.id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .showcase-card-{{ section.id }}:hover .showcase-card-image-{{ section.id }} {
+    transform: scale(1.05);
+  }
+
+  /* Subtle gradient overlay to make white text pop */
+  .showcase-card-overlay-{{ section.id }} {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%);
+    z-index: 1;
+  }
+
+  .showcase-card-title-{{ section.id }} {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
+    text-align: center;
+    color: #ffffff;
+    font-family: var(--font-heading-family);
+    font-size: clamp(14px, 1.5vw, 18px);
+    font-weight: 500;
+    
+    line-height: 1.2;
+    margin: 0;
+    z-index: 2;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+{% endstyle %}
+
+<div class="custom-showcase-{{ section.id }}">
+  <div class="page-width container">
+    <div class="showcase-container-{{ section.id }}">
+      
+      <!-- Left Column: Text -->
+      <div class="showcase-text-col-{{ section.id }}">
+        {% if section.settings.heading != blank %}
+          <h2 class="showcase-heading-{{ section.id }}">{{ section.settings.heading }}</h2>
+        {% endif %}
+        
+        {% if section.settings.subheading != blank %}
+          <p class="showcase-subheading-{{ section.id }}">{{ section.settings.subheading }}</p>
+        {% endif %}
+
+        {% if section.settings.text != blank %}
+          <div class="showcase-rte-{{ section.id }}">
+            {{ section.settings.text }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.button_text != blank and section.settings.button_link != blank %}
+          <a href="{{ section.settings.button_link }}" class="showcase-btn-{{ section.id }}">
+            {{ section.settings.button_text }}
+          </a>
+        {% endif %}
+      </div>
+
+      <!-- Right Column: Images -->
+      <div class="showcase-image-grid-{{ section.id }}">
+        {% for block in section.blocks %}
+          <a href="{{ block.settings.link | default: '#' }}" class="showcase-card-{{ section.id }}" {{ block.shopify_attributes }}>
+            {% if block.settings.image != blank %}
+              {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'showcase-card-image-' | append: section.id }}
+            {% else %}
+              {{ 'collection-' | append: forloop.index | placeholder_svg_tag: 'showcase-card-image-' | append: section.id }}
+            {% endif %}
+            
+            <div class="showcase-card-overlay-{{ section.id }}"></div>
+            
+            {% if block.settings.title != blank %}
+              <h3 class="showcase-card-title-{{ section.id }}">{{ block.settings.title }}</h3>
+            {% endif %}
+          </a>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Category Showcase Split",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Text Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Product Categories"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Charge / Carry / Protect"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Body Text",
+      "default": "<p>We believe in 'Less but Better'. Better design, better quality. Meticulously considering every detail, even those you might never see, for an Elevated Experience.</p><p>Our commitment to using the best materials, plant-based and recycled whenever possible, ensures that our products not only meet the highest quality standards but also have a Reduced Environmental Impact.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "See all Products"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category Block",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Category Name"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category Showcase Split",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "title": "All Cables"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "iPhone Cases & Accessories"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Rise Magnetic Wireless Charger Collection"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Bags"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

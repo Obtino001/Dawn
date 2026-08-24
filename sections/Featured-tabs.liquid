@@ -1,0 +1,357 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+
+{% schema %}
+{
+  "name": "Tabbed Collection Slider",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Shop by flow"
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View All Link"
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "View All Button Text",
+      "default": "View All"
+    },
+    { "type": "header", "content": "⚙️ Configuration" },
+    { "type": "checkbox", "id": "enable_autoplay", "label": "Enable Autoplay", "default": false },
+    { "type": "range", "id": "autoplay_interval", "min": 2, "max": 10, "step": 1, "unit": "s", "label": "Autoplay Interval", "default": 3 },
+    { "type": "header", "content": "💻 Desktop Settings" },
+    { "type": "range", "id": "desktop_slides", "min": 1, "max": 6, "step": 0.1, "label": "Slides per view", "default": 4 },
+    { "type": "range", "id": "desktop_spacing", "min": 0, "max": 100, "label": "Spacing (px)", "default": 24 },
+    { "type": "checkbox", "id": "desktop_arrows", "label": "Show Arrows", "default": true },
+    { "type": "header", "content": "📱 Tablet Settings" },
+    { "type": "range", "id": "tablet_slides", "min": 1, "max": 6, "step": 0.1, "label": "Slides per view", "default": 3 },
+    { "type": "header", "content": "📱 Mobile Settings" },
+    { "type": "range", "id": "mobile_slides", "min": 1, "max": 6, "step": 0.1, "label": "Slides per view", "default": 1.2 },
+    { "type": "range", "id": "mobile_spacing", "min": 0, "max": 50, "label": "Spacing (px)", "default": 16 },
+    { "type": "checkbox", "id": "mobile_arrows", "label": "Show Arrows", "default": false }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Collection Tab",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_name",
+          "label": "Tab Name",
+          "default": "Moderate Flow"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tabbed Collection Slider",
+      "blocks": [
+        { "type": "tab" },
+        { "type": "tab" }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<div class="sr-tabs-section color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width">
+    
+    <div class="sr-tabs-header">
+      <h2 class="sr-tabs-title">{{ section.settings.title }}</h2>
+      
+      {% if section.blocks.size > 0 %}
+        <div class="sr-tabs-nav">
+          {% for block in section.blocks %}
+            <button class="sr-tab-btn {% if forloop.first %}is-active{% endif %}" data-target="sr-slider-{{ section.id }}-{{ block.id }}" {{ block.shopify_attributes }}>
+              {{ block.settings.tab_name }}
+            </button>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="sr-tabs-content-wrapper">
+      {% for block in section.blocks %}
+        <div id="sr-slider-{{ section.id }}-{{ block.id }}" class="sr-tab-content {% if forloop.first %}is-active{% endif %}">
+          
+          <custom-slider class="template-slider-section" data-block-id="{{ block.id }}">
+            <div class="slider-wrapper relative-container">
+              
+              <div class="swiper-custom-controls-nav">
+                <div class="swiper-custom-prev swiper-custom-arrow {% unless section.settings.mobile_arrows %}hide-on-mobile{% endunless %} {% unless section.settings.desktop_arrows %}hide-on-desktop{% endunless %}">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </div>
+                <div class="swiper-custom-next swiper-custom-arrow {% unless section.settings.mobile_arrows %}hide-on-mobile{% endunless %} {% unless section.settings.desktop_arrows %}hide-on-desktop{% endunless %}">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </div>
+              </div>
+
+              <swiper-container 
+                init="false" 
+                class="js-swiper-template"
+                data-swiper-config='{
+                  "autoplay": {{ section.settings.enable_autoplay | default: false }},
+                  "autoplayInterval": {{ section.settings.autoplay_interval | times: 1000 | default: 3000 }},
+                  "mobileSlides": {{ section.settings.mobile_slides | default: 1.2 }},
+                  "mobileSpacing": {{ section.settings.mobile_spacing | default: 16 }},
+                  "desktopSlides": {{ section.settings.desktop_slides | default: 4 }},
+                  "tabletSlides": {{ section.settings.tablet_slides | default: 3 }},
+                  "desktopSpacing": {{ section.settings.desktop_spacing | default: 24 }}
+                }'
+              >
+                {% for product in block.settings.collection.products %}
+                  <swiper-slide>
+                    {% render 'card-product',
+                      card_product: product,
+                      media_aspect_ratio: 'portrait',
+                      show_secondary_image: true,
+                      show_vendor: false,
+                      show_rating: false,
+                      lazy_load: true
+                    %}
+                  </swiper-slide>
+                {% else %}
+                  {%- for i in (1..4) -%}
+                    <swiper-slide>
+                       <div class="card-wrapper">
+                         {{ 'product-' | append: i | placeholder_svg_tag: 'placeholder-svg' }}
+                       </div>
+                    </swiper-slide>
+                  {%- endfor -%}
+                {% endfor %}
+              </swiper-container>
+
+            </div>
+          </custom-slider>
+
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.view_all_link != blank %}
+      <div class="sr-view-all-wrapper">
+        <a href="{{ section.settings.view_all_link }}" class="sr-view-all-btn">{{ section.settings.view_all_text }}</a>
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+
+<style>
+.sr-tabs-section {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.sr-tabs-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.sr-tabs-title {
+  font-size: 42px;
+  color: #282828; /* Plum color */
+  margin: 0 0 25px 0;
+  font-weight: 400;
+}
+
+/* --- Tabs Navigation --- */
+.sr-tabs-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.sr-tab-btn {
+  background-color: #FFF2F5; /* Light pink */
+  color: #282828;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.sr-tab-btn:hover {
+  background-color: #f7dbe3;
+}
+
+.sr-tab-btn.is-active {
+  background-color: #282828;
+  color: #ffffff;
+}
+
+/* --- Tab Content Logic --- */
+.sr-tab-content {
+  display: none;
+  animation: fadeIn 0.5s ease;
+}
+
+.sr-tab-content.is-active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Slider & Arrows Layout --- */
+.template-slider-section .relative-container { 
+  position: relative; 
+  width: 100%; 
+  padding: 0 40px; /* Space for arrows */
+}
+
+.template-slider-section swiper-container { 
+  width: 100%; 
+  display: block; 
+}
+
+.template-slider-section swiper-slide { 
+  height: auto; 
+}
+
+.swiper-custom-controls-nav {
+  position: absolute;
+  top: 40%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  z-index: 10;
+  pointer-events: none; /* Let clicks pass through empty space */
+}
+
+.swiper-custom-arrow {
+  width: 44px;
+  height: 44px;
+  background-color: #FFF2F5;
+  color: #282828;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto; /* Re-enable clicks for the buttons */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+}
+
+.swiper-custom-arrow:hover {
+  background-color: #282828;
+  color: #ffffff;
+}
+
+.swiper-button-disabled { 
+  opacity: 0.5; 
+  cursor: not-allowed; 
+}
+
+/* --- Card Hover Effect (Blue Border from image) --- */
+.sr-tabs-content-wrapper .card-wrapper {
+  border: 2px solid transparent;
+  border-radius: var(--card-corner-radius);
+  transition: border-color 0.3s ease;
+  padding: 2px;
+}
+
+/* --- View All Button (Bottom) --- */
+.sr-view-all-wrapper {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.sr-view-all-btn {
+  display: inline-block;
+  padding: 12px 40px;
+  background-color: transparent;
+  color: #282828;
+  border: 1px solid #282828;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.sr-view-all-btn:hover {
+  background-color: #282828;
+  color: #ffffff;
+}
+
+/* --- Mobile Adjustments --- */
+@media screen and (max-width: 767px) {
+  .sr-tabs-title { font-size: 32px; }
+  .template-slider-section .relative-container { padding: 0; }
+  .template-slider-section .hide-on-mobile { display: none !important; }
+}
+
+@media screen and (min-width: 768px) {
+  .template-slider-section .hide-on-desktop { display: none !important; }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const tabButtons = document.querySelectorAll('.sr-tab-btn');
+  const tabContents = document.querySelectorAll('.sr-tab-content');
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      // Remove active class from all buttons and contents
+      tabButtons.forEach(btn => btn.classList.remove('is-active'));
+      tabContents.forEach(content => content.classList.remove('is-active'));
+
+      // Add active class to clicked button
+      this.classList.add('is-active');
+
+      // Show the corresponding tab content
+      const targetId = this.getAttribute('data-target');
+      const targetContent = document.getElementById(targetId);
+      
+      if (targetContent) {
+        targetContent.classList.add('is-active');
+        
+        // Trigger a window resize event. 
+        // Swiper components sometimes calculate wrong widths when hidden via display:none.
+        // This forces Swiper to recalculate immediately when the tab is shown.
+        window.dispatchEvent(new Event('resize'));
+      }
+    });
+  });
+});
+</script>

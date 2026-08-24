@@ -1,0 +1,12 @@
+<div class="WI_paymentIcons" bis_skin_checked="1" style="
+    margin-top: 10px;
+">
+  <ul class="payment-icons">
+{% assign active_payments = 'american_express,apple_pay,google_pay,master,paypal,shop_pay,unionpay,visa' | split: ',' %}
+      {% for type in active_payments %}
+        {{ type | payment_type_svg_tag: class: 'dp-payment-icon' }}
+      {% endfor %}
+  </ul>
+</div>
+
+{% comment %} Styles moved to sereluna.css {% endcomment %}

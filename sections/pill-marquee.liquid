@@ -1,0 +1,214 @@
+{% style %}
+  .custom-trust-badges-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  .trust-badges-grid-{{ section.id }} {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 1.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin-inline: -1.5rem;
+    padding-inline: 1.5rem;
+  }
+
+  .trust-badges-grid-{{ section.id }}::-webkit-scrollbar {
+    display: none;
+  }
+
+  .trust-badge-item-{{ section.id }} {
+    flex: 0 0 auto;
+    min-width: 35%;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    text-align: left;
+  }
+
+  @media screen and (min-width: 768px) {
+    .trust-badges-grid-{{ section.id }} {
+      display: grid;
+      grid-template-columns: repeat({{ section.blocks.size | at_most: 4 }}, 1fr);
+      gap: 20px;
+      justify-content: center;
+      overflow: visible;
+      margin-inline: 0;
+      padding-inline: 0;
+      scroll-snap-type: none;
+    }
+
+    .trust-badge-item-{{ section.id }} {
+      min-width: 0;
+      justify-content: center;
+      gap: 16px;
+    }
+  }
+
+  .trust-badge-icon-{{ section.id }} {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media screen and (min-width: 768px) {
+    .trust-badge-icon-{{ section.id }} {
+      width: 44px;
+      height: 44px;
+    }
+  }
+
+  .trust-badge-icon-{{ section.id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .trust-badge-text-{{ section.id }} {
+    font-family: var(--font-body-family);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: #1a1a1a;
+    margin: 0;
+    text-align: left;
+    white-space: nowrap;
+  }
+{% endstyle %}
+
+<div class="custom-trust-badges-{{ section.id }}">
+  <div class="page-width">
+    <div class="trust-badges-grid-{{ section.id }}">
+      
+      {% for block in section.blocks %}
+        <div class="trust-badge-item-{{ section.id }}" {{ block.shopify_attributes }}>
+          
+          <div class="trust-badge-icon-{{ section.id }}">
+            {% if block.settings.image != blank %}
+              {{ block.settings.image | image_url: width: 100 | image_tag: loading: 'lazy' }}
+            {% elsif block.settings.fallback_image_url != blank %}
+              <img src="{{ block.settings.fallback_image_url }}" alt="{{ block.settings.text | escape }}" loading="lazy" width="44" height="44">
+            {% else %}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+          </div>
+          
+          {% if block.settings.text != blank %}
+            <p class="trust-badge-text-{{ section.id }}">{{ block.settings.text | newline_to_br }}</p>
+          {% endif %}
+          
+        </div>
+      {% endfor %}
+      
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Trust Badges",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#fdfcf9"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Trust Badge",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Icon Image",
+          "info": "Upload your own icon here."
+        },
+        {
+          "type": "text",
+          "id": "fallback_image_url",
+          "label": "Fallback External Image URL",
+          "info": "Used if the image picker above is empty."
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "info": "Use 'Enter' to create a line break."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Trust Badges",
+      "blocks": [
+        {
+          "type": "badge",
+          "settings": {
+            "fallback_image_url": "//www.nativeunion.com/cdn/shop/files/worldwide_shipping.png?v=1723207851",
+            "text": "Worldwide Shipping"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "fallback_image_url": "//www.nativeunion.com/cdn/shop/files/Free_Return.png?v=1723207851",
+            "text": "30 Days Return"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "fallback_image_url": "//www.nativeunion.com/cdn/shop/files/secure_payments.png?v=1723207851",
+            "text": "100% Secure\nPayments"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "fallback_image_url": "//www.nativeunion.com/cdn/shop/files/warranty.png?v=1723207851",
+            "text": "International\nWarranty"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

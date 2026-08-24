@@ -1,0 +1,384 @@
+/* Custom Element Variables */
+scroll-shadow {
+  display: inline-block;
+  --bg-body-rgb: 255, 255, 255;
+  --scroll-shadow-size: 60;
+  --scroll-shadow-top: linear-gradient(rgba(var(--bg-body-rgb), 1), rgba(var(--bg-body-rgb), 0));
+  --scroll-shadow-bottom: linear-gradient(rgba(var(--bg-body-rgb), 0), rgba(var(--bg-body-rgb), 1));
+  --scroll-shadow-left: linear-gradient(90deg, rgba(var(--bg-body-rgb), 1), rgba(var(--bg-body-rgb), 0));
+  --scroll-shadow-right: linear-gradient(90deg, rgba(var(--bg-body-rgb), 0), rgba(var(--bg-body-rgb), 1));
+}
+
+.side-panel-close svg path {
+  stroke: #000;
+}
+
+/* Overlay / Click Capture */
+.click-capture {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 91;
+  opacity: 0;
+  visibility: hidden;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+body.open-cc .click-capture {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+/* SIDE PANEL - MAIN STYLES 
+   Merged duplicate selectors and added visibility fix
+*/
+.side-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 92; /* Unified z-index */
+  width: calc(100vw - 30px);
+  max-width: 54rem;
+  background: var(--bg-body, #fff);
+  overflow-x: hidden;
+  overflow-y: visible; /* Kept from your code */
+  
+  /* ANIMATION FIX: Hidden by default so it doesn't flash on reload */
+  visibility: hidden; 
+  transform: translateX(100%);
+  
+  transition: transform 0.25s cubic-bezier(0.104, 0.204, 0.492, 1), visibility 0.25s;
+  will-change: transform;
+}
+
+/* Active State */
+.side-panel.active,
+body.open-cc .click-capture .side-panel.active {
+  transform: translateX(0%);
+  visibility: visible !important;
+}
+
+/* Facet Drawer (Left Side) */
+.side-panel.facet-drawer {
+  right: auto;
+  left: 0;
+  transform: translateX(-100%);
+}
+
+.side-panel.facet-drawer.active {
+  transform: translateX(0%);
+  visibility: visible;
+}
+
+/* Product Drawer */
+.side-panel.product-drawer {
+  overflow: visible;
+  z-index: 92;
+}
+
+.side-panel.product-drawer .thb-product-detail {
+  margin: 0;
+}
+
+.side-panel.product-drawer .side-panel-inner {
+  position: relative;
+  height: 100%;
+  z-index: 5;
+}
+
+.side-panel.product-drawer .side-panel-content {
+  padding: 0 30px 25px 30px;
+  height: calc(100% - 72px);
+  background: var(--bg-body, #fff);
+  overflow-y: scroll;
+}
+
+@media only screen and (min-width: 1068px) {
+  .side-panel.product-drawer .side-panel-content {
+    padding: 25px 30px;
+  }
+}
+
+/* Search Drawer Styles */
+.side-panel.search-drawer .side-panel-inner {
+  height: 100%;
+}
+
+.side-panel.search-drawer .searchform {
+  width: 100%;
+  padding-right: 20px;
+}
+
+.side-panel.search-drawer fieldset {
+  border: none;
+}
+
+.side-panel.search-drawer .searchform input {
+    border: 0;
+    padding: 0;
+    font-size: 16px;
+    outline: 0;
+    width: 100%;
+    height: 30px;
+    background: none;
+    outline: none;
+    box-shadow: none;
+    font-family: var(--font-heading-family);
+}
+.side-panel.search-drawer .searchform input::-webkit-search-decoration,
+.side-panel.search-drawer .searchform input::-webkit-search-cancel-button,
+.side-panel.search-drawer .searchform input::-webkit-search-results-button,
+.side-panel.search-drawer .searchform input::-webkit-search-results-decoration {
+  display: none;
+}
+
+.side-panel.search-drawer .searchform label {
+  display: none;
+}
+
+/* Spinner Animation */
+.side-panel.search-drawer .spinner-path {
+  stroke-dasharray: 280;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation: dash 1.4s infinite ease;
+}
+
+/* Tabs Logic */
+.side-panel.search-drawer .side-panel-content--has-tabs {
+  display: none;
+  position: relative;
+  flex: 1;
+  height: calc(100% - 72px);
+}
+
+.side-panel.search-drawer .side-panel-content--has-tabs.active {
+  display: flex;
+  flex-direction: column;
+}
+
+.side-panel.search-drawer .side-panel-content--has-tabs.active + .side-panel-content--initial {
+  display: none;
+}
+
+.side-panel.search-drawer .side-panel-content--has-tabs .thb-predictive-search--popular {
+  padding: 15px 30px;
+  margin-bottom: 0;
+}
+
+.side-panel.search-drawer .side-panel-content--has-tabs .thb-predictive-search--popular + .side-panel-content--tabs {
+  border-top: 1px solid #D4D4D4;
+}
+
+.side-panel.search-drawer .side-panel-content--has-tabs scroll-shadow {
+  flex: 1;
+  overflow: hidden;
+}
+
+.side-panel-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 35;
+  background: var(--bg-body, #fff);
+  border-bottom: 1px solid #D4D4D4;
+  padding: 15px 15px;
+  height: 72px;
+}
+
+.side-panel-header h4 {
+  margin: 0;
+  line-height: 1;
+  font-size: 15px;
+  letter-spacing: 1.7px;
+  font-weight: var(--font-body-bold-weight, 600);
+  color: var(--color-body);
+  text-transform: uppercase;
+}
+
+.side-panel-header h4 > span {
+  display: block;
+}
+
+.side-panel-header h4 .facets__label {
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+}
+
+.side-panel-header div {
+  line-height: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.side-panel-close {
+  cursor: pointer;
+}
+
+
+.side-panel-content.side-panel-content--has-tabs {
+  padding: 0;
+}
+
+.side-panel-content.side-panel-content--has-tabs .side-panel-content--inner {
+  padding: 0px 30px;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+.side-panel-content--tabs {
+  display: flex;
+}
+
+.side-panel-content--tabs button {
+  display: inline-flex;
+  padding-top: 10px;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 1.7px;
+  font-weight: var(--font-body-bold-weight, 600);
+  padding: 0 15px;
+  height: 50px;
+  flex: 1;
+  color: var(--color-body);
+}
+
+.side-panel-content--tabs button.tab-active {
+  background: var(--bg-body, #fff);
+  border-bottom-color: transparent;
+}
+
+.side-panel-content--tabs button:last-child {
+  border: 0;
+}
+
+.side-panel-content--tab-panel {
+  display: none;
+}
+
+.side-panel-content--tab-panel.tab-active {
+  display: block;
+}
+
+.side-panel-content--search-footer {
+  padding: 25px 30px;
+  border-top: 1px solid #D4D4D4;
+  margin-top: auto;
+}
+
+.side-panel-content .button {
+  flex-shrink: 0;
+}
+
+/* Search Loading Overlay */
+.search-drawer .loading-overlay {
+  display: none;
+  width: 42px;
+  height: 42px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 20;
+  line-height: 0;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.search-drawer .loading .loading-overlay {
+  display: block;
+}
+.thb-predictive-search--label {
+    display: block;
+    letter-spacing: 1.7px;
+    margin-block: 0 20px;
+    font-size: 20px;
+}
+
+.thb-predictive-search--popular {
+  margin-bottom: 20px;
+  line-height: 0;
+}
+
+.thb-predictive-search--popular scroll-shadow {
+  margin-left: -30px;
+  width: calc(100% + 60px);
+}
+
+.thb-predictive-search--popular mark {
+  background: none;
+  font-weight: var(--font-body-medium-weight, 500);
+  color: inherit;
+}
+
+.thb-predictive-search--popular div {
+    display: flex;
+    padding: 0 30px;
+    scrollbar-width: none;
+    gap: 10px;
+}
+
+.thb-predictive-search--popular div::-webkit-scrollbar {
+  display: none;
+}
+
+.thb-predictive-search--popular div a {
+    display: inline-flex;
+    flex-wrap: wrap;
+    font-size: 14px;
+    height: 31px;
+    align-items: center;
+    font-weight: 500;
+    color: #282828;
+    text-decoration: none;
+}
+.thb-predictive-search--popular div a:first-child {
+  margin-left: 0;
+}
+
+.thb-predictive-search--promotion .products.row {
+  padding: 0 30px;
+  margin: 0 -4px;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.thb-predictive-search--promotion .products.row::-webkit-scrollbar {
+  display: none;
+}
+
+.thb-predictive-search--promotion .products.row .columns {
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+.thb-predictive-search--promotion-products {
+  margin-left: -30px;
+  width: calc(100% + 60px);
+}
+
+@media only screen and (min-width: 768px) {
+  .thb-predictive-search--promotion .products.row {
+    flex-wrap: wrap;
+    overflow: inherit;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .thb-predictive-search--promotion-products .column {
+    flex: 0 0 90%;
+    max-width: 90%;
+  }
+}

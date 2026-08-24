@@ -1,0 +1,83 @@
+{%- if block.settings.button_label != blank -%}
+    {%- if block.settings.center_on_mobile -%}
+      <style>
+        @media screen and (max-width: 749px) {
+          #btn-wrapper-{{ block.id }} {
+            display: flex !important;
+            justify-content: center !important;
+            width: 100% !important;
+          }
+          #block-{{ block.id }} {
+            margin: 0 auto !important;
+          }
+        }
+      </style>
+    {%- endif -%}
+    <div id="btn-wrapper-{{ block.id }}" class="btn-wrapper{% if block.settings.center_on_mobile %} center-on-mobile{% endif %}">
+      <a
+          id="block-{{ block.id }}"
+          {% if block.settings.button_link == blank %}
+              role="link" aria-disabled="true"
+          {% else %}
+              href="{{ block.settings.button_link }}"
+          {% endif %}
+          class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+          {{ block.shopify_attributes }}
+      >
+          {{ block.settings.button_label | escape }}
+      </a>
+    </div>
+    {%- if block.settings.center_on_mobile -%}
+      <script>
+        (function() {
+          if (window.innerWidth <= 749) {
+            var wrapper = document.getElementById('btn-wrapper-{{ block.id }}');
+            if (wrapper && wrapper.parentElement && wrapper.parentElement.classList.contains('shopify-block')) {
+              wrapper.parentElement.style.setProperty('align-self', 'stretch', 'important');
+              wrapper.parentElement.style.setProperty('width', '100%', 'important');
+              wrapper.parentElement.style.setProperty('display', 'flex', 'important');
+              wrapper.parentElement.style.setProperty('justify-content', 'center', 'important');
+            }
+          }
+        })();
+      </script>
+    {%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+"name": "t:sections.image-with-text.blocks.button.name",
+"settings": [
+        {
+          "type": "text",
+          "id": "button_label",
+          "default": "t:sections.image-with-text.blocks.button.settings.button_label.default",
+          "label": "t:sections.image-with-text.blocks.button.settings.button_label.label",
+          "info": "t:sections.image-with-text.blocks.button.settings.button_label.info"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "t:sections.image-with-text.blocks.button.settings.button_link.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary",
+          "default": false,
+          "label": "t:sections.image-with-text.blocks.button.settings.outline_button.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "center_on_mobile",
+          "label": "Center on mobile",
+          "default": false
+        }
+      ],
+    "presets": [
+        {
+            "name": "t:sections.image-with-text.blocks.button.name",
+            "category": "Global"
+        }
+    ]
+}
+{% endschema %}

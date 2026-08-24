@@ -62,35 +62,24 @@ function isDsSearchOpen() {
   return Boolean(document.querySelector('details-modal.ds-header-search details[open]'));
 }
 
-function getScrollbarWidth() {
-  return window.innerWidth - document.documentElement.clientWidth;
-}
-
-function lockBodyScroll() {
-  if (document.body.dataset.dsScrollLocked === 'true') return;
-
-  const scrollY = window.scrollY || window.pageYOffset;
-  const scrollbar = getScrollbarWidth();
-
-  document.body.dataset.dsScrollLocked = 'true';
-  document.body.dataset.dsScrollY = String(scrollY);
-  document.body.style.overflow = 'hidden';
-  if (scrollbar > 0) {
-    document.body.style.paddingRight = `${scrollbar}px`;
-  }
-}
-
 function unlockBodyScroll() {
-  if (document.body.dataset.dsScrollLocked !== 'true') return;
-
-  const scrollY = parseInt(document.body.dataset.dsScrollY || '0', 10);
-
+  document.body.classList.remove(
+    'overflow-hidden',
+    'overflow-hidden-mobile',
+    'overflow-hidden-tablet',
+    'overflow-hidden-desktop'
+  );
   document.body.style.overflow = '';
   document.body.style.paddingRight = '';
+  document.documentElement.style.overflow = '';
+  document.documentElement.classList.remove(
+    'overflow-hidden',
+    'overflow-hidden-mobile',
+    'overflow-hidden-tablet',
+    'overflow-hidden-desktop'
+  );
   delete document.body.dataset.dsScrollLocked;
   delete document.body.dataset.dsScrollY;
-
-  window.scrollTo(0, scrollY);
 }
 
 function pinHeaderForSearch() {
@@ -121,41 +110,14 @@ function expandSearchPanel(panel) {
   if (!panel) return;
 
   const top = placePanelUnderHeader(panel);
-  const maxHeight = getSearchPanelMaxHeight(top);
-
-  panel.classList.add('is-open', 'is-animating');
-  panel.style.visibility = 'visible';
-  panel.style.pointerEvents = 'auto';
-  panel.style.overflow = 'hidden';
-  panel.style.maxHeight = 'none';
-  panel.style.height = '0px';
-
-  const target = Math.min(panel.scrollHeight, maxHeight);
-
-  // eslint-disable-next-line no-unused-expressions
-  panel.offsetHeight;
-
-  panel.style.transition = `height ${DS_SEARCH_DURATION}ms cubic-bezier(0.22, 1, 0.36, 1)`;
-  panel.style.height = `${target}px`;
-
-  const onEnd = (event) => {
-    if (event.target !== panel || event.propertyName !== 'height') return;
-    panel.removeEventListener('transitionend', onEnd);
-    panel.style.transition = '';
-    panel.style.height = 'auto';
-    panel.style.maxHeight = `${maxHeight}px`;
-    panel.style.overflow = 'hidden';
-    panel.classList.remove('is-animating');
-  };
-
-  panel.addEventListener('transitionend', onEnd);
-  setTimeout(() => {
-    if (!panel.classList.contains('is-animating')) return;
-    panel.style.transition = '';
-    panel.style.height = 'auto';
-    panel.style.maxHeight = `${maxHeight}px`;
-    panel.classList.remove('is-animating');
-  }, DS_SEARCH_DURATION + 60);
+  panel.classList.add('is-open');
+  panel.classList.remove('is-animating');
+  panel.style.removeProperty('visibility');
+  panel.style.removeProperty('pointer-events');
+  panel.style.removeProperty('height');
+  panel.style.removeProperty('overflow');
+  panel.style.removeProperty('transition');
+  panel.style.maxHeight = `${getSearchPanelMaxHeight(top)}px`;
 }
 
 function collapseSearchPanel(panel) {
@@ -171,13 +133,13 @@ function collapseSearchPanel(panel) {
       done = true;
       panel.removeEventListener('transitionend', onEnd);
       panel.classList.remove('is-open', 'is-animating');
-      panel.style.height = '0px';
-      panel.style.maxHeight = '';
-      panel.style.overflow = 'hidden';
-      panel.style.transition = '';
-      panel.style.visibility = 'hidden';
-      panel.style.pointerEvents = 'none';
-      panel.style.top = '';
+      panel.style.removeProperty('height');
+      panel.style.removeProperty('max-height');
+      panel.style.removeProperty('overflow');
+      panel.style.removeProperty('transition');
+      panel.style.removeProperty('visibility');
+      panel.style.removeProperty('pointer-events');
+      panel.style.removeProperty('top');
       resolve();
     };
 
@@ -294,64 +256,109 @@ function bindDsSearchCollapse(modal) {
   modal.open = function dsAnimatedOpen(event) {
     pinHeaderForSearch();
     placePanelUnderHeader(panel);
-    lockBodyScroll();
     originalOpen(event);
-    document.body.classList.remove('overflow-hidden');
-    lockBodyScroll();
+    unlockBodyScroll();
   };
 
   modal.close = function dsAnimatedClose(focusToggle = true) {
-    if (modal.dataset.dsClosing === 'true') return;
-
-    if (!details.open) {
+    const finishClose = () => {
+      originalClose(focusToggle);
+      panel.classList.remove('is-open', 'is-animating');
+      panel.style.removeProperty('height');
+      panel.style.removeProperty('visibility');
+      panel.style.removeProperty('pointer-events');
       unlockBodyScroll();
       unpinHeaderForSearch();
-      originalClose(focusToggle);
+      delete modal.dataset.dsClosing;
+    };
+
+    if (modal.dataset.dsClosing === 'true') {
+      finishClose();
+      return;
+    }
+
+    if (!details.open) {
+      finishClose();
       return;
     }
 
     modal.dataset.dsClosing = 'true';
-    collapseSearchPanel(panel).then(() => {
-      originalClose(focusToggle);
-      document.body.classList.remove('overflow-hidden');
-      unlockBodyScroll();
-      unpinHeaderForSearch();
-      delete modal.dataset.dsClosing;
-    });
+    collapseSearchPanel(panel).then(finishClose);
   };
 
-  const closeBtn = modal.querySelector('.ds-search-form__close');
-  if (closeBtn) {
-    closeBtn.addEventListener(
-      'click',
-      (event) => {
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        modal.close();
-      },
-      true
-    );
-  }
+  details.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      modal.close();
+    }
+  });
 
   details.addEventListener('toggle', () => {
-    if (!details.open) return;
-    placePanelUnderHeader(panel);
-    requestAnimationFrame(() => {
+    if (details.open) {
       placePanelUnderHeader(panel);
-      expandSearchPanel(panel);
-      initDsTrendingSliders();
-    });
-    const input = details.querySelector('.ds-search-form__input');
-    if (input) setTimeout(() => input.focus(), 40);
+      requestAnimationFrame(() => {
+        placePanelUnderHeader(panel);
+        expandSearchPanel(panel);
+        initDsTrendingSliders();
+      });
+      const input = details.querySelector('.ds-search-form__input');
+      if (input) setTimeout(() => input.focus(), 40);
+      unlockBodyScroll();
+      return;
+    }
+
+    unlockBodyScroll();
+    if (modal.dataset.dsClosing === 'true') return;
+    panel.classList.remove('is-open', 'is-animating');
+    panel.style.removeProperty('height');
+    panel.style.removeProperty('max-height');
+    panel.style.removeProperty('overflow');
+    panel.style.removeProperty('transition');
+    panel.style.removeProperty('visibility');
+    panel.style.removeProperty('pointer-events');
+    panel.style.removeProperty('top');
+    unpinHeaderForSearch();
   });
 }
 
 function initDsSearchEnhancements() {
   initDsTrendingSliders();
   document.querySelectorAll('details-modal.ds-header-search').forEach(bindDsSearchCollapse);
+
+  if (document.documentElement.dataset.dsSearchEscBound === 'true') return;
+  document.documentElement.dataset.dsSearchEscBound = 'true';
+  document.addEventListener(
+    'click',
+    (event) => {
+      const closeBtn = event.target.closest('[data-ds-search-close]');
+      if (!closeBtn) return;
+      const modal = closeBtn.closest('details-modal.ds-header-search');
+      if (!modal) return;
+      event.preventDefault();
+      event.stopPropagation();
+      modal.close();
+    },
+    true
+  );
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    document.querySelectorAll('details-modal.ds-header-search').forEach((modal) => {
+      if (modal.querySelector('details[open]')) modal.close();
+    });
+  });
 }
 
 document.addEventListener('DOMContentLoaded', initDsSearchEnhancements);
+document.addEventListener('shopify:section:load', initDsSearchEnhancements);
+
+document.addEventListener('ds-search-results-change', () => {
+  document.querySelectorAll('.ds-search-panel.is-open').forEach((panel) => {
+    if (panel.classList.contains('is-animating')) return;
+    const top = placePanelUnderHeader(panel);
+    panel.style.height = 'auto';
+    panel.style.maxHeight = `${getSearchPanelMaxHeight(top)}px`;
+  });
+});
 
 window.addEventListener(
   'resize',

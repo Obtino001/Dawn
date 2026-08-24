@@ -1,25 +1,102 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "banner": {
+      "type": "custom-banner",
       "settings": {
-        "padding_top": 36,
-        "padding_bottom": 36
+        "color_scheme": "scheme-4",
+        "media_type": "image",
+        "image": "shopify://shop_images/ax-review-charge.png",
+        "overlay_opacity": 20,
+        "heading_size_desktop": 48,
+        "subheading_size_desktop": 16,
+        "content_width": 650,
+        "min_height_desktop": 600,
+        "adapt_height_desktop": false,
+        "heading_size_mobile": 36,
+        "min_height_mobile": 400,
+        "adapt_height_mobile": false,
+        "show_mobile_content_below": true,
+        "text_position_top": 50,
+        "text_position_left": 50,
+        "text_alignment": "left"
+      }
+    },
+    "contact_info": {
+      "type": "multicolumn",
+      "blocks": {
+        "support": {
+          "type": "column",
+          "settings": {
+            "title": "Customer Support",
+            "text": "<p>Email: support@arvenixo.com<br>We answer by email.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "hq": {
+          "type": "column",
+          "settings": {
+            "title": "Shipping",
+            "text": "<p>We ship worldwide.<br>Delivery time depends on your region and is shown at checkout.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "pr": {
+          "type": "column",
+          "settings": {
+            "title": "Press & Media",
+            "text": "<p>For all PR inquiries, please email:<br/>press@arvenixo.com</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "support",
+        "hq",
+        "pr"
+      ],
+      "settings": {
+        "title": "How Can We Help?",
+        "heading_size": "h2",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "none",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 60,
+        "padding_bottom": 20
       }
     },
     "form": {
       "type": "contact-form",
       "settings": {
-        "heading": "",
-        "heading_size": "h1",
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "heading": "Send us a Message",
+        "heading_size": "h2",
+        "color_scheme": "scheme-2",
+        "padding_top": 40,
+        "padding_bottom": 60
       }
     }
   },
   "order": [
-    "main",
+    "banner",
+    "contact_info",
     "form"
   ]
 }

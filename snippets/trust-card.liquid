@@ -1,0 +1,38 @@
+{%- style -%}
+.dr-endorsement-{{ block.id }} { --text-main: {{ block.settings.text_color | default: '#000000' }}; --border-color: #d1d1d1; }
+.dr-endorsement { border: 1px solid var(--border-color); padding: 10px 20px; background: #fff; max-width: 800px; margin: 20px auto; color: var(--text-main); }
+.dr-endorsement__quote { font-weight: 500; font-style: Medium; font-size: 14px; leading-trim: NONE; line-height: 140%; letter-spacing: 0%; margin-block: 10px 20px; }
+.dr-endorsement__footer { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+.dr-endorsement__author-box { display: flex; align-items: center; gap: 12px; }
+.dr-endorsement__avatar { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; }
+.dr-endorsement__author-name {  font-weight: 400; font-style: Regular; font-size: 12px; leading-trim: NONE; line-height: 100%; letter-spacing: 0%; color: #161616; }
+.dr-endorsement__badge { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #444; }
+.dr-endorsement__check { background: #333; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.dr-endorsement__check svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 4; }
+@media (max-width: 900px) {
+.dr-endorsement__avatar { width: 25px; height: 25px; border-radius: 50%; object-fit: cover; }
+.dr-endorsement { padding: 10px 10px; }
+}
+{%- endstyle -%}
+
+<div class="dr-endorsement dr-endorsement-{{ block.id }}">
+  <h2 class="dr-endorsement__quote">
+    {{ block.settings.review_text }}
+  </h2>
+
+  <div class="dr-endorsement__footer">
+    <div class="dr-endorsement__author-box">
+      {% if block.settings.avatar != blank %}
+        {{ block.settings.avatar | image_url: width: 100 | image_tag: class: 'dr-endorsement__avatar' }}
+      {% endif %}
+      <span class="dr-endorsement__author-name">— {{ block.settings.author }}</span>
+    </div>
+
+    <div class="dr-endorsement__badge">
+      <span class="dr-endorsement__check">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      </span>
+      <span class="hubot">{{ block.settings.badge_text | default: 'Recommended by doctors' }}</span>
+    </div>
+  </div>
+</div>

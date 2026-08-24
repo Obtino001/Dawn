@@ -1,0 +1,263 @@
+{%- style -%}
+  .sg-static-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    width: 100%;
+  }
+
+  .sg-static-card {
+    background: #ffffff; 
+    width: 100%; 
+    max-width: 1100px; /* Made slightly wider since it's not a modal anymore */
+    padding: 40px;
+    text-align: left; 
+  }
+
+  /* Header Section */
+  .sg-header {
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+    margin-bottom: 35px;
+  }
+  .sg-title { 
+    margin: 0; 
+    font-size: 36px; 
+    color: {{ section.settings.color_primary }}; 
+    font-weight: 400;
+  }
+  .sg-avatar {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  }
+
+  /* Pill-Shaped Table Rows */
+  .sg-table-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 40px;
+  }
+
+  .sg-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-radius: 12px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .sg-cell {
+    padding: 16px 10px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  /* Vertical Separators inside the rows */
+  .sg-cell:not(:first-child) {
+    border-left: 1px solid;
+  }
+
+  /* Specific Row Colors */
+  .sg-row-header {
+    background-color: {{ section.settings.color_primary }};
+    color: #ffffff;
+  }
+  .sg-row-header .sg-cell:not(:first-child) { border-left-color: rgba(255,255,255,0.3); }
+
+  .sg-row-light {
+    background-color: {{ section.settings.color_tertiary }};
+    color: {{ section.settings.color_primary }};
+  }
+  .sg-row-light .sg-cell:not(:first-child) { border-left-color: rgba(139, 34, 104, 0.15); }
+
+  .sg-row-bright {
+    background-color: {{ section.settings.color_secondary }};
+    color: #ffffff;
+  }
+  .sg-row-bright .sg-cell:not(:first-child) { border-left-color: rgba(255,255,255,0.3); }
+
+  /* Bottom Section: Instructions & Image */
+  .sg-footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .sg-instructions-box {
+    background-color: {{ section.settings.color_tertiary }};
+    border-radius: 16px;
+    padding: 30px;
+    color: {{ section.settings.color_primary }};
+  }
+
+  .sg-instructions-title {
+    font-size: 22px;
+    margin: 0 0 20px 0;
+    font-weight: 500;
+  }
+
+  .sg-instructions-list {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  
+  .sg-instructions-list li {
+    margin-bottom: 15px;
+  }
+
+  .sg-note {
+    font-size: 14px;
+    color: {{ section.settings.color_primary }};
+    margin-top: 20px;
+  }
+
+  .sg-illustration {
+    width: 100%;
+    max-width:400px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  /* Responsive styling */
+  @media(max-width: 768px) {
+    .sg-static-card { padding: 25px 20px; }
+    .sg-footer { grid-template-columns: 1fr; gap: 30px; }
+    .sg-illustration { max-width: 220px; }
+    .sg-title { font-size: 28px; }
+    .sg-header { margin-bottom: 25px; }
+    .sg-table-stack { margin-bottom: 30px; }
+    .sg-cell { padding: 12px 5px; font-size: 13px; }
+  }
+{%- endstyle -%}
+
+<div class="sg-static-wrapper">
+  <div class="sg-static-card">
+    
+    <div class="sg-header">
+      <h2 class="sg-title">{{ section.settings.title }}</h2>
+      
+      {% if section.settings.avatar_image %}
+        <img src="{{ section.settings.avatar_image | image_url: width: 150 }}" class="sg-avatar" alt="Stylist Avatar" loading="lazy">
+      {% endif %}
+    </div>
+    
+    <div class="sg-table-stack">
+      <div class="sg-row sg-row-header">
+        <div class="sg-cell">Size</div>
+        <div class="sg-cell">Int. sizes</div>
+        <div class="sg-cell">cm</div>
+      </div>
+
+      {% assign sizes = "xs,s,m,l,xl,xxl" | split: "," %}
+      
+      {% for size in sizes %}
+        {% capture show_key %}show_{{ size }}{% endcapture %}
+        
+        {% if section.settings[show_key] %}
+          {% capture int_key %}val_{{ size }}_int{% endcapture %}
+          {% capture cm_key %}val_{{ size }}_cm{% endcapture %}
+          
+          <div class="sg-row {% cycle 'sg-row-light', 'sg-row-bright' %}">
+            <div class="sg-cell">{{ size | upcase }}</div>
+            <div class="sg-cell">{{ section.settings[int_key] }}</div>
+            <div class="sg-cell">{{ section.settings[cm_key] }}</div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="sg-footer">
+      <div>
+        <div class="sg-instructions-box">
+          <h3 class="sg-instructions-title">{{ section.settings.box_title }}</h3>
+          <ul class="sg-instructions-list">
+            {% if section.settings.bullet_1 != blank %}<li>{{ section.settings.bullet_1 }}</li>{% endif %}
+            {% if section.settings.bullet_2 != blank %}<li>{{ section.settings.bullet_2 }}</li>{% endif %}
+            {% if section.settings.bullet_3 != blank %}<li>{{ section.settings.bullet_3 }}</li>{% endif %}
+          </ul>
+        </div>
+        
+        {% if section.settings.note_text != blank %}
+          <div class="sg-note">
+            <strong>Note:</strong> {{ section.settings.note_text }}
+          </div>
+        {% endif %}
+      </div>
+
+      {% if section.settings.illustration_image %}
+        <img src="{{ section.settings.illustration_image | image_url: width: 500 }}" class="sg-illustration" alt="How to measure" loading="lazy">
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Static Size Guide",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "color_primary", "label": "Dark Magenta", "default": "#282828" },
+    { "type": "color", "id": "color_secondary", "label": "Bright Pink", "default": "#282828" },
+    { "type": "color", "id": "color_tertiary", "label": "Light Pink", "default": "#F6F5F0" },
+
+    { "type": "header", "content": "Header Content" },
+    { "type": "text", "id": "title", "label": "Main Title", "default": "Size Guide" },
+    { "type": "image_picker", "id": "avatar_image", "label": "Avatar Image (Top Right)" },
+
+    { "type": "header", "content": "Table Data: XS" },
+    { "type": "checkbox", "id": "show_xs", "label": "Show XS Row", "default": true },
+    { "type": "text", "id": "val_xs_int", "label": "Int. Sizes", "default": "34 - 36" },
+    { "type": "text", "id": "val_xs_cm", "label": "cm", "default": "88 - 93" },
+
+    { "type": "header", "content": "Table Data: S" },
+    { "type": "checkbox", "id": "show_s", "label": "Show S Row", "default": true },
+    { "type": "text", "id": "val_s_int", "label": "Int. Sizes", "default": "38" },
+    { "type": "text", "id": "val_s_cm", "label": "cm", "default": "94 - 99" },
+
+    { "type": "header", "content": "Table Data: M" },
+    { "type": "checkbox", "id": "show_m", "label": "Show M Row", "default": true },
+    { "type": "text", "id": "val_m_int", "label": "Int. Sizes", "default": "40 - 42" },
+    { "type": "text", "id": "val_m_cm", "label": "cm", "default": "100 - 105" },
+
+    { "type": "header", "content": "Table Data: L" },
+    { "type": "checkbox", "id": "show_l", "label": "Show L Row", "default": true },
+    { "type": "text", "id": "val_l_int", "label": "Int. Sizes", "default": "44" },
+    { "type": "text", "id": "val_l_cm", "label": "cm", "default": "106 - 111" },
+
+    { "type": "header", "content": "Table Data: XL" },
+    { "type": "checkbox", "id": "show_xl", "label": "Show XL Row", "default": true },
+    { "type": "text", "id": "val_xl_int", "label": "Int. Sizes", "default": "46" },
+    { "type": "text", "id": "val_xl_cm", "label": "cm", "default": "112 - 117" },
+
+    { "type": "header", "content": "Table Data: XXL" },
+    { "type": "checkbox", "id": "show_xxl", "label": "Show XXL Row", "default": true },
+    { "type": "text", "id": "val_xxl_int", "label": "Int. Sizes", "default": "48 - 50" },
+    { "type": "text", "id": "val_xxl_cm", "label": "cm", "default": "118 - 123" },
+
+    { "type": "header", "content": "Footer Section" },
+    { "type": "text", "id": "box_title", "label": "Instructions Title", "default": "How to measure?" },
+    { "type": "textarea", "id": "bullet_1", "label": "Bullet Point 1", "default": "Stand naturally and measure around your hips at the widest point, where your body is fullest." },
+    { "type": "textarea", "id": "bullet_2", "label": "Bullet Point 2", "default": "Keep the measuring tape snug but not tight, and make sure it's level all the way around." },
+    { "type": "textarea", "id": "bullet_3", "label": "Bullet Point 3", "default": "For best accuracy, measure directly on your body or over thin clothing, and measure twice to be sure." },
+    { "type": "textarea", "id": "note_text", "label": "Note Text", "default": "If you come between the two sizes, choose the small one." },
+    { "type": "image_picker", "id": "illustration_image", "label": "Measurement Illustration Image" }
+  ],
+  "presets": [
+    {
+      "name": "Static Size Guide"
+    }
+  ]
+}
+{% endschema %}
