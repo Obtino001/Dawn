@@ -195,7 +195,11 @@
     var closeBtn = document.getElementById('NewsletterPopupClose');
     var dismissBtn = document.getElementById('NewsletterPopupDismiss');
     
-    // Show popup every time (localStorage check removed)
+    // Check localStorage before showing
+    if (localStorage.getItem('newsletterPopupDismissed')) {
+      return;
+    }
+
     var delay = 1000; // Hardcoded to 1 second for immediate visibility
     setTimeout(function() {
       popup.classList.add('show');
@@ -203,6 +207,7 @@
     
     function closePopup() {
       popup.classList.remove('show');
+      localStorage.setItem('newsletterPopupDismissed', 'true');
     }
     
     if (closeBtn) closeBtn.addEventListener('click', closePopup);

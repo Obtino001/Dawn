@@ -121,8 +121,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--sl-brand-primary, #282828);
-  color: #fff;
+  background-color: rgb(var(--color-button));
+  color: rgb(var(--color-button-text));
   border: none;
   border-radius: 50px;
   padding: 0 24px;
@@ -145,7 +145,7 @@ body {
 }
 
 .sl-card-add-btn:hover {
-  background-color: #7a1a5c;
+  background-color: rgba(var(--color-button), 0.8);
 }
 
 .sl-card-add-btn svg {
