@@ -149,52 +149,6 @@
         "padding_bottom": 36
       }
     },
-    "mission_story": {
-      "type": "image-with-text",
-      "blocks": {
-        "caption": {
-          "type": "caption",
-          "settings": {
-            "caption": "Vores løfte",
-            "text_style": "uppercase",
-            "text_size": "small"
-          }
-        },
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Hvert køb hjælper os med at give 10 måltider til forladte killinger",
-            "heading_size": "h1"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Hver dag sulter herreløse killinger på gaden — kolde, bange og uden nogen at regne med.</p><p>Hver ordre du afgiver, hjælper med at ændre det. Vi samarbejder med lokale redningsorganisationer for at forvandle dit køb til rigtige måltider til katte i nød.</p><p><strong>600.000+</strong> måltider finansieret af vores fællesskab — og vi tæller stadig.</p>",
-            "text_style": "body"
-          }
-        }
-      },
-      "block_order": [
-        "caption",
-        "heading",
-        "text"
-      ],
-      "settings": {
-        "height": "adapt",
-        "desktop_image_width": "medium",
-        "layout": "text_first",
-        "image_behavior": "none",
-        "content_layout": "no-overlap",
-        "desktop_content_position": "middle",
-        "desktop_content_alignment": "left",
-        "mobile_content_alignment": "left",
-        "section_color_scheme": "scheme-1",
-        "color_scheme": "scheme-1",
-        "padding_top": 24,
-        "padding_bottom": 24
-      }
-    },
     "how_it_works_steps": {
       "type": "multicolumn",
       "blocks": {
@@ -254,7 +208,6 @@
     "mission_proof_pawpwF",
     "featured_collection",
     "featured_blog",
-    "mission_story",
     "how_it_works_steps"
   ]
 }
