@@ -1,0 +1,33 @@
+{%- comment -%}
+  Renders star rating and deterministic 100+ review count badge.
+  Usage:
+  {% render 'product-review-badge', product: product, class: 'kk-pdp-rating' %}
+  {% render 'product-review-badge', product: card_product %}
+{%- endcomment -%}
+
+{%- liquid
+  assign current_prod = product | default: card_product
+  assign p_handle = current_prod.handle | default: ''
+  assign review_count = 0
+
+  if p_handle contains 'un-deux-trois-cat-with-color'
+    assign review_count = 144
+  elsif p_handle contains 'pew-pew'
+    assign review_count = 209
+  elsif p_handle contains 'un-deux-trois'
+    assign review_count = 981
+  elsif current_prod.metafields.reviews.rating_count != blank
+    assign review_count = current_prod.metafields.reviews.rating_count
+  else
+    assign p_id = current_prod.id | default: 9999
+    assign seed = p_id | slice: -4, 4 | plus: 0
+    assign review_count = seed | modulo: 880 | plus: 115
+  endif
+-%}
+
+<div class="kk-card-rating{% if class != blank %} {{ class }}{% endif %}">
+  <span class="kk-card-rating__stars" aria-label="5 out of 5 stars">★ ★ ★ ★ ★</span>
+  {%- if show_count != false -%}
+    <span class="kk-card-rating__count">({{ review_count }})</span>
+  {%- endif -%}
+</div>

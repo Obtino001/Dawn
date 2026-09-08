@@ -992,6 +992,70 @@ h1, h2, h3, h4, h5, h6,
   letter-spacing: 0.01em;
 }
 
+.kk-sticky__promo-rating {
+  color: #6C72E0;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.kk-sticky__product {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 12px;
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+.kk-sticky__thumb {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  object-fit: cover;
+  flex: 0 0 40px;
+  border: 1px solid #e2e4f0;
+}
+
+.kk-sticky__details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.kk-sticky__title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #2A2C42;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 170px;
+  line-height: 1.25;
+}
+
+.kk-sticky__rating {
+  margin: 2px 0 0 !important;
+  gap: 4px !important;
+}
+
+.kk-sticky__rating .kk-card-rating__stars {
+  font-size: 11px !important;
+  letter-spacing: 1.5px !important;
+}
+
+.kk-sticky__rating .kk-card-rating__count {
+  font-size: 11px !important;
+  font-weight: 500 !important;
+}
+
+@media (max-width: 860px) {
+  .kk-sticky__product {
+    display: none !important;
+  }
+}
+
 .kk-sticky__inner {
   display: flex;
   flex-wrap: wrap;
@@ -1376,15 +1440,15 @@ h1, h2, h3, h4, h5, h6,
   display: block !important;
 }
 
-/* Violet Review Stars + Count */
-.card-wrapper .kk-card-rating {
-  display: flex !important;
+/* Violet Review Stars + Count (Unified across Card, PDP, Sticky ATC) */
+.kk-card-rating {
+  display: inline-flex !important;
   align-items: center !important;
   gap: 6px !important;
   margin: 4px 0 8px !important;
 }
 
-.card-wrapper .kk-card-rating__stars {
+.kk-card-rating__stars {
   color: #6C72E0 !important;
   -webkit-text-fill-color: #6C72E0 !important;
   font-size: 13px !important;
@@ -1393,7 +1457,7 @@ h1, h2, h3, h4, h5, h6,
   display: inline-flex !important;
 }
 
-.card-wrapper .kk-card-rating__count {
+.kk-card-rating__count {
   font-family: 'Poppins', sans-serif !important;
   font-size: 13px !important;
   font-weight: 500 !important;
@@ -1401,8 +1465,23 @@ h1, h2, h3, h4, h5, h6,
   line-height: 1 !important;
 }
 
-.card-wrapper .kk-card-rating__score {
+.kk-card-rating__score {
   display: none !important;
+}
+
+/* PDP Review Block Specific */
+.kk-pdp-rating {
+  margin: 4px 0 10px !important;
+}
+
+.kk-pdp-rating .kk-card-rating__stars {
+  font-size: 15px !important;
+  letter-spacing: 3px !important;
+}
+
+.kk-pdp-rating .kk-card-rating__count {
+  font-size: 14px !important;
+  font-weight: 500 !important;
 }
 
 /* Price Row - Strikethrough on left, Sale price on right */

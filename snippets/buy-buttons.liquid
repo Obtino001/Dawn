@@ -96,6 +96,11 @@
           {%- if show_dynamic_checkout -%}
             {{ form | payment_button }}
           {%- endif -%}
+          {%- if block.settings.show_rating -%}
+            <div class="kk-buy-buttons-rating" style="margin-top: 8px; display: flex; justify-content: center;">
+              {% render 'product-review-badge', product: product %}
+            </div>
+          {%- endif -%}
         </div>
       {%- endform -%}
     </product-form>
