@@ -1077,21 +1077,54 @@ h1, h2, h3, h4, h5, h6,
 
 .kk-sticky__btn {
   flex: 0 0 auto;
-  background: var(--kk-brand-deep);
+  background: var(--kk-brand-primary);
   color: #ffffff;
   font-family: var(--kk-font-family);
   font-size: 14px;
   font-weight: 700;
-  padding: 9px 24px;
+  padding: 10px 24px;
   border: 0;
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.15s ease, transform 0.1s ease;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .kk-sticky__btn:hover {
-  background: var(--kk-brand-dark);
+  background: #7991eb;
+}
+
+.kk-sticky__btn:disabled {
+  background: #b9c2e6;
+  cursor: not-allowed;
+}
+
+.kk-sticky__btn svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+@media (min-width: 750px) {
+  .kk-sticky__inner {
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  .kk-sticky__opts {
+    flex: 0 0 auto;
+  }
+  .kk-sticky__select {
+    min-width: 120px;
+    max-width: 160px;
+  }
+  .kk-sticky__btn {
+    flex: 0 0 auto;
+  }
 }
 
 @media (max-width: 749px) {
@@ -1101,7 +1134,7 @@ h1, h2, h3, h4, h5, h6,
   }
   .kk-sticky__btn {
     width: 100%;
-    padding: 10px;
+    padding: 11px;
     text-align: center;
   }
 }

@@ -25,20 +25,22 @@
         {%- endunless -%}
 
         <div class="kk-sticky__field kk-sticky__qty">
-          <span class="kk-sticky__label">Qty</span>
+          <span class="kk-sticky__label">{{ "products.product.quantity.label" | t | default: "Antal" }}</span>
           <div class="kk-qty">
-            <button type="button" class="kk-qty__btn" data-kk-qty="minus" aria-label="Decrease quantity">−</button>
+            <button type="button" class="kk-qty__btn" data-kk-qty="minus" aria-label="{{ 'products.product.quantity.decrease' | t: product: product.title | default: 'Reducer antal' }}">−</button>
             <input class="kk-qty__input" type="number" inputmode="numeric" value="1" min="1" aria-label="Quantity">
-            <button type="button" class="kk-qty__btn" data-kk-qty="plus" aria-label="Increase quantity">+</button>
+            <button type="button" class="kk-qty__btn" data-kk-qty="plus" aria-label="{{ 'products.product.quantity.increase' | t: product: product.title | default: 'Øg antal' }}">+</button>
           </div>
         </div>
       </div>
 
       <button type="button" class="kk-sticky__btn" id="kk-sticky-submit">
-        <span class="kk-sticky__btn-text">{{ section.settings.button_text | default: 'Add to cart' }}</span>
-        <span class="kk-sticky__btn-price" style="margin-left: 6px; font-weight: 500;">
-          {{ product.selected_or_first_available_variant.price | money }}
-        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;">
+          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+        <span class="kk-sticky__btn-text">{{ section.settings.button_text | default: 'Læg i kurv' }}</span>
+        <span class="kk-sticky__btn-price"> · {{ product.selected_or_first_available_variant.price | money }}</span>
       </button>
     </div>
   </div>
@@ -49,7 +51,7 @@
       if (!sticky) return;
 
       const variants = {{ product.variants | json }};
-      const mainForm = document.querySelector('form[action*="/cart/add"]');
+      const mainForm = document.querySelector('product-form form') || document.querySelector('form[action*="/cart/add"]');
       const mainSubmit = mainForm ? mainForm.querySelector('[type="submit"]') : null;
       const stickySubmit = document.getElementById('kk-sticky-submit');
       const stickySelects = sticky.querySelectorAll('.kk-sticky__select');
@@ -57,6 +59,7 @@
       const qtyMinus = sticky.querySelector('[data-kk-qty="minus"]');
       const qtyPlus = sticky.querySelector('[data-kk-qty="plus"]');
       const priceDisplay = sticky.querySelector('.kk-sticky__btn-price');
+      const isDesignMode = {% if request.design_mode %}true{% else %}false{% endif %};
 
       // Helper to find selected variant
       function getSelectedVariant() {
@@ -67,40 +70,64 @@
         });
       }
 
+      function formatMoney(cents) {
+        if (window.Shopify && typeof window.Shopify.formatMoney === 'function') {
+          return window.Shopify.formatMoney(cents);
+        }
+        return (cents / 100).toLocaleString('da-DK', { style: 'currency', currency: {{ cart.currency.iso_code | json }} });
+      }
+
       // Update sticky UI state based on selected options
       function updateStickyState() {
         const variant = getSelectedVariant();
         if (variant && variant.available) {
           stickySubmit.disabled = false;
-          stickySubmit.querySelector('.kk-sticky__btn-text').textContent = {{ section.settings.button_text | default: 'Add to cart' | json }};
+          stickySubmit.querySelector('.kk-sticky__btn-text').textContent = {{ section.settings.button_text | default: 'Læg i kurv' | json }};
+          const qty = Math.max(1, parseInt(qtyInput.value, 10) || 1);
           if (priceDisplay && variant.price) {
-            // format price
-            priceDisplay.textContent = (variant.price / 100).toLocaleString('en-US', { style: 'currency', currency: {{ cart.currency.iso_code | json }} });
+            priceDisplay.textContent = ' · ' + formatMoney(variant.price * qty);
           }
         } else {
           stickySubmit.disabled = true;
-          stickySubmit.querySelector('.kk-sticky__btn-text').textContent = {{ 'products.product.sold_out' | t | default: 'Sold out' | json }};
+          stickySubmit.querySelector('.kk-sticky__btn-text').textContent = {{ 'products.product.sold_out' | t | default: 'Udsolgt' | json }};
+          if (priceDisplay) priceDisplay.textContent = '';
         }
       }
 
       // Sync sticky select change
       stickySelects.forEach(select => {
-        select.addEventListener('change', updateStickyState);
+        select.addEventListener('change', () => {
+          updateStickyState();
+          // Two-way sync: update main product form variant
+          const variant = getSelectedVariant();
+          if (variant && mainForm) {
+            const idInput = mainForm.querySelector('[name="id"]');
+            if (idInput) {
+              idInput.value = variant.id;
+              idInput.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+          }
+        });
       });
 
       // Quantity controls
       if (qtyMinus) {
         qtyMinus.addEventListener('click', () => {
-          const val = parseInt(qtyInput.value) || 1;
-          if (val > 1) qtyInput.value = val - 1;
+          const val = parseInt(qtyInput.value, 10) || 1;
+          if (val > 1) {
+            qtyInput.value = val - 1;
+            updateStickyState();
+          }
         });
       }
       if (qtyPlus) {
         qtyPlus.addEventListener('click', () => {
-          const val = parseInt(qtyInput.value) || 1;
+          const val = parseInt(qtyInput.value, 10) || 1;
           qtyInput.value = val + 1;
+          updateStickyState();
         });
       }
+      qtyInput.addEventListener('input', updateStickyState);
 
       // Add to Cart click
       if (stickySubmit) {
@@ -110,55 +137,119 @@
 
           stickySubmit.disabled = true;
           const originalText = stickySubmit.querySelector('.kk-sticky__btn-text').textContent;
-          stickySubmit.querySelector('.kk-sticky__btn-text').textContent = 'Adding...';
+          stickySubmit.querySelector('.kk-sticky__btn-text').textContent = 'Tilføjer...';
 
           try {
-            const qty = parseInt(qtyInput.value) || 1;
-            const res = await fetch('/cart/add.js', {
+            const qty = parseInt(qtyInput.value, 10) || 1;
+            const cart = document.querySelector('cart-drawer') || document.querySelector('cart-notification');
+            let sections = [];
+            try {
+              if (cart && typeof cart.getSectionsToRender === 'function') {
+                sections = cart.getSectionsToRender().map(s => s.id);
+              }
+            } catch(e) {}
+
+            const res = await fetch((window.routes && window.routes.cart_add_url) || '/cart/add.js', {
               method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ id: variant.id, quantity: qty })
+              headers: { 'Content-Type': 'application/json', 'Accept': 'application/javascript' },
+              body: JSON.stringify({
+                id: variant.id,
+                quantity: qty,
+                sections: sections,
+                sections_url: window.location.pathname
+              })
             });
 
             if (res.ok) {
-              // Open Cart Drawer
-              const cartDrawer = document.querySelector('cart-drawer');
-              if (cartDrawer) {
-                // Fetch updated drawer content
-                const htmlRes = await fetch(window.location.href);
-                const htmlText = await htmlRes.text();
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(htmlText, 'text/html');
-                const newDrawer = doc.querySelector('cart-drawer');
-                if (newDrawer) cartDrawer.innerHTML = newDrawer.innerHTML;
-                cartDrawer.classList.remove('is-empty');
-                cartDrawer.open();
+              const data = await res.json();
+              stickySubmit.querySelector('.kk-sticky__btn-text').textContent = 'Tilføjet ✓';
+
+              if (cart && typeof cart.renderContents === 'function') {
+                cart.renderContents(data);
+                if (typeof cart.open === 'function') cart.open();
               } else {
-                window.location.href = '/cart';
+                // Fallback drawer open
+                const drawer = document.querySelector('cart-drawer');
+                if (drawer) {
+                  const htmlRes = await fetch(window.location.href);
+                  const htmlText = await htmlRes.text();
+                  const parser = new DOMParser();
+                  const doc = parser.parseFromString(htmlText, 'text/html');
+                  const newDrawer = doc.querySelector('cart-drawer');
+                  if (newDrawer) drawer.innerHTML = newDrawer.innerHTML;
+                  drawer.classList.remove('is-empty');
+                  if (typeof drawer.open === 'function') drawer.open();
+                } else {
+                  window.location.href = '/cart';
+                }
               }
+              setTimeout(updateStickyState, 1500);
+            } else {
+              updateStickyState();
             }
           } catch (e) {
             console.error('Error adding to cart:', e);
-          } finally {
-            stickySubmit.disabled = false;
-            stickySubmit.querySelector('.kk-sticky__btn-text').textContent = originalText;
+            updateStickyState();
           }
         });
       }
 
-      // Visibility scroll listener
+      // One-way sync: Main form selection -> Sticky ATC
+      try {
+        const mainId = mainForm && mainForm.querySelector('[name="id"]');
+        if (mainId) {
+          document.addEventListener('change', (e) => {
+            if (sticky.contains(e.target)) return;
+            setTimeout(() => {
+              const vid = mainId.value;
+              const matchingVariant = variants.find(v => String(v.id) === String(vid));
+              if (matchingVariant) {
+                stickySelects.forEach((select, idx) => {
+                  if (matchingVariant.options[idx] != null) {
+                    select.value = matchingVariant.options[idx];
+                  }
+                });
+                updateStickyState();
+              }
+            }, 60);
+          });
+        }
+      } catch(e) {}
+
+      // Visibility scroll listener (triggers after 12% scroll or past main form)
       function checkScroll() {
-        if (!mainSubmit) {
-          sticky.classList.toggle('is-visible', window.scrollY > 400);
+        if (isDesignMode) {
+          sticky.classList.add('is-visible');
+          sticky.setAttribute('aria-hidden', 'false');
           return;
         }
-        const rect = mainSubmit.getBoundingClientRect();
-        const shouldShow = rect.bottom < 0;
+
+        const docH = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPct = docH > 0 ? (window.scrollY / docH) * 100 : 0;
+        let shouldShow = scrollPct >= 12;
+
+        if (!shouldShow && mainSubmit) {
+          const rect = mainSubmit.getBoundingClientRect();
+          shouldShow = rect.bottom < 0;
+        }
+
         sticky.classList.toggle('is-visible', shouldShow);
         sticky.setAttribute('aria-hidden', !shouldShow);
       }
 
-      window.addEventListener('scroll', checkScroll, { passive: true });
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            checkScroll();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+      window.addEventListener('resize', checkScroll, { passive: true });
+
+      updateStickyState();
       checkScroll();
     })();
   </script>
@@ -166,7 +257,7 @@
 
 {% schema %}
 {
-  "name": "Sticky Add to Cart",
+  "name": "Fastgjort Købsknap (Sticky ATC)",
   "tag": "section",
   "class": "section-sticky-atc",
   "enabled_on": {
@@ -176,19 +267,19 @@
     {
       "type": "text",
       "id": "promo_text",
-      "label": "Top Promo Tag (Optional)",
-      "default": "FREE SHIPPING ON THIS ORDER"
+      "label": "Top Promo Tag (Valgfri)",
+      "default": "GRATIS FRAGT PÅ DENNE ORDRE"
     },
     {
       "type": "text",
       "id": "button_text",
-      "label": "Button Label",
-      "default": "Add to cart"
+      "label": "Knaptekst",
+      "default": "Læg i kurv"
     }
   ],
   "presets": [
     {
-      "name": "Sticky Add to Cart"
+      "name": "Fastgjort Købsknap (Sticky ATC)"
     }
   ]
 }
