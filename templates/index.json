@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero_banner": {
@@ -26,6 +35,7 @@
           "type": "proof_item",
           "settings": {
             "icon_type": "paw",
+            "stars_text": "★★★★★",
             "value": "50,000+",
             "label": "happy cat parents"
           }
@@ -34,6 +44,7 @@
           "type": "proof_item",
           "settings": {
             "icon_type": "bowl",
+            "stars_text": "★★★★★",
             "value": "600,000+",
             "label": "meals donated"
           }
@@ -58,20 +69,19 @@
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
+        "collection": "all",
+        "products_to_show": 8,
         "title": "Featured Collection",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
         "columns_desktop": 4,
-        "color_scheme": "scheme-1",
+        "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
+        "color_scheme": "scheme-1",
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
@@ -79,6 +89,7 @@
         "show_rating": true,
         "quick_add": "none",
         "columns_mobile": "2",
+        "swipe_on_mobile": false,
         "padding_top": 16,
         "padding_bottom": 36
       }
@@ -86,16 +97,16 @@
     "featured_blog": {
       "type": "featured-blog",
       "settings": {
-        "heading": "Updates from the field",
-        "heading_size": "h2",
         "blog": "news",
         "post_limit": 3,
+        "heading": "Updates from the field",
+        "heading_size": "h2",
         "columns_desktop": 3,
-        "color_scheme": "scheme-1",
+        "show_view_all": false,
         "show_image": true,
         "show_date": true,
         "show_author": false,
-        "show_view_all": false,
+        "color_scheme": "scheme-1",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -109,6 +120,7 @@
         "show_divider": true,
         "body_text_1": "Every day, stray kittens go hungry on the streets — cold, scared, and with no one to count on.",
         "body_text_2": "Every order you place helps change that. We partner with local rescues to turn your purchase into real meals for cats in need.",
+        "body_richtext": "",
         "stat_number": "600,000+",
         "stat_label": "meals funded by our community — and counting",
         "color_scheme": "scheme-1",
