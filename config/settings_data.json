@@ -202,10 +202,10 @@
     },
     "enable_free_shipping_bar": true,
     "free_shipping_threshold": 350,
-    "free_shipping_progress_text": "Tilf\u00f8j [amount] mere for GRATIS fragt",
-    "free_shipping_success_text": "Du har opn\u00e5et GRATIS fragt!",
+    "free_shipping_progress_text": "Tilføj [amount] mere for GRATIS fragt",
+    "free_shipping_success_text": "Du har opnået GRATIS fragt!",
     "card_show_free_shipping_badge": true,
-    "card_free_shipping_text": "Gratis fragt"
+    "card_free_shipping_text": "Free shipping"
   },
   "presets": {
     "Dawn": {
@@ -400,10 +400,10 @@
       },
       "enable_free_shipping_bar": true,
       "free_shipping_threshold": 350,
-      "free_shipping_success_text": "Du har opn\u00e5et GRATIS fragt!",
+      "free_shipping_success_text": "Du har opnået GRATIS fragt!",
       "card_show_free_shipping_badge": true,
       "card_free_shipping_text": "Gratis fragt",
-      "free_shipping_progress_text": "Tilf\u00f8j [amount] mere for GRATIS fragt"
+      "free_shipping_progress_text": "Tilføj [amount] mere for GRATIS fragt"
     }
   }
 }

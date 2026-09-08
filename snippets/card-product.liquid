@@ -127,14 +127,18 @@
               </h3>
             </div>
             <div class="card__badge {{ settings.badge_position }}">
-              {%- if settings.card_show_free_shipping_badge and card_product.available -%}
+              {%- if settings.card_show_free_shipping_badge != false and card_product.available -%}
                 <span class="badge kk-badge--freeship">
-                  <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="1" y="3" width="15" height="13"/>
-                    <polygon points="16 8 20 8 23 11 23 16 16 16 8"/>
-                    <circle cx="5.5" cy="18.5" r="2.5"/>
-                    <circle cx="18.5" cy="18.5" r="2.5"/>
-                  </svg>
+                  {%- if settings.card_free_shipping_icon != blank -%}
+                    {{ settings.card_free_shipping_icon | image_url: width: 30 | image_tag: style: 'width: 14px; height: 14px; object-fit: contain;' }}
+                  {%- else -%}
+                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="1" y="3" width="15" height="13"/>
+                      <polygon points="16 8 20 8 23 11 23 16 16 16 8"/>
+                      <circle cx="5.5" cy="18.5" r="2.5"/>
+                      <circle cx="18.5" cy="18.5" r="2.5"/>
+                    </svg>
+                  {%- endif -%}
                   <span>{{ settings.card_free_shipping_text | default: 'Gratis fragt' | escape }}</span>
                 </span>
               {%- endif -%}
@@ -174,20 +178,18 @@
               </a>
             </h3>
             <div class="card-information">
-              {%- if show_vendor -%}
+              {%- if show_vendor or card_product.vendor != blank -%}
                 <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
-                <div class="caption-with-letter-spacing light">{{ card_product.vendor }}</div>
+                <div class="caption-with-letter-spacing light">{{ card_product.vendor | default: shop.name }}</div>
               {%- endif -%}
 
               <span class="caption-large light">{{ block.settings.description | escape }}</span>
 
-              {%- if show_rating and card_product.metafields.reviews.rating.value != blank -%}
+              {%- if show_rating -%}
+                {%- assign review_count = card_product.metafields.reviews.rating_count | default: 981 -%}
                 <div class="kk-card-rating">
-                  <span class="kk-card-rating__stars">★★★★★</span>
-                  <span class="kk-card-rating__score">
-                    {{- card_product.metafields.reviews.rating.value }} / {{ card_product.metafields.reviews.rating.value.scale_max -}}
-                  </span>
-                  <span class="kk-card-rating__count">({{ card_product.metafields.reviews.rating_count }})</span>
+                  <span class="kk-card-rating__stars" aria-label="5 out of 5 stars">★ ★ ★ ★ ★</span>
+                  <span class="kk-card-rating__count">({{ review_count }})</span>
                 </div>
               {%- endif -%}
 
@@ -536,7 +538,7 @@
             {% endif %}
           {% endif %}
           <div class="card__badge {{ settings.badge_position }}">
-            {%- if settings.card_show_free_shipping_badge and card_product.available -%}
+            {%- if settings.card_show_free_shipping_badge != false and card_product.available -%}
               <span class="badge kk-badge--freeship">
                 {%- if settings.card_free_shipping_icon != blank -%}
                   {{ settings.card_free_shipping_icon | image_url: width: 30 | image_tag: style: 'width: 14px; height: 14px; object-fit: contain;' }}

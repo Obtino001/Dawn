@@ -1248,3 +1248,192 @@ h1, h2, h3, h4, h5, h6,
     justify-content: center;
   }
 }
+
+
+/* ==========================================================================
+   Product Card Exact Design (Reference Match)
+   ========================================================================== */
+.card-wrapper.product-card-wrapper {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.card-wrapper .card__inner {
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  position: relative !important;
+  background-color: #f8f8fb !important;
+}
+
+.card-wrapper .card__media {
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+/* Badges stacked vertically on bottom-left of image */
+.card-wrapper .card__badge,
+.card-wrapper .card__inner .card__badge {
+  position: absolute !important;
+  bottom: 12px !important;
+  left: 12px !important;
+  top: auto !important;
+  right: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 6px !important;
+  z-index: 3 !important;
+  pointer-events: none !important;
+}
+
+/* Free shipping badge (White pill + Purple truck) */
+.kk-badge--freeship {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  background-color: #ffffff !important;
+  color: #5A78FF !important;
+  border: 1px solid #e2e7ff !important;
+  border-radius: 9999px !important;
+  padding: 4px 10px !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  letter-spacing: .02em !important;
+  box-shadow: 0 2px 8px rgba(42, 44, 66, 0.12) !important;
+  white-space: nowrap !important;
+}
+
+.kk-badge--freeship svg,
+.kk-badge--freeship img {
+  width: 14px !important;
+  height: 14px !important;
+  color: #5A78FF !important;
+  flex: 0 0 auto !important;
+  vertical-align: middle !important;
+}
+
+/* Sale badge (Periwinkle pill + White text) */
+.card-wrapper .badge.color-accent-2,
+.card-wrapper .badge--bottom-left.color-accent-2,
+.card-wrapper .card__badge .badge:not(.kk-badge--freeship) {
+  display: inline-flex !important;
+  align-items: center !important;
+  background-color: #8AA0F2 !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 9999px !important;
+  padding: 3px 11px !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: .02em !important;
+  line-height: 1.2 !important;
+  box-shadow: 0 2px 6px rgba(138, 160, 242, 0.25) !important;
+  min-height: 0 !important;
+}
+
+/* Card Information Below Image */
+.card-wrapper .card__content {
+  padding: 0 !important;
+}
+
+.card-wrapper .card__information {
+  padding: 12px 2px 4px !important;
+  text-align: left !important;
+}
+
+.card-wrapper .card__heading {
+  margin: 0 0 3px !important;
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 17px !important;
+  font-weight: 600 !important;
+  line-height: 1.25 !important;
+  color: #2A2C42 !important;
+  letter-spacing: -0.01em !important;
+}
+
+.card-wrapper .card__heading a {
+  color: #2A2C42 !important;
+  text-decoration: none !important;
+  transition: color 0.15s ease !important;
+}
+
+.card-wrapper .card__heading a:hover {
+  color: #6C72E0 !important;
+}
+
+.card-wrapper .caption-with-letter-spacing {
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  color: #8E92A4 !important;
+  margin: 0 0 6px !important;
+  display: block !important;
+}
+
+/* Violet Review Stars + Count */
+.card-wrapper .kk-card-rating {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  margin: 4px 0 8px !important;
+}
+
+.card-wrapper .kk-card-rating__stars {
+  color: #6C72E0 !important;
+  -webkit-text-fill-color: #6C72E0 !important;
+  font-size: 13px !important;
+  letter-spacing: 2.5px !important;
+  line-height: 1 !important;
+  display: inline-flex !important;
+}
+
+.card-wrapper .kk-card-rating__count {
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #2A2C42 !important;
+  line-height: 1 !important;
+}
+
+.card-wrapper .kk-card-rating__score {
+  display: none !important;
+}
+
+/* Price Row - Strikethrough on left, Sale price on right */
+.card-wrapper .price {
+  margin: 6px 0 0 !important;
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.card-wrapper .price__container {
+  display: flex !important;
+  align-items: baseline !important;
+}
+
+.card-wrapper .price__sale {
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 12px !important;
+}
+
+.card-wrapper .price__sale .price-item--regular {
+  font-size: 13.5px !important;
+  color: #9AA0AD !important;
+  font-weight: 400 !important;
+  text-decoration: line-through !important;
+}
+
+.card-wrapper .price-item--sale,
+.card-wrapper .price-item--regular:not(.price__sale .price-item--regular),
+.card-wrapper .price-item--last {
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  color: #000000 !important;
+  letter-spacing: 0.01em !important;
+}
