@@ -17,7 +17,7 @@
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "Hver ordre hj\u00e6lper os med at give 10 m\u00e5ltider til forladte katte",
+            "text": "Hver ordre hjælper os med at give 10 måltider til forladte katte",
             "link": "shopify://collections/all"
           }
         }
@@ -49,8 +49,8 @@
         "enable_country_selector": true,
         "enable_language_selector": true,
         "margin_bottom": 0,
-        "padding_top": 20,
-        "padding_bottom": 20
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     }
   },

@@ -25,11 +25,11 @@
         {%- endunless -%}
 
         <div class="kk-sticky__field kk-sticky__qty">
-          <span class="kk-sticky__label">{{ "products.product.quantity.label" | t | default: "Antal" }}</span>
+          <span class="kk-sticky__label">Qty</span>
           <div class="kk-qty">
-            <button type="button" class="kk-qty__btn" data-kk-qty="minus" aria-label="{{'products.product.quantity.decrease' | t: product: product.title | default: 'Reducer antal'}}">−</button>
+            <button type="button" class="kk-qty__btn" data-kk-qty="minus" aria-label="Decrease quantity">−</button>
             <input class="kk-qty__input" type="number" inputmode="numeric" value="1" min="1" aria-label="Quantity">
-            <button type="button" class="kk-qty__btn" data-kk-qty="plus" aria-label="{{'products.product.quantity.increase' | t: product: product.title | default: 'Øg antal'}}">+</button>
+            <button type="button" class="kk-qty__btn" data-kk-qty="plus" aria-label="Increase quantity">+</button>
           </div>
         </div>
       </div>
@@ -110,7 +110,7 @@
 
           stickySubmit.disabled = true;
           const originalText = stickySubmit.querySelector('.kk-sticky__btn-text').textContent;
-          stickySubmit.querySelector('.kk-sticky__btn-text').textContent = 'Tilføjer...';
+          stickySubmit.querySelector('.kk-sticky__btn-text').textContent = 'Adding...';
 
           try {
             const qty = parseInt(qtyInput.value) || 1;
@@ -166,7 +166,7 @@
 
 {% schema %}
 {
-  "name": "Fastgjort Købsknap (Sticky ATC)",
+  "name": "Sticky Add to Cart",
   "tag": "section",
   "class": "section-sticky-atc",
   "enabled_on": {
@@ -177,18 +177,18 @@
       "type": "text",
       "id": "promo_text",
       "label": "Top Promo Tag (Optional)",
-      "default": "GRATIS FRAGT PÅ DENNE ORDRE"
+      "default": "FREE SHIPPING ON THIS ORDER"
     },
     {
       "type": "text",
       "id": "button_text",
       "label": "Button Label",
-      "default": "Læg i kurv"
+      "default": "Add to cart"
     }
   ],
   "presets": [
     {
-      "name": "Fastgjort Købsknap (Sticky ATC)"
+      "name": "Sticky Add to Cart"
     }
   ]
 }

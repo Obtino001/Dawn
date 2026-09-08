@@ -75,7 +75,7 @@
         </button>
       </div>
       {%- if settings.enable_free_shipping_bar -%}
-        {%- assign free_shipping_threshold_cents = settings.free_shipping_threshold | default: 350 | times: 100 -%}
+        {%- assign free_shipping_threshold_cents = settings.free_shipping_threshold | default: 50 | times: 100 -%}
         {%- assign cart_total = cart.total_price -%}
         <div class="kk-cart-shipping-bar">
           <div class="kk-cart-shipping-bar__message">
@@ -86,21 +86,11 @@
               <circle cx="18.5" cy="18.5" r="2.5"/>
             </svg>
             {%- if cart_total >= free_shipping_threshold_cents -%}
-              <span>{{ settings.free_shipping_success_text | default: "Du har opnået GRATIS fragt!" }}</span>
+              <span>{{ settings.free_shipping_success_text | default: "You've unlocked FREE Shipping!" }}</span>
             {%- else -%}
               {%- assign amount_remaining = free_shipping_threshold_cents | minus: cart_total -%}
-              {%- assign remaining_money = amount_remaining | money -%}
-              {%- assign progress_message = settings.free_shipping_progress_text | default: "Tilføj [amount] mere for GRATIS fragt" | replace: "[amount]", remaining_money -%}
-              <span>{{ progress_message }}</span>
+              <span>Add <strong>{{ amount_remaining | money }}</strong> more for <strong>FREE Shipping</strong></span>
             {%- endif -%}
-          </div>
-          <div class="kk-cart-shipping-bar__track">
-            {%- assign progress = cart_total | times: 100 | divided_by: free_shipping_threshold_cents -%}
-            {%- if progress > 100 -%}{%- assign progress = 100 -%}{%- endif -%}
-            <div class="kk-cart-shipping-bar__fill" style="width: {{ progress }}%;"></div>
-          </div>
-        </div>
-      {%- endif -%}
           </div>
           <div class="kk-cart-shipping-bar__track">
             {%- assign progress = cart_total | times: 100 | divided_by: free_shipping_threshold_cents -%}
