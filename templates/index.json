@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero_banner": {
@@ -26,6 +35,7 @@
           "type": "proof_item",
           "settings": {
             "icon_type": "paw",
+            "stars_text": "★★★★★",
             "value": "50,000+",
             "label": "glade katteejere"
           }
@@ -34,6 +44,7 @@
           "type": "proof_item",
           "settings": {
             "icon_type": "bowl",
+            "stars_text": "★★★★★",
             "value": "600,000+",
             "label": "m\u00e5ltider doneret"
           }
@@ -58,20 +69,17 @@
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "title": "Udvalgte produkter",
+        "title": "Featured Collection",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
         "columns_desktop": 4,
-        "color_scheme": "scheme-1",
+        "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
+        "color_scheme": "scheme-1",
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
@@ -79,6 +87,7 @@
         "show_rating": true,
         "quick_add": "none",
         "columns_mobile": "2",
+        "swipe_on_mobile": false,
         "padding_top": 16,
         "padding_bottom": 36
       }
@@ -86,16 +95,14 @@
     "featured_blog": {
       "type": "featured-blog",
       "settings": {
-        "heading": "Opdateringer fra felten",
+        "heading": "Updates from the field",
         "heading_size": "h2",
-        "blog": "news",
-        "post_limit": 3,
         "columns_desktop": 3,
-        "color_scheme": "scheme-1",
+        "show_view_all": false,
         "show_image": true,
         "show_date": true,
         "show_author": false,
-        "show_view_all": false,
+        "color_scheme": "scheme-1",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -107,8 +114,8 @@
         "heading": "Hvert k\u00f8b hj\u00e6lper os med at give",
         "heading_highlight": "10 m\u00e5ltider til forladte killinger",
         "show_divider": true,
-        "body_text_1": "Hver dag sulter herrel\u00f8se killinger p\u00e5 gaden \u2014 kolde, bange og uden nogen at regne med.",
-        "body_text_2": "Hver ordre du afgiver, hj\u00e6lper med at \u00e6ndre det. Vi samarbejder med lokale redningsorganisationer for at forvandle dit k\u00f8b til rigtige m\u00e5ltider til katte i n\u00f8d.",
+        "body_text_1": "Every day, stray kittens go hungry on the streets — cold, scared, and with no one to count on.",
+        "body_text_2": "Every order you place helps change that. We partner with local rescues to turn your purchase into real meals for cats in need.",
         "stat_number": "600,000+",
         "stat_label": "m\u00e5ltider finansieret af vores f\u00e6llesskab \u2014 og vi t\u00e6ller stadig",
         "color_scheme": "scheme-1",
