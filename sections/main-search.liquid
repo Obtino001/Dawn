@@ -142,11 +142,6 @@
         {%- endunless -%}
         {%- if search.results_count == 0 and search.filters == empty -%}
           <p role="status">{{ 'templates.search.no_results' | t: terms: search.terms }}</p>
-          <p class="center">{{ 'templates.search.no_results_help' | t }}</p>
-          <p class="center">
-            <a class="button button--primary" href="{{ routes.collections_url }}/phone-cases-example-products">{{ 'templates.search.browse_cases' | t }}</a>
-            <a class="button button--secondary" href="{{ routes.all_products_collection_url }}">{{ 'templates.search.browse_all' | t }}</a>
-          </p>
         {%- endif -%}
       {%- endif -%}
     </div>
@@ -171,7 +166,6 @@
                     aria-describedby="a11y-refresh-page-message"
                   >
                     {%- for option in search.sort_options -%}
-                      {% unless option.value contains 'title-ascending' or option.value contains 'title-descending' %}
                       <option
                         value="{{ option.value | escape }}"
                         {% if option.value == sort_by %}
@@ -180,7 +174,6 @@
                       >
                         {{ option.name | escape }}
                       </option>
-                      {% endunless %}
                     {%- endfor -%}
                   </select>
                   <span class="svg-wrapper">
@@ -287,7 +280,8 @@
                           show_vendor: section.settings.show_vendor,
                           show_rating: section.settings.show_rating,
                           lazy_load: lazy_load,
-                          skip_styles: skip_card_product_styles
+                          skip_styles: skip_card_product_styles,
+                          product_view_context: 'search'
                         %}
                         {%- assign skip_card_product_styles = true -%}
                       {%- when 'article' -%}

@@ -12,6 +12,13 @@
   <variant-selects
     id="variant-selects-{{ section.id }}"
     data-section="{{ section.id }}"
+    data-product-handle="{{ product.handle }}"
+    data-product-title="{{ product.title | escape }}"
+    data-product-id="{{ product.id }}"
+    data-currency-code="{{ cart.currency.iso_code }}"
+    {% # theme-check-disable %}
+    data-selected-price-amount="{{ product.selected_or_first_available_variant.price | default: 0 | money_amount | escape }}"
+    {% # theme-check-enable %}
     {{ block.shopify_attributes }}
   >
     {%- for option in product.options_with_values -%}
@@ -27,107 +34,35 @@
           endif
         endif
       -%}
-      {%- assign option_name_downcase = option.name | downcase | strip -%}
       {%- if picker_type == 'swatch' -%}
-        <fieldset class="js product-form__input product-form__input--swatch {% if option_name_downcase == 'size' or option_name_downcase == 'størrelse' or option_name_downcase == "størrelse tenåringer"%} size_options{% endif%}
-          ">
-          <legend
-            class="form__label"
-            style="display: flex; justify-content: space-between; align-items: center; width: 100%;"
-          >
-            <span>
-              {{ option.name }}:
-              <span data-selected-value>
-                {{- option.selected_value -}}
-              </span>
+        <fieldset class="js product-form__input product-form__input--swatch">
+          <legend class="form__label">
+            {{ option.name }}:
+            <span data-selected-value>
+              {{- option.selected_value -}}
             </span>
-            {%- assign option_name_downcase = option.name | downcase | strip -%}
-            {%- if block.settings.size_guide_page
-              and option_name_downcase == 'size'
-              or option_name_downcase == 'størrelse'
-              or option_name_downcase == "størrelse tenåringer"
-            -%}
-              {% render 'size-chart', block: block %}
-            {%- endif -%}
           </legend>
           {% render 'product-variant-options',
             product: product,
             option: option,
             block: block,
-            picker_type: picker_type,
-            product_form_id: product_form_id
+            picker_type: picker_type
           %}
         </fieldset>
       {%- elsif picker_type == 'button' -%}
-        {%- assign use_model_picker = false -%}
-        {%- if option.values.size > 7 -%}
-          {%- assign use_model_picker = true -%}
-        {%- endif -%}
-        <{% if use_model_picker %}model-variant-picker{% else %}div{% endif %}>
-          <fieldset class="js product-form__input product-form__input--pill{% if use_model_picker %} product-form__input--models{% endif %} {% if option_name_downcase == 'size' or option_name_downcase == 'størrelse' or option_name_downcase == "størrelse tenåringer"%} size_options{% endif%}">
-            <legend
-              class="form__label"
-              style="display: flex; justify-content: space-between; align-items: center; width: 100%;"
-            >
-              <span>
-                {{ option.name }}
-                {%- if use_model_picker -%}
-                  <span class="model-picker__current" data-selected-value>{{ option.selected_value }}</span>
-                {%- endif -%}
-              </span>
-              {%- assign option_name_downcase = option.name | downcase | strip -%}
-              {%- if block.settings.size_guide_page
-                and option_name_downcase == 'size'
-                or option_name_downcase == 'størrelse'
-                or option_name_downcase == "størrelse tenåringer"
-              -%}
-                {% render 'size-chart',  block: block%}
-              {%- endif -%}
-            </legend>
-            {%- if use_model_picker -%}
-              <div class="model-series" data-model-series hidden></div>
-              <div class="model-pills">
-            {%- endif -%}
-            {% render 'product-variant-options',
-              product: product,
-              option: option,
-              block: block,
-              picker_type: picker_type,
-              product_form_id: product_form_id
-            %}
-            {%- if use_model_picker -%}
-              </div>
-            {%- endif -%}
-          </fieldset>
-        </{% if use_model_picker %}model-variant-picker{% else %}div{% endif %}>
+        <fieldset class="js product-form__input product-form__input--pill">
+          <legend class="form__label">{{ option.name }}</legend>
+          {% render 'product-variant-options',
+            product: product,
+            option: option,
+            block: block,
+            picker_type: picker_type
+          %}
+        </fieldset>
       {%- else -%}
         <div class="product-form__input product-form__input--dropdown">
-          <label
-            class="form__label"
-            for="Option-{{ section.id }}-{{ forloop.index0 }}"
-            style="display: flex; justify-content: space-between; align-items: center; width: 100%;"
-          >
-            <span>{{ option.name }}</span>
-            {%- assign option_name_downcase = option.name | downcase | strip -%}
-            {%- if block.settings.size_guide_page != blank
-              and option_name_downcase == 'size'
-              or option_name_downcase == 'størrelse'
-            -%}
-              <modal-opener
-                class="product-popup-modal__opener no-js-hidden quick-add-hidden"
-                data-modal="#PopupModal-{{ block.id }}-size-guide"
-              >
-                <button
-                  id="ProductPopup-{{ block.id }}-{{ option.position }}-size-guide"
-                  class="product-popup-modal__button link"
-                  type="button"
-                  aria-haspopup="dialog"
-                  style="text-decoration: underline; font-size: inherit;"
-                >
-                  {{ block.settings.size_guide_page.title | escape }}
-                </button>
-              </modal-opener>
-            {%- endif -%}
+          <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+            {{ option.name }}
           </label>
           <div class="select">
             {%- if picker_type == 'swatch_dropdown' -%}
@@ -148,8 +83,7 @@
                 product: product,
                 option: option,
                 block: block,
-                picker_type: picker_type,
-                product_form_id: product_form_id
+                picker_type: picker_type
               %}
             </select>
             <span class="svg-wrapper">
@@ -164,5 +98,4 @@
       {{ product.selected_or_first_available_variant | json }}
     </script>
   </variant-selects>
-  <script src="{{ 'model-variant-picker.js' | asset_url }}" defer="defer"></script>
 {%- endunless -%}

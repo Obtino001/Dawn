@@ -1,18 +1,23 @@
-{%- comment -%}
-  Renders product variant options.
+{% comment %}
+  Renders product variant options
 
   Accepts:
-  - product: {Object}
-  - option: {Object}
-  - block: {Object}
-  - picker_type: {String}
-  - product_form_id: {String}
-{%- endcomment -%}
+  - product: {Object} product object.
+  - option: {Object} current product_option object.
+  - block: {Object} block object.
+  - picker_type: {String} type of picker to dispay
 
+
+  Usage:
+  {% render 'product-variant-options',
+    product: product,
+    option: option,
+    block: block
+    picker_type: picker_type
+  %}
+{% endcomment %}
 {%- liquid
-  if product_form_id == blank
-    assign product_form_id = 'product-form-' | append: section.id
-  endif
+  assign product_form_id = 'product-form-' | append: section.id
 -%}
 
 {%- for value in option.values -%}
@@ -25,16 +30,27 @@
     elsif value.swatch.color
       assign swatch_value = 'rgb(' | append: value.swatch.color.rgb | append: ')'
     else
-      assign swatch_value = nil
+      assign swatch_value = null
+    endif
+
+    assign option_disabled = true
+    if value.available
+      assign option_disabled = false
     endif
   -%}
 
   {%- capture input_id -%}
-    {{ section.id }}-{{ option.position }}-{{ forloop.index0 }}
+    {{ section.id }}-{{ option.position }}-{{ forloop.index0 -}}
   {%- endcapture -%}
 
   {%- capture input_name -%}
     {{ option.name }}-{{ option.position }}
+  {%- endcapture -%}
+
+  {%- capture input_dataset -%}
+    data-product-url="{{ value.product_url }}"
+    data-option-value-id="{{ value.id }}"
+    data-option-name="{{ option.name | escape }}"
   {%- endcapture -%}
 
   {%- capture label_unavailable -%}
@@ -43,47 +59,41 @@
     </span>
   {%- endcapture -%}
 
+  {% assign escaped_value = value | escape %}
+
   {%- if picker_type == 'swatch' -%}
-    <input
-      type="radio"
-      id="{{ input_id }}"
-      name="{{ input_name | escape }}"
-      value="{{ value | escape }}"
-      form="{{ product_form_id }}"
-      class="swatch-input__input{% if value.available == false %} visually-disabled{% endif %}"
-      {% if value.selected %}
-        checked
-      {% endif %}
-      {% if value.product_url != blank %}
-        data-product-url="{{ value.product_url }}"
-      {% endif %}
-      data-option-value-id="{{ value.id }}"
-    >
-    <label
-      for="{{ input_id }}"
-      title="{{ value | escape }}"
-      class="swatch-input__label"
-    >
-      {% render 'swatch', swatch: value.swatch, shape: block.settings.swatch_shape %}
-      <span class="visually-hidden">{{ value -}}{{ label_unavailable }}</span>
-    </label>
+    {%- capture help_text -%}
+      <span class="visually-hidden">{{ escaped_value }}</span>
+      {{ label_unavailable }}
+    {%- endcapture -%}
+
+    {%
+      render 'swatch-input',
+      id: input_id,
+      name: input_name,
+      value: escaped_value,
+      swatch: value.swatch,
+      product_form_id: product_form_id,
+      checked: value.selected,
+      visually_disabled: option_disabled,
+      shape: block.settings.swatch_shape,
+      help_text: help_text,
+      additional_props: input_dataset
+    %}
   {%- elsif picker_type == 'button' -%}
     <input
       type="radio"
       id="{{ input_id }}"
       name="{{ input_name | escape }}"
-      value="{{ value | escape }}"
+      value="{{ escaped_value }}"
       form="{{ product_form_id }}"
-      data-option-value-id="{{ value.id }}"
-      {% if value.product_url != blank %}
-        data-product-url="{{ value.product_url }}"
-      {% endif %}
       {% if value.selected %}
         checked
       {% endif %}
-      {% if value.available == false %}
+      {% if option_disabled %}
         class="disabled"
       {% endif %}
+      {{ input_dataset }}
     >
     <label for="{{ input_id }}">
       {{ value -}}
@@ -92,22 +102,19 @@
   {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}
     <option
       id="{{ input_id }}"
-      value="{{ value | escape }}"
-      data-option-value-id="{{ value.id }}"
+      value="{{ escaped_value }}"
       {% if value.selected %}
         selected="selected"
       {% endif %}
-      {% if swatch_value %}
+      {% if swatch_value and picker_type == 'swatch_dropdown' %}
         data-option-swatch-value="{{ swatch_value }}"
+        {% if swatch_focal_point %}
+          data-option-swatch-focal-point="{{ swatch_focal_point }}"
+        {% endif %}
       {% endif %}
-      {% if swatch_focal_point %}
-        data-option-swatch-focal-point="{{ swatch_focal_point }}"
-      {% endif %}
-      {% if value.product_url != blank %}
-        data-product-url="{{ value.product_url }}"
-      {% endif %}
+      {{ input_dataset }}
     >
-      {% if value.available == false -%}
+      {% if option_disabled -%}
         {{- 'products.product.value_unavailable' | t: option_value: value -}}
       {%- else -%}
         {{- value -}}

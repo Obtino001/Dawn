@@ -90,7 +90,9 @@ if (!customElements.get('product-info')) {
           this.productModal?.remove();
 
           const selector = updateFullPage ? "product-info[id^='MainProduct']" : 'product-info';
-          const variant = this.getSelectedVariant(html.querySelector(selector));
+          const sourceProductInfo = html.querySelector(selector);
+          const variant = this.getSelectedVariant(sourceProductInfo);
+          this.variantSelectors?.resolvePendingSelectPromise(variant, this.getVariantSelects(sourceProductInfo));
           this.updateURL(productUrl, variant?.id);
 
           if (updateFullPage) {
@@ -123,8 +125,6 @@ if (!customElements.get('product-info')) {
             this.pendingRequestUrl = null;
             const html = new DOMParser().parseFromString(responseText, 'text/html');
             callback(html);
-          })
-          .then(() => {
             // set focus to last clicked option value
             document.querySelector(`#${targetId}`)?.focus();
           })
@@ -134,12 +134,24 @@ if (!customElements.get('product-info')) {
             } else {
               console.error(error);
             }
+            this.variantSelectors?.rejectPendingSelectPromise(error);
           });
       }
 
+      parseJsonScript(parent, selector) {
+        try {
+          return JSON.parse(parent?.querySelector(selector)?.textContent);
+        } catch {
+          return null;
+        }
+      }
+
+      getVariantSelects(queryRoot) {
+        return queryRoot?.querySelector('variant-selects');
+      }
+
       getSelectedVariant(productInfoNode) {
-        const selectedVariant = productInfoNode.querySelector('variant-selects [data-selected-variant]')?.innerHTML;
-        return !!selectedVariant ? JSON.parse(selectedVariant) : null;
+        return this.parseJsonScript(this.getVariantSelects(productInfoNode), '[data-selected-variant]');
       }
 
       buildRequestUrlWithParams(url, optionValues, shouldFetchFullPage = false) {
@@ -163,14 +175,17 @@ if (!customElements.get('product-info')) {
 
       handleUpdateProductInfo(productUrl) {
         return (html) => {
+          const sourceVariantSelects = this.getVariantSelects(html);
           const variant = this.getSelectedVariant(html);
+
+          // Resolve product:select promise before updateOptionValues replaces the variant-selects DOM element
+          this.variantSelectors?.resolvePendingSelectPromise(variant, sourceVariantSelects);
 
           this.pickupAvailability?.update(variant);
           this.updateOptionValues(html);
-          if(!this.classList.contains('quick-view-product')){
-            this.updateURL(productUrl, variant?.id);
-          }
+          this.updateURL(productUrl, variant?.id);
           this.updateVariantInputs(variant?.id);
+
           if (!variant) {
             this.setUnavailable();
             return;

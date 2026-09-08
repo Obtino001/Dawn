@@ -28,26 +28,39 @@
 
     {% render 'meta-tags' %}
 
+    <script type="module">
+      import * as StandardEvents from 'https://cdn.shopify.com/storefront/standard-events.js';
+
+      window.StandardEvents = StandardEvents;
+
+      customElements.define('collection-component', StandardEvents.createViewEventElement());
+      customElements.define(
+        'product-component',
+        StandardEvents.createViewEventElement(HTMLElement, { defaultTrigger: 'intersect' }),
+      );
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const template = document.querySelector('main[data-template]')?.dataset.template || '';
+        document.dispatchEvent(
+          new StandardEvents.PageViewEvent({
+            page: { template, title: document.title, url: window.location.href },
+          })
+        );
+      }, { once: true });
+    </script>
+
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'cart-disclosure-modal.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'cart-disclosure-tooltip.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
-    {%- if settings.predictive_search_enabled -%}
-      <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
-    {%- endif -%}
-    <script src="{{ 'ds-header-search.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'standard-actions-override.js' | asset_url }}" defer="defer"></script>
 
     {%- if settings.animations_reveal_on_scroll -%}
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
-    {%- endif -%}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
-    {%- if template.name == 'product' -%}
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/fancybox/fancybox.css">
-      <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/fancybox/fancybox.umd.js" defer="defer"></script>
     {%- endif -%}
 
     {{ content_for_header }}
@@ -106,7 +119,7 @@
       {% endfor %}
 
       {{ scheme_classes | prepend: 'body' }} {
-        color: rgba(var(--color-foreground));
+        color: rgba(var(--color-foreground), 0.75);
         background-color: rgb(var(--color-background));
       }
 
@@ -118,7 +131,7 @@
 
         --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
         --font-heading-style: {{ settings.type_header_font.style }};
-        --font-heading-weight: 500;
+        --font-heading-weight: {{ settings.type_header_font.weight }};
 
         --font-body-scale: {{ settings.body_scale | divided_by: 100.0 }};
         --font-heading-scale: {{ settings.heading_scale | times: 1.0 | divided_by: settings.body_scale }};
@@ -246,9 +259,8 @@
       }
 
       body {
-        display: grid;
-        grid-template-rows: auto auto 1fr auto;
-        grid-template-columns: 100%;
+        display: flex;
+        flex-direction: column;
         min-height: 100%;
         margin: 0;
         font-size: 1.5rem;
@@ -267,10 +279,6 @@
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
-    {{ 'sereluna.css' | asset_url | stylesheet_tag }}
-    {{ 'custom.css' | asset_url | stylesheet_tag }}
-    {{ 'predictive-search.css' | asset_url | stylesheet_tag }}
-    {{ 'ds-header-search.css' | asset_url | stylesheet_tag }}
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
     {%- if settings.cart_type == 'drawer' -%}
@@ -313,7 +321,7 @@
     </script>
   </head>
 
-  <body class="gradient template-{{ template.name }}{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
@@ -323,11 +331,14 @@
     {%- endif -%}
 
     {% sections 'header-group' %}
-    {% render 'WI_mobileQuickAddDrawer' %}
-    <div class="click-capture"></div>
-    {% render 'product-drawer' %}
 
-    <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+    <main
+      id="MainContent"
+      class="content-for-layout focus-none"
+      role="main"
+      tabindex="-1"
+      data-template="{{ template.name }}"
+    >
       {{ content_for_layout }}
     </main>
 
@@ -383,14 +394,12 @@
       };
     </script>
 
+    {%- if settings.predictive_search_enabled -%}
+      <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
+
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
-    {% comment %} card-product-1 {% endcomment %}
-    <script src="{{'WI_quickAdd.js' | asset_url}}" async></script>
-    {% comment %} end card-product-1 {% endcomment %}
-    <script src="{{ 'custom.js' | asset_url }}" defer="defer"></script>
-    
-    {% section 'newsletter-popup' %}
   </body>
 </html>

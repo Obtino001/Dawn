@@ -125,7 +125,7 @@
         {%- endunless -%}
       {%- endfor -%}
     </ul>
-    <div class="slider-buttons quick-add-hidden{% if media_count < 2 %} small-hide{% endif %}{% if hide_mobile_slider %} small-hide--disabled{% endif %}">
+    <div class="slider-buttons quick-add-hidden{% if hide_mobile_slider %} small-hide{% endif %}">
       <button
         type="button"
         class="slider-button slider-button--prev"
@@ -133,9 +133,7 @@
         aria-label="{{ 'general.slider.previous_slide' | t }}"
       >
         <span class="svg-wrapper">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M20 12L4 12M4 12L10 6M4 12L10 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
+          {{- 'icon-caret.svg' | inline_asset_content -}}
         </span>
       </button>
       <div class="slider-counter caption">
@@ -151,9 +149,7 @@
         aria-label="{{ 'general.slider.next_slide' | t }}"
       >
         <span class="svg-wrapper">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M4 12L20 12M20 12L14 18M20 12L14 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
+          {{- 'icon-caret.svg' | inline_asset_content -}}
         </span>
       </button>
     </div>
@@ -189,6 +185,18 @@
       id="GalleryThumbnails-{{ section.id }}"
       class="thumbnail-slider slider-mobile-gutter quick-add-hidden{% unless section.settings.gallery_layout contains 'thumbnail' %} medium-hide large-up-hide{% endunless %}{% if section.settings.mobile_thumbnails != 'show' %} small-hide{% endif %}{% if media_count <= 3 %} thumbnail-slider--no-slide{% endif %}"
     >
+      <button
+        type="button"
+        class="slider-button slider-button--prev{% if media_count <= 3 %} small-hide{% endif %}{% if media_count <= 4 %} medium-hide large-up-hide{% endif %}"
+        name="previous"
+        aria-label="{{ 'general.slider.previous_slide' | t }}"
+        aria-controls="GalleryThumbnails-{{ section.id }}"
+        data-step="3"
+      >
+        <span class="svg-wrapper">
+          {{- 'icon-caret.svg' | inline_asset_content -}}
+        </span>
+      </button>
       <ul
         id="Slider-Thumbnails-{{ section.id }}"
         class="thumbnail-list list-unstyled slider slider--mobile{% if section.settings.gallery_layout == 'thumbnail_slider' %} slider--tablet-up{% endif %}"
@@ -307,6 +315,18 @@
           {%- endunless -%}
         {%- endfor -%}
       </ul>
+      <button
+        type="button"
+        class="slider-button slider-button--next{% if media_count <= 3 %} small-hide{% endif %}{% if media_count <= 4 %} medium-hide large-up-hide{% endif %}"
+        name="next"
+        aria-label="{{ 'general.slider.next_slide' | t }}"
+        aria-controls="GalleryThumbnails-{{ section.id }}"
+        data-step="3"
+      >
+        <span class="svg-wrapper">
+          {{- 'icon-caret.svg' | inline_asset_content -}}
+        </span>
+      </button>
     </slider-component>
   {%- endif -%}
 </media-gallery>

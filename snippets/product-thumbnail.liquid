@@ -57,7 +57,6 @@
     class="product__modal-opener product__modal-opener--{{ media.media_type }}"
     data-modal="#ProductModal-{{ modal_id }}"
   >
-    {% comment %}
     <span
       class="product__media-icon motion-reduce quick-add-hidden{% if media.media_type == 'image' %} product__media-icon--{{ section.settings.image_zoom }}{% endif %}"
       aria-hidden="true"
@@ -77,26 +76,8 @@
           </span>
       {% endcase %}
     </span>
-    {% endcomment %}
-  
     {%- render 'loading-spinner' -%}
     <div class="product__media media media--transparent">
-      {% assign img_url = media.preview_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
-      {% capture img_url %}
-        {{ media | image_url }}
-        {% endcapture %}
-      <img class="{{ image_class }} lazyload" src="{{ img_url | strip }}"
-        data-src="{{ img_url }}"
-        {% if section.settings.image_zoom == "full_popup" %}
-           data-fancybox="gallery"
-          data-ngsrc="{{ img_url }}"
-          {% endif %}
-        width="{{ media.width }}"
-        height="{{ media.height }}"
-        data-widths="[180, 360, 540, 750, 900, 1080, 1296, 1512, 1728, 1944, 2048]"
-        alt="{{ media.alt | escape }}"
-        loading="lazy">
-      {% comment %}
       {{
         media.preview_image
         | image_url: width: 1946
@@ -106,9 +87,7 @@
           sizes: sizes,
           widths: '246, 493, 600, 713, 823, 990, 1100, 1206, 1346, 1426, 1646, 1946'
       }}
-      {% endcomment %}
     </div>
-    {% if section.settings.image_zoom != "full_popup" %}
     <button
       class="product__media-toggle quick-add-hidden product__media-zoom-{{ section.settings.image_zoom }}"
       type="button"
@@ -119,9 +98,7 @@
         {{ 'products.product.media.open_media' | t: index: position }}
       </span>
     </button>
-      {% endif %}
   </modal-opener>
-      
 
   {%- if media.media_type != 'image' -%}
     {%- if media.media_type == 'model' -%}
@@ -169,24 +146,6 @@
         endcase
       -%}
     </template>
-
-    {%- liquid
-      case media.media_type
-        when 'external_video'
-          assign video_class = 'js-' | append: media.host
-          if media.host == 'youtube'
-            echo media | external_video_url: autoplay: true, loop: true, playlist: media.external_id  | external_video_tag: class: video_class, loading: 'lazy'
-          else
-            echo media | external_video_url: autoplay: true, loop: true | external_video_tag: class: video_class, loading: 'lazy'
-          endif
-    
-        when 'video'
-          echo media | media_tag: image_size: '2048x', autoplay: true, loop: true, mute: true, controls: false, preload: 'auto' 
-    
-        when 'model'
-          echo media | media_tag: image_size: '2048x', toggleable: true
-      endcase
-    -%}
 
     {%- if media.media_type == 'model' -%}
       </product-model>

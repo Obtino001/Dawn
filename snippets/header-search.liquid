@@ -1,32 +1,14 @@
 {% comment %}
-  Renders a Derma Space–style header search dropdown.
+  Renders a header search modal. Should be used with 'header.liquid'
 
   Accepts:
   - input_id: {String} Id for the search input element (required)
-  - section: {Object} Header section (for search settings & blocks)
 
   Usage:
-  {% render 'header-search', input_id: 'Search-In-Modal', section: section %}
+  {% render 'header-search', input_id: 'My-Id'%}
 {% endcomment %}
 
-{%- liquid
-  assign search_placeholder = settings.search_placeholder | default: 'Search MagSafe cases and beauty tech'
-  assign popular_searches_heading = settings.popular_searches_heading | default: 'Popular searches'
-  assign popular_brands_heading = settings.popular_brands_heading | default: 'Shop'
-  assign popular_blogs_heading = settings.popular_blogs_heading | default: 'Help'
-  assign trending_heading = settings.trending_heading | default: 'Trending'
-
-  assign popular_searches_menu = settings.popular_searches_menu
-  assign popular_brands_menu = settings.popular_brands_menu
-  assign popular_blogs_menu = settings.popular_blogs_menu
-  assign trending_collections = settings.trending_collections
-
-  assign cases_collection = collections['phone-cases-example-products']
-  assign all_products_collection = collections['all-products'] | default: collections.all
-  assign trending_product_source = collections[settings.search_product_collection] | default: collections.all
--%}
-
-<details-modal class="header__search ds-header-search">
+<details-modal class="header__search">
   <details>
     <summary
       class="header__icon header__icon--search header__icon--summary link focus-inset modal__toggle"
@@ -37,34 +19,36 @@
         <span class="svg-wrapper">
           {{- 'icon-search.svg' | inline_asset_content -}}
         </span>
+        <span class="svg-wrapper header__icon-close">
+          {{- 'icon-close.svg' | inline_asset_content -}}
+        </span>
       </span>
     </summary>
-
     <div
-      class="ds-search-panel"
+      class="search-modal modal__content gradient"
       role="dialog"
       aria-modal="true"
       aria-label="{{ 'general.search.search' | t }}"
     >
-      <div class="ds-search-panel__inner page-width" tabindex="-1">
+      <div class="modal-overlay"></div>
+      <div
+        class="search-modal__content{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} search-modal__content-top{% else %} search-modal__content-bottom{% endif %}"
+        tabindex="-1"
+      >
         {%- if settings.predictive_search_enabled -%}
-          <predictive-search class="ds-search-panel__predictive" data-loading-text="{{ 'accessibility.loading' | t }}">
+          <predictive-search class="search-modal__form" data-loading-text="{{ 'accessibility.loading' | t }}">
         {%- else -%}
-          <search-form class="ds-search-panel__predictive">
+          <search-form class="search-modal__form">
         {%- endif -%}
-
-        <form action="{{ routes.search_url }}" method="get" role="search" class="ds-search-form">
-          <div class="ds-search-form__field">
-            <span class="ds-search-form__icon" aria-hidden="true">
-              {{- 'icon-ds-search.svg' | inline_asset_content -}}
-            </span>
+        <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form">
+          <div class="field">
             <input
+              class="search__input field__input"
               id="{{ input_id }}"
-              class="ds-search-form__input"
               type="search"
               name="q"
               value="{{ search.terms | escape }}"
-              placeholder="{{ search_placeholder | escape }}"
+              placeholder="{{ 'general.search.search' | t }}"
               {%- if settings.predictive_search_enabled -%}
                 role="combobox"
                 aria-expanded="false"
@@ -78,316 +62,47 @@
                 spellcheck="false"
               {%- endif -%}
             >
+            <label class="field__label" for="{{ input_id }}">{{ 'general.search.search' | t }}</label>
             <input type="hidden" name="options[prefix]" value="last">
             <button
               type="reset"
-              class="ds-search-form__reset visually-hidden"
+              class="reset__button field__button{% if search.terms == blank %} hidden{% endif %}"
               aria-label="{{ 'general.search.reset' | t }}"
-              tabindex="-1"
             >
-              Reset
+              <span class="svg-wrapper">
+                {{- 'icon-reset.svg' | inline_asset_content -}}
+              </span>
+            </button>
+            <button class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
+              <span class="svg-wrapper">
+                {{- 'icon-search.svg' | inline_asset_content -}}
+              </span>
             </button>
           </div>
 
-          <button type="button" class="ds-search-form__close" data-ds-search-close aria-label="{{ 'accessibility.close' | t }}">
-            {{- 'icon-close.svg' | inline_asset_content -}}
-            <span class="ds-search-form__close-text">Close</span>
-          </button>
-        </form>
-
-        {%- if settings.predictive_search_enabled -%}
-          <div class="predictive-search predictive-search--header ds-search-results" tabindex="-1" data-predictive-search>
-            {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
-          </div>
-          <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
-        {%- endif -%}
-
-        <div class="ds-search-discovery" data-ds-search-discovery>
-          <div class="ds-search-discovery__grid">
-            <div class="ds-search-discovery__left ds-search-m-hide">
-              {%- comment -%} Popular Searches {%- endcomment -%}
-              {%- if popular_searches_menu != blank and popular_searches_menu.links.size > 0 -%}
-                <div class="ds-search-group">
-                  <div class="ds-search-group__heading">
-                    <h4>{{ popular_searches_heading }}</h4>
-                    <span class="ds-search-group__line"></span>
-                  </div>
-                  <ul class="ds-search-group__list list-unstyled">
-                    {%- for link in popular_searches_menu.links -%}
-                      <li>
-                        <a href="{{ link.url }}" class="ds-search-link ds-search-link--search">
-                          <span class="ds-search-link__left">
-                            <span class="ds-search-link__icon" aria-hidden="true">
-                              {{- 'icon-ds-search.svg' | inline_asset_content -}}
-                            </span>
-                            <span class="ds-search-link__label">{{ link.title }}</span>
-                          </span>
-                          <span class="ds-search-link__arrow" aria-hidden="true">
-                            {{- 'icon-ds-arrow.svg' | inline_asset_content -}}
-                          </span>
-                        </a>
-                      </li>
-                    {%- endfor -%}
-                  </ul>
-                </div>
-              {%- else -%}
-                <div class="ds-search-group">
-                  <div class="ds-search-group__heading">
-                    <h4>{{ popular_searches_heading }}</h4>
-                    <span class="ds-search-group__line"></span>
-                  </div>
-                  <ul class="ds-search-group__list list-unstyled">
-                    {%- assign fallback_searches = 'MagSafe,iPhone case,Massager' | split: ',' -%}
-                    {%- for term in fallback_searches -%}
-                      <li>
-                        <a href="{{ routes.search_url }}?q={{ term | url_encode }}" class="ds-search-link ds-search-link--search">
-                          <span class="ds-search-link__left">
-                            <span class="ds-search-link__icon" aria-hidden="true">
-                              {{- 'icon-ds-search.svg' | inline_asset_content -}}
-                            </span>
-                            <span class="ds-search-link__label">{{ term }}</span>
-                          </span>
-                          <span class="ds-search-link__arrow" aria-hidden="true">
-                            {{- 'icon-ds-arrow.svg' | inline_asset_content -}}
-                          </span>
-                        </a>
-                      </li>
-                    {%- endfor -%}
-                  </ul>
-                </div>
-              {%- endif -%}
-
-              {%- comment -%} Popular Brands {%- endcomment -%}
-              {%- if popular_brands_menu != blank and popular_brands_menu.links.size > 0 -%}
-                <div class="ds-search-group">
-                  <div class="ds-search-group__heading">
-                    <h4>{{ popular_brands_heading }}</h4>
-                    <span class="ds-search-group__line"></span>
-                  </div>
-                  <ul class="ds-search-group__list list-unstyled">
-                    {%- for link in popular_brands_menu.links -%}
-                      <li>
-                        <a href="{{ link.url }}" class="ds-search-link">
-                          <span class="ds-search-link__left">
-                            <span class="ds-search-link__icon" aria-hidden="true">
-                              {{- 'icon-ds-collection.svg' | inline_asset_content -}}
-                            </span>
-                            <span class="ds-search-link__label">{{ link.title }}</span>
-                          </span>
-                        </a>
-                      </li>
-                    {%- endfor -%}
-                  </ul>
-                </div>
-              {%- else -%}
-                <div class="ds-search-group">
-                  <div class="ds-search-group__heading">
-                    <h4>{{ popular_brands_heading }}</h4>
-                    <span class="ds-search-group__line"></span>
-                  </div>
-                  <ul class="ds-search-group__list list-unstyled">
-                    {%- if cases_collection != blank -%}
-                      <li>
-                        <a href="{{ cases_collection.url }}" class="ds-search-link">
-                          <span class="ds-search-link__left">
-                            <span class="ds-search-link__icon" aria-hidden="true">
-                              {{- 'icon-ds-collection.svg' | inline_asset_content -}}
-                            </span>
-                            <span class="ds-search-link__label">{{ cases_collection.title }}</span>
-                          </span>
-                        </a>
-                      </li>
-                    {%- endif -%}
-                    {%- if all_products_collection != blank -%}
-                      <li>
-                        <a href="{{ all_products_collection.url }}" class="ds-search-link">
-                          <span class="ds-search-link__left">
-                            <span class="ds-search-link__icon" aria-hidden="true">
-                              {{- 'icon-ds-collection.svg' | inline_asset_content -}}
-                            </span>
-                            <span class="ds-search-link__label">{{ all_products_collection.title }}</span>
-                          </span>
-                        </a>
-                      </li>
-                    {%- else -%}
-                      <li>
-                        <a href="{{ routes.all_products_collection_url }}" class="ds-search-link">
-                          <span class="ds-search-link__left">
-                            <span class="ds-search-link__icon" aria-hidden="true">
-                              {{- 'icon-ds-collection.svg' | inline_asset_content -}}
-                            </span>
-                            <span class="ds-search-link__label">All products</span>
-                          </span>
-                        </a>
-                      </li>
-                    {%- endif -%}
-                  </ul>
-                </div>
-              {%- endif -%}
-
-              {%- comment -%} Popular Blogs {%- endcomment -%}
-              {%- if popular_blogs_menu != blank and popular_blogs_menu.links.size > 0 -%}
-                <div class="ds-search-group">
-                  <div class="ds-search-group__heading">
-                    <h4>{{ popular_blogs_heading }}</h4>
-                    <span class="ds-search-group__line"></span>
-                  </div>
-                  <ul class="ds-search-group__list list-unstyled">
-                    {%- for link in popular_blogs_menu.links -%}
-                      <li>
-                        <a href="{{ link.url }}" class="ds-search-link">
-                          <span class="ds-search-link__left">
-                            <span class="ds-search-link__icon" aria-hidden="true">
-                              {{- 'icon-ds-chat.svg' | inline_asset_content -}}
-                            </span>
-                            <span class="ds-search-link__label ds-search-link__label--truncate">
-                              {{- link.title -}}
-                            </span>
-                          </span>
-                        </a>
-                      </li>
-                    {%- endfor -%}
-                  </ul>
-                </div>
-              {%- endif -%}
+          {%- if settings.predictive_search_enabled -%}
+            <div class="predictive-search predictive-search--header" tabindex="-1" data-predictive-search>
+              {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
             </div>
 
-            {%- liquid
-              assign trending_has_collections = false
-              if trending_collections != blank and trending_collections.size > 0
-                assign trending_has_collections = true
-              endif
-
-              assign trending_has_custom = false
-              for i in (1..4)
-                assign img_key = 'trending_' | append: i | append: '_image'
-                if settings[img_key] != blank
-                  assign trending_has_custom = true
-                endif
-              endfor
-
-              assign trending_has_products = false
-              if trending_product_source != blank and trending_product_source.products_count > 0
-                assign trending_has_products = true
-              endif
-
-              assign show_trending = false
-              if trending_has_collections or trending_has_custom or trending_has_products
-                assign show_trending = true
-              endif
-            -%}
-
-            {%- if show_trending -%}
-              <div class="ds-search-discovery__right ds-search-m-hide">
-                <div class="ds-search-group__heading">
-                  <h4>{{ trending_heading }}</h4>
-                  <span class="ds-search-group__line"></span>
-                </div>
-
-                <div class="ds-trending-slider" data-ds-trending-slider>
-                  <div class="ds-trending-slider__track" data-ds-trending-track>
-                    {%- if trending_has_collections -%}
-                      {%- for col in trending_collections -%}
-                        {%- liquid
-                          assign trending_image = col.featured_image
-                          if trending_image == blank and col.products.first != blank
-                            assign trending_image = col.products.first.featured_image
-                          endif
-                        -%}
-                        {%- if trending_image != blank -%}
-                          <div class="ds-trending-slide">
-                            <a class="ds-trending-card" href="{{ col.url }}">
-                              <div class="ds-trending-card__thumb">
-                                {{
-                                  trending_image
-                                  | image_url: width: 658
-                                  | image_tag:
-                                    loading: 'lazy',
-                                    widths: '200, 300, 400, 658',
-                                    sizes: '(min-width: 990px) 186px, 40vw',
-                                    alt: col.title
-                                }}
-                              </div>
-                              <span class="ds-trending-card__label">{{ col.title }}</span>
-                            </a>
-                          </div>
-                        {%- endif -%}
-                      {%- endfor -%}
-                    {%- elsif trending_has_custom -%}
-                      {%- for i in (1..4) -%}
-                        {%- liquid
-                          assign img_key = 'trending_' | append: i | append: '_image'
-                          assign title_key = 'trending_' | append: i | append: '_title'
-                          assign link_key = 'trending_' | append: i | append: '_link'
-                          assign card_img = settings[img_key]
-                          assign card_title = settings[title_key]
-                          assign card_link = settings[link_key]
-                        -%}
-                        {%- if card_img != blank -%}
-                          <div class="ds-trending-slide">
-                            <a
-                              class="ds-trending-card"
-                              href="{{ card_link | default: routes.all_products_collection_url }}"
-                            >
-                              <div class="ds-trending-card__thumb">
-                                {{
-                                  card_img
-                                  | image_url: width: 658
-                                  | image_tag:
-                                    loading: 'lazy',
-                                    widths: '200, 300, 400, 658',
-                                    sizes: '(min-width: 990px) 186px, 40vw',
-                                    alt: card_title
-                                }}
-                              </div>
-                              {%- if card_title != blank -%}
-                                <span class="ds-trending-card__label">{{ card_title }}</span>
-                              {%- endif -%}
-                            </a>
-                          </div>
-                        {%- endif -%}
-                      {%- endfor -%}
-                    {%- else -%}
-                      {%- for product in trending_product_source.products limit: 4 -%}
-                        {%- if product.featured_image != blank -%}
-                          <div class="ds-trending-slide">
-                            <a class="ds-trending-card" href="{{ product.url }}">
-                              <div class="ds-trending-card__thumb">
-                                {{
-                                  product.featured_image
-                                  | image_url: width: 658
-                                  | image_tag:
-                                    loading: 'lazy',
-                                    widths: '200, 300, 400, 658',
-                                    sizes: '(min-width: 990px) 186px, 40vw',
-                                    alt: product.title
-                                }}
-                              </div>
-                              <span class="ds-trending-card__label">{{ product.title }}</span>
-                            </a>
-                          </div>
-                        {%- endif -%}
-                      {%- endfor -%}
-                    {%- endif -%}
-                  </div>
-                  <div class="ds-trending-slider__dots" data-ds-trending-dots hidden></div>
-                </div>
-              </div>
-            {%- endif -%}
-          </div>
-        </div>
-
+            <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+          {%- endif -%}
+        </form>
         {%- if settings.predictive_search_enabled -%}
           </predictive-search>
         {%- else -%}
           </search-form>
         {%- endif -%}
+        <button
+          type="button"
+          class="search-modal__close-button modal__close-button link link--text focus-inset"
+          aria-label="{{ 'accessibility.close' | t }}"
+        >
+          <span class="svg-wrapper">
+            {{- 'icon-close.svg' | inline_asset_content -}}
+          </span>
+        </button>
       </div>
     </div>
-    <button type="button" class="ds-search-backdrop" data-ds-search-close aria-label="{{ 'accessibility.close' | t }}"></button>
-    <button type="button" class="ds-search-close-float" data-ds-search-close aria-label="{{ 'accessibility.close' | t }}">
-      {{- 'icon-close.svg' | inline_asset_content -}}
-      <span class="ds-search-form__close-text">Close</span>
-    </button>
   </details>
 </details-modal>
