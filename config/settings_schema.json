@@ -1526,5 +1526,60 @@
         "label": "t:settings_schema.customer_accounts.settings.customer_account_menu.label"
       }
     ]
+  },
+  {
+    "name": "Betalingsmetoder & Ikoner",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Administrer betalingsikoner i footer og kurv-skuffe (MobilePay, Visa, Mastercard, Apple Pay, Google Pay, PayPal)."
+      },
+      {
+        "type": "checkbox",
+        "id": "show_cart_payment_icons",
+        "label": "Vis betalingsikoner i kurv-skuffe",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Valgfri brugerdefinerede ikoner (Image Pickers)"
+      },
+      {
+        "type": "image_picker",
+        "id": "payment_icon_mobilepay",
+        "label": "MobilePay ikon (Image Picker)",
+        "info": "Upload eget ikon (ellers vises standard MobilePay)"
+      },
+      {
+        "type": "image_picker",
+        "id": "payment_icon_mastercard",
+        "label": "Mastercard ikon (Image Picker)",
+        "info": "Upload eget ikon (ellers vises standard Mastercard)"
+      },
+      {
+        "type": "image_picker",
+        "id": "payment_icon_visa",
+        "label": "Visa ikon (Image Picker)",
+        "info": "Upload eget ikon (ellers vises standard Visa)"
+      },
+      {
+        "type": "image_picker",
+        "id": "payment_icon_applepay",
+        "label": "Apple Pay ikon (Image Picker)",
+        "info": "Upload eget ikon (ellers vises standard Apple Pay)"
+      },
+      {
+        "type": "image_picker",
+        "id": "payment_icon_googlepay",
+        "label": "Google Pay ikon (Image Picker)",
+        "info": "Upload eget ikon (ellers vises standard Google Pay)"
+      },
+      {
+        "type": "image_picker",
+        "id": "payment_icon_paypal",
+        "label": "PayPal ikon (Image Picker)",
+        "info": "Upload eget ikon (ellers vises standard PayPal)"
+      }
+    ]
   }
 ]

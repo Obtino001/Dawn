@@ -59,49 +59,50 @@
     "mission_proof_pawpwF": {
       "type": "mission-proof",
       "blocks": {
-        "proof_item_YeKhTm": {
+        "proof_item_1": {
           "type": "proof_item",
           "settings": {
             "icon_type": "stars",
             "stars_text": "★★★★★",
             "value": "4.99",
-            "label": "5.000+ anmeldelser"
+            "label": "5,000+ reviews"
           }
         },
-        "proof_item_wQMpLy": {
+        "proof_item_2": {
           "type": "proof_item",
           "settings": {
             "icon_type": "paw",
-            "stars_text": "★★★★★",
             "value": "50,000+",
-            "label": "glade katteejere"
+            "label": "happy cat parents"
           }
         },
-        "proof_item_d7aXKW": {
+        "proof_item_3": {
           "type": "proof_item",
           "settings": {
             "icon_type": "bowl",
-            "stars_text": "★★★★★",
             "value": "600,000+",
-            "label": "måltider doneret"
+            "label": "meals donated"
           }
         }
       },
       "block_order": [
-        "proof_item_YeKhTm",
-        "proof_item_wQMpLy",
-        "proof_item_d7aXKW"
+        "proof_item_1",
+        "proof_item_2",
+        "proof_item_3"
       ],
-      "name": "Mission & Socialt bevis",
       "settings": {
-        "eyebrow": "Vores mission",
-        "heading": "Køb med",
-        "heading_highlight": "omtanke",
+        "eyebrow": "Our Mission",
+        "heading": "Shop with",
+        "heading_highlight": "Purpose",
+        "heading_tag": "h1",
         "show_divider": true,
-        "subheading": "Katteinspireret tøj, der hjælper med at brødføde hjemløse killinger.",
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "subheading": "Cat-inspired apparel that helps feed homeless kittens.",
+        "brand_color": "#8AA0F2",
+        "brand_deep_color": "#6c72e0",
+        "text_color": "#2a2c42",
+        "color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "featured_collection": {
@@ -201,6 +202,28 @@
         "padding_top": 40,
         "padding_bottom": 40
       }
+    },
+    "mission_story": {
+      "type": "mission-story",
+      "settings": {
+        "eyebrow": "Our Promise",
+        "heading": "Every Purchase Helps Us Provide",
+        "heading_highlight": "10 Meals to Abandoned Kittens",
+        "show_divider": true,
+        "body_text_1": "Every day, stray kittens go hungry on the streets — cold, scared, and with no one to count on.",
+        "body_text_2": "Every order you place helps change that. We partner with local rescues to turn your purchase into real meals for cats in need.",
+        "stat_number": "600,000+",
+        "stat_label": "meals funded by our community — and counting",
+        "media_image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/collage_home.jpg?v=1781819895",
+        "media_image_alt": "Rescued cats fed by the KittyKloset community",
+        "card_bg_color": "#f4f6ff",
+        "brand_color": "#8AA0F2",
+        "brand_deep_color": "#6c72e0",
+        "text_color": "#2a2c42",
+        "color_scheme": "scheme-1",
+        "padding_top": 0,
+        "padding_bottom": 12
+      }
     }
   },
   "order": [
@@ -208,6 +231,7 @@
     "mission_proof_pawpwF",
     "featured_collection",
     "featured_blog",
+    "mission_story",
     "how_it_works_steps"
   ]
 }

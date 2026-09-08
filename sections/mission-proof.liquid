@@ -10,21 +10,154 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  #shopify-section-{{ section.id }}:has(.kk-title) {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  #shopify-section-{{ section.id }} .kk-title {
+    font-family: 'Poppins', sans-serif;
+    --brand: {{ section.settings.brand_color | default: '#8AA0F2' }};
+    --brand-deep: {{ section.settings.brand_deep_color | default: '#6c72e0' }};
+    --text: {{ section.settings.text_color | default: '#2a2c42' }};
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 30px 16px 30px;
+  }
+
+  #shopify-section-{{ section.id }} .kk-title__eyebrow {
+    margin: 0 0 10px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--brand-deep);
+  }
+
+  #shopify-section-{{ section.id }} .kk-title__main {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    color: var(--text);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    line-height: 1.05;
+    font-size: clamp(36px, 8vw, 56px);
+  }
+
+  #shopify-section-{{ section.id }} .kk-title__main span {
+    color: var(--brand-deep);
+  }
+
+  #shopify-section-{{ section.id }} .kk-title__divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 16px 0 0;
+    color: var(--brand);
+  }
+
+  #shopify-section-{{ section.id }} .kk-title__line {
+    width: 46px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+    opacity: .55;
+  }
+
+  #shopify-section-{{ section.id }} .kk-title__divider svg {
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .kk-title__sub {
+    margin: 16px 0 0;
+    color: var(--text);
+    opacity: .7;
+    font-weight: 500;
+    line-height: 1.35;
+    font-size: clamp(14px, 3.4vw, 17px);
+  }
+
+  #shopify-section-{{ section.id }} .kk-title__proof {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    max-width: 520px;
+    margin: 24px auto 0;
+    text-align: center;
+    align-items: start;
+  }
+
+  #shopify-section-{{ section.id }} .kk-proof__item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 0 4px;
+  }
+
+  #shopify-section-{{ section.id }} .kk-proof__item + .kk-proof__item::before {
+    content: "";
+    position: absolute;
+    left: -3px;
+    top: 12%;
+    bottom: 12%;
+    width: 1px;
+    background: #e2e7ff;
+  }
+
+  #shopify-section-{{ section.id }} .kk-proof__top {
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #shopify-section-{{ section.id }} .kk-proof__stars {
+    color: #f5a623;
+    font-size: 13px;
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+
+  #shopify-section-{{ section.id }} .kk-proof__icon {
+    width: 20px;
+    height: 20px;
+    color: var(--brand-deep);
+  }
+
+  #shopify-section-{{ section.id }} .kk-proof__value {
+    font-weight: 800;
+    font-size: clamp(14px, 4.2vw, 20px);
+    color: var(--text);
+    line-height: 1.05;
+    white-space: nowrap;
+  }
+
+  #shopify-section-{{ section.id }} .kk-proof__label {
+    font-size: 11px;
+    color: #6b7088;
+    line-height: 1.2;
+  }
 {%- endstyle -%}
 
-<div class="color-{{ section.settings.color_scheme }} gradient">
+<div class="color-{{ section.settings.color_scheme | default: 'background-1' }} gradient">
   <div class="section-{{ section.id }}-padding">
     <div class="kk-title">
       {%- if section.settings.eyebrow != blank -%}
         <p class="kk-title__eyebrow">{{ section.settings.eyebrow | escape }}</p>
       {%- endif -%}
 
-      <h2 class="kk-title__main">
+      <{{ section.settings.heading_tag | default: 'h1' }} class="kk-title__main">
         {{ section.settings.heading | escape }}
         {%- if section.settings.heading_highlight != blank -%}
           <span> {{ section.settings.heading_highlight | escape }}</span>
         {%- endif -%}
-      </h2>
+      </{{ section.settings.heading_tag | default: 'h1' }}>
 
       {%- if section.settings.show_divider -%}
         <div class="kk-title__divider" aria-hidden="true">
@@ -52,46 +185,42 @@
                 {%- if block.settings.custom_icon != blank -%}
                   {{
                     block.settings.custom_icon
-                    | image_url: width: 120
+                    | image_url: width: 80
                     | image_tag:
                       loading: 'lazy',
                       alt: block.settings.label,
                       class: 'kk-proof__custom-icon',
-                      style: 'max-height: 38px; width: auto; object-fit: contain;'
+                      style: 'max-height: 22px; width: auto; object-fit: contain;'
                   }}
                 {%- else -%}
-                {%- case block.settings.icon_type -%}
-                  {%- when 'stars' -%}
-                    <span class="kk-proof__stars">{{ block.settings.stars_text | default: '★★★★★' }}</span>
-                  {%- when 'paw' -%}
-                    <svg class="kk-proof__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <ellipse cx="12" cy="16" rx="4.5" ry="3.5"/>
-                      <circle cx="6.3" cy="11" r="1.8"/>
-                      <circle cx="10" cy="8" r="1.8"/>
-                      <circle cx="14" cy="8" r="1.8"/>
-                      <circle cx="17.7" cy="11" r="1.8"/>
-                    </svg>
-                  {%- when 'bowl' -%}
-                    <svg class="kk-proof__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <path d="M3 12 h18 l-1.5 5.5 a2.5 2.5 0 0 1 -2.4 1.8 H6.9 a2.5 2.5 0 0 1 -2.4 -1.8 z"/>
-                      <path d="M4.5 12 c2.5 -3.5 12.5 -3.5 15 0"/>
-                    </svg>
-                  {%- when 'heart' -%}
-                    <svg class="kk-proof__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                    </svg>
-                  {%- when 'truck' -%}
-                    <svg class="kk-proof__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <rect x="1" y="3" width="15" height="13"/>
-                      <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
-                      <circle cx="5.5" cy="18.5" r="2.5"/>
-                      <circle cx="18.5" cy="18.5" r="2.5"/>
-                    </svg>
-                  {%- else -%}
-                    {%- if block.settings.custom_svg != blank -%}
-                      {{ block.settings.custom_svg }}
-                    {%- endif -%}
-                {%- endcase -%}
+                  {%- case block.settings.icon_type -%}
+                    {%- when 'stars' -%}
+                      <span class="kk-proof__stars">{{ block.settings.stars_text | default: '★★★★★' }}</span>
+                    {%- when 'paw' -%}
+                      <svg class="kk-proof__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <ellipse cx="12" cy="16" rx="4.5" ry="3.5"/>
+                        <circle cx="6.3" cy="11" r="1.8"/>
+                        <circle cx="10" cy="8" r="1.8"/>
+                        <circle cx="14" cy="8" r="1.8"/>
+                        <circle cx="17.7" cy="11" r="1.8"/>
+                      </svg>
+                    {%- when 'bowl' -%}
+                      <svg class="kk-proof__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M3 12 h18 l-1.5 5.5 a2.5 2.5 0 0 1 -2.4 1.8 H6.9 a2.5 2.5 0 0 1 -2.4 -1.8 z"/>
+                        <path d="M4.5 12 c2.5 -3.5 12.5 -3.5 15 0"/>
+                      </svg>
+                    {%- when 'heart' -%}
+                      <svg class="kk-proof__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                      </svg>
+                    {%- when 'truck' -%}
+                      <svg class="kk-proof__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="1" y="3" width="15" height="13"/>
+                        <polygon points="16 8 20 8 23 11 23 16 16 8"/>
+                        <circle cx="5.5" cy="18.5" r="2.5"/>
+                        <circle cx="18.5" cy="18.5" r="2.5"/>
+                      </svg>
+                  {%- endcase -%}
                 {%- endif -%}
               </div>
               <span class="kk-proof__value">{{ block.settings.value | escape }}</span>
@@ -117,19 +246,30 @@
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow Text",
-      "default": "Vores mission"
+      "default": "Our Mission"
     },
     {
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Køb med"
+      "default": "Shop with"
     },
     {
       "type": "text",
       "id": "heading_highlight",
       "label": "Heading Highlight (Colored)",
-      "default": "omtanke"
+      "default": "Purpose"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Overskrift HTML Tag",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" }
+      ],
+      "default": "h1"
     },
     {
       "type": "checkbox",
@@ -147,13 +287,39 @@
       "type": "text",
       "id": "subheading",
       "label": "Subheading",
-      "default": "Katteinspireret tøj, der hjælper med at brødføde hjemløse killinger."
+      "default": "Cat-inspired apparel that helps feed homeless kittens."
+    },
+    {
+      "type": "header",
+      "content": "Colors & Styling"
+    },
+    {
+      "type": "color",
+      "id": "brand_color",
+      "label": "Brandfarve (Divider)",
+      "default": "#8AA0F2"
+    },
+    {
+      "type": "color",
+      "id": "brand_deep_color",
+      "label": "Dyb brandfarve (Highlight / Ikoner)",
+      "default": "#6c72e0"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Tekstfarve",
+      "default": "#2a2c42"
     },
     {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "Color Scheme",
       "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
     },
     {
       "type": "range",
@@ -163,7 +329,7 @@
       "step": 4,
       "unit": "px",
       "label": "Padding Top",
-      "default": 36
+      "default": 0
     },
     {
       "type": "range",
@@ -173,7 +339,7 @@
       "step": 4,
       "unit": "px",
       "label": "Padding Bottom",
-      "default": 36
+      "default": 0
     }
   ],
   "blocks": [
@@ -216,7 +382,7 @@
           "type": "text",
           "id": "label",
           "label": "Sub-label",
-          "default": "5.000+ anmeldelser"
+          "default": "5,000+ reviews"
         }
       ]
     }
@@ -231,7 +397,7 @@
             "icon_type": "stars",
             "stars_text": "★★★★★",
             "value": "4.99",
-            "label": "5.000+ anmeldelser"
+            "label": "5,000+ reviews"
           }
         },
         {
@@ -239,7 +405,7 @@
           "settings": {
             "icon_type": "paw",
             "value": "50,000+",
-            "label": "glade katteejere"
+            "label": "happy cat parents"
           }
         },
         {
@@ -247,7 +413,7 @@
           "settings": {
             "icon_type": "bowl",
             "value": "600,000+",
-            "label": "måltider doneret"
+            "label": "meals donated"
           }
         }
       ]

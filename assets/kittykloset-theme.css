@@ -1199,3 +1199,52 @@ h1, h2, h3, h4, h5, h6,
 .product-form__submit:hover {
   background-color: var(--kk-brand-dark) !important;
 }
+
+/* ==========================================================================
+   Payment Icons (MobilePay, Cards & Wallets) - Footer & Cart Drawer
+   ========================================================================== */
+.payment-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 6px;
+}
+
+.payment-icons svg,
+.payment-icons img,
+.payment-icons .payment-icon {
+  height: 24px;
+  width: auto;
+  max-width: 42px;
+  object-fit: contain;
+  border-radius: 4px;
+  vertical-align: middle;
+  transition: transform 0.15s ease;
+}
+
+.payment-icons svg:hover,
+.payment-icons img:hover,
+.payment-icons .payment-icon:hover {
+  transform: translateY(-1px);
+}
+
+/* In Cart Drawer */
+.cart-drawer .payment-icons {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed #e2e5f1;
+}
+
+/* In Footer */
+.footer__payment .payment-icons {
+  margin-top: 8px;
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 749px) {
+  .footer__payment .payment-icons {
+    justify-content: center;
+  }
+}

@@ -617,6 +617,10 @@
             {{ 'sections.cart.checkout' | t }}
           </button>
         </div>
+
+        {%- if settings.show_cart_payment_icons != false -%}
+          {% render 'payment-icons' %}
+        {%- endif -%}
       </div>
     </div>
   </div>
