@@ -1,0 +1,189 @@
+{%- if product and product.available -%}
+  <div id="kk-sticky-atc" class="kk-sticky" aria-hidden="true">
+    {%- if section.settings.promo_text != blank -%}
+      <div class="kk-sticky__promo">{{ section.settings.promo_text | escape }}</div>
+    {%- endif -%}
+
+    <div class="kk-sticky__inner">
+      <div class="kk-sticky__opts">
+        {%- unless product.has_only_default_variant -%}
+          {%- for option in product.options_with_values -%}
+            <label class="kk-sticky__field">
+              <span class="kk-sticky__label">{{ option.name | escape }}</span>
+              <select class="kk-sticky__select" data-kk-opt-index="{{ forloop.index0 }}">
+                {%- for value in option.values -%}
+                  <option
+                    value="{{ value | escape }}"
+                    {% if option.selected_value == value %}selected="selected"{% endif %}
+                  >
+                    {{ value | escape }}
+                  </option>
+                {%- endfor -%}
+              </select>
+            </label>
+          {%- endfor -%}
+        {%- endunless -%}
+
+        <div class="kk-sticky__field kk-sticky__qty">
+          <span class="kk-sticky__label">Qty</span>
+          <div class="kk-qty">
+            <button type="button" class="kk-qty__btn" data-kk-qty="minus" aria-label="Decrease quantity">−</button>
+            <input class="kk-qty__input" type="number" inputmode="numeric" value="1" min="1" aria-label="Quantity">
+            <button type="button" class="kk-qty__btn" data-kk-qty="plus" aria-label="Increase quantity">+</button>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="kk-sticky__btn" id="kk-sticky-submit">
+        <span class="kk-sticky__btn-text">{{ 'products.product.add_to_cart' | t | default: 'Add to cart' }}</span>
+        <span class="kk-sticky__btn-price" style="margin-left: 6px; font-weight: 500;">
+          {{ product.selected_or_first_available_variant.price | money }}
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const sticky = document.getElementById('kk-sticky-atc');
+      if (!sticky) return;
+
+      const variants = {{ product.variants | json }};
+      const mainForm = document.querySelector('form[action*="/cart/add"]');
+      const mainSubmit = mainForm ? mainForm.querySelector('[type="submit"]') : null;
+      const stickySubmit = document.getElementById('kk-sticky-submit');
+      const stickySelects = sticky.querySelectorAll('.kk-sticky__select');
+      const qtyInput = sticky.querySelector('.kk-qty__input');
+      const qtyMinus = sticky.querySelector('[data-kk-qty="minus"]');
+      const qtyPlus = sticky.querySelector('[data-kk-qty="plus"]');
+      const priceDisplay = sticky.querySelector('.kk-sticky__btn-price');
+
+      // Helper to find selected variant
+      function getSelectedVariant() {
+        if (variants.length === 1) return variants[0];
+        const selectedOptions = Array.from(stickySelects).map(s => s.value);
+        return variants.find(v => {
+          return selectedOptions.every((opt, idx) => v.options[idx] === opt);
+        });
+      }
+
+      // Update sticky UI state based on selected options
+      function updateStickyState() {
+        const variant = getSelectedVariant();
+        if (variant && variant.available) {
+          stickySubmit.disabled = false;
+          stickySubmit.querySelector('.kk-sticky__btn-text').textContent = {{ 'products.product.add_to_cart' | t | default: 'Add to cart' | json }};
+          if (priceDisplay && variant.price) {
+            // format price
+            priceDisplay.textContent = (variant.price / 100).toLocaleString('en-US', { style: 'currency', currency: {{ cart.currency.iso_code | json }} });
+          }
+        } else {
+          stickySubmit.disabled = true;
+          stickySubmit.querySelector('.kk-sticky__btn-text').textContent = {{ 'products.product.sold_out' | t | default: 'Sold out' | json }};
+        }
+      }
+
+      // Sync sticky select change
+      stickySelects.forEach(select => {
+        select.addEventListener('change', updateStickyState);
+      });
+
+      // Quantity controls
+      if (qtyMinus) {
+        qtyMinus.addEventListener('click', () => {
+          const val = parseInt(qtyInput.value) || 1;
+          if (val > 1) qtyInput.value = val - 1;
+        });
+      }
+      if (qtyPlus) {
+        qtyPlus.addEventListener('click', () => {
+          const val = parseInt(qtyInput.value) || 1;
+          qtyInput.value = val + 1;
+        });
+      }
+
+      // Add to Cart click
+      if (stickySubmit) {
+        stickySubmit.addEventListener('click', async () => {
+          const variant = getSelectedVariant();
+          if (!variant || !variant.available) return;
+
+          stickySubmit.disabled = true;
+          const originalText = stickySubmit.querySelector('.kk-sticky__btn-text').textContent;
+          stickySubmit.querySelector('.kk-sticky__btn-text').textContent = 'Adding...';
+
+          try {
+            const qty = parseInt(qtyInput.value) || 1;
+            const res = await fetch('/cart/add.js', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id: variant.id, quantity: qty })
+            });
+
+            if (res.ok) {
+              // Open Cart Drawer
+              const cartDrawer = document.querySelector('cart-drawer');
+              if (cartDrawer) {
+                // Fetch updated drawer content
+                const htmlRes = await fetch(window.location.href);
+                const htmlText = await htmlRes.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlText, 'text/html');
+                const newDrawer = doc.querySelector('cart-drawer');
+                if (newDrawer) cartDrawer.innerHTML = newDrawer.innerHTML;
+                cartDrawer.classList.remove('is-empty');
+                cartDrawer.open();
+              } else {
+                window.location.href = '/cart';
+              }
+            }
+          } catch (e) {
+            console.error('Error adding to cart:', e);
+          } finally {
+            stickySubmit.disabled = false;
+            stickySubmit.querySelector('.kk-sticky__btn-text').textContent = originalText;
+          }
+        });
+      }
+
+      // Visibility scroll listener
+      function checkScroll() {
+        if (!mainSubmit) {
+          sticky.classList.toggle('is-visible', window.scrollY > 400);
+          return;
+        }
+        const rect = mainSubmit.getBoundingClientRect();
+        const shouldShow = rect.bottom < 0;
+        sticky.classList.toggle('is-visible', shouldShow);
+        sticky.setAttribute('aria-hidden', !shouldShow);
+      }
+
+      window.addEventListener('scroll', checkScroll, { passive: true });
+      checkScroll();
+    })();
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Sticky Add to Cart",
+  "tag": "section",
+  "class": "section-sticky-atc",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "promo_text",
+      "label": "Top Promo Tag (Optional)",
+      "default": "FREE SHIPPING ON THIS ORDER"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sticky Add to Cart"
+    }
+  ]
+}
+{% endschema %}

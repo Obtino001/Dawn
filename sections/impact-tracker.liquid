@@ -1,0 +1,204 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width section-{{ section.id }}-padding">
+    <div class="kk-crisis">
+      <div class="kk-crisis__media">
+        {%- if section.settings.media_image != blank -%}
+          {{
+            section.settings.media_image
+            | image_url: width: 800
+            | image_tag:
+              loading: 'lazy',
+              alt: section.settings.goal_title,
+              class: 'kk-crisis__img'
+          }}
+        {%- else -%}
+          <div style="background: #ffffff; border: 1px solid var(--kk-border-soft); border-radius: 16px; height: 100%; min-height: 280px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; text-align: center;">
+            <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#8AA0F2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21 C12 21 4 14.5 4 8.8 C4 5.5 6.5 4 8.7 4.6 C10.2 5 12 7 12 7 C12 7 13.8 5 15.3 4.6 C17.5 4 20 5.5 20 8.8 C20 14.5 12 21 12 21 Z"/>
+            </svg>
+            <p style="margin-top: 12px; font-size: 14px; font-weight: 600; color: #6B7088;">Impact / Shelter Photo</p>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="kk-crisis__body">
+        <div class="kk-crisis__badge">
+          <span class="kk-crisis__crisis"><span class="kk-dot"></span> {{ section.settings.crisis_badge_text | escape }}</span>
+          <span class="kk-crisis__gtitle">{{ section.settings.goal_title | escape }}</span>
+        </div>
+
+        <div class="kk-crisis__stats">
+          <div class="kk-stat">
+            <span class="kk-stat__num">{{ section.settings.funded_count | escape }}</span>
+            <span class="kk-stat__lbl">{{ section.settings.funded_label | escape }}</span>
+          </div>
+          <div class="kk-stat">
+            <span class="kk-stat__num">{{ section.settings.needed_count | escape }}</span>
+            <span class="kk-stat__lbl">{{ section.settings.needed_label | escape }}</span>
+          </div>
+          <div class="kk-stat">
+            <span class="kk-stat__num">{{ section.settings.goal_count | escape }}</span>
+            <span class="kk-stat__lbl">{{ section.settings.goal_label | escape }}</span>
+          </div>
+        </div>
+
+        <div class="kk-crisis__track">
+          <div class="kk-crisis__fill" style="width: {{ section.settings.progress_percent }}%;">
+            <span>{{ section.settings.progress_percent }}%</span>
+          </div>
+        </div>
+
+        {%- if section.settings.lead_text != blank -%}
+          <p class="kk-crisis__lead">{{ section.settings.lead_text | escape }}</p>
+        {%- endif -%}
+
+        {%- if section.settings.sub_text != blank -%}
+          <p class="kk-crisis__sub">{{ section.settings.sub_text | escape }}</p>
+        {%- endif -%}
+
+        {%- if section.settings.note_text != blank -%}
+          <p class="kk-crisis__note">{{ section.settings.note_text | escape }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Impact & Crisis Tracker",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "crisis_badge_text",
+      "label": "Crisis Badge Label",
+      "default": "Emergency Food Crisis"
+    },
+    {
+      "type": "text",
+      "id": "goal_title",
+      "label": "Goal Title",
+      "default": "72-Hour Feeding Goal"
+    },
+    {
+      "type": "text",
+      "id": "funded_count",
+      "label": "Funded Stat",
+      "default": "3,320"
+    },
+    {
+      "type": "text",
+      "id": "funded_label",
+      "label": "Funded Stat Label",
+      "default": "Meals Funded So Far"
+    },
+    {
+      "type": "text",
+      "id": "needed_count",
+      "label": "Needed Stat",
+      "default": "6,680"
+    },
+    {
+      "type": "text",
+      "id": "needed_label",
+      "label": "Needed Stat Label",
+      "default": "Meals Still Needed"
+    },
+    {
+      "type": "text",
+      "id": "goal_count",
+      "label": "Emergency Goal Stat",
+      "default": "10,000"
+    },
+    {
+      "type": "text",
+      "id": "goal_label",
+      "label": "Goal Stat Label",
+      "default": "Emergency Goal"
+    },
+    {
+      "type": "range",
+      "id": "progress_percent",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Progress Percentage",
+      "default": 33
+    },
+    {
+      "type": "text",
+      "id": "lead_text",
+      "label": "Lead Text",
+      "default": "Each tee adds 10 meals to this goal."
+    },
+    {
+      "type": "textarea",
+      "id": "sub_text",
+      "label": "Sub Text",
+      "default": "When we hit 10,000 meals our volunteers deploy immediately to the most critical shelters first."
+    },
+    {
+      "type": "text",
+      "id": "note_text",
+      "label": "Footer Note",
+      "default": "Every meal is tracked and verified by our volunteer team on the ground."
+    },
+    {
+      "type": "image_picker",
+      "id": "media_image",
+      "label": "Shelter / Impact Photo"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 24
+    }
+  ],
+  "presets": [
+    {
+      "name": "Impact & Crisis Tracker"
+    }
+  ]
+}
+{% endschema %}

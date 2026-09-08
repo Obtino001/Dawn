@@ -1,0 +1,98 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 24
+      }
+    },
+    "mission_story": {
+      "type": "mission-story",
+      "settings": {
+        "eyebrow": "Our Promise",
+        "heading": "Every Purchase Helps Us Provide",
+        "heading_highlight": "10 Meals to Abandoned Kittens",
+        "show_divider": true,
+        "body_text_1": "Every day, stray kittens go hungry on the streets — cold, scared, and with no one to count on.",
+        "body_text_2": "Every order you place helps change that. We partner with local rescues to turn your purchase into real meals for cats in need.",
+        "stat_number": "600,000+",
+        "stat_label": "meals funded by our community — and counting",
+        "color_scheme": "scheme-1",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "mission_proof": {
+      "type": "mission-proof",
+      "blocks": {
+        "proof_item_1": {
+          "type": "proof_item",
+          "settings": {
+            "icon_type": "stars",
+            "stars_text": "★★★★★",
+            "value": "4.99",
+            "label": "5,000+ reviews"
+          }
+        },
+        "proof_item_2": {
+          "type": "proof_item",
+          "settings": {
+            "icon_type": "paw",
+            "value": "50,000+",
+            "label": "happy cat parents"
+          }
+        },
+        "proof_item_3": {
+          "type": "proof_item",
+          "settings": {
+            "icon_type": "bowl",
+            "value": "600,000+",
+            "label": "meals donated"
+          }
+        }
+      },
+      "block_order": [
+        "proof_item_1",
+        "proof_item_2",
+        "proof_item_3"
+      ],
+      "settings": {
+        "eyebrow": "Our Mission",
+        "heading": "Shop with",
+        "heading_highlight": "Purpose",
+        "show_divider": true,
+        "subheading": "Cat-inspired apparel that helps feed homeless kittens.",
+        "color_scheme": "scheme-1",
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "impact_tracker": {
+      "type": "impact-tracker",
+      "settings": {
+        "crisis_badge_text": "Emergency Food Crisis",
+        "goal_title": "72-Hour Feeding Goal",
+        "funded_count": "3,320",
+        "funded_label": "Meals Funded So Far",
+        "needed_count": "6,680",
+        "needed_label": "Meals Still Needed",
+        "goal_count": "10,000",
+        "goal_label": "Emergency Goal",
+        "progress_percent": 33,
+        "lead_text": "Each tee adds 10 meals to this goal.",
+        "sub_text": "When we hit 10,000 meals our volunteers deploy immediately to the most critical shelters first.",
+        "note_text": "Every meal is tracked and verified by our volunteer team on the ground.",
+        "color_scheme": "scheme-1",
+        "padding_top": 24,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "mission_story",
+    "mission_proof",
+    "impact_tracker"
+  ]
+}

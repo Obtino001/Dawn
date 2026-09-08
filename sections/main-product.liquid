@@ -210,6 +210,71 @@
                   </p>
                 {%- when 'custom_liquid' -%}
                   {{ block.settings.custom_liquid }}
+                {%- when 'free_shipping_badge' -%}
+                  <div class="kk-freeship" {{ block.shopify_attributes }}>
+                    <span class="kk-freeship__icon">
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="1" y="3" width="15" height="13"/>
+                        <polygon points="16 8 20 8 23 11 23 16 16 16 8"/>
+                        <circle cx="5.5" cy="18.5" r="2.5"/>
+                        <circle cx="18.5" cy="18.5" r="2.5"/>
+                      </svg>
+                    </span>
+                    <span class="kk-freeship__text">
+                      <strong>{{ block.settings.badge_highlight | default: 'FREE shipping' }}</strong> {{ block.settings.badge_text | default: '— only on this page' }}
+                    </span>
+                  </div>
+                {%- when 'perks_list' -%}
+                  <ul class="kk-perks" {{ block.shopify_attributes }}>
+                    {%- if block.settings.perk_1 != blank -%}
+                      <li>
+                        <span class="kk-perks__icon">
+                          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="1" y="3" width="15" height="13"/>
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 8"/>
+                            <circle cx="5.5" cy="18.5" r="2.5"/>
+                            <circle cx="18.5" cy="18.5" r="2.5"/>
+                          </svg>
+                        </span>
+                        <span>{{ block.settings.perk_1 }}</span>
+                      </li>
+                    {%- endif -%}
+                    {%- if block.settings.perk_2 != blank -%}
+                      <li>
+                        <span class="kk-perks__icon">
+                          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 12 h18 l-1.5 5.5 a2.5 2.5 0 0 1 -2.4 1.8 H6.9 a2.5 2.5 0 0 1 -2.4 -1.8 z"/>
+                            <path d="M4.5 12 c2.5 -3.5 12.5 -3.5 15 0"/>
+                          </svg>
+                        </span>
+                        <span>{{ block.settings.perk_2 }}</span>
+                      </li>
+                    {%- endif -%}
+                    {%- if block.settings.perk_3 != blank -%}
+                      <li>
+                        <span class="kk-perks__icon">
+                          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                          </svg>
+                        </span>
+                        <span>{{ block.settings.perk_3 }}</span>
+                      </li>
+                    {%- endif -%}
+                  </ul>
+                {%- when 'custom_accordion' -%}
+                  <div class="kk-acc" {{ block.shopify_attributes }}>
+                    <details class="kk-acc__item"{% if block.settings.open_by_default %} open{% endif %}>
+                      <summary class="kk-acc__head">{{ block.settings.heading | escape }}</summary>
+                      <div class="kk-acc__body">
+                        {%- if block.settings.content != blank -%}
+                          {{ block.settings.content }}
+                        {%- endif -%}
+                        {%- if block.settings.page != blank and block.settings.page.content != blank -%}
+                          {{ block.settings.page.content }}
+                        {%- endif -%}
+                      </div>
+                    </details>
+                  </div>
                 {%- when 'collapsible_tab' -%}
                   <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
                     <details id="Details-{{ block.id }}-{{ section.id }}">
@@ -1247,6 +1312,76 @@
         {
           "type": "paragraph",
           "content": "t:sections.main-product.blocks.rating.settings.paragraph.content"
+        }
+      ]
+    },
+    {
+      "type": "free_shipping_badge",
+      "name": "Free Shipping Badge",
+      "settings": [
+        {
+          "type": "text",
+          "id": "badge_highlight",
+          "label": "Badge Highlight",
+          "default": "FREE shipping"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge Text",
+          "default": "— only on this page"
+        }
+      ]
+    },
+    {
+      "type": "perks_list",
+      "name": "Product Perks List",
+      "settings": [
+        {
+          "type": "text",
+          "id": "perk_1",
+          "label": "Perk 1",
+          "default": "Fast, reliable shipping"
+        },
+        {
+          "type": "text",
+          "id": "perk_2",
+          "label": "Perk 2",
+          "default": "10 Meals donated per order"
+        },
+        {
+          "type": "text",
+          "id": "perk_3",
+          "label": "Perk 3",
+          "default": "30-Day satisfaction guarantee"
+        }
+      ]
+    },
+    {
+      "type": "custom_accordion",
+      "name": "Custom Accordion Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Description & Sizing"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Accordion Content"
+        },
+        {
+          "type": "page",
+          "id": "page",
+          "label": "Or Choose a Page"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_by_default",
+          "label": "Open by Default",
+          "default": false
         }
       ]
     },

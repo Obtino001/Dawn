@@ -1,0 +1,1164 @@
+/* ==========================================================================
+   KittyKloset Design System & Theme Styles for Dawn
+   ========================================================================== */
+
+:root {
+  --kk-font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --kk-brand: #8AA0F2;
+  --kk-brand-deep: #6C72E0;
+  --kk-brand-dark: #5B6CC4;
+  --kk-text-dark: #2A2C42;
+  --kk-text-muted: #6B7088;
+  --kk-text-subtle: #8A8EA6;
+  --kk-bg-soft: #F4F6FF;
+  --kk-bg-alt: #F4F5F7;
+  --kk-card-bg: #F6F5F2;
+  --kk-border-soft: #E2E7FF;
+  --kk-border-alt: #E6E8F0;
+  --kk-star-amber: #F5A623;
+  --kk-crisis-pulse: #E5484D;
+  --kk-radius-sm: 8px;
+  --kk-radius-md: 16px;
+  --kk-radius-lg: 22px;
+  --kk-radius-pill: 999px;
+}
+
+body {
+  font-family: var(--kk-font-family);
+  color: var(--kk-text-dark);
+  overflow-x: clip;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h0, .h1, .h2, .h3, .h4, .h5 {
+  font-family: var(--kk-font-family);
+  color: var(--kk-text-dark);
+  letter-spacing: -0.01em;
+}
+
+/* ==========================================================================
+   Announcement Bar
+   ========================================================================== */
+.announcement-bar {
+  background-color: var(--kk-brand) !important;
+  color: #ffffff !important;
+}
+
+.announcement-bar__message {
+  font-family: var(--kk-font-family);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.announcement-bar__link {
+  color: #ffffff !important;
+  text-decoration: none;
+}
+
+.announcement-bar__message .icon-arrow {
+  width: 14px;
+  height: 10px;
+  transition: transform 0.2s ease;
+}
+
+.announcement-bar__link:hover .icon-arrow {
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   Header & Navigation Styling
+   ========================================================================== */
+.header {
+  font-family: var(--kk-font-family);
+}
+
+.header__menu-item {
+  font-family: var(--kk-font-family);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--kk-text-dark);
+  transition: color 0.15s ease;
+}
+
+.header__menu-item:hover,
+.header__active-menu-item {
+  color: var(--kk-brand-deep) !important;
+}
+
+.header__icon {
+  color: var(--kk-text-dark);
+}
+
+.cart-count-bubble {
+  background-color: var(--kk-brand-deep) !important;
+  color: #ffffff !important;
+  font-family: var(--kk-font-family);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   Hero Banner Component (kk-banner)
+   ========================================================================== */
+.kk-banner {
+  display: block;
+  line-height: 0;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.kk-banner picture {
+  display: block;
+  width: 100%;
+}
+
+.kk-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 0;
+  box-shadow: none;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   Mission / Social Proof Title Component (kk-title)
+   ========================================================================== */
+.shopify-section:has(.kk-title) {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.kk-title {
+  font-family: var(--kk-font-family);
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 36px 16px 30px;
+}
+
+.kk-title__eyebrow {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--kk-brand-deep);
+}
+
+.kk-title__main {
+  font-family: var(--kk-font-family);
+  margin: 0;
+  color: var(--kk-text-dark);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.05;
+  font-size: clamp(34px, 7vw, 54px);
+}
+
+.kk-title__main span {
+  color: var(--kk-brand-deep);
+}
+
+.kk-title__divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 16px 0 0;
+  color: var(--kk-brand);
+}
+
+.kk-title__line {
+  width: 46px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  opacity: 0.55;
+}
+
+.kk-title__divider svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.kk-title__sub {
+  margin: 16px 0 0;
+  color: var(--kk-text-dark);
+  opacity: 0.75;
+  font-weight: 500;
+  line-height: 1.4;
+  font-size: clamp(14px, 3.2vw, 17px);
+}
+
+.kk-title__proof {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  max-width: 540px;
+  margin: 28px auto 0;
+  text-align: center;
+  align-items: start;
+}
+
+.kk-proof__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 0 4px;
+}
+
+.kk-proof__item + .kk-proof__item::before {
+  content: "";
+  position: absolute;
+  left: -3px;
+  top: 12%;
+  bottom: 12%;
+  width: 1px;
+  background: var(--kk-border-soft);
+}
+
+.kk-proof__top {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kk-proof__stars {
+  color: var(--kk-star-amber);
+  font-size: 14px;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.kk-proof__icon {
+  width: 20px;
+  height: 20px;
+  color: var(--kk-brand-deep);
+}
+
+.kk-proof__value {
+  font-weight: 800;
+  font-size: clamp(15px, 4vw, 20px);
+  color: var(--kk-text-dark);
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.kk-proof__label {
+  font-size: 11px;
+  color: var(--kk-text-muted);
+  line-height: 1.2;
+}
+
+/* ==========================================================================
+   Product Cards Badges & Styling
+   ========================================================================== */
+.card-wrapper .card__inner .card__badge {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 5px !important;
+  top: 8px !important;
+  left: 8px !important;
+  bottom: auto !important;
+  right: auto !important;
+  z-index: 2 !important;
+}
+
+/* Compact Sale Badge */
+.card-wrapper .card__inner .card__badge .badge {
+  font-family: var(--kk-font-family) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  padding: 4px 10px !important;
+  min-height: 0 !important;
+  letter-spacing: 0.02em !important;
+  background-color: var(--kk-brand) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: var(--kk-radius-pill) !important;
+  box-shadow: 0 2px 6px rgba(42, 44, 66, 0.12) !important;
+}
+
+/* Free Shipping Pill Badge on Cards */
+.card-wrapper .card__inner .card__badge::before {
+  content: "Free shipping";
+  order: -1;
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236c72e0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='1' y='3' width='15' height='13'/%3E%3Cpolygon points='16 8 20 8 23 11 23 16 16 16 16 8'/%3E%3Ccircle cx='5.5' cy='18.5' r='2.5'/%3E%3Ccircle cx='18.5' cy='18.5' r='2.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 8px center;
+  background-size: 12px 12px;
+  color: var(--kk-brand-deep);
+  border: 1px solid var(--kk-border-soft);
+  border-radius: var(--kk-radius-pill);
+  padding: 3px 10px 3px 25px;
+  font-family: var(--kk-font-family);
+  font-size: 10px;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(42, 44, 66, 0.08);
+  white-space: nowrap;
+}
+
+.card__heading {
+  font-family: var(--kk-font-family) !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  line-height: 1.3 !important;
+  margin-top: 10px !important;
+  margin-bottom: 4px !important;
+}
+
+.card__heading a {
+  color: var(--kk-text-dark) !important;
+  text-decoration: none !important;
+}
+
+.card__heading a:hover {
+  color: var(--kk-brand-deep) !important;
+}
+
+/* Product Card Star Rating */
+.kk-card-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 4px 0 6px;
+  font-size: 12px;
+  font-family: var(--kk-font-family);
+}
+
+.kk-card-rating__stars {
+  color: var(--kk-star-amber);
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.kk-card-rating__score {
+  font-weight: 700;
+  color: var(--kk-text-dark);
+}
+
+.kk-card-rating__count {
+  color: var(--kk-text-muted);
+  font-size: 11px;
+}
+
+/* Price Styling */
+.price {
+  font-family: var(--kk-font-family) !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: var(--kk-text-dark) !important;
+}
+
+.price .price-item--sale {
+  color: var(--kk-brand-deep) !important;
+  font-weight: 800 !important;
+}
+
+.price .price-item--regular s,
+.price-item--sale + .price__sale .price-item--regular {
+  color: var(--kk-text-muted) !important;
+  font-size: 13px !important;
+  text-decoration: line-through !important;
+  margin-left: 6px !important;
+}
+
+/* ==========================================================================
+   Mission Story Section (kk-mission)
+   ========================================================================== */
+.kk-mission--soft {
+  --brand: var(--kk-brand);
+  --brand-deep: var(--kk-brand-deep);
+  --text: var(--kk-text-dark);
+  --band: var(--kk-bg-soft);
+  font-family: var(--kk-font-family);
+  color: var(--text);
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 32px 28px;
+  background: var(--band);
+  border-radius: var(--kk-radius-lg);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.kk-mission--soft .kk-mission__eyebrow {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brand-deep);
+}
+
+.kk-mission--soft .kk-mission__title {
+  margin: 0;
+  font-weight: 800;
+  line-height: 1.15;
+  font-size: clamp(24px, 2.6vw, 36px);
+  color: var(--text);
+}
+
+.kk-mission--soft .kk-mission__title span {
+  color: var(--brand-deep);
+}
+
+.kk-mission--soft .kk-mission__divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 16px 0;
+  color: var(--brand);
+}
+
+.kk-mission--soft .kk-mission__line {
+  width: 40px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  opacity: 0.55;
+}
+
+.kk-mission--soft .kk-mission__body p {
+  margin: 0 0 14px;
+  line-height: 1.6;
+  font-size: clamp(14px, 1.1vw, 16px);
+  color: var(--text);
+}
+
+.kk-mission--soft .kk-mission__body p:last-child {
+  margin-bottom: 0;
+}
+
+.kk-mission--soft .kk-mission__stat {
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 16px 20px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(42, 44, 66, 0.08);
+  border: 1px solid var(--kk-border-soft);
+}
+
+.kk-mission--soft .kk-mission__statrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.kk-mission--soft .kk-mission__staticon {
+  width: 34px;
+  height: 34px;
+  color: var(--brand-deep);
+  flex: 0 0 auto;
+}
+
+.kk-mission--soft .kk-mission__statnum {
+  font-weight: 800;
+  font-size: clamp(26px, 3vw, 34px);
+  color: var(--brand-deep);
+  line-height: 1;
+}
+
+.kk-mission--soft .kk-mission__statlabel {
+  font-size: 13px;
+  color: var(--kk-text-muted);
+  line-height: 1.3;
+  margin-top: 4px;
+}
+
+.kk-mission--soft .kk-mission__media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--kk-radius-md);
+  object-fit: cover;
+  box-shadow: 0 8px 24px rgba(42, 44, 66, 0.08);
+}
+
+@media (max-width: 749px) {
+  .kk-mission--soft {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 24px 18px;
+    text-align: center;
+    border-radius: var(--kk-radius-md);
+    margin: 12px 16px;
+  }
+  .kk-mission--soft .kk-mission__divider {
+    justify-content: center;
+  }
+  .kk-mission--soft .kk-mission__stat {
+    align-items: center;
+    text-align: center;
+  }
+  .kk-mission--soft .kk-mission__statrow {
+    justify-content: center;
+  }
+}
+
+/* ==========================================================================
+   3-Step Process Section (kk-steps3)
+   ========================================================================== */
+.kk-steps3 {
+  font-family: var(--kk-font-family);
+  --brand: var(--kk-brand);
+  --text: var(--kk-text-dark);
+  color: var(--text);
+  text-align: center;
+  background: var(--kk-bg-alt);
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 44px 16px;
+  box-sizing: border-box;
+}
+
+.kk-steps3__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.kk-steps3__title {
+  font-family: var(--kk-font-family);
+  margin: 0 0 36px;
+  font-weight: 800;
+  line-height: 1.15;
+  font-size: clamp(24px, 4vw, 36px);
+  color: var(--text);
+}
+
+.kk-steps3__title span {
+  color: var(--kk-brand-deep);
+}
+
+.kk-steps3__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.kk-steps3__col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+  padding: 24px 20px;
+  border-radius: var(--kk-radius-md);
+  box-shadow: 0 4px 14px rgba(42, 44, 66, 0.05);
+  border: 1px solid var(--kk-border-soft);
+}
+
+.kk-steps3__head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 0 12px;
+  font-weight: 800;
+  line-height: 1.2;
+  font-size: clamp(17px, 1.6vw, 20px);
+}
+
+.kk-steps3__num {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--kk-brand);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.kk-steps3__col p {
+  margin: 0 0 14px;
+  line-height: 1.5;
+  font-size: clamp(13px, 1vw, 15px);
+  color: var(--kk-text-muted);
+}
+
+.kk-steps3__img {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  margin-top: auto;
+  border-radius: 12px;
+}
+
+@media (max-width: 749px) {
+  .kk-steps3__grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* ==========================================================================
+   Impact / Crisis Tracker Section (kk-crisis)
+   ========================================================================== */
+.kk-crisis {
+  --acc: var(--kk-brand);
+  --text: var(--kk-text-dark);
+  --muted: var(--kk-text-muted);
+  --card: var(--kk-card-bg);
+  --track: #E7E7E3;
+  font-family: var(--kk-font-family);
+  color: var(--text);
+  max-width: 880px;
+  margin: 28px auto;
+  background: var(--card);
+  border: 2px solid var(--acc);
+  border-radius: 24px;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+.kk-crisis * {
+  font-family: var(--kk-font-family);
+  box-sizing: border-box;
+}
+
+.kk-crisis__media {
+  min-height: 340px;
+}
+
+.kk-crisis__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+}
+
+.kk-crisis__body {
+  padding: 16px 20px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.kk-crisis__badge {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+  background: var(--acc);
+  color: #fff;
+  border-radius: 16px;
+  padding: 12px 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 6px 16px rgba(42, 44, 66, 0.18);
+}
+
+.kk-crisis__crisis {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kk-crisis__gtitle {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.kk-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--kk-crisis-pulse);
+  animation: kkLive 1.6s infinite;
+}
+
+@keyframes kkLive {
+  0% { box-shadow: 0 0 0 0 rgba(229, 72, 77, 0.7); }
+  70% { box-shadow: 0 0 0 8px rgba(229, 72, 77, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(229, 72, 77, 0); }
+}
+
+.kk-crisis__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.kk-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: #ffffff;
+  padding: 8px 6px;
+  border-radius: 10px;
+  border: 1px solid var(--kk-border-soft);
+}
+
+.kk-stat__num {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--kk-brand-deep);
+}
+
+.kk-stat__lbl {
+  font-size: 10px;
+  color: var(--muted);
+  line-height: 1.2;
+}
+
+.kk-crisis__track {
+  width: 100%;
+  height: 22px;
+  background: var(--track);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.kk-crisis__fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--kk-brand), var(--kk-brand-deep));
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  transition: width 0.8s ease;
+}
+
+.kk-crisis__lead {
+  font-weight: 700;
+  font-size: 15px;
+  margin: 0 0 6px;
+}
+
+.kk-crisis__sub {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
+  margin: 0 0 10px;
+}
+
+.kk-crisis__note {
+  font-size: 11px;
+  color: var(--muted);
+  font-style: italic;
+  margin: auto 0 0;
+}
+
+@media (max-width: 749px) {
+  .kk-crisis {
+    grid-template-columns: 1fr;
+    margin: 16px;
+    padding: 12px;
+  }
+  .kk-crisis__media {
+    min-height: 220px;
+  }
+}
+
+/* ==========================================================================
+   PDP Product Info Additions (kk-freeship, kk-perks, kk-acc)
+   ========================================================================== */
+.kk-freeship {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 14px 0 10px;
+  padding: 7px 16px;
+  background: #ffffff;
+  border: 1px solid var(--kk-border-soft);
+  border-radius: var(--kk-radius-pill);
+  box-shadow: 0 2px 8px rgba(42, 44, 66, 0.08);
+  font-family: var(--kk-font-family);
+}
+
+.kk-freeship__icon {
+  color: var(--kk-brand-deep);
+  display: flex;
+  width: 16px;
+  height: 16px;
+}
+
+.kk-freeship__text {
+  font-size: 13px;
+  line-height: 1.2;
+  color: var(--kk-text-muted);
+}
+
+.kk-freeship__text strong {
+  color: var(--kk-brand-deep);
+  font-weight: 700;
+}
+
+.kk-perks {
+  font-family: var(--kk-font-family);
+  --text: var(--kk-text-dark);
+  list-style: none;
+  margin: 18px 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+  color: var(--text);
+}
+
+.kk-perks li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.kk-perks__icon {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--kk-brand-deep);
+}
+
+.kk-perks strong {
+  font-weight: 700;
+}
+
+/* Stylized Accordions (kk-acc) */
+.kk-acc {
+  font-family: var(--kk-font-family);
+  --brand: var(--kk-brand);
+  --text: var(--kk-text-dark);
+  --line: var(--kk-border-alt);
+  max-width: 720px;
+  margin: 20px 0;
+  color: var(--text);
+}
+
+.kk-acc__item {
+  border-bottom: 1px solid var(--line);
+}
+
+.kk-acc__item:first-child {
+  border-top: 1px solid var(--line);
+}
+
+.kk-acc__head {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 2px;
+  font-weight: 700;
+  font-size: 15px;
+  user-select: none;
+}
+
+.kk-acc__head::-webkit-details-marker {
+  display: none;
+}
+
+.kk-acc__head::after {
+  content: "";
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--brand);
+  border-bottom: 2px solid var(--brand);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+  margin-top: -3px;
+}
+
+.kk-acc__item[open] .kk-acc__head::after {
+  transform: rotate(-135deg);
+  margin-top: 3px;
+}
+
+.kk-acc__body {
+  padding: 0 2px 16px;
+  line-height: 1.6;
+  font-size: 14px;
+  color: var(--kk-text-dark);
+}
+
+.kk-acc__body p {
+  margin: 0 0 10px;
+}
+
+.kk-acc__body p:last-child {
+  margin-bottom: 0;
+}
+
+.kk-acc__body a {
+  color: var(--brand);
+  font-weight: 700;
+}
+
+.kk-acc__body ul.kk-acc__check {
+  list-style: none;
+  padding-left: 0;
+  margin: 8px 0;
+}
+
+.kk-acc__body ul.kk-acc__check li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 6px;
+}
+
+.kk-acc__body ul.kk-acc__check li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--brand);
+  font-weight: 800;
+}
+
+/* ==========================================================================
+   Sticky Add to Cart Bar (kk-sticky)
+   ========================================================================== */
+.kk-sticky {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  background: #ffffff;
+  border-top: 1px solid #e7e9f5;
+  box-shadow: 0 -6px 18px rgba(42, 44, 66, 0.08);
+  font-family: var(--kk-font-family);
+  transform: translateY(115%);
+  transition: transform 0.28s ease;
+  padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+}
+
+.kk-sticky.is-visible {
+  transform: translateY(0);
+}
+
+.kk-sticky__promo {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--kk-brand-dark);
+  background: var(--kk-bg-soft);
+  border-radius: 8px;
+  padding: 4px 8px;
+  margin: 0 0 6px;
+  letter-spacing: 0.01em;
+}
+
+.kk-sticky__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.kk-sticky__opts {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.kk-sticky__field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1 1 0;
+}
+
+.kk-sticky__label {
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--kk-text-subtle);
+  line-height: 1;
+  font-weight: 700;
+}
+
+.kk-sticky__select {
+  width: 100%;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--kk-text-dark);
+  border: 1px solid #d7dbf0;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 7px 8px;
+}
+
+.kk-sticky__qty {
+  flex: 0 0 auto !important;
+}
+
+.kk-qty {
+  display: flex;
+  align-items: center;
+  border: 1px solid #d7dbf0;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 34px;
+}
+
+.kk-qty__btn {
+  width: 28px;
+  height: 34px;
+  border: 0;
+  background: #f4f6ff;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--kk-brand-deep);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.kk-qty__input {
+  width: 32px;
+  height: 34px;
+  border: 0;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--kk-text-dark);
+}
+
+.kk-sticky__btn {
+  flex: 0 0 auto;
+  background: var(--kk-brand-deep);
+  color: #ffffff;
+  font-family: var(--kk-font-family);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 9px 24px;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+  white-space: nowrap;
+}
+
+.kk-sticky__btn:hover {
+  background: var(--kk-brand-dark);
+}
+
+@media (max-width: 749px) {
+  .kk-sticky__inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .kk-sticky__btn {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+  }
+}
+
+/* ==========================================================================
+   Cart Drawer Free Shipping Progress Bar
+   ========================================================================== */
+.kk-cart-shipping-bar {
+  padding: 14px 16px;
+  background: var(--kk-bg-soft);
+  border-bottom: 1px solid var(--kk-border-soft);
+  font-family: var(--kk-font-family);
+}
+
+.kk-cart-shipping-bar__message {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--kk-text-dark);
+  margin: 0 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.kk-cart-shipping-bar__message strong {
+  color: var(--kk-brand-deep);
+}
+
+.kk-cart-shipping-bar__track {
+  width: 100%;
+  height: 8px;
+  background: #e2e7ff;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.kk-cart-shipping-bar__fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--kk-brand), var(--kk-brand-deep));
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+/* Button & Pill Polish */
+.button--primary,
+.button {
+  border-radius: var(--kk-radius-sm);
+  font-family: var(--kk-font-family);
+  font-weight: 700;
+}
+
+.product-form__submit {
+  background-color: var(--kk-brand-deep) !important;
+  color: #ffffff !important;
+  border-radius: var(--kk-radius-sm) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em !important;
+  transition: background-color 0.15s ease !important;
+}
+
+.product-form__submit:hover {
+  background-color: var(--kk-brand-dark) !important;
+}
