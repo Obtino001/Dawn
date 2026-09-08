@@ -8,7 +8,7 @@
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "Each order helps us provide 10 meals to abandoned cats",
+            "text": "Hver ordre hj\u00e6lper os med at give 10 m\u00e5ltider til forladte katte",
             "link": "shopify://collections/all"
           }
         }

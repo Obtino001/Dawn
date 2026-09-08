@@ -296,24 +296,28 @@ h1, h2, h3, h4, h5, h6,
   box-shadow: 0 2px 6px rgba(42, 44, 66, 0.12) !important;
 }
 
-/* Free Shipping Pill Badge on Cards */
-.card-wrapper .card__inner .card__badge::before {
-  content: "Free shipping";
+.kk-badge--freeship {
   order: -1;
-  background-color: #ffffff;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236c72e0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='1' y='3' width='15' height='13'/%3E%3Cpolygon points='16 8 20 8 23 11 23 16 16 16 16 8'/%3E%3Ccircle cx='5.5' cy='18.5' r='2.5'/%3E%3Ccircle cx='18.5' cy='18.5' r='2.5'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: 8px center;
-  background-size: 12px 12px;
+  background-color: #ffffff !important;
+  color: var(--kk-brand-deep) !important;
+  border: 1px solid var(--kk-border-soft) !important;
+  border-radius: var(--kk-radius-pill) !important;
+  padding: 3px 10px !important;
+  font-family: var(--kk-font-family) !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  box-shadow: 0 2px 6px rgba(42, 44, 66, 0.08) !important;
+  white-space: nowrap !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+}
+
+.kk-badge--freeship svg {
+  width: 12px;
+  height: 12px;
   color: var(--kk-brand-deep);
-  border: 1px solid var(--kk-border-soft);
-  border-radius: var(--kk-radius-pill);
-  padding: 3px 10px 3px 25px;
-  font-family: var(--kk-font-family);
-  font-size: 10px;
-  font-weight: 700;
-  box-shadow: 0 2px 6px rgba(42, 44, 66, 0.08);
-  white-space: nowrap;
+  flex: 0 0 auto;
 }
 
 .card__heading {

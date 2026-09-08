@@ -10,14 +10,14 @@
     "mission_story": {
       "type": "mission-story",
       "settings": {
-        "eyebrow": "Our Promise",
-        "heading": "Every Purchase Helps Us Provide",
-        "heading_highlight": "10 Meals to Abandoned Kittens",
+        "eyebrow": "Vores l\u00f8fte",
+        "heading": "Hvert k\u00f8b hj\u00e6lper os med at give",
+        "heading_highlight": "10 m\u00e5ltider til forladte killinger",
         "show_divider": true,
-        "body_text_1": "Every day, stray kittens go hungry on the streets — cold, scared, and with no one to count on.",
-        "body_text_2": "Every order you place helps change that. We partner with local rescues to turn your purchase into real meals for cats in need.",
+        "body_text_1": "Hver dag sulter herrel\u00f8se killinger p\u00e5 gaden \u2014 kolde, bange og uden nogen at regne med.",
+        "body_text_2": "Hver ordre du afgiver, hj\u00e6lper med at \u00e6ndre det. Vi samarbejder med lokale redningsorganisationer for at forvandle dit k\u00f8b til rigtige m\u00e5ltider til katte i n\u00f8d.",
         "stat_number": "600,000+",
-        "stat_label": "meals funded by our community — and counting",
+        "stat_label": "m\u00e5ltider finansieret af vores f\u00e6llesskab \u2014 og vi t\u00e6ller stadig",
         "color_scheme": "scheme-1",
         "padding_top": 24,
         "padding_bottom": 24
@@ -30,9 +30,9 @@
           "type": "proof_item",
           "settings": {
             "icon_type": "stars",
-            "stars_text": "★★★★★",
+            "stars_text": "\u2605\u2605\u2605\u2605\u2605",
             "value": "4.99",
-            "label": "5,000+ reviews"
+            "label": "5.000+ anmeldelser"
           }
         },
         "proof_item_2": {
@@ -40,7 +40,7 @@
           "settings": {
             "icon_type": "paw",
             "value": "50,000+",
-            "label": "happy cat parents"
+            "label": "glade katteejere"
           }
         },
         "proof_item_3": {
@@ -48,7 +48,7 @@
           "settings": {
             "icon_type": "bowl",
             "value": "600,000+",
-            "label": "meals donated"
+            "label": "m\u00e5ltider doneret"
           }
         }
       },
@@ -58,11 +58,11 @@
         "proof_item_3"
       ],
       "settings": {
-        "eyebrow": "Our Mission",
-        "heading": "Shop with",
-        "heading_highlight": "Purpose",
+        "eyebrow": "Vores mission",
+        "heading": "K\u00f8b med",
+        "heading_highlight": "omtanke",
         "show_divider": true,
-        "subheading": "Cat-inspired apparel that helps feed homeless kittens.",
+        "subheading": "Katteinspireret t\u00f8j, der hj\u00e6lper med at br\u00f8df\u00f8de hjeml\u00f8se killinger.",
         "color_scheme": "scheme-1",
         "padding_top": 24,
         "padding_bottom": 24
@@ -71,18 +71,18 @@
     "impact_tracker": {
       "type": "impact-tracker",
       "settings": {
-        "crisis_badge_text": "Emergency Food Crisis",
-        "goal_title": "72-Hour Feeding Goal",
+        "crisis_badge_text": "Akut f\u00f8devarekrise",
+        "goal_title": "72-timers fodringsm\u00e5l",
         "funded_count": "3,320",
-        "funded_label": "Meals Funded So Far",
+        "funded_label": "M\u00e5ltider doneret hidtil",
         "needed_count": "6,680",
-        "needed_label": "Meals Still Needed",
+        "needed_label": "M\u00e5ltider der stadig mangler",
         "goal_count": "10,000",
-        "goal_label": "Emergency Goal",
+        "goal_label": "Akut m\u00e5l",
         "progress_percent": 33,
-        "lead_text": "Each tee adds 10 meals to this goal.",
-        "sub_text": "When we hit 10,000 meals our volunteers deploy immediately to the most critical shelters first.",
-        "note_text": "Every meal is tracked and verified by our volunteer team on the ground.",
+        "lead_text": "Hver t-shirt tilf\u00f8jer 10 m\u00e5ltider til dette m\u00e5l.",
+        "sub_text": "N\u00e5r vi n\u00e5r 10.000 m\u00e5ltider, rykker vores frivillige straks ud til de mest kritiske internater f\u00f8rst.",
+        "note_text": "Hvert m\u00e5ltid spores og verificeres af vores frivillige team i felten.",
         "color_scheme": "scheme-1",
         "padding_top": 24,
         "padding_bottom": 36

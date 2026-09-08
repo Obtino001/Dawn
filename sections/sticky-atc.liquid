@@ -35,7 +35,7 @@
       </div>
 
       <button type="button" class="kk-sticky__btn" id="kk-sticky-submit">
-        <span class="kk-sticky__btn-text">{{ 'products.product.add_to_cart' | t | default: 'Add to cart' }}</span>
+        <span class="kk-sticky__btn-text">{{ section.settings.button_text | default: 'Add to cart' }}</span>
         <span class="kk-sticky__btn-price" style="margin-left: 6px; font-weight: 500;">
           {{ product.selected_or_first_available_variant.price | money }}
         </span>
@@ -72,7 +72,7 @@
         const variant = getSelectedVariant();
         if (variant && variant.available) {
           stickySubmit.disabled = false;
-          stickySubmit.querySelector('.kk-sticky__btn-text').textContent = {{ 'products.product.add_to_cart' | t | default: 'Add to cart' | json }};
+          stickySubmit.querySelector('.kk-sticky__btn-text').textContent = {{ section.settings.button_text | default: 'Add to cart' | json }};
           if (priceDisplay && variant.price) {
             // format price
             priceDisplay.textContent = (variant.price / 100).toLocaleString('en-US', { style: 'currency', currency: {{ cart.currency.iso_code | json }} });
@@ -178,6 +178,12 @@
       "id": "promo_text",
       "label": "Top Promo Tag (Optional)",
       "default": "FREE SHIPPING ON THIS ORDER"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Label",
+      "default": "Add to cart"
     }
   ],
   "presets": [

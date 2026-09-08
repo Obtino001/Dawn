@@ -8,15 +8,15 @@
         "footer_links": {
           "type": "link_list",
           "settings": {
-            "heading": "Quick links",
+            "heading": "Hurtige links",
             "menu": "footer"
           }
         },
         "footer_mission": {
           "type": "text",
           "settings": {
-            "heading": "Our Mission",
-            "subtext": "<p>Every order you place helps turn your purchase into real meals for abandoned cats in need.</p>"
+            "heading": "Vores mission",
+            "subtext": "<p>Hver ordre du afgiver, hj\u00e6lper med at forvandle dit k\u00f8b til rigtige m\u00e5ltider til herrel\u00f8se katte i n\u00f8d.</p>"
           }
         }
       },
@@ -27,7 +27,7 @@
       "settings": {
         "color_scheme": "scheme-1",
         "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
+        "newsletter_heading": "Tilmeld dig vores nyhedsbrev",
         "enable_follow_on_shop": true,
         "show_social": true,
         "enable_country_selector": false,

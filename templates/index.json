@@ -3,7 +3,7 @@
     "hero_banner": {
       "type": "hero-banner",
       "settings": {
-        "alt_text": "Every purchase helps feed homeless kittens",
+        "alt_text": "Hvert k\u00f8b hj\u00e6lper med at br\u00f8df\u00f8de hjeml\u00f8se killinger",
         "image_link": "shopify://collections/all",
         "color_scheme": "scheme-1",
         "padding_top": 0,
@@ -17,9 +17,9 @@
           "type": "proof_item",
           "settings": {
             "icon_type": "stars",
-            "stars_text": "★★★★★",
+            "stars_text": "\u2605\u2605\u2605\u2605\u2605",
             "value": "4.99",
-            "label": "5,000+ reviews"
+            "label": "5.000+ anmeldelser"
           }
         },
         "proof_item_2": {
@@ -27,7 +27,7 @@
           "settings": {
             "icon_type": "paw",
             "value": "50,000+",
-            "label": "happy cat parents"
+            "label": "glade katteejere"
           }
         },
         "proof_item_3": {
@@ -35,7 +35,7 @@
           "settings": {
             "icon_type": "bowl",
             "value": "600,000+",
-            "label": "meals donated"
+            "label": "m\u00e5ltider doneret"
           }
         }
       },
@@ -45,11 +45,11 @@
         "proof_item_3"
       ],
       "settings": {
-        "eyebrow": "Our Mission",
-        "heading": "Shop with",
-        "heading_highlight": "Purpose",
+        "eyebrow": "Vores mission",
+        "heading": "K\u00f8b med",
+        "heading_highlight": "omtanke",
         "show_divider": true,
-        "subheading": "Cat-inspired apparel that helps feed homeless kittens.",
+        "subheading": "Katteinspireret t\u00f8j, der hj\u00e6lper med at br\u00f8df\u00f8de hjeml\u00f8se killinger.",
         "color_scheme": "scheme-1",
         "padding_top": 36,
         "padding_bottom": 24
@@ -58,7 +58,7 @@
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "title": "Featured Collection",
+        "title": "Udvalgte produkter",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
@@ -86,7 +86,7 @@
     "featured_blog": {
       "type": "featured-blog",
       "settings": {
-        "heading": "Updates from the field",
+        "heading": "Opdateringer fra felten",
         "heading_size": "h2",
         "blog": "news",
         "post_limit": 3,
@@ -103,14 +103,14 @@
     "mission_story": {
       "type": "mission-story",
       "settings": {
-        "eyebrow": "Our Promise",
-        "heading": "Every Purchase Helps Us Provide",
-        "heading_highlight": "10 Meals to Abandoned Kittens",
+        "eyebrow": "Vores l\u00f8fte",
+        "heading": "Hvert k\u00f8b hj\u00e6lper os med at give",
+        "heading_highlight": "10 m\u00e5ltider til forladte killinger",
         "show_divider": true,
-        "body_text_1": "Every day, stray kittens go hungry on the streets — cold, scared, and with no one to count on.",
-        "body_text_2": "Every order you place helps change that. We partner with local rescues to turn your purchase into real meals for cats in need.",
+        "body_text_1": "Hver dag sulter herrel\u00f8se killinger p\u00e5 gaden \u2014 kolde, bange og uden nogen at regne med.",
+        "body_text_2": "Hver ordre du afgiver, hj\u00e6lper med at \u00e6ndre det. Vi samarbejder med lokale redningsorganisationer for at forvandle dit k\u00f8b til rigtige m\u00e5ltider til katte i n\u00f8d.",
         "stat_number": "600,000+",
-        "stat_label": "meals funded by our community — and counting",
+        "stat_label": "m\u00e5ltider finansieret af vores f\u00e6llesskab \u2014 og vi t\u00e6ller stadig",
         "color_scheme": "scheme-1",
         "padding_top": 24,
         "padding_bottom": 24
@@ -123,27 +123,27 @@
           "type": "step",
           "settings": {
             "step_number": "1",
-            "title": "Choose Your Style",
-            "text_1": "Each tee helps us provide 10 meals to abandoned kittens.",
-            "text_2": "Many customers order a few to share with friends and help us provide even more meals."
+            "title": "V\u00e6lg din stil",
+            "text_1": "Hver t-shirt hj\u00e6lper os med at give 10 m\u00e5ltider til forladte killinger.",
+            "text_2": "Mange kunder bestiller flere for at dele med venner og hj\u00e6lpe os med at donere endnu flere m\u00e5ltider."
           }
         },
         "step_2": {
           "type": "step",
           "settings": {
             "step_number": "2",
-            "title": "We Help Get Meals to Cats",
-            "text_1": "We partner with trusted local rescues and coordinate with our street feeding volunteers.",
-            "text_2": "Your purchase helps us get meals to cats in need, through the people who know exactly where they wait."
+            "title": "Vi s\u00f8rger for maden",
+            "text_1": "Vi samarbejder med betroede lokale redningsgrupper og frivillige.",
+            "text_2": "Dit k\u00f8b hj\u00e6lper os med at f\u00e5 mad ud til katte i n\u00f8d via de mennesker, der ved pr\u00e6cis, hvor de venter."
           }
         },
         "step_3": {
           "type": "step",
           "settings": {
             "step_number": "3",
-            "title": "Monthly Photo Updates",
-            "text_1": "Each month, you'll receive photos from our feeding operations.",
-            "text_2": "These photos capture real moments from the field, shared with you every month."
+            "title": "M\u00e5nedlige fotoupdates",
+            "text_1": "Hver m\u00e5ned modtager du billeder fra vores hj\u00e6lpeindsatser.",
+            "text_2": "Disse billeder fanger \u00e6gte \u00f8jeblikke fra hverdagen, delt med dig hver m\u00e5ned."
           }
         }
       },
@@ -153,8 +153,8 @@
         "step_3"
       ],
       "settings": {
-        "heading": "How Your Purchase Helps Provide Meals",
-        "heading_highlight": "in 3 Simple Steps",
+        "heading": "S\u00e5dan hj\u00e6lper dit k\u00f8b med at give mad",
+        "heading_highlight": "i 3 enkle trin",
         "padding_top": 40,
         "padding_bottom": 40
       }
