@@ -37,7 +37,14 @@
 
       <div class="kk-crisis__body">
         <div class="kk-crisis__badge">
-          <span class="kk-crisis__crisis"><span class="kk-dot"></span> {{ section.settings.crisis_badge_text | escape }}</span>
+          <span class="kk-crisis__crisis">
+            {%- if section.settings.badge_icon != blank -%}
+              {{ section.settings.badge_icon | image_url: width: 32 | image_tag: style: 'width: 14px; height: 14px; object-fit: contain; margin-right: 4px; vertical-align: middle;' }}
+            {%- else -%}
+              <span class="kk-dot"></span>
+            {%- endif -%}
+            {{ section.settings.crisis_badge_text | escape }}
+          </span>
           <span class="kk-crisis__gtitle">{{ section.settings.goal_title | escape }}</span>
         </div>
 
@@ -87,6 +94,12 @@
     "groups": ["header", "footer"]
   },
   "settings": [
+    {
+      "type": "image_picker",
+      "id": "badge_icon",
+      "label": "Badge-ikon (Image Picker)",
+      "info": "Upload dit eget ikon til krisemærket (valgfri)"
+    },
     {
       "type": "text",
       "id": "crisis_badge_text",

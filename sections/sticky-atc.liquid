@@ -35,10 +35,14 @@
       </div>
 
       <button type="button" class="kk-sticky__btn" id="kk-sticky-submit">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;">
-          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-        </svg>
+        {%- if section.settings.button_icon != blank -%}
+          {{ section.settings.button_icon | image_url: width: 40 | image_tag: style: 'width: 18px; height: 18px; object-fit: contain;' }}
+        {%- else -%}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;">
+            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+        {%- endif -%}
         <span class="kk-sticky__btn-text">{{ section.settings.button_text | default: 'Læg i kurv' }}</span>
         <span class="kk-sticky__btn-price"> · {{ product.selected_or_first_available_variant.price | money }}</span>
       </button>
@@ -264,6 +268,12 @@
     "templates": ["product"]
   },
   "settings": [
+    {
+      "type": "image_picker",
+      "id": "button_icon",
+      "label": "Knapikon (Image Picker)",
+      "info": "Upload dit eget ikon-billede (overskriver indkøbskurv-ikon)"
+    },
     {
       "type": "text",
       "id": "promo_text",

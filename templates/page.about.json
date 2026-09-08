@@ -17,85 +17,82 @@
       }
     },
     "mission_story": {
-      "type": "image-with-text",
-      "blocks": {
-        "caption": {
-          "type": "caption",
-          "settings": {
-            "caption": "Vores l\u00f8fte",
-            "text_style": "uppercase",
-            "text_size": "small"
-          }
-        },
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Hvert k\u00f8b hj\u00e6lper os med at give 10 m\u00e5ltider til forladte killinger",
-            "heading_size": "h1"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Hver dag sulter herrel\u00f8se killinger p\u00e5 gaden \u2014 kolde, bange og uden nogen at regne med.</p><p>Hver ordre du afgiver, hj\u00e6lper med at \u00e6ndre det. Vi samarbejder med lokale redningsorganisationer for at forvandle dit k\u00f8b til rigtige m\u00e5ltider til katte i n\u00f8d.</p><p><strong>600.000+</strong> m\u00e5ltider finansieret af vores f\u00e6llesskab \u2014 og vi t\u00e6ller stadig.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "caption",
-        "heading",
-        "text"
-      ],
+      "type": "mission-story",
       "settings": {
-        "height": "adapt",
-        "desktop_image_width": "medium",
-        "layout": "text_first",
-        "desktop_content_position": "middle",
-        "desktop_content_alignment": "left",
-        "content_layout": "no-overlap",
-        "section_color_scheme": "scheme-1",
+        "eyebrow": "Vores l\u00f8fte",
+        "heading": "Hvert k\u00f8b hj\u00e6lper os med at give",
+        "heading_highlight": "10 m\u00e5ltider til forladte killinger",
+        "show_divider": true,
+        "body_text_1": "Hver dag sulter herrel\u00f8se killinger p\u00e5 gaden \u2014 kolde, bange og uden nogen at regne med.",
+        "body_text_2": "Hver ordre du afgiver, hj\u00e6lper med at \u00e6ndre det. Vi samarbejder med lokale redningsorganisationer for at forvandle dit k\u00f8b til rigtige m\u00e5ltider til katte i n\u00f8d.",
+        "stat_number": "600,000+",
+        "stat_label": "m\u00e5ltider finansieret af vores f\u00e6llesskab \u2014 og vi t\u00e6ller stadig",
         "color_scheme": "scheme-1",
-        "image_behavior": "none",
-        "mobile_content_alignment": "left",
         "padding_top": 24,
         "padding_bottom": 24
       }
     },
     "mission_proof": {
-      "type": "rich-text",
+      "type": "mission-proof",
       "blocks": {
-        "caption": {
-          "type": "caption",
+        "proof_item_1": {
+          "type": "proof_item",
           "settings": {
-            "caption": "Vores mission",
-            "text_style": "uppercase",
-            "text_size": "medium"
+            "icon_type": "stars",
+            "stars_text": "\u2605\u2605\u2605\u2605\u2605",
+            "value": "4.99",
+            "label": "5.000+ anmeldelser"
           }
         },
-        "heading": {
-          "type": "heading",
+        "proof_item_2": {
+          "type": "proof_item",
           "settings": {
-            "heading": "K\u00f8b med omtanke",
-            "heading_size": "h1"
+            "icon_type": "paw",
+            "value": "50,000+",
+            "label": "glade katteejere"
           }
         },
-        "text": {
-          "type": "text",
+        "proof_item_3": {
+          "type": "proof_item",
           "settings": {
-            "text": "<p>Katteinspireret t\u00f8j, der hj\u00e6lper med at br\u00f8df\u00f8de hjeml\u00f8se killinger.</p><p>\u2605\u2605\u2605\u2605\u2605 <strong>4.99</strong> / 5.000+ anmeldelser &nbsp;\u2022&nbsp; <strong>50.000+</strong> glade katteejere &nbsp;\u2022&nbsp; <strong>600.000+</strong> m\u00e5ltider doneret</p>"
+            "icon_type": "bowl",
+            "value": "600,000+",
+            "label": "m\u00e5ltider doneret"
           }
         }
       },
       "block_order": [
-        "caption",
-        "heading",
-        "text"
+        "proof_item_1",
+        "proof_item_2",
+        "proof_item_3"
       ],
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
+        "eyebrow": "Vores mission",
+        "heading": "K\u00f8b med",
+        "heading_highlight": "omtanke",
+        "show_divider": true,
+        "subheading": "Katteinspireret t\u00f8j, der hj\u00e6lper med at br\u00f8df\u00f8de hjeml\u00f8se killinger.",
         "color_scheme": "scheme-1",
-        "full_width": true,
+        "padding_top": 24,
+        "padding_bottom": 24
+      }
+    },
+    "impact_tracker": {
+      "type": "impact-tracker",
+      "settings": {
+        "crisis_badge_text": "Akut f\u00f8devarekrise",
+        "goal_title": "72-timers fodringsm\u00e5l",
+        "funded_count": "3,320",
+        "funded_label": "M\u00e5ltider doneret hidtil",
+        "needed_count": "6,680",
+        "needed_label": "M\u00e5ltider der stadig mangler",
+        "goal_count": "10,000",
+        "goal_label": "Akut m\u00e5l",
+        "progress_percent": 33,
+        "lead_text": "Hver t-shirt tilf\u00f8jer 10 m\u00e5ltider til dette m\u00e5l.",
+        "sub_text": "N\u00e5r vi n\u00e5r 10.000 m\u00e5ltider, rykker vores frivillige straks ud til de mest kritiske internater f\u00f8rst.",
+        "note_text": "Hvert m\u00e5ltid spores og verificeres af vores frivillige team i felten.",
+        "color_scheme": "scheme-1",
         "padding_top": 24,
         "padding_bottom": 36
       }
@@ -104,6 +101,7 @@
   "order": [
     "main",
     "mission_story",
-    "mission_proof"
+    "mission_proof",
+    "impact_tracker"
   ]
 }

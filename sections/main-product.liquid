@@ -213,12 +213,16 @@
                 {%- when 'free_shipping_badge' -%}
                   <div class="kk-freeship" {{ block.shopify_attributes }}>
                     <span class="kk-freeship__icon">
-                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="1" y="3" width="15" height="13"/>
-                        <polygon points="16 8 20 8 23 11 23 16 16 16 8"/>
-                        <circle cx="5.5" cy="18.5" r="2.5"/>
-                        <circle cx="18.5" cy="18.5" r="2.5"/>
-                      </svg>
+                      {%- if block.settings.custom_icon != blank -%}
+                        {{ block.settings.custom_icon | image_url: width: 40 | image_tag: style: 'width: 18px; height: 18px; object-fit: contain;' }}
+                      {%- else -%}
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <rect x="1" y="3" width="15" height="13"/>
+                          <polygon points="16 8 20 8 23 11 23 16 16 16 8"/>
+                          <circle cx="5.5" cy="18.5" r="2.5"/>
+                          <circle cx="18.5" cy="18.5" r="2.5"/>
+                        </svg>
+                      {%- endif -%}
                     </span>
                     <span class="kk-freeship__text">
                       <strong>{{ block.settings.badge_highlight | default: 'GRATIS fragt' }}</strong> {{ block.settings.badge_text | default: '— kun på denne side' }}
@@ -229,12 +233,16 @@
                     {%- if block.settings.perk_1 != blank -%}
                       <li>
                         <span class="kk-perks__icon">
-                          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="1" y="3" width="15" height="13"/>
-                            <polygon points="16 8 20 8 23 11 23 16 16 16 8"/>
-                            <circle cx="5.5" cy="18.5" r="2.5"/>
-                            <circle cx="18.5" cy="18.5" r="2.5"/>
-                          </svg>
+                          {%- if block.settings.perk_icon_1 != blank -%}
+                            {{ block.settings.perk_icon_1 | image_url: width: 60 | image_tag: style: 'width: 24px; height: 24px; object-fit: contain;' }}
+                          {%- else -%}
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <rect x="1" y="3" width="15" height="13"/>
+                              <polygon points="16 8 20 8 23 11 23 16 16 16 8"/>
+                              <circle cx="5.5" cy="18.5" r="2.5"/>
+                              <circle cx="18.5" cy="18.5" r="2.5"/>
+                            </svg>
+                          {%- endif -%}
                         </span>
                         <span>{{ block.settings.perk_1 }}</span>
                       </li>
@@ -242,10 +250,14 @@
                     {%- if block.settings.perk_2 != blank -%}
                       <li>
                         <span class="kk-perks__icon">
-                          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 12 h18 l-1.5 5.5 a2.5 2.5 0 0 1 -2.4 1.8 H6.9 a2.5 2.5 0 0 1 -2.4 -1.8 z"/>
-                            <path d="M4.5 12 c2.5 -3.5 12.5 -3.5 15 0"/>
-                          </svg>
+                          {%- if block.settings.perk_icon_2 != blank -%}
+                            {{ block.settings.perk_icon_2 | image_url: width: 60 | image_tag: style: 'width: 24px; height: 24px; object-fit: contain;' }}
+                          {%- else -%}
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M3 12 h18 l-1.5 5.5 a2.5 2.5 0 0 1 -2.4 1.8 H6.9 a2.5 2.5 0 0 1 -2.4 -1.8 z"/>
+                              <path d="M4.5 12 c2.5 -3.5 12.5 -3.5 15 0"/>
+                            </svg>
+                          {%- endif -%}
                         </span>
                         <span>{{ block.settings.perk_2 }}</span>
                       </li>
@@ -253,9 +265,13 @@
                     {%- if block.settings.perk_3 != blank -%}
                       <li>
                         <span class="kk-perks__icon">
-                          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                          </svg>
+                          {%- if block.settings.perk_icon_3 != blank -%}
+                            {{ block.settings.perk_icon_3 | image_url: width: 60 | image_tag: style: 'width: 24px; height: 24px; object-fit: contain;' }}
+                          {%- else -%}
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                          {%- endif -%}
                         </span>
                         <span>{{ block.settings.perk_3 }}</span>
                       </li>
@@ -1320,6 +1336,11 @@
       "name": "Free Shipping Badge",
       "settings": [
         {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "Badge-ikon (Image Picker)"
+        },
+        {
           "type": "text",
           "id": "badge_highlight",
           "label": "Badge Highlight",
@@ -1337,6 +1358,21 @@
       "type": "perks_list",
       "name": "Product Perks List",
       "settings": [
+        {
+          "type": "image_picker",
+          "id": "perk_icon_1",
+          "label": "Fordel 1 Ikon-billede (Image Picker)"
+        },
+        {
+          "type": "image_picker",
+          "id": "perk_icon_2",
+          "label": "Fordel 2 Ikon-billede (Image Picker)"
+        },
+        {
+          "type": "image_picker",
+          "id": "perk_icon_3",
+          "label": "Fordel 3 Ikon-billede (Image Picker)"
+        },
         {
           "type": "text",
           "id": "perk_1",

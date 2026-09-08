@@ -1279,6 +1279,12 @@
         "id": "card_free_shipping_text",
         "label": "Free Shipping Badge Text",
         "default": "Gratis fragt"
+      },
+      {
+        "type": "image_picker",
+        "id": "card_free_shipping_icon",
+        "label": "Gratis fragt badge-ikon (Image Picker)",
+        "info": "Upload dit eget ikon-billede til produktkort"
       }
     ]
   },
@@ -1497,6 +1503,12 @@
         "id": "free_shipping_success_text",
         "label": "Unlocked Free Shipping Message",
         "default": "Du har opn\u00e5et GRATIS fragt!"
+      },
+      {
+        "type": "image_picker",
+        "id": "free_shipping_icon",
+        "label": "Gratis fragt m\u00e5llinje-ikon (Image Picker)",
+        "info": "Upload dit eget ikon-billede til kurv-skuffen"
       }
     ]
   },

@@ -152,27 +152,33 @@
       }
     },
     "how_it_works_steps": {
-      "type": "multicolumn",
+      "type": "how-it-works-steps",
       "blocks": {
         "step_1": {
-          "type": "column",
+          "type": "step",
           "settings": {
-            "title": "1. V\u00e6lg din stil",
-            "text": "<p>Hver t-shirt hj\u00e6lper os med at give 10 m\u00e5ltider til forladte killinger. Mange kunder bestiller flere for at dele med venner og hj\u00e6lpe os med at donere endnu flere m\u00e5ltider.</p>"
+            "step_number": "1",
+            "title": "V\u00e6lg din stil",
+            "text_1": "Hver t-shirt hj\u00e6lper os med at give 10 m\u00e5ltider til forladte killinger.",
+            "text_2": "Mange kunder bestiller flere for at dele med venner og hj\u00e6lpe os med at donere endnu flere m\u00e5ltider."
           }
         },
         "step_2": {
-          "type": "column",
+          "type": "step",
           "settings": {
-            "title": "2. Vi s\u00f8rger for maden",
-            "text": "<p>Vi samarbejder med betroede lokale redningsgrupper og frivillige. Dit k\u00f8b hj\u00e6lper os med at f\u00e5 mad ud til katte i n\u00f8d via de mennesker, der ved pr\u00e6cis, hvor de venter.</p>"
+            "step_number": "2",
+            "title": "Vi s\u00f8rger for maden",
+            "text_1": "Vi samarbejder med betroede lokale redningsgrupper og frivillige.",
+            "text_2": "Dit k\u00f8b hj\u00e6lper os med at f\u00e5 mad ud til katte i n\u00f8d via de mennesker, der ved pr\u00e6cis, hvor de venter."
           }
         },
         "step_3": {
-          "type": "column",
+          "type": "step",
           "settings": {
-            "title": "3. M\u00e5nedlige fotoupdates",
-            "text": "<p>Hver m\u00e5ned modtager du billeder fra vores hj\u00e6lpeindsatser. Disse billeder fanger \u00e6gte \u00f8jeblikke fra hverdagen, delt med dig hver m\u00e5ned.</p>"
+            "step_number": "3",
+            "title": "M\u00e5nedlige fotoupdates",
+            "text_1": "Hver m\u00e5ned modtager du billeder fra vores hj\u00e6lpeindsatser.",
+            "text_2": "Disse billeder fanger \u00e6gte \u00f8jeblikke fra hverdagen, delt med dig hver m\u00e5ned."
           }
         }
       },
@@ -182,61 +188,24 @@
         "step_3"
       ],
       "settings": {
-        "title": "S\u00e5dan hj\u00e6lper dit k\u00f8b med at give mad i 3 enkle trin",
-        "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "columns_desktop": 3,
-        "column_alignment": "left",
-        "background_style": "none",
-        "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
+        "heading": "S\u00e5dan hj\u00e6lper dit k\u00f8b med at give mad",
+        "heading_highlight": "i 3 enkle trin",
         "padding_top": 36,
         "padding_bottom": 36
       }
     },
     "mission_story": {
-      "type": "image-with-text",
-      "blocks": {
-        "caption": {
-          "type": "caption",
-          "settings": {
-            "caption": "Vores l\u00f8fte",
-            "text_style": "uppercase",
-            "text_size": "small"
-          }
-        },
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Hvert k\u00f8b hj\u00e6lper os med at give 10 m\u00e5ltider til forladte killinger",
-            "heading_size": "h1"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Hver dag sulter herrel\u00f8se killinger p\u00e5 gaden \u2014 kolde, bange og uden nogen at regne med.</p><p>Hver ordre du afgiver, hj\u00e6lper med at \u00e6ndre det. Vi samarbejder med lokale redningsorganisationer for at forvandle dit k\u00f8b til rigtige m\u00e5ltider til katte i n\u00f8d.</p><p><strong>600.000+</strong> m\u00e5ltider finansieret af vores f\u00e6llesskab \u2014 og vi t\u00e6ller stadig.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "caption",
-        "heading",
-        "text"
-      ],
+      "type": "mission-story",
       "settings": {
-        "height": "adapt",
-        "desktop_image_width": "medium",
-        "layout": "text_first",
-        "desktop_content_position": "middle",
-        "desktop_content_alignment": "left",
-        "content_layout": "no-overlap",
-        "section_color_scheme": "scheme-1",
+        "eyebrow": "Vores l\u00f8fte",
+        "heading": "Hvert k\u00f8b hj\u00e6lper os med at give",
+        "heading_highlight": "10 m\u00e5ltider til forladte killinger",
+        "show_divider": true,
+        "body_text_1": "Hver dag sulter herrel\u00f8se killinger p\u00e5 gaden \u2014 kolde, bange og uden nogen at regne med.",
+        "body_text_2": "Hver ordre du afgiver, hj\u00e6lper med at \u00e6ndre det. Vi samarbejder med lokale redningsorganisationer for at forvandle dit k\u00f8b til rigtige m\u00e5ltider til katte i n\u00f8d.",
+        "stat_number": "600,000+",
+        "stat_label": "m\u00e5ltider finansieret af vores f\u00e6llesskab \u2014 og vi t\u00e6ller stadig",
         "color_scheme": "scheme-1",
-        "image_behavior": "none",
-        "mobile_content_alignment": "left",
         "padding_top": 24,
         "padding_bottom": 24
       }
