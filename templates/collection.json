@@ -9,6 +9,17 @@
  */
 {
   "sections": {
+    "collection_banner": {
+      "type": "collection-banner",
+      "settings": {
+        "image_desktop_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/banner-poppins.jpg?v=1781818271",
+        "image_mobile_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/banner._new_test_1.jpg?v=1781959840",
+        "alt_text": "KittyKloset — Hvert t-shirt-køb hjælper med at mætte forladte killinger",
+        "link": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "collection_steps": {
       "type": "collection-steps",
       "blocks": {
@@ -48,16 +59,6 @@
         "padding_bottom": 0
       }
     },
-    "collection_banner": {
-      "type": "collection-banner",
-      "settings": {
-        "image_desktop_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/banner-poppins.jpg?v=1781818271",
-        "image_mobile_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/banner._new_test_1.jpg?v=1781959840",
-        "alt_text": "KittyKloset — Hvert t-shirt-køb hjælper med at mætte forladte killinger",
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
     "banner": {
       "type": "main-collection-banner",
       "settings": {
@@ -71,6 +72,7 @@
       "settings": {
         "products_per_page": 16,
         "columns_desktop": 3,
+        "columns_mobile": "2",
         "color_scheme": "scheme-1",
         "image_ratio": "adapt",
         "image_shape": "default",
@@ -81,15 +83,14 @@
         "enable_filtering": true,
         "filter_type": "horizontal",
         "enable_sorting": true,
-        "columns_mobile": "2",
         "padding_top": 24,
         "padding_bottom": 48
       }
     }
   },
   "order": [
-    "collection_steps",
     "collection_banner",
+    "collection_steps",
     "banner",
     "product-grid"
   ]
