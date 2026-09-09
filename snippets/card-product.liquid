@@ -181,7 +181,9 @@
               <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
               <div class="caption-with-letter-spacing light">{{ card_product.vendor | default: shop.name }}</div>
 
-                  <span class="caption-large light">{{ block.settings.description | escape }}</span>
+              {%- if block.settings.description != blank -%}
+                <span class="caption-large light">{{ block.settings.description | escape }}</span>
+              {%- endif -%}
 
               {% render 'product-review-badge', product: card_product %}
 
