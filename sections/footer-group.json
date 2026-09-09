@@ -20,18 +20,10 @@
             "heading": "Hurtige links",
             "menu": "footer"
           }
-        },
-        "footer_mission": {
-          "type": "text",
-          "settings": {
-            "heading": "Vores mission",
-            "subtext": "<p>Hver ordre du afgiver, hj\u00e6lper med at forvandle dit k\u00f8b til rigtige m\u00e5ltider til herrel\u00f8se katte i n\u00f8d.</p>"
-          }
         }
       },
       "block_order": [
-        "footer_links",
-        "footer_mission"
+        "footer_links"
       ],
       "settings": {
         "color_scheme": "scheme-1",
@@ -42,6 +34,7 @@
         "enable_country_selector": false,
         "enable_language_selector": false,
         "payment_enable": true,
+        "show_custom_payment_icons": true,
         "show_policy": true,
         "margin_top": 0,
         "padding_top": 36,
