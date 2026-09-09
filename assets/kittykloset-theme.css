@@ -3,7 +3,6 @@
    ========================================================================== */
 
 :root {
-  --kk-font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --kk-brand: #8AA0F2;
   --kk-brand-deep: #6C72E0;
   --kk-brand-dark: #5B6CC4;
@@ -651,7 +650,6 @@ h6,
 }
 
 .kk-acc {
-  font-family: 'Poppins', sans-serif;
   color: #2a2c42;
   width: 100%;
 }
@@ -678,7 +676,6 @@ h6,
   justify-content: space-between;
   gap: 16px;
   padding: 16px 0;
-  font-family: 'Poppins', sans-serif;
    
   font-size: 16px;
   line-height: 1.4;
@@ -714,7 +711,6 @@ h6,
   line-height: 1.6;
   font-size: 14.5px;
   color: #4a4d65;
-  font-family: 'Poppins', sans-serif;
 }
 
 .kk-acc__body p {
@@ -827,7 +823,6 @@ h6,
 }
 
 .kk-sticky__title {
-  font-family: 'Poppins', sans-serif;
   font-size: 13px;
   font-weight: 600;
   color: #2A2C42;
@@ -1158,7 +1153,6 @@ h6,
    Product Card Exact Design (Reference Match)
    ========================================================================== */
 .card-wrapper.product-card-wrapper {
-  font-family: 'Poppins', sans-serif;
 }
 
 .card-wrapper .card__inner {
@@ -1209,7 +1203,6 @@ h6,
   border: 1px solid #d7dbf0;
   border-radius: 9999px;
   padding: 3px 9px;
-  font-family: 'Poppins', sans-serif;
   font-size: 11px;
   font-weight: 600;
   line-height: 1.2;
@@ -1237,7 +1230,6 @@ h6,
   border: none;
   border-radius: 9999px;
   padding: 3px 9px;
-  font-family: 'Poppins', sans-serif;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: .02em;
@@ -1258,7 +1250,6 @@ h6,
 
 .card-wrapper .card__heading {
   margin: 0 0 2px;
-  font-family: 'Poppins', sans-serif;
   font-size: 15px;
   font-weight: 600;
   line-height: 1.3;
@@ -1277,14 +1268,14 @@ h6,
 }
 
 .card-wrapper .caption-with-letter-spacing {
-  font-family: 'Poppins', sans-serif !important;
-  font-size: 10px !important;
-  font-weight: 300 !important;
-  letter-spacing: 0.15em !important;
-  text-transform: uppercase !important;
-  color: #7f86a0 !important;
-  margin: 0 0 4px !important;
-  display: block !important;
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #7f86a0;
+  margin: 0 0 4px;
+  display: block;
 }
 
 /* Review Stars + Count */
@@ -1310,7 +1301,6 @@ h6,
 }
 
 .card-wrapper .kk-card-rating__count {
-  font-family: 'Poppins', sans-serif;
   font-size: 12px;
    
   color: #8A8EA6;
@@ -1335,7 +1325,6 @@ h6,
 /* Price Row - Strikethrough on left, Sale price on right */
 .card-wrapper .price {
   margin: 2px 0 0;
-  font-family: 'Poppins', sans-serif;
 }
 
 .card-wrapper .price__container {
@@ -1375,28 +1364,28 @@ h6,
 .card-wrapper .price__sale s.price-item--regular,
 .card-wrapper .price__sale .price-item--regular,
 .card-wrapper s.price-item--regular {
-  font-family: 'Poppins', sans-serif !important;
-  font-size: 12.5px !important;
-  color: #9aa0ad !important;
-  font-weight: 400 !important;
-  text-decoration: line-through !important;
-  white-space: nowrap !important;
-  letter-spacing: 0 !important;
-  display: inline-block !important;
-  line-height: 1.2 !important;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12.5px;
+  color: #9aa0ad;
+  font-weight: 400;
+  text-decoration: line-through;
+  white-space: nowrap;
+  letter-spacing: 0;
+  display: inline-block;
+  line-height: 1.2;
 }
 
 .card-wrapper .price__sale .price-item--sale,
 .card-wrapper .price__regular .price-item--regular,
 .card-wrapper .price-item--sale,
 .card-wrapper .price-item--last {
-  font-family: 'Poppins', sans-serif !important;
-  font-size: 16px !important;
-  font-weight: 500 !important;
-  color: #000000 !important;
-  white-space: nowrap !important;
-  letter-spacing: 0.1px !important;
-  line-height: 1.2 !important;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #000000;
+  white-space: nowrap;
+  letter-spacing: 0.1px;
+  line-height: 1.2;
 }
 
 /* ==========================================================================
@@ -1434,7 +1423,6 @@ h6,
   border: 1px solid #e2e7ff;
   border-radius: 999px;
   box-shadow: 0 2px 8px rgba(42, 44, 66, 0.10);
-  font-family: 'Poppins', sans-serif;
 }
 
 .kk-freeship__icon {
@@ -1456,7 +1444,6 @@ h6,
 /* PDP Price */
 .product__info-container .price {
   margin: 12px 0 8px;
-  font-family: 'Poppins', sans-serif;
 }
 
 .product__info-container .price--on-sale .price-item--regular {
@@ -1484,7 +1471,6 @@ h6,
 
 /* Product Perks List */
 .kk-perks {
-  font-family: 'Poppins', sans-serif;
   --text: #2a2c42;
   list-style: none;
   margin: 18px 0 10px;
@@ -1589,7 +1575,6 @@ h6,
   border: 1px solid #dcdcdc;
   border-radius: 4px;
   color: #2a2c42;
-  font-family: 'Poppins', sans-serif;
   font-size: 14px;
    
   padding: 8px 16px;
@@ -1623,7 +1608,6 @@ h6,
   cursor: pointer;
   padding: 4px 0;
   color: #2A2C42;
-  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 600;
   transition: opacity 0.2s ease;
@@ -1670,7 +1654,6 @@ h6,
   overflow-y: auto;
   z-index: 1;
   padding: 24px;
-  font-family: 'Poppins', sans-serif;
 }
 
 .kk-size-modal__header {
@@ -1743,7 +1726,6 @@ h6,
   color: #2A2C42;
   margin: 0 0 12px;
   letter-spacing: 0.04em;
-  font-family: 'Poppins', sans-serif;
 }
 
 .kk-bundle-offers {
@@ -1942,7 +1924,6 @@ h6,
   border: 1px solid #e2e7ff;
   border-radius: 999px;
   padding: 3px 9px;
-  font-family: 'Poppins', sans-serif;
   font-size: 10px;
   font-weight: 600;
   line-height: 1.2;
@@ -1968,7 +1949,6 @@ h6,
   border: none;
   border-radius: 999px;
   padding: 3px 9px;
-  font-family: 'Poppins', sans-serif;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -2007,27 +1987,27 @@ h6,
 .card-wrapper.product-card-wrapper .card__heading,
 .card-wrapper.product-card-wrapper .card__heading.h5,
 .card-wrapper.product-card-wrapper .card__heading a {
-  font-family: 'Poppins', sans-serif !important;
-  font-size: 15px !important;
-  font-weight: 500 !important;
-  line-height: 1.3 !important;
-  letter-spacing: 0 !important;
-  color: #000000 !important;
-  margin: 0 0 2px !important;
-  text-decoration: none !important;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0;
+  color: #000000;
+  margin: 0 0 2px;
+  text-decoration: none;
 }
 
 .card-wrapper.product-card-wrapper .caption-with-letter-spacing,
 .card-wrapper.product-card-wrapper .caption-with-letter-spacing.light {
-  font-family: 'Poppins', sans-serif !important;
-  font-size: 10px !important;
-  font-weight: 400 !important;
-  letter-spacing: 0.13em !important;
-  text-transform: uppercase !important;
-  color: #808080 !important;
-  opacity: 1 !important;
-  margin: 0 !important;
-  display: block !important;
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #808080;
+  opacity: 1;
+  margin: 0;
+  display: block;
 }
 
 .card-wrapper.product-card-wrapper .kk-card-rating {
@@ -2052,7 +2032,6 @@ h6,
 }
 
 .card-wrapper.product-card-wrapper .kk-card-rating__count {
-  font-family: 'Poppins', sans-serif;
   font-size: 13px;
   font-weight: 400;
   color: #808080;
@@ -2062,7 +2041,6 @@ h6,
 .card-wrapper.product-card-wrapper .price {
   display: block;
   margin: 2px 0 0;
-  font-family: 'Poppins', sans-serif;
   font-size: 16px;
   font-weight: 500;
   letter-spacing: 0.1px;
@@ -2096,34 +2074,34 @@ h6,
 .card-wrapper.product-card-wrapper .price__sale s.price-item--regular,
 .card-wrapper.product-card-wrapper .price__sale .price-item--regular,
 .card-wrapper.product-card-wrapper s.price-item--regular {
-  font-family: 'Poppins', sans-serif !important;
-  font-size: 12.5px !important;
-  font-weight: 400 !important;
-  color: #9aa0ad !important;
-  text-decoration: line-through !important;
-  letter-spacing: 0 !important;
-  line-height: 1.2 !important;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12.5px;
+  font-weight: 400;
+  color: #9aa0ad;
+  text-decoration: line-through;
+  letter-spacing: 0;
+  line-height: 1.2;
 }
 
 .card-wrapper.product-card-wrapper .price-item--sale,
 .card-wrapper.product-card-wrapper .price-item--last,
 .card-wrapper.product-card-wrapper .price__regular .price-item--regular {
-  font-family: 'Poppins', sans-serif !important;
-  font-size: 16px !important;
-  font-weight: 500 !important;
-  color: #000000 !important;
-  letter-spacing: 0.1px !important;
-  line-height: 1.2 !important;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #000000;
+  letter-spacing: 0.1px;
+  line-height: 1.2;
 }
 
 .card-wrapper.product-card-wrapper .price-item__from {
-  font-weight: 400 !important;
+  font-weight: 400;
   margin-right: 0.25em;
 }
 
 .card-wrapper.product-card-wrapper .price-item__amount {
-  font-weight: 700 !important;
-  color: #000000 !important;
+  font-weight: 700;
+  color: #000000;
 }
 
 .TotalBlock .Price {
