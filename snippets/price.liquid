@@ -22,6 +22,12 @@
   endif
 
   assign compare_at_price = target.compare_at_price
+  if product != blank and product.compare_at_price_max > compare_at_price
+    assign compare_at_price = product.compare_at_price_max
+  endif
+  if compare_at_price == blank and product != blank
+    assign compare_at_price = product.selected_or_first_available_variant.compare_at_price
+  endif
   assign price = target.price | default: 1999
   assign price_min = product.price_min
   assign price_max = product.price_max
@@ -36,8 +42,14 @@
     assign money_price_max = price_max | money_with_currency
   endif
 
-  if target == product and product.price_varies
-    assign price_from_prefix = 'products.product.price.from_price_html' | t: price: '' | strip
+  if target == product
+    if product.price_varies or product.variants_count > 1
+      if price_class == 'kk-card-price'
+        assign price_from_prefix = 'From'
+      else
+        assign price_from_prefix = 'products.product.price.from_price_html' | t: price: '' | strip
+      endif
+    endif
   endif
 -%}
 
@@ -49,7 +61,7 @@
       {%- if available == false %} price--sold-out{% endif -%}
       {%- if compare_at_price > price and product.quantity_price_breaks_configured? != true %} price--on-sale{% endif -%}
       {%- if compare_at_price > price and product.quantity_price_breaks_configured? %} volume-pricing--sale-badge{% endif -%}
-      {%- if product.price_varies == false and product.compare_at_price_varies %} price--no-compare{% endif -%}
+      {%- if price_class != 'kk-card-price' and product.price_varies == false and product.compare_at_price_varies %} price--no-compare{% endif -%}
       {%- if show_badges %} price--show-badge{% endif -%}
     "
   >
@@ -95,18 +107,20 @@
         {%- endif -%}
       </div>
       <div class="price__sale">
-        {%- unless product.price_varies == false and product.compare_at_price_varies %}
-          <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
-          <span>
-            <s class="price-item price-item--regular">
-              {% if settings.currency_code_enabled %}
-                {{ compare_at_price | money_with_currency }}
-              {% else %}
-                {{ compare_at_price | money }}
-              {% endif %}
-            </s>
-          </span>
-        {%- endunless -%}
+        {%- if compare_at_price > price -%}
+          {%- if price_class == 'kk-card-price' or product.price_varies or product.compare_at_price_varies == false -%}
+            <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
+            <span>
+              <s class="price-item price-item--regular">
+                {% if settings.currency_code_enabled %}
+                  {{ compare_at_price | money_with_currency }}
+                {% else %}
+                  {{ compare_at_price | money }}
+                {% endif %}
+              </s>
+            </span>
+          {%- endif -%}
+        {%- endif -%}
         <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
         <span class="price-item price-item--sale price-item--last">
           {%- if price_from_prefix != blank -%}

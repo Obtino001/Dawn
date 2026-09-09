@@ -25,6 +25,7 @@
   {{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
 
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
+  {{ 'kk-product-card.css' | asset_url | stylesheet_tag }}
   {{ 'quick-order-list.css' | asset_url | stylesheet_tag }}
   {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
 {%- endunless -%}
@@ -39,10 +40,19 @@
     if ratio == 0 or ratio == null
       assign ratio = 1
     endif
+
+    assign kk_compare = card_product.compare_at_price_max | default: card_product.compare_at_price
+    if kk_compare == blank
+      assign kk_compare = card_product.selected_or_first_available_variant.compare_at_price
+    endif
+    assign kk_on_sale = false
+    if kk_compare != blank and kk_compare > card_product.price
+      assign kk_on_sale = true
+    endif
   -%}
 
   <product-component view-event-payload="{{ card_product | standard_event_data: 'view', context: product_view_context | escape }}">
-    <div class="card-wrapper product-card-wrapper underline-links-hover">
+    <div class="card-wrapper product-card-wrapper kk-card underline-links-hover">
       <div
         class="
           card card--{{ settings.card_style }}
@@ -149,12 +159,12 @@
                 >
                   {{- 'products.product.sold_out' | t -}}
                 </span>
-              {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
+              {%- elsif kk_on_sale and card_product.available -%}
                 <span
                   id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
                   class="badge badge--bottom-left badge--kk-sale color-{{ settings.sale_badge_color_scheme }}"
                 >
-                  {{- 'products.product.on_sale' | t -}}
+                  Sale
                 </span>
               {%- endif -%}
             </div>
@@ -179,13 +189,10 @@
             </h3>
             <div class="card-information">
               <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
-              <div class="caption-with-letter-spacing light">{{ card_product.vendor | default: shop.name }}</div>
-
-                  <span class="caption-large light">{{ block.settings.description | escape }}</span>
-
+              <div class="kk-card__vendor">KITTYKLOSET</div>
+              <span class="caption-large light">{{ block.settings.description | escape }}</span>
               {% render 'product-review-badge', product: card_product %}
-
-              {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
+              {% render 'price', product: card_product, price_class: 'kk-card-price', show_compare_at_price: true %}
               {%- if card_product.quantity_price_breaks_configured? -%}
                 {% if card_product.variants_count == 1 and quick_add == 'bulk' %}
                   {% liquid
@@ -541,7 +548,7 @@
       assign ratio = 0.8
     endif
   -%}
-  <div class="card-wrapper product-card-wrapper underline-links-hover">
+  <div class="card-wrapper product-card-wrapper kk-card underline-links-hover">
     <div
       class="
         card card--{{ settings.card_style }}
@@ -578,7 +585,7 @@
           <div class="card-information">
             {%- if show_vendor -%}
               <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
-              <div class="caption-with-letter-spacing light">{{ 'products.product.vendor' | t }}</div>
+              <div class="kk-card__vendor">KITTYKLOSET</div>
             {%- endif -%}
             {% render 'price', placeholder: placeholder, show_compare_at_price: true %}
           </div>
