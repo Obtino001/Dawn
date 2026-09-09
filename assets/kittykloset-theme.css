@@ -50,8 +50,8 @@ h6,
    Announcement Bar
    ========================================================================== */
 .announcement-bar {
-  background-color: var(--kk-brand) !important;
-  color: #ffffff !important;
+  background-color: var(--kk-brand);
+  color: #ffffff;
 }
 
 .announcement-bar__message {
@@ -68,7 +68,7 @@ h6,
 }
 
 .announcement-bar__link {
-  color: #ffffff !important;
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -95,15 +95,15 @@ h6,
   font-size: 14px;
   font-weight: 500;
   color: var(--kk-text-dark);
-  text-decoration: none !important;
+  text-decoration: none;
   transition: color 0.15s ease;
 }
 
 .header__menu-item:hover,
 .header__active-menu-item,
 .header__active-menu-item:hover {
-  color: var(--kk-brand-deep) !important;
-  text-decoration: none !important;
+  color: var(--kk-brand-deep);
+  text-decoration: none;
 }
 
 .header__icon {
@@ -111,8 +111,8 @@ h6,
 }
 
 .cart-count-bubble {
-  background-color: var(--kk-brand-deep) !important;
-  color: #ffffff !important;
+  background-color: var(--kk-brand-deep);
+  color: #ffffff;
   font-family: var(--kk-font-family);
   font-weight: 500;
 }
@@ -149,8 +149,8 @@ h6,
    Mission / Social Proof Title Component (kk-title)
    ========================================================================== */
 .shopify-section:has(.kk-title) {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .kk-title {
@@ -284,94 +284,94 @@ h6,
    Product Cards Badges & Styling
    ========================================================================== */
 .card-wrapper .card__inner .card__badge {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: flex-start !important;
-  gap: 5px !important;
-  top: 8px !important;
-  left: 8px !important;
-  bottom: auto !important;
-  right: auto !important;
-  z-index: 2 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  top: 8px;
+  left: 8px;
+  bottom: auto;
+  right: auto;
+  z-index: 2;
 }
 
 /* Compact Badges on Image */
 .card-wrapper .card__inner .card__badge {
-  position: absolute !important;
-  bottom: 10px !important;
-  left: 10px !important;
-  top: auto !important;
-  right: auto !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: flex-start !important;
-  gap: 4px !important;
-  z-index: 3 !important;
-  pointer-events: none !important;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  top: auto;
+  right: auto;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  z-index: 3;
+  pointer-events: none;
 }
 
 .card-wrapper .card__inner .card__badge .badge.badge--kk-sale,
 .card-wrapper .card__inner .card__badge .badge:not(.kk-badge--freeship) {
-  font-family: var(--kk-font-family) !important;
-  font-size: 11px !important;
-  font-weight: 600 !important;
-  padding: 3px 9px !important;
-  min-height: 0 !important;
-  letter-spacing: 0.02em !important;
-  background-color: #8AA0F2 !important;
-  color: #ffffff !important;
-  border: none !important;
-  border-radius: var(--kk-radius-pill) !important;
-  box-shadow: 0 2px 6px rgba(138, 160, 242, 0.25) !important;
-  display: inline-flex !important;
-  align-items: center !important;
+  font-family: var(--kk-font-family);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  min-height: 0;
+  letter-spacing: 0.02em;
+  background-color: #8AA0F2;
+  color: #ffffff;
+  border: none;
+  border-radius: var(--kk-radius-pill);
+  box-shadow: 0 2px 6px rgba(138, 160, 242, 0.25);
+  display: inline-flex;
+  align-items: center;
 }
 
 .card-wrapper .card__inner .card__badge .kk-badge--freeship,
 .kk-badge--freeship {
   order: -1;
-  background-color: #ffffff !important;
-  color: #5B6CC4 !important;
-  border: 1px solid #d7dbf0 !important;
-  border-radius: var(--kk-radius-pill) !important;
-  padding: 3px 9px !important;
-  font-family: var(--kk-font-family) !important;
-  font-size: 11px !important;
-  font-weight: 600 !important;
-  box-shadow: 0 2px 6px rgba(42, 44, 66, 0.08) !important;
-  white-space: nowrap !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 5px !important;
+  background-color: #ffffff;
+  color: #5B6CC4;
+  border: 1px solid #d7dbf0;
+  border-radius: var(--kk-radius-pill);
+  padding: 3px 9px;
+  font-family: var(--kk-font-family);
+  font-size: 11px;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(42, 44, 66, 0.08);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .card-wrapper .card__inner .card__badge .kk-badge--freeship svg,
 .kk-badge--freeship svg {
-  width: 13px !important;
-  height: 13px !important;
-  color: #5B6CC4 !important;
-  stroke: #5B6CC4 !important;
-  flex: 0 0 auto !important;
+  width: 13px;
+  height: 13px;
+  color: #5B6CC4;
+  stroke: #5B6CC4;
+  flex: 0 0 auto;
 }
 
 .card__heading {
-  font-family: var(--kk-font-family) !important;
-  font-weight: 700 !important;
-  font-size: 15px !important;
-  line-height: 1.3 !important;
-  margin-top: 10px !important;
-  margin-bottom: 4px !important;
+  font-family: var(--kk-font-family);
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.3;
+  margin-top: 10px;
+  margin-bottom: 4px;
 }
 
 .card__heading a {
-  color: var(--kk-text-dark) !important;
-  text-decoration: none !important;
+  color: var(--kk-text-dark);
+  text-decoration: none;
 }
 
 .card__heading a:hover {
-  color: var(--kk-brand-deep) !important;
+  color: var(--kk-brand-deep);
 }
 
 /* Product Card Star Rating */
@@ -402,23 +402,23 @@ h6,
 
 /* Price Styling */
 .price {
-  font-family: var(--kk-font-family) !important;
-  font-size: 15px !important;
-  font-weight: 700 !important;
-  color: var(--kk-text-dark) !important;
+  font-family: var(--kk-font-family);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--kk-text-dark);
 }
 
 .price .price-item--sale {
-  color: var(--kk-brand-deep) !important;
-  font-weight: 800 !important;
+  color: var(--kk-brand-deep);
+  font-weight: 800;
 }
 
 .price .price-item--regular s,
 .price-item--sale+.price__sale .price-item--regular {
-  color: var(--kk-text-muted) !important;
-  font-size: 13px !important;
-  text-decoration: line-through !important;
-  margin-left: 6px !important;
+  color: var(--kk-text-muted);
+  font-size: 13px;
+  text-decoration: line-through;
+  margin-left: 6px;
 }
 
 /* ==========================================================================
@@ -632,22 +632,22 @@ h6,
 
 /* Stylized Accordions (kk-acc) - Reference Match (Kitty Kloset) */
 .product__info-container>.kk-acc {
-  margin: 0 !important;
+  margin: 0;
   width: 100%;
 }
 
 .product__info-container>.kk-acc:first-of-type,
 .product__info-container> :not(.kk-acc)+.kk-acc {
-  margin-top: 24px !important;
+  margin-top: 24px;
 }
 
 .product__info-container>.kk-acc:last-of-type,
 .product__info-container>.kk-acc:has(+ :not(.kk-acc)) {
-  margin-bottom: 24px !important;
+  margin-bottom: 24px;
 }
 
 .kk-acc+.kk-acc {
-  margin-top: 0 !important;
+  margin-top: 0;
 }
 
 .kk-acc {
@@ -658,16 +658,16 @@ h6,
 
 .kk-acc .kk-acc__item,
 .kk-acc__item {
-  border: none !important;
-  border-bottom: 1px solid #edf0f8 !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  border: none;
+  border-bottom: 1px solid #edf0f8;
+  margin: 0;
+  padding: 0;
 }
 
 .product__info-container>.kk-acc:first-of-type .kk-acc__item,
 .product__info-container> :not(.kk-acc)+.kk-acc .kk-acc__item,
 .kk-acc:first-of-type .kk-acc__item {
-  border-top: 1px solid #edf0f8 !important;
+  border-top: 1px solid #edf0f8;
 }
 
 .kk-acc__head {
@@ -839,23 +839,23 @@ h6,
 }
 
 .kk-sticky__rating {
-  margin: 2px 0 0 !important;
-  gap: 4px !important;
+  margin: 2px 0 0;
+  gap: 4px;
 }
 
 .kk-sticky__rating .kk-card-rating__stars {
-  font-size: 11px !important;
-  letter-spacing: 1.5px !important;
+  font-size: 11px;
+  letter-spacing: 1.5px;
 }
 
 .kk-sticky__rating .kk-card-rating__count {
-  font-size: 11px !important;
-  font-weight: 500 !important;
+  font-size: 11px;
+  font-weight: 500;
 }
 
 @media (max-width: 860px) {
   .kk-sticky__product {
-    display: none !important;
+    display: none;
   }
 }
 
@@ -905,7 +905,7 @@ h6,
 }
 
 .kk-sticky__qty {
-  flex: 0 0 auto !important;
+  flex: 0 0 auto;
 }
 
 .kk-qty {
@@ -1058,17 +1058,17 @@ h6,
 }
 
 .product-form__submit {
-  background-color: var(--kk-brand-deep) !important;
-  color: #ffffff !important;
-  border-radius: var(--kk-radius-sm) !important;
-  font-size: 16px !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.02em !important;
-  transition: background-color 0.15s ease !important;
+  background-color: var(--kk-brand-deep);
+  color: #ffffff;
+  border-radius: var(--kk-radius-sm);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: background-color 0.15s ease;
 }
 
 .product-form__submit:hover {
-  background-color: var(--kk-brand-dark) !important;
+  background-color: var(--kk-brand-dark);
 }
 
 /* ==========================================================================
@@ -1158,245 +1158,245 @@ h6,
    Product Card Exact Design (Reference Match)
    ========================================================================== */
 .card-wrapper.product-card-wrapper {
-  font-family: 'Poppins', sans-serif !important;
+  font-family: 'Poppins', sans-serif;
 }
 
 .card-wrapper .card__inner {
-  border-radius: 12px !important;
-  overflow: hidden !important;
-  position: relative !important;
-  background-color: #f8f8fb !important;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  background-color: #f8f8fb;
 }
 
 .card-wrapper .card__media,
 .card-wrapper .card__inner {
-  border-radius: 0 !important;
-  background-color: #f4f5f7 !important;
-  overflow: hidden !important;
+  border-radius: 0;
+  background-color: #f4f5f7;
+  overflow: hidden;
 }
 
 .card-wrapper .card__media img {
-  object-fit: contain !important;
-  background-color: #f4f5f7 !important;
+  object-fit: contain;
+  background-color: #f4f5f7;
 }
 
 /* Badges stacked vertically on bottom-left of image */
 .card-wrapper .card__badge,
 .card-wrapper .card__inner .card__badge {
-  position: absolute !important;
-  bottom: 10px !important;
-  left: 10px !important;
-  top: auto !important;
-  right: auto !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: flex-start !important;
-  gap: 4px !important;
-  z-index: 3 !important;
-  pointer-events: none !important;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  top: auto;
+  right: auto;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  z-index: 3;
+  pointer-events: none;
 }
 
 /* Free shipping badge (White pill + Purple truck) */
 .card-wrapper .card__inner .card__badge .kk-badge--freeship,
 .kk-badge--freeship {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 5px !important;
-  background-color: #ffffff !important;
-  color: #5B6CC4 !important;
-  border: 1px solid #d7dbf0 !important;
-  border-radius: 9999px !important;
-  padding: 3px 9px !important;
-  font-family: 'Poppins', sans-serif !important;
-  font-size: 11px !important;
-  font-weight: 600 !important;
-  line-height: 1.2 !important;
-  letter-spacing: .02em !important;
-  box-shadow: 0 2px 6px rgba(42, 44, 66, 0.08) !important;
-  white-space: nowrap !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #ffffff;
+  color: #5B6CC4;
+  border: 1px solid #d7dbf0;
+  border-radius: 9999px;
+  padding: 3px 9px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: .02em;
+  box-shadow: 0 2px 6px rgba(42, 44, 66, 0.08);
+  white-space: nowrap;
 }
 
 .card-wrapper .card__inner .card__badge .kk-badge--freeship svg,
 .kk-badge--freeship svg {
-  width: 13px !important;
-  height: 13px !important;
-  color: #5B6CC4 !important;
-  stroke: #5B6CC4 !important;
-  flex: 0 0 auto !important;
+  width: 13px;
+  height: 13px;
+  color: #5B6CC4;
+  stroke: #5B6CC4;
+  flex: 0 0 auto;
 }
 
 /* Sale badge (Periwinkle pill + White text) */
 .card-wrapper .card__inner .card__badge .badge--kk-sale,
 .card-wrapper .card__inner .card__badge .badge:not(.kk-badge--freeship) {
-  display: inline-flex !important;
-  align-items: center !important;
-  background-color: #8AA0F2 !important;
-  color: #ffffff !important;
-  border: none !important;
-  border-radius: 9999px !important;
-  padding: 3px 9px !important;
-  font-family: 'Poppins', sans-serif !important;
-  font-size: 11px !important;
-  font-weight: 600 !important;
-  letter-spacing: .02em !important;
-  line-height: 1.2 !important;
-  box-shadow: 0 2px 6px rgba(138, 160, 242, 0.25) !important;
-  min-height: 0 !important;
+  display: inline-flex;
+  align-items: center;
+  background-color: #8AA0F2;
+  color: #ffffff;
+  border: none;
+  border-radius: 9999px;
+  padding: 3px 9px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  line-height: 1.2;
+  box-shadow: 0 2px 6px rgba(138, 160, 242, 0.25);
+  min-height: 0;
 }
 
 /* Card Information Below Image */
 .card-wrapper .card__content {
-  padding: 0 !important;
+  padding: 0;
 }
 
 .card-wrapper .card__information {
-  padding: 10px 2px 4px !important;
-  text-align: left !important;
+  padding: 10px 2px 4px;
+  text-align: left;
 }
 
 .card-wrapper .card__heading {
-  margin: 0 0 2px !important;
-  font-family: 'Poppins', sans-serif !important;
-  font-size: 15px !important;
-  font-weight: 600 !important;
-  line-height: 1.3 !important;
-  color: #2A2C42 !important;
-  letter-spacing: -0.01em !important;
+  margin: 0 0 2px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #2A2C42;
+  letter-spacing: -0.01em;
 }
 
 .card-wrapper .card__heading a {
-  color: #2A2C42 !important;
-  text-decoration: none !important;
-  transition: color 0.15s ease !important;
+  color: #2A2C42;
+  text-decoration: none;
+  transition: color 0.15s ease;
 }
 
 .card-wrapper .card__heading a:hover {
-  color: #6C72E0 !important;
+  color: #6C72E0;
 }
 
 .card-wrapper .caption-with-letter-spacing {
-  font-family: 'Poppins', sans-serif !important;
-  font-size: 11px !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.08em !important;
-  text-transform: uppercase !important;
-  color: #8A8EA6 !important;
-  margin: 0 0 4px !important;
-  display: block !important;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8A8EA6;
+  margin: 0 0 4px;
+  display: block;
 }
 
 /* Review Stars + Count */
 .card-wrapper .kk-card-rating {
-  display: flex !important;
-  align-items: center !important;
-  gap: 5px !important;
-  margin: 0 0 6px !important;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0 0 6px;
 }
 
 .card-wrapper .kk-card-rating__stars {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 2px !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
 }
 
 .card-wrapper .kk-card-rating__stars svg {
-  width: 12px !important;
-  height: 12px !important;
-  color: #8AA0F2 !important;
-  fill: #8AA0F2 !important;
-  flex: 0 0 auto !important;
+  width: 12px;
+  height: 12px;
+  color: #8AA0F2;
+  fill: #8AA0F2;
+  flex: 0 0 auto;
 }
 
 .card-wrapper .kk-card-rating__count {
-  font-family: 'Poppins', sans-serif !important;
-  font-size: 12px !important;
-  font-weight: 500 !important;
-  color: #8A8EA6 !important;
-  line-height: 1 !important;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #8A8EA6;
+  line-height: 1;
 }
 
 /* PDP Review Block Specific */
 .kk-pdp-rating {
-  margin: 4px 0 10px !important;
+  margin: 4px 0 10px;
 }
 
 .kk-pdp-rating .kk-card-rating__stars {
-  font-size: 15px !important;
-  letter-spacing: 3px !important;
+  font-size: 15px;
+  letter-spacing: 3px;
 }
 
 .kk-pdp-rating .kk-card-rating__count {
-  font-size: 14px !important;
-  font-weight: 500 !important;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 /* Price Row - Strikethrough on left, Sale price on right */
 .card-wrapper .price {
-  margin: 2px 0 0 !important;
-  font-family: 'Poppins', sans-serif !important;
+  margin: 2px 0 0;
+  font-family: 'Poppins', sans-serif;
 }
 
 .card-wrapper .price__container {
-  display: flex !important;
-  align-items: baseline !important;
-  flex-wrap: nowrap !important;
-  gap: 8px !important;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: nowrap;
+  gap: 8px;
 }
 
 .card-wrapper .price__regular {
-  display: flex !important;
-  align-items: baseline !important;
-  margin: 0 !important;
-  white-space: nowrap !important;
+  display: flex;
+  align-items: baseline;
+  margin: 0;
+  white-space: nowrap;
 }
 
 .card-wrapper .price__sale {
-  display: flex !important;
-  align-items: baseline !important;
-  gap: 8px !important;
-  flex-wrap: nowrap !important;
-  margin: 0 !important;
-  white-space: nowrap !important;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: nowrap;
+  margin: 0;
+  white-space: nowrap;
 }
 
 /* When on sale, hide regular single price */
 .card-wrapper .price.price--on-sale .price__regular {
-  display: none !important;
+  display: none;
 }
 
 /* When not on sale, hide sale block */
 .card-wrapper .price:not(.price--on-sale) .price__sale {
-  display: none !important;
+  display: none;
 }
 
 .card-wrapper .price__sale s,
 .card-wrapper .price__sale s.price-item--regular,
 .card-wrapper .price__sale .price-item--regular,
 .card-wrapper s.price-item--regular {
-  font-family: 'Poppins', sans-serif !important;
-  font-size: 13px !important;
-  color: #8A8EA6 !important;
-  font-weight: 400 !important;
-  text-decoration: line-through !important;
-  white-space: nowrap !important;
-  letter-spacing: 0 !important;
-  display: inline-block !important;
-  line-height: 1.2 !important;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  color: #8A8EA6;
+  font-weight: 400;
+  text-decoration: line-through;
+  white-space: nowrap;
+  letter-spacing: 0;
+  display: inline-block;
+  line-height: 1.2;
 }
 
 .card-wrapper .price__sale .price-item--sale,
 .card-wrapper .price__regular .price-item--regular,
 .card-wrapper .price-item--sale,
 .card-wrapper .price-item--last {
-  font-family: 'Poppins', sans-serif !important;
-  font-size: 15px !important;
-  font-weight: 700 !important;
-  color: #2A2C42 !important;
-  white-space: nowrap !important;
-  letter-spacing: -0.01em !important;
-  line-height: 1.2 !important;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #2A2C42;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
 }
 
 /* ==========================================================================
@@ -1538,14 +1538,14 @@ h6,
   min-width: 48px;
   min-height: 48px;
   padding: 0;
-  border-radius: 50% !important;
-  border: 1.5px solid transparent !important;
+  border-radius: 50%;
+  border: 1.5px solid transparent;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
-  background-color: transparent !important;
+  background-color: transparent;
   box-sizing: border-box;
 }
 
@@ -1563,7 +1563,7 @@ h6,
 }
 
 .product-form__input--color-swatches input[type="radio"]:checked+.kk-swatch-circle {
-  border-color: #2A2C42 !important;
+  border-color: #2A2C42;
   box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #2A2C42;
 }
 
@@ -1585,27 +1585,27 @@ h6,
 }
 
 .product-form__input--pill:not(.product-form__input--color-swatches) input[type="radio"]+label {
-  background-color: #ffffff !important;
-  border: 1px solid #dcdcdc !important;
-  border-radius: 4px !important;
-  color: #2a2c42 !important;
-  font-family: 'Poppins', sans-serif !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  padding: 8px 16px !important;
-  min-width: 48px !important;
-  height: 44px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+  background-color: #ffffff;
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  color: #2a2c42;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  min-width: 48px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .product-form__input--pill:not(.product-form__input--color-swatches) input[type="radio"]:checked+label {
-  background-color: #000000 !important;
-  border-color: #000000 !important;
-  color: #ffffff !important;
+  background-color: #000000;
+  border-color: #000000;
+  color: #ffffff;
 }
 
 /* Size Chart Trigger & Modal */
@@ -1878,61 +1878,63 @@ h6,
 
 /* Custom Global Overrides for Light Font Weight and Section Spacing */
 *:not(svg):not(path):not(circle):not(use):not(g) {
-  font-weight: 300 !important;
+  font-weight: 300;
 }
 
 .title-wrapper-with-link,
 .collection__title.title-wrapper,
 .collection__title {
-  margin-bottom: 40px !important;
+  margin-bottom: 40px;
 }
 
 /* Product Card Styling to match Image 1 */
 .card-wrapper .card__heading,
 .card-wrapper .card__heading a {
-  font-size: 15px !important;
-  color: #2a2c42 !important;
-  margin-bottom: 2px !important;
+  font-size: 15px;
+  color: #2a2c42;
+  margin-bottom: 2px;
 }
 
 .card-wrapper .caption-with-letter-spacing {
-  font-size: 10px !important;
-  letter-spacing: 0.15em !important;
-  text-transform: uppercase !important;
-  color: #7f86a0 !important;
-  margin-top: 4px !important;
-  margin-bottom: 6px !important;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #7f86a0;
+  margin-top: 4px;
+  margin-bottom: 6px;
 }
 
 .card-wrapper .price,
 .card-wrapper .price__sale {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  gap: 8px !important;
-  margin-top: 8px !important;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
 }
 
 .card-wrapper .price-item--regular {
-  font-size: 11px !important;
-  color: #b0b5c9 !important;
+  font-size: 11px;
+  color: #b0b5c9;
 }
+
 s.price-item--regular {
-  text-decoration: line-through !important;
+  text-decoration: line-through;
 }
 
 .card-wrapper .price-item--sale,
 .card-wrapper .price__regular .price-item--regular {
-  font-size: 14px !important;
-  color: #000000 !important;
+  font-size: 14px;
+  color: #000000;
 }
 
 .card-wrapper .rating-star {
-  color: #6c72e0 !important;
+  color: #6c72e0;
 }
+
 .card-wrapper .rating-text {
-  font-size: 12px !important;
-  color: #6b7088 !important;
+  font-size: 12px;
+  color: #6b7088;
 }
 
 .TotalBlock .Price {
