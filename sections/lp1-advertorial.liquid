@@ -259,7 +259,9 @@
         <div class="kk-adv__cta-copy">
           <h3 class="kk-adv__h3">Choose Your Tee</h3>
           <p>Each tee helps us provide 10 meals to abandoned cats.</p>
-          <p class="kk-adv__small">Good news, your order qualifies for FREE shipping.</p>
+          {%- if section.settings.show_free_shipping -%}
+          <p class="kk-adv__small">Gode nyheder, din ordre kvalificerer sig til GRATIS fragt.</p>
+          {%- endif -%}
           <a class="kk-adv__btn" href="{{ cta_link }}">{{ cta_btn_label }}</a>
         </div>
       </section>
@@ -495,7 +497,7 @@
         <h2 class="kk-adv__h2 kk-adv__h2--center"><span class="kk-adv__num">5.</span> No Risk. Just a Simple Way to Help.</h2>
         <p class="kk-adv__center">Here's what we want you to know:</p>
         <p class="kk-adv__center"><strong>30-Day Guarantee.</strong> If you're not happy with your tee for any reason, we'll make it right. No questions asked.</p>
-        <p class="kk-adv__center"><strong>Free shipping</strong> on qualifying orders.</p>
+        <p class="kk-adv__center"><strong>Gratis fragt</strong> på kvalificerede ordrer.</p>
         <p class="kk-adv__center kk-adv__muted">No hidden fees. Just a tee you'll love, real meals for cats who need them, and photos every month so you can see the results.</p>
       </section>
     </div></div>
@@ -511,7 +513,7 @@
         <div class="kk-adv__cta-copy">
           <h3 class="kk-adv__h3">Choose Your Tee</h3>
           <p>Each tee helps us provide 10 meals to abandoned cats.</p>
-          <p class="kk-adv__small">Free shipping on qualifying orders.</p>
+          <p class="kk-adv__small">Gratis fragt på kvalificerede ordrer.</p>
           <a class="kk-adv__btn" href="{{ cta_link }}">{{ cta_btn_label }}</a>
 
           <div class="kk-adv__proof">
