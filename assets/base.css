@@ -1919,7 +1919,7 @@ input[type='checkbox'] {
   font-style: var(--font-body-style);
   font-weight: var(--font-body-weight);
   font-size: 1.6rem;
-  font-weight: 500;
+   
   opacity: 0.85;
   text-align: center;
   background-color: transparent;

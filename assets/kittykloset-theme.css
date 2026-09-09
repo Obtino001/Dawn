@@ -93,7 +93,7 @@ h6,
 .header__menu-item span {
   font-family: var(--kk-font-family);
   font-size: 14px;
-  font-weight: 500;
+   
   color: var(--kk-text-dark);
   text-decoration: none;
   transition: color 0.15s ease;
@@ -114,7 +114,7 @@ h6,
   background-color: var(--kk-brand-deep);
   color: #ffffff;
   font-family: var(--kk-font-family);
-  font-weight: 500;
+   
 }
 
 /* ==========================================================================
@@ -164,7 +164,7 @@ h6,
 .kk-title__eyebrow {
   margin: 0 0 10px;
   font-size: 12px;
-  font-weight: 500;
+   
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--kk-brand-deep);
@@ -174,7 +174,7 @@ h6,
   font-family: var(--kk-font-family);
   margin: 0;
   color: var(--kk-text-dark);
-  font-weight: 500;
+   
   text-transform: uppercase;
   letter-spacing: 0.04em;
   line-height: 1.05;
@@ -212,7 +212,7 @@ h6,
   margin: 16px 0 0;
   color: var(--kk-text-dark);
   opacity: 0.75;
-  font-weight: 500;
+   
   line-height: 1.4;
   font-size: clamp(14px, 3.2vw, 17px);
 }
@@ -267,7 +267,7 @@ h6,
 }
 
 .kk-proof__value {
-  font-weight: 500;
+   
   font-size: clamp(15px, 4vw, 20px);
   color: var(--kk-text-dark);
   line-height: 1.1;
@@ -391,7 +391,7 @@ h6,
 }
 
 .kk-card-rating__score {
-  font-weight: 500;
+   
   color: var(--kk-text-dark);
 }
 
@@ -446,7 +446,7 @@ h6,
 .kk-mission--soft .kk-mission__eyebrow {
   margin: 0 0 10px;
   font-size: 12px;
-  font-weight: 500;
+   
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--brand-deep);
@@ -454,7 +454,7 @@ h6,
 
 .kk-mission--soft .kk-mission__title {
   margin: 0;
-  font-weight: 500;
+   
   line-height: 1.15;
   font-size: clamp(24px, 2.6vw, 36px);
   color: var(--text);
@@ -517,7 +517,7 @@ h6,
 }
 
 .kk-mission--soft .kk-mission__statnum {
-  font-weight: 500;
+   
   font-size: clamp(26px, 3vw, 34px);
   color: var(--brand-deep);
   line-height: 1;
@@ -594,7 +594,7 @@ h6,
 
 .kk-freeship__text strong {
   color: var(--kk-brand-deep);
-  font-weight: 500;
+   
 }
 
 .kk-perks {
@@ -627,7 +627,7 @@ h6,
 }
 
 .kk-perks strong {
-  font-weight: 500;
+   
 }
 
 /* Stylized Accordions (kk-acc) - Reference Match (Kitty Kloset) */
@@ -679,7 +679,7 @@ h6,
   gap: 16px;
   padding: 16px 0;
   font-family: 'Poppins', sans-serif;
-  font-weight: 500;
+   
   font-size: 16px;
   line-height: 1.4;
   color: #2a2c42;
@@ -758,7 +758,7 @@ h6,
   position: absolute;
   left: 0;
   color: #8AA0F2;
-  font-weight: 500;
+   
 }
 
 /* ==========================================================================
@@ -786,7 +786,7 @@ h6,
 .kk-sticky__promo {
   text-align: center;
   font-size: 11px;
-  font-weight: 500;
+   
   color: var(--kk-brand-dark);
   background: var(--kk-bg-soft);
   border-radius: 8px;
@@ -797,7 +797,7 @@ h6,
 
 .kk-sticky__promo-rating {
   color: #6C72E0;
-  font-weight: 500;
+   
   letter-spacing: 0.02em;
 }
 
@@ -850,7 +850,7 @@ h6,
 
 .kk-sticky__rating .kk-card-rating__count {
   font-size: 11px;
-  font-weight: 500;
+   
 }
 
 @media (max-width: 860px) {
@@ -890,7 +890,7 @@ h6,
   text-transform: uppercase;
   color: var(--kk-text-subtle);
   line-height: 1;
-  font-weight: 500;
+   
 }
 
 .kk-sticky__select {
@@ -923,7 +923,7 @@ h6,
   border: 0;
   background: #f4f6ff;
   font-size: 16px;
-  font-weight: 500;
+   
   color: var(--kk-brand-deep);
   cursor: pointer;
   display: flex;
@@ -938,7 +938,7 @@ h6,
   border: 0;
   text-align: center;
   font-size: 13px;
-  font-weight: 500;
+   
   color: var(--kk-text-dark);
 }
 
@@ -948,7 +948,7 @@ h6,
   color: #ffffff;
   font-family: var(--kk-font-family);
   font-size: 14px;
-  font-weight: 500;
+   
   padding: 10px 24px;
   border: 0;
   border-radius: 8px;
@@ -1054,7 +1054,7 @@ h6,
 .button {
   border-radius: var(--kk-radius-sm);
   font-family: var(--kk-font-family);
-  font-weight: 500;
+   
 }
 
 .product-form__submit {
@@ -1312,7 +1312,7 @@ h6,
 .card-wrapper .kk-card-rating__count {
   font-family: 'Poppins', sans-serif;
   font-size: 12px;
-  font-weight: 500;
+   
   color: #8A8EA6;
   line-height: 1;
 }
@@ -1329,7 +1329,7 @@ h6,
 
 .kk-pdp-rating .kk-card-rating__count {
   font-size: 14px;
-  font-weight: 500;
+   
 }
 
 /* Price Row - Strikethrough on left, Sale price on right */
@@ -1406,7 +1406,7 @@ h6,
 /* PDP Title & Rating */
 .product__info-container .product__title h1 {
   font-size: 28px;
-  font-weight: 500;
+   
   color: #2A2C42;
   margin-bottom: 0px;
   line-height: 1.25;
@@ -1450,7 +1450,7 @@ h6,
 
 .kk-freeship__text strong {
   color: #6c72e0;
-  font-weight: 500;
+   
 }
 
 /* PDP Price */
@@ -1469,7 +1469,7 @@ h6,
 .product__info-container .price-item--sale {
   color: #2A2C42;
   font-size: 22px;
-  font-weight: 500;
+   
 }
 
 .product__info-container .price__badge-sale {
@@ -1477,7 +1477,7 @@ h6,
   color: #ffffff;
   border: none;
   font-size: 12px;
-  font-weight: 500;
+   
   border-radius: 4px;
   padding: 3px 8px;
 }
@@ -1511,7 +1511,7 @@ h6,
 }
 
 .kk-perks strong {
-  font-weight: 500;
+   
 }
 
 /* Variant Swatches (Color) */
@@ -1591,7 +1591,7 @@ h6,
   color: #2a2c42;
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
-  font-weight: 500;
+   
   padding: 8px 16px;
   min-width: 48px;
   height: 44px;
@@ -1684,7 +1684,7 @@ h6,
 
 .kk-size-modal__title {
   font-size: 18px;
-  font-weight: 500;
+   
   margin: 0;
   color: #2a2c42;
 }
@@ -1739,7 +1739,7 @@ h6,
 .widget_title {
   text-align: center;
   font-size: 15px;
-  font-weight: 500;
+   
   color: #2A2C42;
   margin: 0 0 12px;
   letter-spacing: 0.04em;
@@ -1821,7 +1821,7 @@ h6,
   background: #6C72E0;
   color: #ffffff;
   font-size: 10px;
-  font-weight: 500;
+   
   letter-spacing: 0.06em;
   padding: 2px 8px;
   border-radius: 4px;
@@ -1831,7 +1831,7 @@ h6,
 .OfferText {
   margin: 0;
   font-size: 15px;
-  font-weight: 500;
+   
   color: #2A2C42;
   line-height: 1.2;
 }
@@ -1846,7 +1846,7 @@ h6,
 .SaveText {
   margin: 0;
   font-size: 12px;
-  font-weight: 500;
+   
   color: #388e3c;
   background: #e8f5e9;
   padding: 2px 6px;
@@ -1868,7 +1868,7 @@ h6,
 
 .Price {
   color: #2A2C42;
-  font-weight: 500;
+   
 }
 
 .TotalBlock {
