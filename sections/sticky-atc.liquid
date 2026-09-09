@@ -1,302 +1,322 @@
 {%- if product and product.available -%}
-  <div id="kk-sticky-atc" class="kk-sticky" aria-hidden="true">
-    {%- if section.settings.promo_text != blank -%}
-      <div class="kk-sticky__promo">
-        <span>{{ section.settings.promo_text | escape }}</span>
-        {%- if section.settings.show_rating != false -%}
-          <span class="kk-sticky__promo-rating">
-            · ★★★★★
-            {%- liquid
-              assign p_handle = product.handle
-              if p_handle contains 'un-deux-trois-cat-with-color'
-                assign sticky_reviews = 144
-              elsif p_handle contains 'pew-pew'
-                assign sticky_reviews = 209
-              elsif p_handle contains 'un-deux-trois'
-                assign sticky_reviews = 981
-              elsif product.metafields.reviews.rating_count != blank
-                assign sticky_reviews = product.metafields.reviews.rating_count
-              else
-                assign seed = product.id | slice: -4, 4 | plus: 0
-                assign sticky_reviews = seed | modulo: 880 | plus: 115
-              endif
-            -%}
-            ({{ sticky_reviews }})
-          </span>
-        {%- endif -%}
-      </div>
-    {%- endif -%}
+  <div class="color-background-1 gradient">
+    <div id="kk-sticky-atc" class="kk-sticky" aria-hidden="true">
+      <div class="kk-sticky__promo" hidden=""></div>
+      <div class="kk-sticky__inner">
+        <div class="kk-sticky__opts">
+          {%- unless product.has_only_default_variant -%}
+            {%- for option in product.options_with_values -%}
+              <label class="kk-sticky__field">
+                <span class="kk-sticky__label">{{ option.name | escape }}</span>
+                <select class="kk-sticky__select" data-kk-opt="{{ forloop.index0 }}" data-opt-name="{{ option.name | escape }}">
+                  {%- for value in option.values -%}
+                    {%- assign val_name = value.name | default: value -%}
+                    <option
+                      value="{{ val_name | escape }}"
+                      {% if option.selected_value == value or option.selected_value == val_name %}selected=""{% endif %}
+                    >
+                      {{ val_name | escape }}
+                    </option>
+                  {%- endfor -%}
+                </select>
+              </label>
+            {%- endfor -%}
+          {%- endunless -%}
 
-    <div class="kk-sticky__inner">
-      {%- if section.settings.show_rating != false -%}
-        <div class="kk-sticky__product">
-          {%- if product.featured_media -%}
-            {{ product.featured_media | image_url: width: 80 | image_tag: class: 'kk-sticky__thumb', loading: 'lazy' }}
-          {%- endif -%}
-          <div class="kk-sticky__details">
-            <span class="kk-sticky__title">{{ product.title | escape }}</span>
-            {% render 'product-review-badge', product: product, class: 'kk-sticky__rating' %}
+          <div class="kk-sticky__field kk-sticky__qty">
+            <span class="kk-sticky__label">{{ section.settings.qty_label | default: 'Antal' }}</span>
+            <div class="kk-qty">
+              <button type="button" class="kk-qty__btn" data-kk-qty="minus" aria-label="Decrease quantity">−</button>
+              <input class="kk-qty__input" type="number" inputmode="numeric" value="1" min="1" aria-label="Quantity">
+              <button type="button" class="kk-qty__btn" data-kk-qty="plus" aria-label="Increase quantity">+</button>
+            </div>
           </div>
         </div>
-      {%- endif -%}
 
-      <div class="kk-sticky__opts">
-        {%- unless product.has_only_default_variant -%}
-          {%- for option in product.options_with_values -%}
-            <label class="kk-sticky__field">
-              <span class="kk-sticky__label">{{ option.name | escape }}</span>
-              <select class="kk-sticky__select" data-kk-opt-index="{{ forloop.index0 }}">
-                {%- for value in option.values -%}
-                  <option
-                    value="{{ value | escape }}"
-                    {% if option.selected_value == value %}selected="selected"{% endif %}
-                  >
-                    {{ value | escape }}
-                  </option>
-                {%- endfor -%}
-              </select>
-            </label>
-          {%- endfor -%}
-        {%- endunless -%}
-
-        <div class="kk-sticky__field kk-sticky__qty">
-          <span class="kk-sticky__label">{{ "products.product.quantity.label" | t | default: "Antal" }}</span>
-          <div class="kk-qty">
-            <button type="button" class="kk-qty__btn" data-kk-qty="minus" aria-label="{{ 'products.product.quantity.decrease' | t: product: product.title | default: 'Reducer antal' }}">−</button>
-            <input class="kk-qty__input" type="number" inputmode="numeric" value="1" min="1" aria-label="Quantity">
-            <button type="button" class="kk-qty__btn" data-kk-qty="plus" aria-label="{{ 'products.product.quantity.increase' | t: product: product.title | default: 'Øg antal' }}">+</button>
-          </div>
-        </div>
-      </div>
-
-      <button type="button" class="kk-sticky__btn" id="kk-sticky-submit">
-        {%- if section.settings.button_icon != blank -%}
-          {{ section.settings.button_icon | image_url: width: 40 | image_tag: style: 'width: 18px; height: 18px; object-fit: contain;' }}
-        {%- else -%}
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;">
-            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        <button type="button" id="kk-sticky-add" class="kk-sticky__add">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
           </svg>
-        {%- endif -%}
-        <span class="kk-sticky__btn-text">{{ section.settings.button_text | default: 'Læg i kurv' }}</span>
-        <span class="kk-sticky__btn-price"> · {{ product.selected_or_first_available_variant.price | money }}</span>
-      </button>
+          <span class="kk-sticky__add-label">{{ section.settings.button_text | default: 'Læg i kurv' }}</span>
+          <span class="kk-sticky__add-price">· {{ product.selected_or_first_available_variant.price | money }}</span>
+        </button>
+      </div>
     </div>
   </div>
 
   <script>
-    (function() {
-      const sticky = document.getElementById('kk-sticky-atc');
-      if (!sticky) return;
+    (function(){
+      /* ===== CONFIG ===== */
+      var SHOW_AFTER_PERCENT = {{ section.settings.scroll_percent | default: 12 }};
+      var isDesignMode = {% if request.design_mode %}true{% else %}false{% endif %};
+      var TIER_2_PCT = {{ section.settings.tier_2_pct | default: 15 }};
+      var TIER_3_PCT = {{ section.settings.tier_3_pct | default: 20 }};
 
-      const variants = {{ product.variants | json }};
-      const mainForm = document.querySelector('product-form form') || document.querySelector('form[action*="/cart/add"]');
-      const mainSubmit = mainForm ? mainForm.querySelector('[type="submit"]') : null;
-      const stickySubmit = document.getElementById('kk-sticky-submit');
-      const stickySelects = sticky.querySelectorAll('.kk-sticky__select');
-      const qtyInput = sticky.querySelector('.kk-qty__input');
-      const qtyMinus = sticky.querySelector('[data-kk-qty="minus"]');
-      const qtyPlus = sticky.querySelector('[data-kk-qty="plus"]');
-      const priceDisplay = sticky.querySelector('.kk-sticky__btn-price');
-      const isDesignMode = {% if request.design_mode %}true{% else %}false{% endif %};
+      var variants = {{ product.variants | json }};
+      var bar = document.getElementById('kk-sticky-atc');
+      if(!bar || !variants || !variants.length) return;
 
-      // Helper to find selected variant
-      function getSelectedVariant() {
-        if (variants.length === 1) return variants[0];
-        const selectedOptions = Array.from(stickySelects).map(s => s.value);
-        return variants.find(v => {
-          return selectedOptions.every((opt, idx) => v.options[idx] === opt);
-        });
-      }
+      var selects  = bar.querySelectorAll('.kk-sticky__select');
+      var qtyInput = bar.querySelector('.kk-qty__input');
+      var addBtn   = document.getElementById('kk-sticky-add');
+      var priceEl  = bar.querySelector('.kk-sticky__add-price');
+      var labelEl  = bar.querySelector('.kk-sticky__add-label');
+      var promoEl  = bar.querySelector('.kk-sticky__promo');
 
-      function formatMoney(cents) {
-        if (window.Shopify && typeof window.Shopify.formatMoney === 'function') {
+      function currentQty(){ return Math.max(1, parseInt(qtyInput.value,10) || 1); }
+      function money(cents){
+        if(window.Shopify && typeof window.Shopify.formatMoney === 'function'){
           return window.Shopify.formatMoney(cents);
         }
         return (cents / 100).toLocaleString('da-DK', { style: 'currency', currency: {{ cart.currency.iso_code | json }} });
       }
 
-      // Update sticky UI state based on selected options
-      function updateStickyState() {
-        const variant = getSelectedVariant();
-        if (variant && variant.available) {
-          stickySubmit.disabled = false;
-          stickySubmit.querySelector('.kk-sticky__btn-text').textContent = {{ section.settings.button_text | default: 'Læg i kurv' | json }};
-          const qty = Math.max(1, parseInt(qtyInput.value, 10) || 1);
-          if (priceDisplay && variant.price) {
-            priceDisplay.textContent = ' · ' + formatMoney(variant.price * qty);
-          }
-        } else {
-          stickySubmit.disabled = true;
-          stickySubmit.querySelector('.kk-sticky__btn-text').textContent = {{ 'products.product.sold_out' | t | default: 'Udsolgt' | json }};
-          if (priceDisplay) priceDisplay.textContent = '';
+      function tierFor(qty, basePrice){
+        if(qty >= 3){
+          return { minQty: 3, unit: Math.round(basePrice * (1 - TIER_3_PCT / 100)), label: {{ section.settings.tier_3_label | default: 'spar 20%' | json }} };
+        } else if(qty >= 2){
+          return { minQty: 2, unit: Math.round(basePrice * (1 - TIER_2_PCT / 100)), label: {{ section.settings.tier_2_label | default: 'spar 15%' | json }} };
         }
+        return { minQty: 1, unit: null };
       }
 
-      // Sync sticky select change
-      stickySelects.forEach(select => {
-        select.addEventListener('change', () => {
-          updateStickyState();
-          // Two-way sync: update main product form variant
-          const variant = getSelectedVariant();
-          if (variant && mainForm) {
-            const idInput = mainForm.querySelector('[name="id"]');
-            if (idInput) {
-              idInput.value = variant.id;
-              idInput.dispatchEvent(new Event('change', { bubbles: true }));
+      function selectedOptions(){
+        return Array.prototype.map.call(selects, function(s){ return s.value; });
+      }
+      function findVariant(){
+        if(variants.length === 1) return variants[0];
+        var sel = selectedOptions();
+        for(var i=0;i<variants.length;i++){
+          var v = variants[i], ok = true;
+          for(var j=0;j<sel.length;j++){ if(v.options[j] !== sel[j]){ ok=false; break; } }
+          if(ok) return v;
+        }
+        return null;
+      }
+
+      function updateState(){
+        var v = findVariant();
+        if(!v){
+          labelEl.textContent = {{ section.settings.unavailable_text | default: 'Ikke tilgængelig' | json }};
+          priceEl.textContent = '';
+          promoEl.hidden = true;
+          addBtn.disabled = true;
+          return;
+        }
+        addBtn.disabled = !v.available;
+        labelEl.textContent = v.available ? {{ section.settings.button_text | default: 'Læg i kurv' | json }} : {{ section.settings.sold_out_text | default: 'Udsolgt' | json }};
+        if(!v.available){ priceEl.textContent = ''; promoEl.hidden = true; return; }
+
+        var qty  = currentQty();
+        var tier = tierFor(qty, v.price);
+        var unit = (tier.unit == null) ? v.price : tier.unit;
+        var full = v.price * qty;
+        var disc = unit * qty;
+
+        priceEl.textContent = '· ' + money(disc);
+        if(disc < full){
+          promoEl.textContent = money(full) + ' → ' + money(disc) + (tier.label ? ' · ' + tier.label : '');
+          promoEl.hidden = false;
+        } else {
+          promoEl.hidden = true;
+        }
+      }
+      Array.prototype.forEach.call(selects, function(s, optIndex){
+        s.addEventListener('change', function(){
+          updateState();
+          var val = s.value;
+          var optName = s.getAttribute('data-opt-name');
+          try {
+            var radios = document.querySelectorAll('input[type="radio"]');
+            var matchedRadio = null;
+            for(var r=0; r<radios.length; r++){
+              if((radios[r].name === optName || radios[r].name.indexOf(optName) !== -1) && radios[r].value === val){
+                matchedRadio = radios[r];
+                break;
+              }
+            }
+            if(matchedRadio && !matchedRadio.checked){
+              matchedRadio.click();
+            } else {
+              var mainSelects = document.querySelectorAll('variant-selects select');
+              if(mainSelects && mainSelects[optIndex] && mainSelects[optIndex].value !== val){
+                mainSelects[optIndex].value = val;
+                mainSelects[optIndex].dispatchEvent(new Event('change', { bubbles: true }));
+              }
+            }
+          } catch(e){}
+
+          var v = findVariant();
+          if(v){
+            var mainForm = document.querySelector('product-form form') || document.querySelector('form[action*="/cart/add"]');
+            var mainId = mainForm && mainForm.querySelector('[name="id"]');
+            if(mainId && mainId.value !== String(v.id)){
+              mainId.value = v.id;
+              mainId.dispatchEvent(new Event('change', { bubbles: true }));
             }
           }
         });
       });
 
-      // Quantity controls
-      if (qtyMinus) {
-        qtyMinus.addEventListener('click', () => {
-          const val = parseInt(qtyInput.value, 10) || 1;
-          if (val > 1) {
-            qtyInput.value = val - 1;
-            updateStickyState();
+      bar.querySelectorAll('[data-kk-qty]').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var n = currentQty();
+          n = btn.getAttribute('data-kk-qty') === 'plus' ? n + 1 : Math.max(1, n - 1);
+          qtyInput.value = n;
+          updateState();
+        });
+      });
+      qtyInput.addEventListener('input', updateState);
+
+      addBtn.addEventListener('click', function(){
+        var v = findVariant();
+        if(!v || !v.available) return;
+        var qty = currentQty();
+        addBtn.disabled = true;
+        labelEl.textContent = {{ section.settings.adding_text | default: 'Tilføjer...' | json }};
+
+        var cart = document.querySelector('cart-drawer') || document.querySelector('cart-notification');
+        var sections = [];
+        try {
+          if(cart && typeof cart.getSectionsToRender === 'function'){
+            sections = cart.getSectionsToRender().map(function(s){ return s.id; });
           }
-        });
-      }
-      if (qtyPlus) {
-        qtyPlus.addEventListener('click', () => {
-          const val = parseInt(qtyInput.value, 10) || 1;
-          qtyInput.value = val + 1;
-          updateStickyState();
-        });
-      }
-      qtyInput.addEventListener('input', updateStickyState);
+        } catch(e){}
 
-      // Add to Cart click
-      if (stickySubmit) {
-        stickySubmit.addEventListener('click', async () => {
-          const variant = getSelectedVariant();
-          if (!variant || !variant.available) return;
-
-          stickySubmit.disabled = true;
-          const originalText = stickySubmit.querySelector('.kk-sticky__btn-text').textContent;
-          stickySubmit.querySelector('.kk-sticky__btn-text').textContent = 'Tilføjer...';
-
+        fetch((window.routes && window.routes.cart_add_url) || '/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/javascript' },
+          body: JSON.stringify({ id: v.id, quantity: qty, sections: sections, sections_url: window.location.pathname })
+        })
+        .then(function(r){ return r.json(); })
+        .then(function(res){
+          if(res.status){ updateState(); return; }
+          labelEl.textContent = {{ section.settings.added_text | default: 'Tilføjet ✓' | json }};
           try {
-            const qty = parseInt(qtyInput.value, 10) || 1;
-            const cart = document.querySelector('cart-drawer') || document.querySelector('cart-notification');
-            let sections = [];
-            try {
-              if (cart && typeof cart.getSectionsToRender === 'function') {
-                sections = cart.getSectionsToRender().map(s => s.id);
-              }
-            } catch(e) {}
-
-            const res = await fetch((window.routes && window.routes.cart_add_url) || '/cart/add.js', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json', 'Accept': 'application/javascript' },
-              body: JSON.stringify({
-                id: variant.id,
-                quantity: qty,
-                sections: sections,
-                sections_url: window.location.pathname
-              })
-            });
-
-            if (res.ok) {
-              const data = await res.json();
-              stickySubmit.querySelector('.kk-sticky__btn-text').textContent = 'Tilføjet ✓';
-
-              if (cart && typeof cart.renderContents === 'function') {
-                cart.renderContents(data);
-                if (typeof cart.open === 'function') cart.open();
-              } else {
-                // Fallback drawer open
-                const drawer = document.querySelector('cart-drawer');
-                if (drawer) {
-                  const htmlRes = await fetch(window.location.href);
-                  const htmlText = await htmlRes.text();
-                  const parser = new DOMParser();
-                  const doc = parser.parseFromString(htmlText, 'text/html');
-                  const newDrawer = doc.querySelector('cart-drawer');
-                  if (newDrawer) drawer.innerHTML = newDrawer.innerHTML;
-                  drawer.classList.remove('is-empty');
-                  if (typeof drawer.open === 'function') drawer.open();
-                } else {
-                  window.location.href = '/cart';
-                }
-              }
-              setTimeout(updateStickyState, 1500);
+            if(cart && typeof cart.renderContents === 'function'){
+              cart.renderContents(res);
+              if(typeof cart.open === 'function') cart.open();
             } else {
-              updateStickyState();
+              window.location.href = '/cart';
+              return;
             }
-          } catch (e) {
-            console.error('Error adding to cart:', e);
-            updateStickyState();
+          } catch(e){
+            window.location.href = '/cart';
+            return;
           }
-        });
-      }
+          setTimeout(updateState, 1500);
+        })
+        .catch(function(){ updateState(); });
+      });
 
-      // One-way sync: Main form selection -> Sticky ATC
+      /* show/hide after scroll % */
+      var shown = false, ticking = false;
+      function onScroll(){
+        if(isDesignMode){
+          bar.classList.add('is-visible');
+          bar.setAttribute('aria-hidden','false');
+          return;
+        }
+        var docH = document.documentElement.scrollHeight - window.innerHeight;
+        var pct = docH > 0 ? (window.scrollY / docH) * 100 : 0;
+        if(pct >= SHOW_AFTER_PERCENT && !shown){
+          shown = true;
+          bar.classList.add('is-visible');
+          bar.setAttribute('aria-hidden','false');
+        } else if(pct < SHOW_AFTER_PERCENT && shown){
+          shown = false;
+          bar.classList.remove('is-visible');
+          bar.setAttribute('aria-hidden','true');
+        }
+      }
+      window.addEventListener('scroll', function(){
+        if(!ticking){
+          requestAnimationFrame(function(){ onScroll(); ticking=false; });
+          ticking = true;
+        }
+      }, {passive:true});
+      window.addEventListener('resize', onScroll, {passive:true});
+
+      /* sync main form variant changes -> sticky bar */
       try {
-        const mainId = mainForm && mainForm.querySelector('[name="id"]');
-        if (mainId) {
-          document.addEventListener('change', (e) => {
-            if (sticky.contains(e.target)) return;
-            setTimeout(() => {
-              const vid = mainId.value;
-              const matchingVariant = variants.find(v => String(v.id) === String(vid));
-              if (matchingVariant) {
-                stickySelects.forEach((select, idx) => {
-                  if (matchingVariant.options[idx] != null) {
-                    select.value = matchingVariant.options[idx];
-                  }
-                });
-                updateStickyState();
+        var mainForm = document.querySelector('product-form form') || document.querySelector('form[action*="/cart/add"]');
+        var mainId = mainForm && mainForm.querySelector('[name="id"]');
+        if(mainId){
+          document.addEventListener('change', function(e){
+            if(bar.contains(e.target)) return;
+            setTimeout(function(){
+              var vid = mainId.value;
+              for(var i=0; i<variants.length; i++){
+                if(String(variants[i].id) === String(vid)){
+                  var opts = variants[i].options;
+                  Array.prototype.forEach.call(selects, function(s, idx){
+                    if(opts[idx] != null) s.value = opts[idx];
+                  });
+                  updateState();
+                  break;
+                }
               }
             }, 60);
           });
         }
-      } catch(e) {}
+      } catch(e){}
 
-      // Visibility scroll listener (triggers after 12% scroll or past main form)
-      function checkScroll() {
-        if (isDesignMode) {
-          sticky.classList.add('is-visible');
-          sticky.setAttribute('aria-hidden', 'false');
-          return;
-        }
-
-        const docH = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPct = docH > 0 ? (window.scrollY / docH) * 100 : 0;
-        let shouldShow = scrollPct >= 12;
-
-        if (!shouldShow && mainSubmit) {
-          const rect = mainSubmit.getBoundingClientRect();
-          shouldShow = rect.bottom < 0;
-        }
-
-        sticky.classList.toggle('is-visible', shouldShow);
-        sticky.setAttribute('aria-hidden', !shouldShow);
-      }
-
-      let ticking = false;
-      window.addEventListener('scroll', () => {
-        if (!ticking) {
-          requestAnimationFrame(() => {
-            checkScroll();
-            ticking = false;
-          });
-          ticking = true;
-        }
-      }, { passive: true });
-      window.addEventListener('resize', checkScroll, { passive: true });
-
-      updateStickyState();
-      checkScroll();
+      updateState();
+      onScroll();
     })();
   </script>
+
+  <style>
+    .kk-sticky{
+      position:fixed; left:0; right:0; bottom:0; z-index:9999;
+      background:#fff; border-top:1px solid #e7e9f5;
+      box-shadow:0 -6px 18px rgba(42,44,66,.08);
+      font-family:'Poppins',sans-serif;
+      transform:translateY(115%); transition:transform .28s ease;
+      padding:8px 12px calc(8px + env(safe-area-inset-bottom));
+    }
+    .kk-sticky.is-visible{ transform:translateY(0); }
+    .kk-sticky__promo{
+      text-align:center; font-size:11px; font-weight:700; color:#5b6cc4;
+      background:#f4f6ff; border-radius:8px; padding:4px 8px; margin:0 0 6px; letter-spacing:.01em;
+    }
+    .kk-sticky__promo[hidden]{ display:none; }
+    .kk-sticky__inner{ display:flex; flex-wrap:wrap; align-items:flex-end; gap:8px; max-width:1100px; margin:0 auto; }
+    .kk-sticky__opts{ display:flex; align-items:flex-end; gap:6px; flex:1 1 100%; min-width:0; }
+    .kk-sticky__field{ display:flex; flex-direction:column; gap:2px; min-width:0; }
+    .kk-sticky__opts > .kk-sticky__field:not(.kk-sticky__qty){ flex:1 1 0; }
+    .kk-sticky__label{ font-size:9px; letter-spacing:.04em; text-transform:uppercase; color:#8a8ea6; line-height:1; }
+    .kk-sticky__select{
+      width:100%; font-family:inherit; font-size:13px; color:#2a2c42;
+      border:1px solid #d7dbf0; border-radius:8px; background:#fff; padding:7px 8px;
+    }
+    .kk-sticky__qty{ flex:0 0 auto; }
+    .kk-qty{ display:flex; align-items:center; border:1px solid #d7dbf0; border-radius:8px; overflow:hidden; }
+    .kk-qty__btn{ width:28px; height:34px; border:0; background:#f4f6ff; color:#2a2c42; font-size:16px; line-height:1; cursor:pointer; }
+    .kk-qty__input{ width:30px; height:34px; border:0; text-align:center; font-family:inherit; font-size:13px; color:#2a2c42; -moz-appearance:textfield; }
+    .kk-qty__input::-webkit-outer-spin-button,.kk-qty__input::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
+    .kk-sticky__add{
+      flex:1 1 100%; display:flex; align-items:center; justify-content:center; gap:6px;
+      border:0; border-radius:10px; cursor:pointer;
+      background:#8AA0F2; color:#fff; font-family:inherit; font-weight:600; font-size:14px;
+      padding:11px 16px; min-height:44px; white-space:nowrap;
+    }
+    .kk-sticky__add:disabled{ background:#b9c2e6; cursor:not-allowed; }
+    .kk-sticky__add svg{ width:18px; height:18px; }
+    .kk-sticky__add-price{ font-weight:700; }
+    @media (min-width:750px){
+      .kk-sticky__inner{ flex-wrap:nowrap; }
+      .kk-sticky__opts{ flex:1 1 auto; }
+      .kk-sticky__select{ max-width:160px; }
+      .kk-sticky__add{ flex:0 0 auto; }
+    }
+  </style>
 {%- endif -%}
 
 {% schema %}
 {
-  "name": "Fastgjort Købsknap (Sticky ATC)",
+  "name": "Fastgjort Købsknap",
   "tag": "section",
   "class": "section-sticky-atc",
   "enabled_on": {
@@ -304,16 +324,8 @@
   },
   "settings": [
     {
-      "type": "image_picker",
-      "id": "button_icon",
-      "label": "Knapikon (Image Picker)",
-      "info": "Upload dit eget ikon-billede (overskriver indkøbskurv-ikon)"
-    },
-    {
-      "type": "text",
-      "id": "promo_text",
-      "label": "Top Promo Tag (Valgfri)",
-      "default": "GRATIS FRAGT PÅ DENNE ORDRE"
+      "type": "header",
+      "content": "Knap & Tekster"
     },
     {
       "type": "text",
@@ -322,15 +334,89 @@
       "default": "Læg i kurv"
     },
     {
-      "type": "checkbox",
-      "id": "show_rating",
-      "label": "Vis produktbedømmelse (Show product rating)",
-      "default": true
+      "type": "text",
+      "id": "qty_label",
+      "label": "Antal-etiket",
+      "default": "Antal"
+    },
+    {
+      "type": "text",
+      "id": "sold_out_text",
+      "label": "Udsolgt tekst",
+      "default": "Udsolgt"
+    },
+    {
+      "type": "text",
+      "id": "adding_text",
+      "label": "Tilføjer tekst",
+      "default": "Tilføjer..."
+    },
+    {
+      "type": "text",
+      "id": "added_text",
+      "label": "Tilføjet tekst",
+      "default": "Tilføjet ✓"
+    },
+    {
+      "type": "text",
+      "id": "unavailable_text",
+      "label": "Ikke tilgængelig tekst",
+      "default": "Ikke tilgængelig"
+    },
+    {
+      "type": "header",
+      "content": "Mængderabat / Rabatter"
+    },
+    {
+      "type": "range",
+      "id": "tier_2_pct",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Rabatprocent for 2 stk",
+      "default": 15
+    },
+    {
+      "type": "text",
+      "id": "tier_2_label",
+      "label": "Rabattekst for 2 stk",
+      "default": "spar 15%"
+    },
+    {
+      "type": "range",
+      "id": "tier_3_pct",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Rabatprocent for 3+ stk",
+      "default": 20
+    },
+    {
+      "type": "text",
+      "id": "tier_3_label",
+      "label": "Rabattekst for 3+ stk",
+      "default": "spar 20%"
+    },
+    {
+      "type": "header",
+      "content": "Visning"
+    },
+    {
+      "type": "range",
+      "id": "scroll_percent",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Vis efter scroll (%)",
+      "default": 12
     }
   ],
   "presets": [
     {
-      "name": "Fastgjort Købsknap (Sticky ATC)"
+      "name": "Fastgjort Købsknap"
     }
   ]
 }

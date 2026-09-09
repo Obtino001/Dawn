@@ -158,7 +158,7 @@
 
 {% schema %}
 {
-  "name": "How It Works (3 Steps)",
+  "name": "Sådan fungerer det (3 trin)",
   "tag": "section",
   "class": "section-how-it-works-steps",
   "disabled_on": {
@@ -168,14 +168,14 @@
     {
       "type": "text",
       "id": "heading",
-      "label": "Heading",
-      "default": "How Your Purchase Helps Provide Meals"
+      "label": "Overskrift",
+      "default": "Hvordan dit køb hjælper med at give måltider"
     },
     {
       "type": "text",
       "id": "heading_highlight",
-      "label": "Heading Highlight (Colored)",
-      "default": "in 3 Simple Steps"
+      "label": "Fremhævet overskrift (farvet)",
+      "default": "i 3 enkle trin"
     },
     {
       "type": "range",
@@ -184,7 +184,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "Padding Top",
+      "label": "Topmargen",
       "default": 0
     },
     {
@@ -194,68 +194,68 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "Padding Bottom",
+      "label": "Bundmargen",
       "default": 0
     }
   ],
   "blocks": [
     {
       "type": "step",
-      "name": "Step Column",
+      "name": "Trin-kolonne",
       "settings": [
         {
           "type": "image_picker",
           "id": "step_icon",
-          "label": "Step Icon (Replaces Number)"
+          "label": "Trin-ikon (erstatter tal)"
         },
         {
           "type": "text",
           "id": "step_number",
-          "label": "Step Number",
+          "label": "Trin-nummer",
           "default": "1"
         },
         {
           "type": "text",
           "id": "title",
-          "label": "Step Title",
-          "default": "Choose Your Style"
+          "label": "Trin-titel",
+          "default": "Vælg din stil"
         },
         {
           "type": "textarea",
           "id": "text_1",
-          "label": "Description Paragraph 1",
-          "default": "Each tee helps us provide 10 meals to abandoned kittens."
+          "label": "Beskrivelse afsnit 1",
+          "default": "Hver t-shirt hjælper os med at give 10 måltider til forladte killinger."
         },
         {
           "type": "textarea",
           "id": "text_2",
-          "label": "Description Paragraph 2",
-          "default": "Many customers order a few to share with friends and help us provide even more meals."
+          "label": "Beskrivelse afsnit 2",
+          "default": "Mange kunder bestiller et par stykker for at dele med venner og hjælpe os med at give endnu flere måltider."
         },
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Step Image"
+          "label": "Billede til trin"
         },
         {
           "type": "text",
           "id": "image_url",
-          "label": "Step Image URL (Fallback)"
+          "label": "Billed-URL (reserve)"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "How It Works (3 Steps)",
+      "name": "Sådan fungerer det (3 trin)",
       "blocks": [
         {
           "type": "step",
           "settings": {
             "step_number": "1",
-            "title": "Choose Your Style",
-            "text_1": "Each tee helps us provide 10 meals to abandoned kittens.",
-            "text_2": "Many customers order a few to share with friends and help us provide even more meals.",
+            "title": "Vælg din stil",
+            "text_1": "Hver t-shirt hjælper os med at give 10 måltider til forladte killinger.",
+            "text_2": "Mange kunder bestiller et par stykker for at dele med venner og hjælpe os med at give endnu flere måltider.",
             "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/circleremera.png?v=1781830560"
           }
         },
@@ -263,9 +263,9 @@
           "type": "step",
           "settings": {
             "step_number": "2",
-            "title": "We Help Get Meals to Cats",
-            "text_1": "We partner with trusted local rescues and coordinate with our street feeding volunteers.",
-            "text_2": "Your purchase helps us get meals to cats in need, through the people who know exactly where they wait.",
+            "title": "Vi bringer måltiderne ud",
+            "text_1": "Vi samarbejder med betroede lokale internater og koordinerer med vores frivillige fodringsteam.",
+            "text_2": "Dit køb hjælper os med at levere mad til nødstedte katte gennem dem, der ved præcis, hvor de venter.",
             "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/Logo_KittyKloset_printed_on_tube_202606191255.png?v=1781884657"
           }
         },
@@ -273,9 +273,9 @@
           "type": "step",
           "settings": {
             "step_number": "3",
-            "title": "Monthly Photo Updates",
-            "text_1": "Each month, you'll receive photos from our feeding operations.",
-            "text_2": "These photos capture real moments from the field, shared with you every month.",
+            "title": "Månedlige billedopdateringer",
+            "text_1": "Hver måned modtager du billeder fra vores fodringsindsatser.",
+            "text_2": "Billederne fanger ægte øjeblikke fra felten og deles med dig hver eneste måned.",
             "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/pinky_1.png?v=1781831026"
           }
         }
