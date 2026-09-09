@@ -1,0 +1,339 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .kk-mission--{{ section.id }} {
+    --brand: {{ section.settings.brand_color | default: '#8AA0F2' }};
+    --brand-deep: {{ section.settings.brand_deep_color | default: '#6c72e0' }};
+    --text: {{ section.settings.text_color | default: '#2a2c42' }};
+    --band: {{ section.settings.card_bg_color | default: '#f4f6ff' }};
+    font-family: 'Poppins', sans-serif;
+    color: var(--text);
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 28px 24px;
+    background: var(--band);
+    border-radius: 22px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .kk-mission--{{ section.id }} .kk-mission__eyebrow {
+    margin: 0 0 10px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--brand-deep);
+  }
+
+  .kk-mission--{{ section.id }} .kk-mission__title {
+    margin: 0;
+    font-weight: 800;
+    line-height: 1.12;
+    font-size: clamp(24px, 2.6vw, 36px);
+  }
+
+  .kk-mission--{{ section.id }} .kk-mission__title span {
+    color: var(--brand-deep);
+  }
+
+  .kk-mission--{{ section.id }} .kk-mission__divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 16px 0;
+    color: var(--brand);
+  }
+
+  .kk-mission--{{ section.id }} .kk-mission__line {
+    width: 40px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+    opacity: .55;
+  }
+
+  .kk-mission--{{ section.id }} .kk-mission__body p {
+    margin: 0 0 14px;
+    line-height: 1.55;
+    font-size: clamp(15px, 1.1vw, 17px);
+  }
+
+  .kk-mission--{{ section.id }} .kk-mission__body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .kk-mission--{{ section.id }} .kk-mission__stat {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 14px 18px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 6px 16px rgba(42, 44, 66, .08);
+  }
+
+  .kk-mission--{{ section.id }} .kk-mission__statrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .kk-mission--{{ section.id }} .kk-mission__staticon {
+    width: 34px;
+    height: 34px;
+    color: var(--brand-deep);
+    flex: 0 0 auto;
+  }
+
+  .kk-mission--{{ section.id }} .kk-mission__statnum {
+    font-weight: 800;
+    font-size: clamp(26px, 3vw, 34px);
+    color: var(--brand-deep);
+    line-height: 1;
+  }
+
+  .kk-mission--{{ section.id }} .kk-mission__statlabel {
+    font-size: 13px;
+    color: #6b7088;
+    line-height: 1.3;
+  }
+
+  .kk-mission--{{ section.id }} .kk-mission__media img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+  }
+
+  @media (max-width: 749px) {
+    .kk-mission--{{ section.id }} {
+      grid-template-columns: 1fr;
+      gap: 22px;
+      padding: 24px 18px;
+      text-align: center;
+    }
+    .kk-mission--{{ section.id }} .kk-mission__divider {
+      justify-content: center;
+    }
+    .kk-mission--{{ section.id }} .kk-mission__stat {
+      align-items: center;
+      text-align: center;
+    }
+    .kk-mission--{{ section.id }} .kk-mission__statrow {
+      justify-content: center;
+    }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width section-{{ section.id }}-padding">
+    <div class="kk-mission kk-mission--soft kk-mission--{{ section.id }}">
+      <div class="kk-mission__text">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="kk-mission__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+
+        <h2 class="kk-mission__title">
+          {{ section.settings.heading }}
+          {%- if section.settings.heading_highlight != blank -%}
+            <span> {{ section.settings.heading_highlight }}</span>
+          {%- endif -%}
+        </h2>
+
+        {%- if section.settings.show_divider -%}
+          <div class="kk-mission__divider" aria-hidden="true">
+            <span class="kk-mission__line"></span>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21 C12 21 4 14.5 4 8.8 C4 5.5 6.5 4 8.7 4.6 C10.2 5 12 7 12 7 C12 7 13.8 5 15.3 4.6 C17.5 4 20 5.5 20 8.8 C20 14.5 12 21 12 21 Z"></path>
+            </svg>
+            <span class="kk-mission__line"></span>
+          </div>
+        {%- endif -%}
+
+        <div class="kk-mission__body">
+          {%- if section.settings.body_text_1 != blank -%}
+            <p>{{ section.settings.body_text_1 }}</p>
+          {%- endif -%}
+          {%- if section.settings.body_text_2 != blank -%}
+            <p>{{ section.settings.body_text_2 }}</p>
+          {%- endif -%}
+        </div>
+
+        {%- if section.settings.stat_number != blank or section.settings.stat_label != blank -%}
+          <div class="kk-mission__stat">
+            <div class="kk-mission__statrow">
+              <svg class="kk-mission__staticon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 12 h18 l-1.5 5.5 a2.5 2.5 0 0 1 -2.4 1.8 H6.9 a2.5 2.5 0 0 1 -2.4 -1.8 z"></path>
+                <path d="M4.5 12 c2.5 -3.5 12.5 -3.5 15 0"></path>
+                <circle cx="9" cy="9.5" r=".9" fill="currentColor" stroke="none"></circle>
+                <circle cx="12" cy="8.5" r=".9" fill="currentColor" stroke="none"></circle>
+                <circle cx="15" cy="9.5" r=".9" fill="currentColor" stroke="none"></circle>
+              </svg>
+              {%- if section.settings.stat_number != blank -%}
+                <span class="kk-mission__statnum">{{ section.settings.stat_number }}</span>
+              {%- endif -%}
+            </div>
+            {%- if section.settings.stat_label != blank -%}
+              <span class="kk-mission__statlabel">{{ section.settings.stat_label }}</span>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="kk-mission__media">
+        {%- if section.settings.image != blank -%}
+          {{ section.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy', alt: section.settings.media_image_alt | default: 'Rescued cats fed by community' }}
+        {%- elsif section.settings.media_image_url != blank -%}
+          <img src="{{ section.settings.media_image_url }}" alt="{{ section.settings.media_image_alt | default: 'Rescued cats fed by community' }}" loading="lazy">
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Mission Story",
+  "tag": "section",
+  "class": "section-mission-story",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Undertekst / Eyebrow",
+      "default": "Our Promise"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Overskrift",
+      "default": "Every Purchase Helps Us Provide"
+    },
+    {
+      "type": "text",
+      "id": "heading_highlight",
+      "label": "Fremhævet overskrift",
+      "default": "10 Meals to Abandoned Kittens"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "label": "Vis hjerte-adskiller",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "body_text_1",
+      "label": "Brødtekst afsnit 1",
+      "default": "Every day, stray kittens go hungry on the streets — cold, scared, and with no one to count on."
+    },
+    {
+      "type": "textarea",
+      "id": "body_text_2",
+      "label": "Brødtekst afsnit 2",
+      "default": "Every order you place helps change that. We partner with local rescues to turn your purchase into real meals for cats in need."
+    },
+    {
+      "type": "text",
+      "id": "stat_number",
+      "label": "Statistik tal",
+      "default": "600,000+"
+    },
+    {
+      "type": "text",
+      "id": "stat_label",
+      "label": "Statistik tekst",
+      "default": "meals funded by our community — and counting"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Billede"
+    },
+    {
+      "type": "text",
+      "id": "media_image_url",
+      "label": "Billede URL (fallback)",
+      "default": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/collage_home.jpg?v=1781819895"
+    },
+    {
+      "type": "text",
+      "id": "media_image_alt",
+      "label": "Billede alt-tekst",
+      "default": "Rescued cats fed by the KittyKloset community"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Kort baggrundsfarve",
+      "default": "#f4f6ff"
+    },
+    {
+      "type": "color",
+      "id": "brand_color",
+      "label": "Mærkefarve (hjerte & linjer)",
+      "default": "#8AA0F2"
+    },
+    {
+      "type": "color",
+      "id": "brand_deep_color",
+      "label": "Mørk mærkefarve (tekst & tal)",
+      "default": "#6c72e0"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Tekstfarve",
+      "default": "#2a2c42"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farveskema",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Topmargen",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Bundmargen",
+      "default": 12
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mission Story"
+    }
+  ]
+}
+{% endschema %}

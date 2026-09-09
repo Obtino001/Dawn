@@ -909,23 +909,44 @@ h6,
   font-weight: 700;
 }
 
-/* Stylized Accordions (kk-acc) */
+/* Stylized Accordions (kk-acc) - Reference Match (Kitty Kloset) */
+.product__info-container > .kk-acc {
+  margin: 0 !important;
+  width: 100%;
+}
+
+.product__info-container > .kk-acc:first-of-type,
+.product__info-container > :not(.kk-acc) + .kk-acc {
+  margin-top: 24px !important;
+}
+
+.product__info-container > .kk-acc:last-of-type,
+.product__info-container > .kk-acc:has(+ :not(.kk-acc)) {
+  margin-bottom: 24px !important;
+}
+
+.kk-acc + .kk-acc {
+  margin-top: 0 !important;
+}
+
 .kk-acc {
-  font-family: var(--kk-font-family);
-  --brand: var(--kk-brand);
-  --text: var(--kk-text-dark);
-  --line: var(--kk-border-alt);
-  max-width: 720px;
-  margin: 20px 0;
-  color: var(--text);
+  font-family: 'Poppins', sans-serif;
+  color: #2a2c42;
+  width: 100%;
 }
 
+.kk-acc .kk-acc__item,
 .kk-acc__item {
-  border-bottom: 1px solid var(--line);
+  border: none !important;
+  border-bottom: 1px solid #edf0f8 !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-.kk-acc__item:first-child {
-  border-top: 1px solid var(--line);
+.product__info-container > .kk-acc:first-of-type .kk-acc__item,
+.product__info-container > :not(.kk-acc) + .kk-acc .kk-acc__item,
+.kk-acc:first-of-type .kk-acc__item {
+  border-top: 1px solid #edf0f8 !important;
 }
 
 .kk-acc__head {
@@ -934,11 +955,15 @@ h6,
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  padding: 16px 2px;
+  gap: 16px;
+  padding: 16px 0;
+  font-family: 'Poppins', sans-serif;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #2a2c42;
   user-select: none;
+  transition: color 0.15s ease;
 }
 
 .kk-acc__head::-webkit-details-marker {
@@ -950,10 +975,11 @@ h6,
   flex: 0 0 auto;
   width: 8px;
   height: 8px;
-  border-right: 2px solid var(--brand);
-  border-bottom: 2px solid var(--brand);
+  border-right: 1.8px solid #8AA0F2;
+  border-bottom: 1.8px solid #8AA0F2;
   transform: rotate(45deg);
-  transition: transform 0.2s ease;
+  transition: transform 0.25s ease;
+  margin-right: 4px;
   margin-top: -3px;
 }
 
@@ -963,14 +989,15 @@ h6,
 }
 
 .kk-acc__body {
-  padding: 0 2px 16px;
+  padding: 0 0 18px;
   line-height: 1.6;
-  font-size: 14px;
-  color: var(--kk-text-dark);
+  font-size: 14.5px;
+  color: #4a4d65;
+  font-family: 'Poppins', sans-serif;
 }
 
 .kk-acc__body p {
-  margin: 0 0 10px;
+  margin: 0 0 12px;
 }
 
 .kk-acc__body p:last-child {
@@ -978,27 +1005,38 @@ h6,
 }
 
 .kk-acc__body a {
-  color: var(--brand);
-  font-weight: 700;
+  color: #8AA0F2;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.kk-acc__body ul {
+  margin: 10px 0;
+  padding-left: 18px;
+}
+
+.kk-acc__body li {
+  margin: 0 0 8px;
 }
 
 .kk-acc__body ul.kk-acc__check {
   list-style: none;
   padding-left: 0;
-  margin: 8px 0;
+  margin: 12px 0;
 }
 
 .kk-acc__body ul.kk-acc__check li {
   position: relative;
-  padding-left: 22px;
-  margin-bottom: 6px;
+  padding-left: 24px;
+  margin-bottom: 8px;
+  line-height: 1.5;
 }
 
 .kk-acc__body ul.kk-acc__check li::before {
   content: "✓";
   position: absolute;
   left: 0;
-  color: var(--brand);
+  color: #8AA0F2;
   font-weight: 800;
 }
 
@@ -2119,104 +2157,4 @@ h6,
 .TotalBlock .Price {
   color: #6C72E0;
 }
-
-/* Accordions */
-.kk-acc {
-  font-family: 'Poppins', sans-serif;
-  --brand: #8AA0F2;
-  --text: #2a2c42;
-  --line: #e6e8f0;
-  width: 100%;
-  color: var(--text);
-  margin: 0;
-}
-
-.kk-acc__item {
-  border-bottom: 1px solid var(--line);
-}
-
-.kk-acc:first-of-type .kk-acc__item,
-:not(.kk-acc)+.kk-acc .kk-acc__item {
-  border-top: 1px solid var(--line);
-}
-
-.kk-acc__head {
-  list-style: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 16px 2px;
-  font-weight: 700;
-  font-size: 16px;
-  color: var(--text);
-}
-
-.kk-acc__head::-webkit-details-marker {
-  display: none;
-}
-
-.kk-acc__head::after {
-  content: "";
-  flex: 0 0 auto;
-  width: 9px;
-  height: 9px;
-  border-right: 2px solid var(--brand);
-  border-bottom: 2px solid var(--brand);
-  transform: rotate(45deg);
-  transition: transform 0.2s ease;
-  margin-top: -4px;
-}
-
-.kk-acc__item[open] .kk-acc__head::after {
-  transform: rotate(-135deg);
-  margin-top: 4px;
-}
-
-.kk-acc__body {
-  padding: 0 2px 16px;
-  line-height: 1.55;
-  font-size: 15px;
-  color: var(--text);
-}
-
-.kk-acc__body p {
-  margin: 0 0 12px;
-}
-
-.kk-acc__body p:last-child {
-  margin-bottom: 0;
-}
-
-.kk-acc__body a {
-  color: var(--brand);
-  font-weight: 700;
-}
-
-.kk-acc__body ul {
-  margin: 10px 0;
-  padding-left: 18px;
-}
-
-.kk-acc__body li {
-  margin: 0 0 8px;
-}
-
-.kk-acc__body ul.kk-acc__check {
-  list-style: none;
-  padding-left: 0;
-}
-
-.kk-acc__body ul.kk-acc__check li {
-  position: relative;
-  padding-left: 24px;
-}
-
-.kk-acc__body ul.kk-acc__check li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: var(--brand);
-  font-weight: 800;
-}
+

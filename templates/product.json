@@ -71,28 +71,32 @@
         "accordion_mission": {
           "type": "custom_accordion",
           "settings": {
-            "heading": "Beskrivelse og st\u00f8rrelsesguide",
-            "open_by_default": true
+            "heading": "Our Mission",
+            "content": "<p>Between 2.8 and 3 million homeless cats enter shelters every year — many with no resources, in harsh conditions. We're a small group of cat lovers turning a portion of every sale into food and care for kittens abandoned on the streets. Every order helps give them the love they deserve.</p>",
+            "open_by_default": false
           }
         },
         "accordion_guarantee": {
           "type": "custom_accordion",
           "settings": {
-            "heading": "Fragt og levering",
+            "heading": "30-Day Love-It Guarantee",
+            "content": "<p>Wear your tee for a full 30 days. If it's not everything you hoped, send it back for a complete refund — no questions, no hassle.</p><p>Your happiness matters to us as much as the kittens you're helping feed.</p>",
             "open_by_default": false
           }
         },
         "accordion_help": {
           "type": "custom_accordion",
           "settings": {
-            "heading": "Materialer og vaskeanvisning",
+            "heading": "Does my purchase really help?",
+            "content": "<p>Yes — every order directly helps feed cats in need.</p><ul class=\"kk-acc__check\"><li>Trusted by thousands of cat lovers worldwide</li><li>600,000+ meals funded so far</li><li>Real photos shared from our feeding operations</li><li>Genuine reviews from real customers</li></ul><p>We're a small, passionate team with a big mission. Every tee provides 10 meals to abandoned kittens — and you'll get your first photos of the impact within 30 days.</p><p>Need the details on shipping, tracking, and how it all works? Say hi here: <a href=\"mailto:support@kittyklosetco.com\">support@kittyklosetco.com</a>.</p>",
             "open_by_default": false
           }
         },
         "accordion_about": {
           "type": "custom_accordion",
           "settings": {
-            "heading": "Retur og ombytning",
+            "heading": "About This Tee",
+            "content": "<p>Perfect for all cat lovers, this design has been hand-printed to give the print great depth and texture.</p><ul class=\"kk-acc__check\"><li>Hand printed</li><li>100% Cotton</li><li>Portions of each sale go directly to cat shelters</li></ul><p>Comfortable enough to get you through the day, this t-shirt design will surely turn heads and get smiles from friends and family!</p>",
             "open_by_default": false
           }
         }
