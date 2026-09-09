@@ -108,7 +108,7 @@
 
 .kk-card .card-information > * + *,
 .kk-card .card-information > *:not(.visually-hidden:first-child) + * {
-  margin-top: 4px !important;
+  margin-top: 10px !important;
 }
 
 .kk-card .card__heading,
