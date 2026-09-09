@@ -1,0 +1,691 @@
+{%- liquid
+  assign cta_link = section.settings.cta_url
+  if cta_link == blank
+    assign cta_link = 'https://kittyklosetco.com/collections/t-shirts'
+  endif
+
+  assign sticky_link = section.settings.sticky_url
+  if sticky_link == blank
+    assign sticky_link = cta_link
+  endif
+
+  assign cta_btn_label = section.settings.cta_text | default: 'Choose Your Tee'
+  assign sticky_btn_label = section.settings.sticky_btn_text | default: 'Choose Your Tee'
+-%}
+
+<div class="color-background-1 gradient">
+  <div class="section-{{ section.id }}-padding">
+    {%- if section.settings.enable_sticky_bar != false -%}
+      <a class="kk-sticky" href="{{ sticky_link }}" aria-label="Shop cat tees">
+        <span class="kk-sticky__copy">
+          <span class="kk-sticky__ic" aria-hidden="true">🐾</span>
+          <span class="kk-sticky__txt">
+            {%- if section.settings.sticky_text != blank -%}
+              <strong>1 tee = 10 meals</strong> for abandoned cats
+            {%- else -%}
+              <strong>1 tee = 10 meals</strong> for abandoned cats
+            {%- endif -%}
+          </span>
+        </span>
+        <span class="kk-sticky__btn">{{ sticky_btn_label }}</span>
+      </a>
+      <style>
+        .kk-sticky{
+          position:fixed; left:0; right:0; bottom:0; z-index:9999;
+          display:flex; align-items:center; justify-content:space-between; gap:12px;
+          font-family:'Poppins', sans-serif;
+          background:#ffffff; color:#2a2c42;
+          padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+          box-shadow:0 -6px 24px rgba(42,44,66,.16);
+          text-decoration:none;
+          transform:translateY(120%);
+          transition:transform .28s ease;
+        }
+        .kk-sticky.is-visible{ transform:translateY(0); }
+        .kk-sticky__copy{ display:flex; align-items:center; gap:8px; min-width:0; }
+        .kk-sticky__ic{ font-size:18px; flex:0 0 auto; }
+        .kk-sticky__txt{ font-size:13px; line-height:1.25; }
+        .kk-sticky__txt strong{ font-weight:700; }
+        .kk-sticky__btn{
+          flex:0 0 auto;
+          background:#6c72e0; color:#fff;
+          font-weight:700; font-size:15px;
+          padding:11px 18px; border-radius:999px;
+          white-space:nowrap;
+        }
+
+        @media (min-width:750px){ .kk-sticky{ display:none !important; } }
+      </style>
+      <script>
+        (function(){
+          var bar = document.querySelector('.kk-sticky');
+          if(!bar) return;
+          var SHOW_AFTER = 600;
+          var HIDE_NEAR_BOTTOM = 420;
+          function update(){
+            var y = window.scrollY || window.pageYOffset;
+            var docH = document.documentElement.scrollHeight;
+            var winH = window.innerHeight;
+            var nearBottom = (y + winH) >= (docH - HIDE_NEAR_BOTTOM);
+            bar.classList.toggle('is-visible', y > SHOW_AFTER && !nearBottom);
+          }
+          window.addEventListener('scroll', update, {passive:true});
+          window.addEventListener('resize', update, {passive:true});
+          update();
+        })();
+      </script>
+    {%- endif -%}
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&amp;family=Poppins:wght@400;500;600;700;800&amp;display=swap">
+
+    <div class="kk-adv">
+      <div class="kk-adv__brandbar">
+        {%- if section.settings.brand_logo != blank -%}
+          {{ section.settings.brand_logo | image_url: width: 400 | image_tag: class: 'kk-adv__logo', loading: 'eager', alt: 'KittyKloset', style: 'max-height: ' | append: section.settings.logo_height | append: 'px;' }}
+        {%- else -%}
+          <img class="kk-adv__logo" src="https://kittyklosetco.com/cdn/shop/files/Untitled_design_5.png?v=1686776466&amp;width=320" alt="KittyKloset" loading="eager">
+        {%- endif -%}
+      </div>
+      <div class="kk-adv__article">
+        <header class="kk-adv__head">
+          <h1 class="kk-adv__h1">5 Reasons This Isn't Just a T-Shirt</h1>
+          <div class="kk-adv__byline">
+            <img class="kk-adv__avatar" src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/olivia.jpg?v=1781970391&amp;width=120" alt="Olivia F." loading="lazy">
+            <div class="kk-adv__byline-text">
+              <span class="kk-adv__author">By Olivia F.</span>
+              <span class="kk-adv__date">Last updated June 2026</span>
+            </div>
+          </div>
+        </header>
+        <section class="kk-adv__intro">
+          <p>It looks like a t-shirt. And it is one, a soft one you'll reach for constantly. But every order helps feed cats who have no one looking for them.</p>
+          <p><strong>That's why 50,000+ cat people keep coming back.</strong> Here are 5 reasons why.</p>
+          <div class="kk-adv__promise">
+            <span class="kk-adv__promise-tee" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5l4-2 4 2 4-2 4 2-2 4-2-1v11H8V8L6 9z"></path></svg></span>
+            <span class="kk-adv__promise-eq">1 tee</span>
+            <span class="kk-adv__promise-arrow" aria-hidden="true">=</span>
+            <span class="kk-adv__promise-meals"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18M5 11a7 7 0 0 0 14 0M12 11V7"></path></svg> 10 real meals</span>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <style>
+      .kk-adv{
+        --kk-acc:#8AA0F2; --kk-acc-deep:#6c72e0; --kk-text:#2a2c42;
+        --kk-muted:#7f86a0; --kk-cream:#f6f5f2; --kk-band:#f4f6ff; --kk-line:#e6e8f5;
+        font-family:'Poppins', system-ui, -apple-system, sans-serif;
+        color:var(--kk-text); line-height:1.7; font-size:17px; background:#fff;
+      }
+      .kk-adv *{ box-sizing:border-box; }
+      .kk-adv p{ margin:0 0 14px; }
+      .kk-adv strong{ font-weight:700; color:var(--kk-text); }
+      .kk-adv__brandbar{ text-align:center; padding:14px 16px; border-bottom:1px solid var(--kk-line); }
+      .kk-adv__logo{ display:block; height:60px; width:auto; margin:0 auto; }
+
+      .kk-adv__article{ max-width:1080px; margin:0 auto; padding:0 20px; }
+
+      .kk-adv__head, .kk-adv__intro{ max-width:760px; margin-left:0; margin-right:auto; }
+
+      .kk-adv__head{ padding:20px 0 8px; }
+      .kk-adv__h1{ font-size:34px; line-height:1.2; font-weight:800; margin:0 0 18px; letter-spacing:-.4px; }
+      .kk-adv__byline{ display:flex; align-items:center; gap:12px; }
+      .kk-adv__avatar{ width:62px; height:62px; border-radius:50%; flex:0 0 62px; object-fit:cover; display:block; }
+      .kk-adv__byline-text{ display:flex; flex-direction:column; line-height:1.3; }
+      .kk-adv__author{ font-weight:600; font-size:15px; }
+      .kk-adv__date{ font-size:13px; color:var(--kk-muted); }
+      .kk-adv__intro{ padding:22px 0 8px; }
+      .kk-adv__promise{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:18px 0 6px; padding:12px 18px; background:var(--kk-band); border:1px solid var(--kk-line); border-radius:14px; font-weight:600; color:var(--kk-acc-deep); }
+      .kk-adv__promise-tee, .kk-adv__promise-meals{ display:inline-flex; align-items:center; gap:7px; }
+      .kk-adv__promise-arrow{ color:var(--kk-muted); font-weight:700; }
+
+      .kk-adv__reason{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; padding:40px 0; }
+      .kk-adv__reason--rev .kk-adv__reason-body{ order:2; }
+      .kk-adv__reason--rev .kk-adv__reason-media{ order:1; }
+      .kk-adv__reason-media img{ width:100%; height:auto; border-radius:16px; display:block; }
+      .kk-adv--band{ background:var(--kk-band); }
+
+      .kk-adv__h2{ font-size:25px; line-height:1.25; font-weight:800; margin:0 0 16px; letter-spacing:-.3px; }
+      .kk-adv__num{ color:var(--kk-acc); }
+      .kk-adv__h2--center{ text-align:center; }
+      .kk-adv__ph{ width:100%; border-radius:16px; background:var(--kk-cream); border:2px dashed #cdd2ea; color:var(--kk-muted); display:flex; align-items:center; justify-content:center; text-align:center; font-size:13px; font-weight:600; padding:14px; }
+      .kk-adv__ph--tall{ aspect-ratio:4/5; }
+      .kk-adv__ph--wide{ aspect-ratio:4/3; }
+      .kk-adv__ph--square{ aspect-ratio:1/1; }
+      .kk-adv__ph--review{ aspect-ratio:16/10; border-radius:12px; margin-bottom:14px; }
+      .kk-adv__cta-block{ display:grid; grid-template-columns:1fr 1fr; gap:36px; align-items:center; background:var(--kk-cream); border-radius:22px; padding:32px; margin:24px 0; position:relative; overflow:hidden; }
+      .kk-adv__cta-block::before{ content:""; position:absolute; right:-30px; top:-30px; width:160px; height:160px; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='%238AA0F2'%3E%3Ccircle cx='20' cy='22' r='6'/%3E%3Ccircle cx='44' cy='22' r='6'/%3E%3Ccircle cx='12' cy='38' r='5'/%3E%3Ccircle cx='52' cy='38' r='5'/%3E%3Cellipse cx='32' cy='46' rx='13' ry='10'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-size:contain; opacity:.07; pointer-events:none; }
+      .kk-adv__cta-copy{ position:relative; z-index:1; }
+      .kk-adv__h3{ font-size:26px; font-weight:800; margin:0 0 10px; }
+      .kk-adv__h1, .kk-adv__h2, .kk-adv__h3{ font-family:'Baloo 2', 'Poppins', sans-serif; letter-spacing:0; }
+      .kk-adv__btn{ display:inline-block; margin-top:8px; background:var(--kk-acc-deep); color:#fff !important; text-decoration:none; font-weight:700; font-size:16px; letter-spacing:.2px; padding:15px 34px; border-radius:999px; box-shadow:0 6px 18px rgba(108,114,224,.32); transition:transform .15s ease, background .15s ease; }
+      .kk-adv__btn:hover{ background:#585ec9; transform:translateY(-2px); }
+      .kk-adv__small{ font-size:14px; color:var(--kk-muted); }
+      .kk-adv__reviews{ padding:34px 0 8px; }
+      .kk-adv__center{ text-align:center; }
+      .kk-adv__muted{ color:var(--kk-muted); }
+      .kk-adv__cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin:26px 0 18px; }
+      .kk-adv__card{ background:#fff; border:1px solid var(--kk-line); border-radius:16px; padding:16px; box-shadow:0 2px 14px rgba(42,44,66,.05); }
+      .kk-adv__card p{ font-size:14.5px; line-height:1.6; }
+      .kk-adv__stars{ color:#f5a623; font-size:16px; letter-spacing:2px; margin-bottom:10px; }
+      .kk-adv__name{ font-weight:700; font-size:14px; }
+      .kk-adv__guarantee{ padding:30px 0; }
+      .kk-adv__guarantee p{ max-width:620px; margin-left:auto; margin-right:auto; }
+      .kk-adv__trust{ display:grid; grid-template-columns:1fr 1fr; gap:10px 18px; margin-top:22px; font-size:14px; font-weight:600; }
+      .kk-adv__trust-item{ display:flex; align-items:center; gap:8px; }
+      .kk-adv__trust-ic{ color:var(--kk-acc-deep); }
+      @media (max-width:760px){
+        .kk-adv{ font-size:16px; }
+        .kk-adv__h1{ font-size:26px; }
+        .kk-adv__h2{ font-size:21px; }
+        .kk-adv__head{ padding:16px 0 6px; }
+
+        .kk-adv__reason, .kk-adv__reason--rev{ grid-template-columns:1fr; gap:18px; padding:22px 0; }
+        .kk-adv__reason-media, .kk-adv__reason--rev .kk-adv__reason-media{ order:1; }
+        .kk-adv__reason-body, .kk-adv__reason--rev .kk-adv__reason-body{ order:2; }
+        .kk-adv__ph--tall{ aspect-ratio:3/4; }
+        .kk-adv__cta-block{ grid-template-columns:1fr; gap:20px; padding:22px; text-align:center; }
+        .kk-adv__cta-block::before{ width:120px; height:120px; right:-20px; top:-20px; }
+        .kk-adv__trust{ text-align:left; max-width:300px; margin:22px auto 0; }
+        .kk-adv__btn{ width:100%; }
+        .kk-adv__cards{ grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:84%; overflow-x:auto; scroll-snap-type:x mandatory; margin-left:-20px; margin-right:-20px; padding:4px 20px 14px; -webkit-overflow-scrolling:touch; }
+        .kk-adv__card{ scroll-snap-align:center; }
+      }
+      @media (prefers-reduced-motion:reduce){ .kk-adv__btn{ transition:none; } }
+
+      .shopify-section:has(.main-page-title){ display:none !important; }
+      .main-page-title{ display:none !important; }
+
+      [id*="__announcement-bar"],
+      [id*="__header"],
+      [id*="__footer"]{ display:none !important; }
+      .utility-bar,
+      .announcement-bar-section,
+      .header-wrapper,
+      .footer{ display:none !important; }
+    </style>
+
+    <div class="kk-adv"><div class="kk-adv__article">
+      <section class="kk-adv__reason">
+        <div class="kk-adv__reason-body">
+          <h2 class="kk-adv__h2"><span class="kk-adv__num">1.</span> Each Tee Helps Us Provide 10 Meals to Abandoned Cats</h2>
+          <p>Here's how it works.</p>
+          <p>You pick a design you love. There are dozens to choose from.</p>
+          <p>Your order helps fund real meals for cats living on the street. We work with trusted local shelters and rescuers who know exactly where the cats are and how to reach them.</p>
+          <p>Then, every month, we publish photos from those feedings so you can see the results yourself.</p>
+          <p>That's it. Something good for you, and help for cats who need it.</p>
+        </div>
+        <div class="kk-adv__reason-media">
+          <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/collage_home.jpg?v=1781819895&amp;width=900" alt="Street cats being fed" loading="lazy">
+        </div>
+      </section>
+    </div></div>
+
+    <div class="kk-adv kk-adv--band"><div class="kk-adv__article">
+      <section class="kk-adv__reason kk-adv__reason--rev">
+        <div class="kk-adv__reason-body">
+          <h2 class="kk-adv__h2"><span class="kk-adv__num">2.</span> Hundreds of Photos From the Field, Published Every Month</h2>
+          <p><strong>Every month we publish new photos</strong> from feedings on the ground. Hundreds are already online for you to scroll through anytime.</p>
+          <p>When you place an order, you'll also get monthly updates by email. New photos and stories straight from the street, so you never miss a thing.</p>
+          <p>Over <strong>600,000 meals</strong> have been funded so far, and the community keeps growing.</p>
+        </div>
+        <div class="kk-adv__reason-media">
+          <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/shelter_8efca6c3-3a75-4f4f-be89-38dfa0437ed5.jpg?v=1781884333&amp;width=700" alt="Cats being fed on the street" loading="lazy">
+        </div>
+      </section>
+    </div></div>
+
+    <div class="kk-adv"><div class="kk-adv__article">
+      <section class="kk-adv__reason">
+        <div class="kk-adv__reason-body">
+          <h2 class="kk-adv__h2"><span class="kk-adv__num">3.</span> A Tee You'll Actually Want to Wear</h2>
+          <p>Every tee is printed on soft, true-to-size cotton. Dozens of cat designs and colors to choose from.</p>
+          <p>Our shirts are loved by cat people everywhere. People don't just buy them to help cats. They buy them because they love wearing them.</p>
+          <p>And here's what we keep seeing: people come back for more. One for themselves, then one for a friend who loves cats too. Because it's the kind of gift that actually means something.</p>
+          <p>We also have hoodies, long sleeves, and v-necks if you want more styles.</p>
+        </div>
+        <div class="kk-adv__reason-media">
+          <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/170040697-1744374994.3641.jpg?v=1781966285&amp;width=700" alt="KittyKloset cat tee" loading="lazy">
+        </div>
+      </section>
+    </div></div>
+
+    <div class="kk-adv"><div class="kk-adv__article">
+      <section class="kk-adv__cta-block">
+        <div class="kk-adv__cta-media">
+          <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/designcollage.jpg?v=1781966844&amp;width=800" alt="KittyKloset cat tees" loading="lazy" style="width:100%;height:auto;border-radius:16px;display:block;">
+        </div>
+        <div class="kk-adv__cta-copy">
+          <h3 class="kk-adv__h3">Choose Your Tee</h3>
+          <p>Each tee helps us provide 10 meals to abandoned cats.</p>
+          <p class="kk-adv__small">Good news, your order qualifies for FREE shipping.</p>
+          <a class="kk-adv__btn" href="{{ cta_link }}">{{ cta_btn_label }}</a>
+        </div>
+      </section>
+    </div></div>
+
+    <div class="kk-adv"><div class="kk-adv__article">
+      <section class="kk-adv__reviews">
+        <h2 class="kk-adv__h2 kk-adv__h2--center"><span class="kk-adv__num">4.</span> Here's What 50,000+ Cat Lovers Are Saying</h2>
+        <p class="kk-adv__center kk-adv__muted">We could tell you what our customers think. But they say it better.</p>
+
+        <div class="kk-adv__carousel">
+          <button class="kk-adv__nav kk-adv__nav--prev" aria-label="Previous review">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
+          </button>
+          <div class="kk-adv__cards">
+            <div class="kk-adv__card">
+              <img class="kk-adv__rimg" src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/review_11.jpg?v=1781967981&amp;width=600" alt="Customer holding her cat, wearing the un deux trois cat tee" loading="lazy">
+              <div class="kk-adv__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p>This little guy approves. Knowing every shirt helps feed cats who have no one means everything to me, and the monthly photos are the sweetest part. Already ordered again.</p>
+              <span class="kk-adv__name">Maria T.</span>
+            </div>
+            <div class="kk-adv__card">
+              <img class="kk-adv__rimg" src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/review_22.jpg?v=1781967981&amp;width=600" alt="Customer wearing a KittyKloset cat tee" loading="lazy">
+              <div class="kk-adv__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p>I was a little skeptical at first, but it showed up fast and the print is gorgeous. The little card about the cats my order helped feed made my whole week. Obsessed.</p>
+              <span class="kk-adv__name">Jenna L.</span>
+            </div>
+            <div class="kk-adv__card">
+              <img class="kk-adv__rimg" src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/review_33.jpg?v=1781967981&amp;width=600" alt="Customer's two cats" loading="lazy">
+              <div class="kk-adv__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p>Had to share my two. Every shirt I buy helps feed cats who don't have a cozy windowsill like these guys do. Such an easy way to help, and I love the tees too.</p>
+              <span class="kk-adv__name">Emily R.</span>
+            </div>
+            <div class="kk-adv__card">
+              <img class="kk-adv__rimg" src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/review_44.jpg?v=1781967982&amp;width=600" alt="Customer wearing a KittyKloset cat tee" loading="lazy">
+              <div class="kk-adv__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p>Better quality than I expected and it has held up great after plenty of washes. I reach for it all the time now. Coming back for more designs.</p>
+              <span class="kk-adv__name">Mark T.</span>
+            </div>
+            <div class="kk-adv__card">
+              <img class="kk-adv__rimg" src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/review_55.jpg?v=1781967981&amp;width=600" alt="Customer wearing the un deux trois cat tee" loading="lazy">
+              <div class="kk-adv__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p>True to size and the cotton is really soft. As a lifelong cat person this is exactly the kind of thing I love to spend money on. Will be ordering more.</p>
+              <span class="kk-adv__name">Linda K.</span>
+            </div>
+            <div class="kk-adv__card">
+              <img class="kk-adv__rimg" src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/review_66.jpg?v=1781967981&amp;width=600" alt="Customer wearing a KittyKloset cat tee" loading="lazy">
+              <div class="kk-adv__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p>Wore it out and three people asked where I got it. Great quality, true to size, and it supports something that actually matters. Can't beat that.</p>
+              <span class="kk-adv__name">Dave R.</span>
+            </div>
+            <div class="kk-adv__card">
+              <img class="kk-adv__rimg" src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/review_77.jpg?v=1781967981&amp;width=600" alt="Customer wearing a KittyKloset cat tee" loading="lazy">
+              <div class="kk-adv__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p>This is my favorite shirt to throw on. It's comfy, the design always gets a laugh, and knowing my order helps feed cats on the street makes it even better.</p>
+              <span class="kk-adv__name">Sharon A.</span>
+            </div>
+            <div class="kk-adv__card">
+              <img class="kk-adv__rimg" src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/review_88.jpg?v=1781967981&amp;width=600" alt="Customer wearing the I Like Cats and Coffee tee" loading="lazy">
+              <div class="kk-adv__stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <p>Cats and coffee is basically my whole personality, so this was made for me. Super soft, great print, and I get compliments every time I wear it. Already ordered another.</p>
+              <span class="kk-adv__name">Gary M.</span>
+            </div>
+          </div>
+          <button class="kk-adv__nav kk-adv__nav--next" aria-label="Next review">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
+          </button>
+        </div>
+
+        <div class="kk-adv__dots"></div>
+
+        <p class="kk-adv__center kk-adv__muted kk-adv__small">(5,000)+ verified reviews. 97% positive. New ones come in every day.</p>
+      </section>
+    </div></div>
+
+    <style>
+      .kk-adv__carousel{ position:relative; }
+      .kk-adv__rimg{ width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:12px; display:block; margin-bottom:14px; }
+      .kk-adv__reviews .kk-adv__cards{
+        grid-template-columns:none;
+        grid-auto-flow:column;
+        grid-auto-columns:31%;
+        overflow-x:auto;
+        scroll-snap-type:x mandatory;
+        padding-bottom:6px;
+        scrollbar-width:none;
+        -webkit-overflow-scrolling:touch;
+      }
+      .kk-adv__reviews .kk-adv__cards::-webkit-scrollbar{ display:none; }
+      .kk-adv__reviews .kk-adv__card{ scroll-snap-align:start; }
+      .kk-adv__nav{
+        position:absolute; top:42%; transform:translateY(-50%);
+        width:40px; height:40px; border-radius:50%;
+        background:#fff; border:1px solid var(--kk-line);
+        box-shadow:0 4px 14px rgba(42,44,66,.16);
+        display:flex; align-items:center; justify-content:center;
+        cursor:pointer; z-index:3; color:var(--kk-acc-deep);
+        transition:background .15s ease;
+      }
+      .kk-adv__nav:hover{ background:var(--kk-band); }
+      .kk-adv__nav--prev{ left:-2px; }
+      .kk-adv__nav--next{ right:-2px; }
+      .kk-adv__nav svg{ width:18px; height:18px; }
+      .kk-adv__dots{ display:flex; justify-content:center; gap:7px; margin:18px 0 4px; }
+      .kk-adv__dot{
+        width:8px; height:8px; border-radius:999px;
+        background:#d3d8f0; border:0; padding:0; cursor:pointer;
+        transition:width .2s ease, background .2s ease;
+      }
+      .kk-adv__dot--active{ width:22px; background:var(--kk-acc-deep); }
+      @media (max-width:760px){
+        .kk-adv__reviews .kk-adv__cards{ grid-auto-columns:84%; margin-left:-10px; margin-right:-20px; padding:4px 20px 6px; }
+      }
+
+      .kk-adv__reviews .kk-adv__card{ background:#f4f6ff; text-align:center; }
+      .kk-adv__reviews .kk-adv__card p{ text-align:center; }
+      .kk-adv__reviews .kk-adv__stars{ text-align:center; }
+      .kk-adv__reviews .kk-adv__name{
+        display:block;
+        margin-top:16px;
+        padding-top:14px;
+        border-top:1px solid #d8ddf2;
+      }
+
+      .kk-adv__reviews .kk-adv__card{
+        overflow:hidden;
+        border:0;
+        padding:0 16px 18px;
+        box-shadow:0 4px 18px rgba(42,44,66,.08);
+      }
+      .kk-adv__reviews .kk-adv__rimg{
+        width:calc(100% + 32px);
+        margin:0 -16px 14px -16px;
+        border-radius:0;
+      }
+      .kk-adv__reviews .kk-adv__card p::before{ content:"\201C"; }
+      .kk-adv__reviews .kk-adv__card p::after{ content:"\201D"; }
+
+      .kk-adv__reviews .kk-adv__name::after{
+        content:"Verified Buyer";
+        display:inline-block;
+        margin-left:8px;
+        vertical-align:middle;
+        font-size:11px;
+        font-weight:600;
+        color:var(--kk-acc-deep);
+        background:#eef1ff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%236c72e0'/%3E%3Cpath d='M7 12.4l3.2 3.3L17 9' fill='none' stroke='%23ffffff' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat 8px center;
+        background-size:13px 13px;
+        border:1px solid #dfe3f5;
+        border-radius:999px;
+        padding:3px 10px 3px 26px;
+        letter-spacing:.02em;
+        line-height:1.6;
+      }
+
+      .kk-adv__reviews .kk-adv__card{ display:flex; flex-direction:column; }
+      .kk-adv__reviews .kk-adv__rimg{ order:1; }
+      .kk-adv__reviews .kk-adv__card p{ order:2; }
+      .kk-adv__reviews .kk-adv__stars{
+        order:3;
+        margin:8px 0 10px;
+        padding-top:16px;
+        border-top:1px solid #d8ddf2;
+      }
+      .kk-adv__reviews .kk-adv__name{
+        order:4;
+        border-top:0;
+        margin-top:0;
+        padding-top:0;
+      }
+    </style>
+
+    <script>
+    (function(){
+      function init(carousel){
+        if(carousel.dataset.kkReady) return;
+        carousel.dataset.kkReady = '1';
+        var track = carousel.querySelector('.kk-adv__cards');
+        if(!track) return;
+        var cards = Array.prototype.slice.call(track.querySelectorAll('.kk-adv__card'));
+        var prev = carousel.querySelector('.kk-adv__nav--prev');
+        var next = carousel.querySelector('.kk-adv__nav--next');
+        var dotsWrap = carousel.parentElement.querySelector('.kk-adv__dots');
+        if(!cards.length || !dotsWrap) return;
+
+        dotsWrap.innerHTML = '';
+        var dots = cards.map(function(_, i){
+          var d = document.createElement('button');
+          d.className = 'kk-adv__dot' + (i === 0 ? ' kk-adv__dot--active' : '');
+          d.setAttribute('aria-label', 'Go to review ' + (i + 1));
+          d.addEventListener('click', function(){ go(i); });
+          dotsWrap.appendChild(d);
+          return d;
+        });
+
+        function step(){
+          return cards.length > 1 ? (cards[1].offsetLeft - cards[0].offsetLeft) : cards[0].offsetWidth;
+        }
+        function index(){ return Math.round(track.scrollLeft / step()); }
+        function go(i){
+          i = Math.max(0, Math.min(cards.length - 1, i));
+          track.scrollTo({ left: i * step(), behavior: 'smooth' });
+        }
+        function update(){
+          var idx = index();
+          dots.forEach(function(d, i){ d.classList.toggle('kk-adv__dot--active', i === idx); });
+        }
+
+        if(prev) prev.addEventListener('click', function(){ go(index() - 1); });
+        if(next) next.addEventListener('click', function(){ go(index() + 1); });
+
+        var raf;
+        track.addEventListener('scroll', function(){
+          if(raf) cancelAnimationFrame(raf);
+          raf = requestAnimationFrame(update);
+        });
+        window.addEventListener('resize', update);
+        update();
+      }
+      function initAll(){
+        document.querySelectorAll('.kk-adv__carousel').forEach(init);
+      }
+      if(document.readyState === 'loading'){
+        document.addEventListener('DOMContentLoaded', initAll);
+      } else {
+        initAll();
+      }
+    })();
+    </script>
+
+    <div class="kk-adv"><div class="kk-adv__article">
+      <section class="kk-adv__guarantee">
+        <h2 class="kk-adv__h2 kk-adv__h2--center"><span class="kk-adv__num">5.</span> No Risk. Just a Simple Way to Help.</h2>
+        <p class="kk-adv__center">Here's what we want you to know:</p>
+        <p class="kk-adv__center"><strong>30-Day Guarantee.</strong> If you're not happy with your tee for any reason, we'll make it right. No questions asked.</p>
+        <p class="kk-adv__center"><strong>Free shipping</strong> on qualifying orders.</p>
+        <p class="kk-adv__center kk-adv__muted">No hidden fees. Just a tee you'll love, real meals for cats who need them, and photos every month so you can see the results.</p>
+      </section>
+    </div></div>
+    <style>
+      .kk-adv__guarantee{ padding-bottom:0; }
+    </style>
+
+    <div class="kk-adv"><div class="kk-adv__article">
+      <section class="kk-adv__cta-block kk-adv__cta-block--final">
+        <div class="kk-adv__cta-media">
+          <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/Five_t-shirts_at_market_202606201240.jpg?v=1781970032&amp;width=800" alt="KittyKloset cat tees at the market" loading="lazy" style="width:100%;height:auto;border-radius:16px;display:block;">
+        </div>
+        <div class="kk-adv__cta-copy">
+          <h3 class="kk-adv__h3">Choose Your Tee</h3>
+          <p>Each tee helps us provide 10 meals to abandoned cats.</p>
+          <p class="kk-adv__small">Free shipping on qualifying orders.</p>
+          <a class="kk-adv__btn" href="{{ cta_link }}">{{ cta_btn_label }}</a>
+
+          <div class="kk-adv__proof">
+            <div class="kk-proof__item">
+              <span class="kk-proof__top"><span class="kk-proof__stars">★★★★★</span></span>
+              <span class="kk-proof__value">4.99</span>
+              <span class="kk-proof__label">5,000+ reviews</span>
+            </div>
+            <div class="kk-proof__item">
+              <span class="kk-proof__top"><svg class="kk-proof__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="12" cy="16" rx="4.5" ry="3.5"></ellipse><circle cx="6.3" cy="11" r="1.8"></circle><circle cx="10" cy="8" r="1.8"></circle><circle cx="14" cy="8" r="1.8"></circle><circle cx="17.7" cy="11" r="1.8"></circle></svg></span>
+              <span class="kk-proof__value">50,000+</span>
+              <span class="kk-proof__label">happy cat parents</span>
+            </div>
+            <div class="kk-proof__item">
+              <span class="kk-proof__top"><svg class="kk-proof__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12 h18 l-1.5 5.5 a2.5 2.5 0 0 1 -2.4 1.8 H6.9 a2.5 2.5 0 0 1 -2.4 -1.8 z"></path><path d="M4.5 12 c2.5 -3.5 12.5 -3.5 15 0"></path></svg></span>
+              <span class="kk-proof__value">600,000+</span>
+              <span class="kk-proof__label">meals donated</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div></div>
+
+    <style>
+      .kk-adv__cta-block--final{ margin-top:8px; margin-bottom:48px; }
+
+      .kk-adv__proof {
+        --brand-deep:#6c72e0; --text:#2a2c42;
+        font-family: 'Poppins', sans-serif;
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;
+        margin: 18px 0 0; padding-top: 16px;
+        border-top: 1px solid #e2e7ff;
+        text-align: center; align-items: start;
+      }
+      .kk-proof__item { position: relative; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 0 4px; }
+      .kk-proof__item + .kk-proof__item::before { content: ""; position: absolute; left: -3px; top: 12%; bottom: 12%; width: 1px; background: #e2e7ff; }
+      .kk-proof__top { height: 22px; display: flex; align-items: center; justify-content: center; }
+      .kk-proof__stars { color: #f5a623; font-size: 13px; letter-spacing: 1px; line-height: 1; }
+      .kk-proof__icon { width: 20px; height: 20px; color: var(--brand-deep); }
+      .kk-proof__value { font-weight: 800; font-size: clamp(14px, 4.2vw, 20px); color: var(--text); line-height: 1.05; white-space: nowrap; }
+      .kk-proof__label { font-size: 11px; color: #6b7088; line-height: 1.2; }
+    </style>
+
+    <div class="kk-foot">
+      <p class="kk-foot__signoff">
+        <span class="kk-foot__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21 C12 21 4 14.5 4 8.8 C4 5.5 6.5 4 8.7 4.6 C10.2 5 12 7 12 7 C12 7 13.8 5 15.3 4.6 C17.5 4 20 5.5 20 8.8 C20 14.5 12 21 12 21 Z"></path></svg>
+        </span>
+        <span>Made with love for cats in need</span>
+      </p>
+      <nav class="kk-foot__nav" aria-label="Footer">
+        <a href="https://kittyklosetco.com/policies/shipping-policy">Shipping policy</a>
+        <a href="https://kittyklosetco.com/policies/refund-policy">Refund policy</a>
+        <a href="https://kittyklosetco.com/policies/privacy-policy">Privacy policy</a>
+        <a href="https://kittyklosetco.com/policies/terms-of-service">Terms of service</a>
+        <a href="https://kittyklosetco.com/pages/contact">Contact</a>
+      </nav>
+      <p class="kk-foot__copy">© 2026, KittyKloset Co</p>
+    </div>
+    <style>
+      .shopify-section:has(.kk-foot){ padding:0 !important; }
+      .shopify-section:has(.kk-foot) [class*="-padding"]{ padding-top:0 !important; padding-bottom:0 !important; }
+      .kk-foot{
+        font-family:'Poppins', sans-serif;
+        background:#2a2c42; color:#f6f5f2;
+        text-align:center;
+        padding:30px 16px 38px;
+        border-top:3px solid #8AA0F2;
+      }
+      .kk-foot__signoff{
+        display:flex; align-items:center; justify-content:center; gap:8px;
+        margin:0 0 18px;
+        font-size:13px; font-weight:600; letter-spacing:.02em;
+        color:#aeb9f0;
+      }
+      .kk-foot__mark{ display:inline-flex; color:#8AA0F2; }
+      .kk-foot__mark svg{ display:block; }
+      .kk-foot__nav{
+        display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
+        max-width:760px; margin:0 auto;
+      }
+      .kk-foot__nav a{
+        color:#f6f5f2; text-decoration:none;
+        font-size:15px; font-weight:500; line-height:1.6;
+        padding:2px 16px; position:relative;
+        transition:color .15s ease;
+      }
+      .kk-foot__nav a:hover{ color:#8AA0F2; }
+      .kk-foot__nav a:not(:last-child)::after{
+        content:"·"; position:absolute; right:-3px; top:50%; transform:translateY(-50%);
+        color:#8AA0F2; opacity:.7;
+      }
+      .kk-foot__copy{
+        margin:18px 0 0; font-size:13px; color:#f6f5f2; opacity:.5;
+      }
+    </style>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "LP1 Advertorial",
+  "tag": "section",
+  "class": "section-lp1-advertorial",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Sticky Mobile Bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_bar",
+      "label": "Enable Sticky Mobile Bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "sticky_text",
+      "label": "Sticky Bar Text",
+      "default": "1 tee = 10 meals for abandoned cats"
+    },
+    {
+      "type": "text",
+      "id": "sticky_btn_text",
+      "label": "Sticky Button Text",
+      "default": "Choose Your Tee"
+    },
+    {
+      "type": "url",
+      "id": "sticky_url",
+      "label": "Sticky Button Link"
+    },
+    {
+      "type": "header",
+      "content": "CTA Button"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "default": "Choose Your Tee"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Branding"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_logo",
+      "label": "Custom Brand Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "min": 30,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Logo Height",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "LP1 Advertorial"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "lp1-advertorial",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
