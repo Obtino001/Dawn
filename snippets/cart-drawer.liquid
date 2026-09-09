@@ -90,10 +90,10 @@
               </svg>
             {%- endif -%}
             {%- if cart_total >= free_shipping_threshold_cents -%}
-              <span>{{ settings.free_shipping_success_text | default: "You've unlocked FREE Shipping!" }}</span>
+              <span>{{ settings.free_shipping_success_text | default: "Du har opnået GRATIS fragt!" }}</span>
             {%- else -%}
               {%- assign amount_remaining = free_shipping_threshold_cents | minus: cart_total -%}
-              <span>Add <strong>{{ amount_remaining | money }}</strong> more for <strong>FREE Shipping</strong></span>
+              <span>Læg <strong>{{ amount_remaining | money }}</strong> mere i kurven for <strong>GRATIS fragt</strong></span>
             {%- endif -%}
           </div>
           <div class="kk-cart-shipping-bar__track">
