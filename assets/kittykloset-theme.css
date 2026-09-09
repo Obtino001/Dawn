@@ -170,7 +170,7 @@ h6,
   font-family: var(--kk-font-family);
   margin: 0;
   color: var(--kk-text-dark);
-  font-weight: 800;
+  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   line-height: 1.05;
@@ -263,7 +263,7 @@ h6,
 }
 
 .kk-proof__value {
-  font-weight: 800;
+  font-weight: 500;
   font-size: clamp(15px, 4vw, 20px);
   color: var(--kk-text-dark);
   line-height: 1.1;
@@ -450,7 +450,7 @@ h6,
 
 .kk-mission--soft .kk-mission__title {
   margin: 0;
-  font-weight: 800;
+  font-weight: 500;
   line-height: 1.15;
   font-size: clamp(24px, 2.6vw, 36px);
   color: var(--text);
@@ -513,7 +513,7 @@ h6,
 }
 
 .kk-mission--soft .kk-mission__statnum {
-  font-weight: 800;
+  font-weight: 500;
   font-size: clamp(26px, 3vw, 34px);
   color: var(--brand-deep);
   line-height: 1;
@@ -584,7 +584,7 @@ h6,
 .kk-steps3__title {
   font-family: var(--kk-font-family);
   margin: 0 0 36px;
-  font-weight: 800;
+  font-weight: 500;
   line-height: 1.15;
   font-size: clamp(24px, 4vw, 36px);
   color: var(--text);
@@ -617,7 +617,7 @@ h6,
   justify-content: center;
   gap: 10px;
   margin: 0 0 12px;
-  font-weight: 800;
+  font-weight: 500;
   line-height: 1.2;
   font-size: clamp(17px, 1.6vw, 20px);
 }
@@ -633,7 +633,7 @@ h6,
   background: var(--kk-brand);
   color: #ffffff;
   font-size: 15px;
-  font-weight: 800;
+  font-weight: 500;
 }
 
 .kk-steps3__col p {
@@ -728,7 +728,7 @@ h6,
 
 .kk-crisis__gtitle {
   font-size: 20px;
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   line-height: 1.1;
@@ -776,7 +776,7 @@ h6,
 
 .kk-stat__num {
   font-size: 16px;
-  font-weight: 800;
+  font-weight: 500;
   color: var(--kk-brand-deep);
 }
 
@@ -806,7 +806,7 @@ h6,
   padding-right: 8px;
   color: #ffffff;
   font-size: 11px;
-  font-weight: 800;
+  font-weight: 500;
   transition: width 0.8s ease;
 }
 
@@ -1037,7 +1037,7 @@ h6,
   position: absolute;
   left: 0;
   color: #8AA0F2;
-  font-weight: 800;
+  font-weight: 500;
 }
 
 /* ==========================================================================
@@ -2100,7 +2100,7 @@ h6,
   background: #6C72E0;
   color: #ffffff;
   font-size: 10px;
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: 0.06em;
   padding: 2px 8px;
   border-radius: 4px;
@@ -2125,7 +2125,7 @@ h6,
 .SaveText {
   margin: 0;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 500;
   color: #388e3c;
   background: #e8f5e9;
   padding: 2px 6px;
