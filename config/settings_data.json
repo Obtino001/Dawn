@@ -11,9 +11,9 @@
   "current": {
     "logo": "shopify://shop_images/Untitled_design_5.png",
     "logo_width": 200,
-    "type_header_font": "assistant_n4",
+    "type_header_font": "poppins_n4",
     "heading_scale": 100,
-    "type_body_font": "assistant_n4",
+    "type_body_font": "poppins_n4",
     "body_scale": 100,
     "page_width": 1200,
     "spacing_sections": 0,
@@ -106,6 +106,8 @@
     "badge_corner_radius": 40,
     "sale_badge_color_scheme": "scheme-4",
     "sold_out_badge_color_scheme": "scheme-3",
+    "card_show_free_shipping_badge": true,
+    "card_free_shipping_text": "Free shipping",
     "brand_headline": "",
     "brand_description": "<p></p>",
     "brand_image_width": 100,
@@ -127,6 +129,10 @@
     "show_cart_note": false,
     "cart_drawer_collection": "",
     "cart_color_scheme": "scheme-1",
+    "enable_free_shipping_bar": true,
+    "free_shipping_threshold": 350,
+    "free_shipping_progress_text": "Tilføj [amount] mere for GRATIS fragt",
+    "free_shipping_success_text": "Du har opnået GRATIS fragt!",
     "customer_account_menu": "customer-account-main-menu",
     "sections": {
       "main-password-header": {
@@ -199,13 +205,7 @@
           "shadow": "#121212"
         }
       }
-    },
-    "enable_free_shipping_bar": true,
-    "free_shipping_threshold": 350,
-    "free_shipping_progress_text": "Tilføj [amount] mere for GRATIS fragt",
-    "free_shipping_success_text": "Du har opnået GRATIS fragt!",
-    "card_show_free_shipping_badge": true,
-    "card_free_shipping_text": "Free shipping"
+    }
   },
   "presets": {
     "Dawn": {
