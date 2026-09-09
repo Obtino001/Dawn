@@ -110,7 +110,7 @@ h6,
   background-color: var(--kk-brand-deep) !important;
   color: #ffffff !important;
   font-family: var(--kk-font-family);
-  font-weight: 700;
+  font-weight: 500;
 }
 
 /* ==========================================================================
@@ -160,7 +160,7 @@ h6,
 .kk-title__eyebrow {
   margin: 0 0 10px;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--kk-brand-deep);
@@ -387,7 +387,7 @@ h6,
 }
 
 .kk-card-rating__score {
-  font-weight: 700;
+  font-weight: 500;
   color: var(--kk-text-dark);
 }
 
@@ -442,7 +442,7 @@ h6,
 .kk-mission--soft .kk-mission__eyebrow {
   margin: 0 0 10px;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--brand-deep);
@@ -718,7 +718,7 @@ h6,
 
 .kk-crisis__crisis {
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 1px;
   text-transform: uppercase;
   display: flex;
@@ -811,7 +811,7 @@ h6,
 }
 
 .kk-crisis__lead {
-  font-weight: 700;
+  font-weight: 500;
   font-size: 15px;
   margin: 0 0 6px;
 }
@@ -873,7 +873,7 @@ h6,
 
 .kk-freeship__text strong {
   color: var(--kk-brand-deep);
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .kk-perks {
@@ -906,26 +906,26 @@ h6,
 }
 
 .kk-perks strong {
-  font-weight: 700;
+  font-weight: 500;
 }
 
 /* Stylized Accordions (kk-acc) - Reference Match (Kitty Kloset) */
-.product__info-container > .kk-acc {
+.product__info-container>.kk-acc {
   margin: 0 !important;
   width: 100%;
 }
 
-.product__info-container > .kk-acc:first-of-type,
-.product__info-container > :not(.kk-acc) + .kk-acc {
+.product__info-container>.kk-acc:first-of-type,
+.product__info-container> :not(.kk-acc)+.kk-acc {
   margin-top: 24px !important;
 }
 
-.product__info-container > .kk-acc:last-of-type,
-.product__info-container > .kk-acc:has(+ :not(.kk-acc)) {
+.product__info-container>.kk-acc:last-of-type,
+.product__info-container>.kk-acc:has(+ :not(.kk-acc)) {
   margin-bottom: 24px !important;
 }
 
-.kk-acc + .kk-acc {
+.kk-acc+.kk-acc {
   margin-top: 0 !important;
 }
 
@@ -943,8 +943,8 @@ h6,
   padding: 0 !important;
 }
 
-.product__info-container > .kk-acc:first-of-type .kk-acc__item,
-.product__info-container > :not(.kk-acc) + .kk-acc .kk-acc__item,
+.product__info-container>.kk-acc:first-of-type .kk-acc__item,
+.product__info-container> :not(.kk-acc)+.kk-acc .kk-acc__item,
 .kk-acc:first-of-type .kk-acc__item {
   border-top: 1px solid #edf0f8 !important;
 }
@@ -958,7 +958,7 @@ h6,
   gap: 16px;
   padding: 16px 0;
   font-family: 'Poppins', sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 16px;
   line-height: 1.4;
   color: #2a2c42;
@@ -1065,7 +1065,7 @@ h6,
 .kk-sticky__promo {
   text-align: center;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--kk-brand-dark);
   background: var(--kk-bg-soft);
   border-radius: 8px;
@@ -1076,7 +1076,7 @@ h6,
 
 .kk-sticky__promo-rating {
   color: #6C72E0;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.02em;
 }
 
@@ -1169,7 +1169,7 @@ h6,
   text-transform: uppercase;
   color: var(--kk-text-subtle);
   line-height: 1;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .kk-sticky__select {
@@ -1202,7 +1202,7 @@ h6,
   border: 0;
   background: #f4f6ff;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--kk-brand-deep);
   cursor: pointer;
   display: flex;
@@ -1217,7 +1217,7 @@ h6,
   border: 0;
   text-align: center;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 500;
   color: var(--kk-text-dark);
 }
 
@@ -1227,7 +1227,7 @@ h6,
   color: #ffffff;
   font-family: var(--kk-font-family);
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 500;
   padding: 10px 24px;
   border: 0;
   border-radius: 8px;
@@ -1333,7 +1333,7 @@ h6,
 .button {
   border-radius: var(--kk-radius-sm);
   font-family: var(--kk-font-family);
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .product-form__submit {
@@ -1425,6 +1425,7 @@ h6,
 }
 
 @media screen and (max-width: 749px) {
+
   .footer__payment .payment-icons,
   .footer__payment .list-payment {
     justify-content: center;
@@ -1684,7 +1685,7 @@ h6,
 /* PDP Title & Rating */
 .product__info-container .product__title h1 {
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 500;
   color: #2A2C42;
   margin-bottom: 0px;
   line-height: 1.25;
@@ -1728,7 +1729,7 @@ h6,
 
 .kk-freeship__text strong {
   color: #6c72e0;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 /* PDP Price */
@@ -1747,7 +1748,7 @@ h6,
 .product__info-container .price-item--sale {
   color: #2A2C42;
   font-size: 22px;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .product__info-container .price__badge-sale {
@@ -1755,7 +1756,7 @@ h6,
   color: #ffffff;
   border: none;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 500;
   border-radius: 4px;
   padding: 3px 8px;
 }
@@ -1789,7 +1790,7 @@ h6,
 }
 
 .kk-perks strong {
-  font-weight: 700;
+  font-weight: 500;
 }
 
 /* Variant Swatches (Color) */
@@ -1962,7 +1963,7 @@ h6,
 
 .kk-size-modal__title {
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 500;
   margin: 0;
   color: #2a2c42;
 }
@@ -2017,7 +2018,7 @@ h6,
 .widget_title {
   text-align: center;
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 500;
   color: #2A2C42;
   margin: 0 0 12px;
   letter-spacing: 0.04em;
@@ -2109,7 +2110,7 @@ h6,
 .OfferText {
   margin: 0;
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 500;
   color: #2A2C42;
   line-height: 1.2;
 }
@@ -2146,7 +2147,7 @@ h6,
 
 .Price {
   color: #2A2C42;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .TotalBlock {
@@ -2157,4 +2158,3 @@ h6,
 .TotalBlock .Price {
   color: #6C72E0;
 }
-
