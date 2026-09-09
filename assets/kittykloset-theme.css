@@ -89,17 +89,21 @@ h6,
   font-family: var(--kk-font-family);
 }
 
-.header__menu-item {
+.header__menu-item,
+.header__menu-item span {
   font-family: var(--kk-font-family);
   font-size: 14px;
   font-weight: 500;
   color: var(--kk-text-dark);
+  text-decoration: none !important;
   transition: color 0.15s ease;
 }
 
 .header__menu-item:hover,
-.header__active-menu-item {
+.header__active-menu-item,
+.header__active-menu-item:hover {
   color: var(--kk-brand-deep) !important;
+  text-decoration: none !important;
 }
 
 .header__icon {
@@ -2153,6 +2157,17 @@ h6,
 .TotalBlock {
   font-size: 12px;
   color: #6B7088;
+}
+
+/* Custom Global Overrides for Light Font Weight and Section Spacing */
+*:not(svg):not(path):not(circle):not(use):not(g) {
+  font-weight: 300 !important;
+}
+
+.title-wrapper-with-link,
+.collection__title.title-wrapper,
+.collection__title {
+  margin-bottom: 40px !important;
 }
 
 .TotalBlock .Price {
