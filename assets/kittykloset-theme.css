@@ -1991,6 +1991,10 @@ h6,
   text-align: left;
 }
 
+.card-wrapper.product-card-wrapper .card-information > .caption-large {
+  display: none;
+}
+
 .card-wrapper.product-card-wrapper .card-information > * + *,
 .card-wrapper.product-card-wrapper .card-information > *:not(.visually-hidden:first-child) + *:not(.rating):not(.card__information-volume-pricing-note) {
   margin-top: 4px;
