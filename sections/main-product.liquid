@@ -212,71 +212,121 @@
                   {{ block.settings.custom_liquid }}
                 {%- when 'free_shipping_badge' -%}
                   <div class="kk-freeship" {{ block.shopify_attributes }}>
-                    <span class="kk-freeship__icon">
+                    <span class="kk-freeship__icon" aria-hidden="true">
                       {%- if block.settings.custom_icon != blank -%}
-                        {{ block.settings.custom_icon | image_url: width: 40 | image_tag: style: 'width: 18px; height: 18px; object-fit: contain;' }}
+                        {{ block.settings.custom_icon | image_url: width: 40 | image_tag: style: 'width: 15px; height: 15px; object-fit: contain;' }}
                       {%- else -%}
-                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <rect x="1" y="3" width="15" height="13"/>
-                          <polygon points="16 8 20 8 23 11 23 16 16 16 8"/>
-                          <circle cx="5.5" cy="18.5" r="2.5"/>
-                          <circle cx="18.5" cy="18.5" r="2.5"/>
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M1 3h15v13H1z"></path>
+                          <path d="M16 8h4l3 3v5h-7z"></path>
+                          <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                          <circle cx="18.5" cy="18.5" r="2.5"></circle>
                         </svg>
                       {%- endif -%}
                     </span>
                     <span class="kk-freeship__text">
-                      <strong>{{ block.settings.badge_highlight | default: 'GRATIS fragt' }}</strong> {{ block.settings.badge_text | default: '— kun på denne side' }}
+                      <strong>{{ block.settings.badge_highlight | default: 'FREE shipping' }}</strong> {{ block.settings.badge_text | default: '— only on this page' }}
                     </span>
                   </div>
                 {%- when 'perks_list' -%}
                   <ul class="kk-perks" {{ block.shopify_attributes }}>
-                    {%- if block.settings.perk_1 != blank -%}
-                      <li>
-                        <span class="kk-perks__icon">
-                          {%- if block.settings.perk_icon_1 != blank -%}
-                            {{ block.settings.perk_icon_1 | image_url: width: 60 | image_tag: style: 'width: 24px; height: 24px; object-fit: contain;' }}
-                          {%- else -%}
-                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                              <rect x="1" y="3" width="15" height="13"/>
-                              <polygon points="16 8 20 8 23 11 23 16 16 16 8"/>
-                              <circle cx="5.5" cy="18.5" r="2.5"/>
-                              <circle cx="18.5" cy="18.5" r="2.5"/>
-                            </svg>
-                          {%- endif -%}
-                        </span>
-                        <span>{{ block.settings.perk_1 }}</span>
-                      </li>
-                    {%- endif -%}
-                    {%- if block.settings.perk_2 != blank -%}
-                      <li>
-                        <span class="kk-perks__icon">
-                          {%- if block.settings.perk_icon_2 != blank -%}
-                            {{ block.settings.perk_icon_2 | image_url: width: 60 | image_tag: style: 'width: 24px; height: 24px; object-fit: contain;' }}
-                          {%- else -%}
-                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                              <path d="M3 12 h18 l-1.5 5.5 a2.5 2.5 0 0 1 -2.4 1.8 H6.9 a2.5 2.5 0 0 1 -2.4 -1.8 z"/>
-                              <path d="M4.5 12 c2.5 -3.5 12.5 -3.5 15 0"/>
-                            </svg>
-                          {%- endif -%}
-                        </span>
-                        <span>{{ block.settings.perk_2 }}</span>
-                      </li>
-                    {%- endif -%}
-                    {%- if block.settings.perk_3 != blank -%}
-                      <li>
-                        <span class="kk-perks__icon">
-                          {%- if block.settings.perk_icon_3 != blank -%}
-                            {{ block.settings.perk_icon_3 | image_url: width: 60 | image_tag: style: 'width: 24px; height: 24px; object-fit: contain;' }}
-                          {%- else -%}
-                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                            </svg>
-                          {%- endif -%}
-                        </span>
-                        <span>{{ block.settings.perk_3 }}</span>
-                      </li>
-                    {%- endif -%}
+                    <li>
+                      {%- if block.settings.perk_icon_1 != blank -%}
+                        {{ block.settings.perk_icon_1 | image_url: width: 80 | image_tag: class: 'kk-perks__icon', loading: 'lazy' }}
+                      {%- else -%}
+                        <img class="kk-perks__icon" src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/foodicon_1_1.png?v=1781884820" alt="" loading="lazy">
+                      {%- endif -%}
+                      <span>{{ block.settings.perk_1 | default: 'Each tee provides <strong>10 meals</strong> to abandoned kittens' }}</span>
+                    </li>
+                    <li>
+                      {%- if block.settings.perk_icon_2 != blank -%}
+                        {{ block.settings.perk_icon_2 | image_url: width: 80 | image_tag: class: 'kk-perks__icon', loading: 'lazy' }}
+                      {%- else -%}
+                        <img class="kk-perks__icon" src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/photo_kittens_1_1.png?v=1781884821" alt="" loading="lazy">
+                      {%- endif -%}
+                      <span>{{ block.settings.perk_2 | default: '<strong>Monthly photos</strong> of the kittens your order helps feed' }}</span>
+                    </li>
+                    <li>
+                      {%- if block.settings.perk_icon_3 != blank -%}
+                        {{ block.settings.perk_icon_3 | image_url: width: 80 | image_tag: class: 'kk-perks__icon', loading: 'lazy' }}
+                      {%- else -%}
+                        <img class="kk-perks__icon" src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/tshirt_kitty_1.png?v=1781884820" alt="" loading="lazy">
+                      {%- endif -%}
+                      <span>{{ block.settings.perk_3 | default: '<strong>Hand-printed</strong> soft cotton — wear your impact every day' }}</span>
+                    </li>
                   </ul>
+                {%- when 'bundle_deals' -%}
+                  {%- liquid
+                    assign disc_1 = block.settings.offer_1_discount | default: 15
+                    assign factor_1 = 100 | minus: disc_1
+                    assign qty_1 = block.settings.offer_1_qty | default: 2
+                    assign price_1 = product.price | times: factor_1 | divided_by: 100
+                    assign total_reg_1 = product.price | times: qty_1
+                    assign total_sale_1 = price_1 | times: qty_1
+
+                    assign disc_2 = block.settings.offer_2_discount | default: 20
+                    assign factor_2 = 100 | minus: disc_2
+                    assign qty_2 = block.settings.offer_2_qty | default: 3
+                    assign price_2 = product.price | times: factor_2 | divided_by: 100
+                    assign total_reg_2 = product.price | times: qty_2
+                    assign total_sale_2 = price_2 | times: qty_2
+                  -%}
+                  <div class="cb_bundles cb_bundles_rendered" data-product-id="{{ product.id }}" {{ block.shopify_attributes }}>
+                    <div class="WidgetComponent__Container-sc-4uajcd-0 lnstPd WidgetContainer">
+                      <p class="WidgetComponent__Title-sc-4uajcd-1 ierOuw widget_title">{{ block.settings.title | default: '💗 TILBUDDET UDLØBER I MORGEN 💗' }}</p>
+                      <div class="OffersBlock__Container-sc-1w9prch-0 gQTwmC kk-bundle-offers">
+                        <div class="OffersBlock__Offer-sc-1w9prch-1 bPmAO option0-animate kk-bundle-offer" data-qty="{{ qty_1 }}" data-discount="{{ disc_1 }}">
+                          <div class="OfferContent__Container-sc-1xtpph2-11 dCyNed">
+                            <div class="kk-bundle-offer__left">
+                              <div class="OfferContent__Checkout-sc-1xtpph2-0 JCIkj kk-bundle-radio"></div>
+                              <div class="OfferContent__OfferBlock-sc-1xtpph2-2 irukve">
+                                <p class="OfferContent__OfferText-sc-1xtpph2-3 czHPAw OfferText">{{ block.settings.offer_1_title | default: 'Køb 2 og spar 15%' }}</p>
+                              </div>
+                            </div>
+                            <div class="OfferContent__ResultBlock-sc-1xtpph2-4 dpVtfu ResultBlock">
+                              <p class="OfferContent__Save-sc-1xtpph2-5 euiFfu SaveText">{{ block.settings.offer_1_save | default: 'SPAR 15%' }}</p>
+                              <span class="OfferContent__PriceBlock-sc-1xtpph2-10 bHlafX PriceBlock">
+                                <span class="OfferContent__ComparePrice-sc-1xtpph2-7 jmEaRX ComparePrice">{{ product.price | money }}</span>
+                                <span class="OfferContent__Price-sc-1xtpph2-6 jcPFcu Price">{{ price_1 | money }}</span>
+                              </span>
+                              <span class="OfferContent__TotalBlock-sc-1xtpph2-9 fbBLKM TotalBlock">
+                                <span class="OfferContent__Total-sc-1xtpph2-8 cqjaTE Total">{{ block.settings.total_label | default: 'I alt' }}&ensp;</span>
+                                <span class="OfferContent__ComparePrice-sc-1xtpph2-7 jmEaRX ComparePrice">{{ total_reg_1 | money }}</span>
+                                <span class="OfferContent__Price-sc-1xtpph2-6 efyshx Price">&ensp;{{ total_sale_1 | money }}</span>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="OffersBlock__Offer-sc-1w9prch-1 hwQZcz option1-animate kk-bundle-offer is-popular" data-qty="{{ qty_2 }}" data-discount="{{ disc_2 }}">
+                          <div class="OfferContent__Container-sc-1xtpph2-11 dCyNed">
+                            <div class="kk-bundle-offer__left">
+                              <div class="OfferContent__Checkout-sc-1xtpph2-0 JCIkj kk-bundle-radio"></div>
+                              <div class="OfferContent__OfferBlock-sc-1xtpph2-2 irukve">
+                                {%- if block.settings.offer_2_badge != blank -%}
+                                  <div class="OfferContent__BadgeGroup-sc-1xtpph2-12 fINUeV">
+                                    <div class="OfferContent__MostPopular-sc-1xtpph2-13 heDrfi MostPopularText">{{ block.settings.offer_2_badge }}</div>
+                                  </div>
+                                {%- endif -%}
+                                <p class="OfferContent__OfferText-sc-1xtpph2-3 czHPAw OfferText">{{ block.settings.offer_2_title | default: 'Køb 3+ og spar 20%' }}</p>
+                              </div>
+                            </div>
+                            <div class="OfferContent__ResultBlock-sc-1xtpph2-4 dpVtfu ResultBlock">
+                              <p class="OfferContent__Save-sc-1xtpph2-5 euiFfu SaveText">{{ block.settings.offer_2_save | default: 'SPAR 20%' }}</p>
+                              <span class="OfferContent__PriceBlock-sc-1xtpph2-10 bHlafX PriceBlock">
+                                <span class="OfferContent__ComparePrice-sc-1xtpph2-7 jmEaRX ComparePrice">{{ product.price | money }}</span>
+                                <span class="OfferContent__Price-sc-1xtpph2-6 jcPFcu Price">{{ price_2 | money }}</span>
+                              </span>
+                              <span class="OfferContent__TotalBlock-sc-1xtpph2-9 fbBLKM TotalBlock">
+                                <span class="OfferContent__Total-sc-1xtpph2-8 cqjaTE Total">{{ block.settings.total_label | default: 'I alt' }}&ensp;</span>
+                                <span class="OfferContent__ComparePrice-sc-1xtpph2-7 jmEaRX ComparePrice">{{ total_reg_2 | money }}</span>
+                                <span class="OfferContent__Price-sc-1xtpph2-6 efyshx Price">&ensp;{{ total_sale_2 | money }}</span>
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 {%- when 'custom_accordion' -%}
                   <div class="kk-acc" {{ block.shopify_attributes }}>
                     <details class="kk-acc__item"{% if block.settings.open_by_default %} open{% endif %}>
@@ -582,7 +632,7 @@
                   -%}
                 {%- when 'rating' -%}
                   <div class="rating-wrapper kk-pdp-rating-wrapper" {{ block.shopify_attributes }}>
-                    {% render 'product-review-badge', product: product, class: 'kk-pdp-rating' %}
+                    {% render 'product-review-badge', product: product, class: 'kk-pdp-rating', block: block %}
                   </div>
                 {%- when 'complementary' -%}
                   <product-recommendations
@@ -798,6 +848,31 @@
       </script>
     </div>
   </product-component>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const bundleOffers = document.querySelectorAll('#MainProduct-{{ section.id }} .kk-bundle-offer');
+      const qtyInput = document.getElementById('Quantity-{{ section.id }}');
+      
+      bundleOffers.forEach(function (offer) {
+        offer.addEventListener('click', function () {
+          const qty = parseInt(offer.getAttribute('data-qty'), 10);
+          const isAlreadySelected = offer.classList.contains('is-selected');
+
+          bundleOffers.forEach(function (o) { o.classList.remove('is-selected'); });
+
+          if (!isAlreadySelected && qtyInput) {
+            offer.classList.add('is-selected');
+            qtyInput.value = qty;
+            qtyInput.dispatchEvent(new Event('change', { bubbles: true }));
+          } else if (qtyInput) {
+            qtyInput.value = 1;
+            qtyInput.dispatchEvent(new Event('change', { bubbles: true }));
+          }
+        });
+      });
+    });
+  </script>
 </product-info>
 
 {% schema %}
@@ -966,6 +1041,38 @@
             }
           ],
           "default": "circle"
+        },
+        {
+          "type": "header",
+          "content": "Størrelsesguide"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_size_chart",
+          "label": "Vis størrelsesguide-knap",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "size_chart_label",
+          "label": "Knaptekst til størrelsesguide",
+          "default": "Størrelsesguide"
+        },
+        {
+          "type": "text",
+          "id": "size_chart_title",
+          "label": "Overskrift i størrelsesguide-popup",
+          "default": "Størrelsesguide"
+        },
+        {
+          "type": "richtext",
+          "id": "size_chart_content",
+          "label": "Brugerdefineret indhold (valgfrit)"
+        },
+        {
+          "type": "page",
+          "id": "size_chart_page",
+          "label": "Eller vælg en side til størrelsesguide"
         }
       ]
     },
@@ -1294,101 +1401,211 @@
     },
     {
       "type": "rating",
-      "name": "t:sections.main-product.blocks.rating.name",
+      "name": "Anmeldelser / Bedømmelse",
       "limit": 1,
       "settings": [
         {
-          "type": "paragraph",
-          "content": "t:sections.main-product.blocks.rating.settings.paragraph.content"
+          "type": "text",
+          "id": "rating_score",
+          "label": "Bedømmelse (f.eks. 5.0)",
+          "default": "5.0"
+        },
+        {
+          "type": "text",
+          "id": "rating_count",
+          "label": "Antal anmeldelser (f.eks. 209)",
+          "default": "209"
+        },
+        {
+          "type": "text",
+          "id": "rating_label",
+          "label": "Tekst efter antal (f.eks. anmeldelser)",
+          "default": "anmeldelser"
         }
       ]
     },
     {
       "type": "free_shipping_badge",
-      "name": "Free Shipping Badge",
+      "name": "Gratis fragt badge",
       "settings": [
         {
           "type": "image_picker",
           "id": "custom_icon",
-          "label": "Badge-ikon (Image Picker)"
+          "label": "Badge-ikon (valgfrit)"
         },
         {
           "type": "text",
           "id": "badge_highlight",
-          "label": "Badge Highlight",
+          "label": "Fremhævet tekst",
           "default": "GRATIS fragt"
         },
         {
           "type": "text",
           "id": "badge_text",
-          "label": "Badge Text",
+          "label": "Undertekst",
           "default": "— kun på denne side"
         }
       ]
     },
     {
       "type": "perks_list",
-      "name": "Product Perks List",
+      "name": "Fordele liste",
       "settings": [
+        {
+          "type": "header",
+          "content": "Fordel 1"
+        },
         {
           "type": "image_picker",
           "id": "perk_icon_1",
-          "label": "Fordel 1 Ikon-billede (Image Picker)"
+          "label": "Fordel 1 ikon (Image Picker)"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "perk_1",
+          "label": "Fordel 1 tekst",
+          "default": "Hver t-shirt giver <strong>10 måltider</strong> til forladte killinger"
+        },
+        {
+          "type": "header",
+          "content": "Fordel 2"
         },
         {
           "type": "image_picker",
           "id": "perk_icon_2",
-          "label": "Fordel 2 Ikon-billede (Image Picker)"
+          "label": "Fordel 2 ikon (Image Picker)"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "perk_2",
+          "label": "Fordel 2 tekst",
+          "default": "<strong>Månedlige billeder</strong> af de killinger, din ordre hjælper med at mætte"
+        },
+        {
+          "type": "header",
+          "content": "Fordel 3"
         },
         {
           "type": "image_picker",
           "id": "perk_icon_3",
-          "label": "Fordel 3 Ikon-billede (Image Picker)"
+          "label": "Fordel 3 ikon (Image Picker)"
         },
         {
-          "type": "text",
-          "id": "perk_1",
-          "label": "Perk 1",
-          "default": "Hurtig, pålidelig sporet levering"
-        },
-        {
-          "type": "text",
-          "id": "perk_2",
-          "label": "Perk 2",
-          "default": "10 måltider doneret pr. bestilt vare"
-        },
-        {
-          "type": "text",
+          "type": "inline_richtext",
           "id": "perk_3",
-          "label": "Perk 3",
-          "default": "30 dages fuld tilfredshedsgaranti"
+          "label": "Fordel 3 tekst",
+          "default": "<strong>Håndtrykt</strong> blød bomuld — bær din forskel hver dag"
+        }
+      ]
+    },
+    {
+      "type": "bundle_deals",
+      "name": "Mængderabat / Bundles",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Overskrift",
+          "default": "💗 TILBUDDET UDLØBER I MORGEN 💗"
+        },
+        {
+          "type": "header",
+          "content": "Tilbud 1"
+        },
+        {
+          "type": "text",
+          "id": "offer_1_title",
+          "label": "Tilbud 1 titel",
+          "default": "Køb 2 og spar 15%"
+        },
+        {
+          "type": "text",
+          "id": "offer_1_save",
+          "label": "Tilbud 1 spar-tekst",
+          "default": "SPAR 15%"
+        },
+        {
+          "type": "number",
+          "id": "offer_1_qty",
+          "label": "Tilbud 1 antal (stk)",
+          "default": 2
+        },
+        {
+          "type": "number",
+          "id": "offer_1_discount",
+          "label": "Tilbud 1 rabat (%)",
+          "default": 15
+        },
+        {
+          "type": "header",
+          "content": "Tilbud 2"
+        },
+        {
+          "type": "text",
+          "id": "offer_2_badge",
+          "label": "Tilbud 2 badge",
+          "default": "MEST POPULÆRE"
+        },
+        {
+          "type": "text",
+          "id": "offer_2_title",
+          "label": "Tilbud 2 titel",
+          "default": "Køb 3+ og spar 20%"
+        },
+        {
+          "type": "text",
+          "id": "offer_2_save",
+          "label": "Tilbud 2 spar-tekst",
+          "default": "SPAR 20%"
+        },
+        {
+          "type": "number",
+          "id": "offer_2_qty",
+          "label": "Tilbud 2 antal (stk)",
+          "default": 3
+        },
+        {
+          "type": "number",
+          "id": "offer_2_discount",
+          "label": "Tilbud 2 rabat (%)",
+          "default": 20
+        },
+        {
+          "type": "header",
+          "content": "Prisvisning"
+        },
+        {
+          "type": "text",
+          "id": "total_label",
+          "label": "Tekst for total",
+          "default": "I alt"
         }
       ]
     },
     {
       "type": "custom_accordion",
-      "name": "Custom Accordion Item",
+      "name": "Harmonika-element",
       "settings": [
         {
           "type": "text",
           "id": "heading",
-          "label": "Heading",
-          "default": "Beskrivelse og størrelsesguide"
+          "label": "Overskrift",
+          "default": "Vores mission"
         },
         {
           "type": "richtext",
           "id": "content",
-          "label": "Accordion Content"
+          "label": "Indhold"
         },
         {
           "type": "page",
           "id": "page",
-          "label": "Or Choose a Page"
+          "label": "Eller vælg en side"
         },
         {
           "type": "checkbox",
           "id": "open_by_default",
-          "label": "Open by Default",
+          "label": "Åben som standard",
           "default": false
         }
       ]

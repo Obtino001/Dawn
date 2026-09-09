@@ -25,9 +25,29 @@
   endif
 -%}
 
-<div class="kk-card-rating{% if class != blank %} {{ class }}{% endif %}">
-  <span class="kk-card-rating__stars" aria-label="5 out of 5 stars">★ ★ ★ ★ ★</span>
-  {%- if show_count != false -%}
-    <span class="kk-card-rating__count">({{ review_count }})</span>
-  {%- endif -%}
-</div>
+{%- if class contains 'kk-pdp-rating' -%}
+  {%- liquid
+    assign r_score = block.settings.rating_score | default: '5.0'
+    assign r_count = block.settings.rating_count | default: review_count
+    assign r_label = block.settings.rating_label | default: 'anmeldelser'
+  -%}
+  <div class="bundle-aggregated_reviews kk-pdp-stars-container" style="display: flex; align-items: center; gap: 6px; margin: 6px 0 2px;">
+    <div class="vtl-pr-stars-snippet" style="color: #8AA0F2; font-size: 15px; display: inline-flex; align-items: center; gap: 2px;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="14" height="14"><path fill="currentColor" d="M259.3 17.8 194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="14" height="14"><path fill="currentColor" d="M259.3 17.8 194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="14" height="14"><path fill="currentColor" d="M259.3 17.8 194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="14" height="14"><path fill="currentColor" d="M259.3 17.8 194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="14" height="14"><path fill="currentColor" d="M259.3 17.8 194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
+    </div>
+    <span class="vtl-pr-ss__inner-el" style="font-size: 14px; font-weight: 500; color: #2A2C42;">
+      {{ r_score }} ({{ r_count }} {{ r_label }})
+    </span>
+  </div>
+{%- else -%}
+  <div class="kk-card-rating{% if class != blank %} {{ class }}{% endif %}">
+    <span class="kk-card-rating__stars" aria-label="5 out of 5 stars">★ ★ ★ ★ ★</span>
+    {%- if show_count != false -%}
+      <span class="kk-card-rating__count">({{ review_count }})</span>
+    {%- endif -%}
+  </div>
+{%- endif -%}
