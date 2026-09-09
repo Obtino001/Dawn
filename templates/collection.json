@@ -9,6 +9,55 @@
  */
 {
   "sections": {
+    "collection_steps": {
+      "type": "collection-steps",
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "step_number": "1",
+            "title": "Vælg din<br>t-shirt",
+            "icon_svg": "tee"
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "step_number": "2",
+            "title": "Vi hjælper med<br>at fodre",
+            "icon_svg": "bowl"
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "step_number": "3",
+            "title": "Liv du<br>ændrede",
+            "icon_svg": "cat_heart"
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3"
+      ],
+      "settings": {
+        "eyebrow": "Fra t-shirt til madskål",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "collection_banner": {
+      "type": "collection-banner",
+      "settings": {
+        "image_desktop_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/banner-poppins.jpg?v=1781818271",
+        "image_mobile_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/banner._new_test_1.jpg?v=1781959840",
+        "alt_text": "KittyKloset — Hvert t-shirt-køb hjælper med at mætte forladte killinger",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "banner": {
       "type": "main-collection-banner",
       "settings": {
@@ -39,6 +88,8 @@
     }
   },
   "order": [
+    "collection_steps",
+    "collection_banner",
     "banner",
     "product-grid"
   ]

@@ -42,13 +42,6 @@
           "type": "price",
           "settings": {}
         },
-        "perks": {
-          "type": "perks_list",
-          "settings": {
-            "badge_highlight": "GRATIS fragt",
-            "badge_text": "\u2014 kun p\u00e5 denne side"
-          }
-        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -59,8 +52,8 @@
         "perks": {
           "type": "perks_list",
           "settings": {
-            "perk_1": "Hurtig, p\u00e5lidelig sporet levering",
-            "perk_2": "10 m\u00e5ltider doneret pr. bestilt vare",
+            "perk_1": "Hurtig, pålidelig sporet levering",
+            "perk_2": "10 måltider doneret pr. bestilt vare",
             "perk_3": "30 dages fuld tilfredshedsgaranti"
           }
         },
@@ -110,11 +103,10 @@
         "rating",
         "free_shipping",
         "price",
-        "perks",
         "variant_picker",
+        "perks",
         "quantity_selector",
         "buy_buttons",
-        "bundle_deals",
         "accordion_mission",
         "accordion_guarantee",
         "accordion_help",
