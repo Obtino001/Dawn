@@ -1995,6 +1995,10 @@ h6,
   display: none;
 }
 
+.card-wrapper.product-card-wrapper .card__information-volume-pricing-note {
+  display: none;
+}
+
 .card-wrapper.product-card-wrapper .card-information > * + *,
 .card-wrapper.product-card-wrapper .card-information > *:not(.visually-hidden:first-child) + *:not(.rating):not(.card__information-volume-pricing-note) {
   margin-top: 4px;
@@ -2022,7 +2026,7 @@ h6,
   text-transform: uppercase !important;
   color: #808080 !important;
   opacity: 1 !important;
-  margin: 0 0 4px !important;
+  margin: 0 !important;
   display: block !important;
 }
 
@@ -2030,7 +2034,7 @@ h6,
   display: flex;
   align-items: center;
   gap: 6px;
-  margin: 0 0 6px;
+  margin: 0;
 }
 
 .card-wrapper.product-card-wrapper .kk-card-rating__stars {
