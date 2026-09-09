@@ -1,217 +1,127 @@
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+<section id="shopify-section-template--18829409419586__custom_liquid_AKXUU9" class="shopify-section section"><style data-shopify="">.section-template--18829409419586__custom_liquid_AKXUU9-padding {
+    padding-top: calc(0px * 0.75);
+    padding-bottom: calc(12px  * 0.75);
   }
 
   @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+    .section-template--18829409419586__custom_liquid_AKXUU9-padding {
+      padding-top: 0px;
+      padding-bottom: 12px;
     }
-  }
-{%- endstyle -%}
-
-<div class="color-{{ section.settings.color_scheme }} gradient">
-  <div class="page-width section-{{ section.id }}-padding">
+  }</style><div class="color-background-1 gradient">
+  <div class="section-template--18829409419586__custom_liquid_AKXUU9-padding">
     <div class="kk-crisis">
-      <div class="kk-crisis__media">
-        {%- if section.settings.media_image != blank -%}
-          {{
-            section.settings.media_image
-            | image_url: width: 800
-            | image_tag:
-              loading: 'lazy',
-              alt: section.settings.goal_title,
-              class: 'kk-crisis__img'
-          }}
-        {%- else -%}
-          <div style="background: #ffffff; border: 1px solid var(--kk-border-soft); border-radius: 16px; height: 100%; min-height: 280px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; text-align: center;">
-            <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#8AA0F2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 21 C12 21 4 14.5 4 8.8 C4 5.5 6.5 4 8.7 4.6 C10.2 5 12 7 12 7 C12 7 13.8 5 15.3 4.6 C17.5 4 20 5.5 20 8.8 C20 14.5 12 21 12 21 Z"/>
-            </svg>
-            <p style="margin-top: 12px; font-size: 14px; font-weight: 600; color: #6B7088;">Impact / Shelter Photo</p>
-          </div>
-        {%- endif -%}
-      </div>
-
-      <div class="kk-crisis__body">
-        <div class="kk-crisis__badge">
-          <span class="kk-crisis__crisis">
-            {%- if section.settings.badge_icon != blank -%}
-              {{ section.settings.badge_icon | image_url: width: 32 | image_tag: style: 'width: 14px; height: 14px; object-fit: contain; margin-right: 4px; vertical-align: middle;' }}
-            {%- else -%}
-              <span class="kk-dot"></span>
-            {%- endif -%}
-            {{ section.settings.crisis_badge_text | escape }}
-          </span>
-          <span class="kk-crisis__gtitle">{{ section.settings.goal_title | escape }}</span>
-        </div>
-
-        <div class="kk-crisis__stats">
-          <div class="kk-stat">
-            <span class="kk-stat__num">{{ section.settings.funded_count | escape }}</span>
-            <span class="kk-stat__lbl">{{ section.settings.funded_label | escape }}</span>
-          </div>
-          <div class="kk-stat">
-            <span class="kk-stat__num">{{ section.settings.needed_count | escape }}</span>
-            <span class="kk-stat__lbl">{{ section.settings.needed_label | escape }}</span>
-          </div>
-          <div class="kk-stat">
-            <span class="kk-stat__num">{{ section.settings.goal_count | escape }}</span>
-            <span class="kk-stat__lbl">{{ section.settings.goal_label | escape }}</span>
-          </div>
-        </div>
-
-        <div class="kk-crisis__track">
-          <div class="kk-crisis__fill" style="width: {{ section.settings.progress_percent }}%;">
-            <span>{{ section.settings.progress_percent }}%</span>
-          </div>
-        </div>
-
-        {%- if section.settings.lead_text != blank -%}
-          <p class="kk-crisis__lead">{{ section.settings.lead_text | escape }}</p>
-        {%- endif -%}
-
-        {%- if section.settings.sub_text != blank -%}
-          <p class="kk-crisis__sub">{{ section.settings.sub_text | escape }}</p>
-        {%- endif -%}
-
-        {%- if section.settings.note_text != blank -%}
-          <p class="kk-crisis__note">{{ section.settings.note_text | escape }}</p>
-        {%- endif -%}
-      </div>
+  <div class="kk-crisis__media">
+    <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/shelter_8efca6c3-3a75-4f4f-be89-38dfa0437ed5.jpg?v=1781884333" alt="Kittens being fed">
+  </div>
+  <div class="kk-crisis__body">
+    <div class="kk-crisis__badge">
+      <span class="kk-crisis__crisis"><span class="kk-dot"></span> Emergency Food Crisis</span>
+      <span class="kk-crisis__gtitle">72-Hour Feeding Goal</span>
     </div>
+    <div class="kk-crisis__stats">
+      <div class="kk-stat"><span class="kk-stat__num" id="kk-funded">9,650</span><span class="kk-stat__lbl">Meals Funded So Far</span></div>
+      <div class="kk-stat"><span class="kk-stat__num" id="kk-needed">350</span><span class="kk-stat__lbl">Meals Still Needed</span></div>
+      <div class="kk-stat"><span class="kk-stat__num" id="kk-goal">10,000</span><span class="kk-stat__lbl">Emergency Goal</span></div>
+    </div>
+    <div class="kk-crisis__track">
+      <div class="kk-crisis__fill" id="kk-bar" style="width: 97%;"><span id="kk-pct">97%</span></div>
+    </div>
+    <p class="kk-crisis__lead">Each tee adds 10 meals to this goal.</p>
+    <p class="kk-crisis__sub">When we hit 10,000 meals our volunteers deploy immediately to the most critical shelters first.</p>
+    <p class="kk-crisis__note">Every meal is tracked and verified by our volunteer team on the ground.</p>
+  </div>
+</div>
+<style>
+  .kk-crisis{
+    --acc:
+#8AA0F2;       /* brand periwinkle — switch to 
+#ef8b46 for the orange "emergency" look */
+    --text:
+#2a2c42; --muted:
+#9a9bad; --card:
+#f6f5f2; --track:
+#e7e7e3;
+    font-family:'Poppins',sans-serif; color:var(--text);
+    max-width:880px; margin:24px auto;        /* narrower block → whitespace on the sides (desktop) */
+    background:var(--card); border:2px solid var(--acc); border-radius:24px;
+    padding:12px; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
+    gap:12px; box-sizing:border-box;
+  }
+  .kk-crisis *{ font-family:'Poppins',sans-serif; box-sizing:border-box; }
+  .kk-crisis__media{ min-height:360px; }
+  .kk-crisis__media img{ width:100%; height:100%; object-fit:cover; border-radius:16px; display:block; }
+  .kk-crisis__body{ padding:22px 26px 26px; }
+  .kk-crisis__badge{
+    display:inline-flex; flex-direction:column; gap:2px;
+    background:var(--acc); color:#fff;
+    border-radius:16px; padding:12px 20px; margin-bottom:22px;
+    box-shadow:0 6px 16px rgba(42,44,66,.20);   /* lifts the badge off the image */
+  }
+  .kk-crisis__crisis{ font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; display:flex; align-items:center; gap:8px; }
+  .kk-crisis__gtitle{ font-size:22px; font-weight:800; letter-spacing:.5px; text-transform:uppercase; line-height:1.1; }
+  .kk-dot{ width:10px; height:10px; border-radius:50%; background:
+#e5484d; animation:kkLive 1.6s infinite; }
+  @keyframes kkLive{ 0%{box-shadow:0 0 0 0 rgba(229,72,77,.55)} 70%{box-shadow:0 0 0 7px rgba(229,72,77,0)} 100%{box-shadow:0 0 0 0 rgba(229,72,77,0)} }
+  .kk-crisis__stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:18px; }
+  .kk-stat{ display:flex; flex-direction:column; }
+  .kk-stat__num{ font-size:clamp(24px,3vw,34px); font-weight:800; color:var(--acc); line-height:1; }
+  .kk-stat__lbl{ margin-top:8px; font-size:11px; font-weight:700; letter-spacing:.6px; text-transform:uppercase; color:var(--muted); }
+  .kk-stat__num.kk-bump{ animation:kkBump .45s ease; }
+  @keyframes kkBump{ 0%{transform:scale(1)} 30%{transform:scale(1.12)} 100%{transform:scale(1)} }
+  .kk-crisis__track{ background:var(--track); border-radius:999px; height:38px; overflow:hidden; margin-bottom:22px; }
+  .kk-crisis__fill{ height:100%; background:var(--acc); border-radius:999px; display:flex; align-items:center; justify-content:flex-end; padding:0 16px; min-width:54px; color:#fff; font-weight:800; font-size:14px; transition:width .8s cubic-bezier(.22,.61,.36,1); }
+  .kk-crisis__lead{ color:var(--acc); font-weight:700; font-size:clamp(16px,1.5vw,19px); margin:0 0 8px; }
+  .kk-crisis__sub{ color:var(--text); font-weight:700; font-size:clamp(15px,1.4vw,18px); line-height:1.35; margin:0 0 12px; }
+  .kk-crisis__note{ color:var(--text); font-style:italic; font-size:14px; line-height:1.4; margin:0; opacity:.85; }
+  @media (max-width:749px){
+    .kk-crisis{
+      grid-template-columns:1fr; gap:0; padding:0; overflow:hidden;
+      margin:20px 14px;                /* side margins on mobile (raise/lower the 14px) */
+    }
+    .kk-crisis__media{ min-height:0; }
+    .kk-crisis__media img{ height:300px; border-radius:0; }
+    .kk-crisis__body{ padding:0 18px 22px; }
+    .kk-crisis__badge{
+      display:flex; width:fit-content; max-width:92%;
+      margin:-50px auto 22px;
+      align-items:center; text-align:center;
+      position:relative; z-index:2;
+    }
+    .kk-crisis__stats{ gap:8px; }
+  }
+</style>
+<script>
+(function(){
+  var GOAL     = 10000;   // total goal
+  var BASE     = 3320;    // meals funded at the reference time
+  var MAX      = 9650;    // cap: never reaches 0 "needed" (keeps urgency alive)
+  var REF      = Date.UTC(2026,5,19,0,0,0); // reference moment (month is 0-indexed: 5 = June)
+  var PER_HOUR = 18;      // growth per real hour (seed, so it doesn't reset awkwardly on each refresh)
+  var TICK_MS  = 5000;    // every 5 seconds
+  var TICK_MIN = 4, TICK_MAX = 14; // increment per tick
+  var fEl=document.getElementById('kk-funded'), nEl=document.getElementById('kk-needed'),
+      bEl=document.getElementById('kk-bar'),    pEl=document.getElementById('kk-pct');
+  if(!fEl) return;
+  var hours  = Math.max(0,(Date.now()-REF)/3600000);
+  var funded = Math.min(MAX, Math.round(BASE + hours*PER_HOUR));
+  function fmt(n){ return n.toLocaleString('en-US'); }
+  function render(bump){
+    var needed=Math.max(0,GOAL-funded), pct=Math.min(100,Math.round(funded/GOAL*100));
+    fEl.textContent=fmt(funded); nEl.textContent=fmt(needed);
+    if(bEl) bEl.style.width=pct+'%'; if(pEl) pEl.textContent=pct+'%';
+    if(bump){ [fEl,nEl].forEach(function(el){ el.classList.remove('kk-bump'); void el.offsetWidth; el.classList.add('kk-bump'); }); }
+  }
+  render(false);
+  setInterval(function(){
+    if(funded>=MAX) return;
+    funded=Math.min(MAX, funded + TICK_MIN + Math.floor(Math.random()*(TICK_MAX-TICK_MIN+1)));
+    render(true);
+  }, TICK_MS);
+})();
+</script>
   </div>
 </div>
 
-{% schema %}
-{
-  "name": "Fodringsmål & Krisetracker",
-  "tag": "section",
-  "class": "section",
-  "disabled_on": {
-    "groups": ["header", "footer"]
-  },
-  "settings": [
-    {
-      "type": "image_picker",
-      "id": "badge_icon",
-      "label": "Badge-ikon (Image Picker)",
-      "info": "Upload dit eget ikon til krisemærket (valgfri)"
-    },
-    {
-      "type": "text",
-      "id": "crisis_badge_text",
-      "label": "Crisis Badge Label",
-      "default": "Akut fødevarekrise"
-    },
-    {
-      "type": "text",
-      "id": "goal_title",
-      "label": "Goal Title",
-      "default": "72-timers fodringsmål"
-    },
-    {
-      "type": "text",
-      "id": "funded_count",
-      "label": "Funded Stat",
-      "default": "3,320"
-    },
-    {
-      "type": "text",
-      "id": "funded_label",
-      "label": "Funded Stat Label",
-      "default": "Måltider doneret hidtil"
-    },
-    {
-      "type": "text",
-      "id": "needed_count",
-      "label": "Needed Stat",
-      "default": "6,680"
-    },
-    {
-      "type": "text",
-      "id": "needed_label",
-      "label": "Needed Stat Label",
-      "default": "Måltider der stadig mangler"
-    },
-    {
-      "type": "text",
-      "id": "goal_count",
-      "label": "Emergency Goal Stat",
-      "default": "10,000"
-    },
-    {
-      "type": "text",
-      "id": "goal_label",
-      "label": "Goal Stat Label",
-      "default": "Akut mål"
-    },
-    {
-      "type": "range",
-      "id": "progress_percent",
-      "min": 1,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "label": "Progress Percentage",
-      "default": 33
-    },
-    {
-      "type": "text",
-      "id": "lead_text",
-      "label": "Lead Text",
-      "default": "Hver t-shirt tilføjer 10 måltider til dette mål."
-    },
-    {
-      "type": "textarea",
-      "id": "sub_text",
-      "label": "Sub Text",
-      "default": "Når vi når 10.000 måltider, rykker vores frivillige straks ud til de mest kritiske internater først."
-    },
-    {
-      "type": "text",
-      "id": "note_text",
-      "label": "Footer Note",
-      "default": "Hvert måltid spores og verificeres af vores frivillige team i felten."
-    },
-    {
-      "type": "image_picker",
-      "id": "media_image",
-      "label": "Shelter / Impact Photo"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "Color Scheme",
-      "default": "scheme-1"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding Top",
-      "default": 24
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding Bottom",
-      "default": 24
-    }
-  ],
-  "presets": [
-    {
-      "name": "Fodringsmål & Krisetracker"
-    }
-  ]
-}
-{% endschema %}
+
+</section>
