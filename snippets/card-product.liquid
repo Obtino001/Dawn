@@ -126,7 +126,7 @@
                 </a>
               </h3>
             </div>
-            <div class="card__badge {{ settings.badge_position }}">
+            <div class="card__badge card__badge--kk {{ settings.badge_position }}">
               {%- if settings.card_show_free_shipping_badge != false and card_product.available -%}
                 <span class="badge kk-badge--freeship">
                   {%- if settings.card_free_shipping_icon != blank -%}
@@ -134,7 +134,7 @@
                   {%- else -%}
                     <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <rect x="1" y="3" width="15" height="13"/>
-                      <polygon points="16 8 20 8 23 11 23 16 16 16 8"/>
+                      <polygon points="16 8 20 8 23 11 23 16 16 8"/>
                       <circle cx="5.5" cy="18.5" r="2.5"/>
                       <circle cx="18.5" cy="18.5" r="2.5"/>
                     </svg>
@@ -145,14 +145,14 @@
               {%- if card_product.available == false -%}
                 <span
                   id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
-                  class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}"
+                  class="badge badge--bottom-left badge--kk-soldout color-{{ settings.sold_out_badge_color_scheme }}"
                 >
                   {{- 'products.product.sold_out' | t -}}
                 </span>
               {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
                 <span
                   id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
-                  class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
+                  class="badge badge--bottom-left badge--kk-sale color-{{ settings.sale_badge_color_scheme }}"
                 >
                   {{- 'products.product.on_sale' | t -}}
                 </span>
@@ -533,38 +533,6 @@
               </div>
             {% endif %}
           {% endif %}
-          <div class="card__badge {{ settings.badge_position }}">
-            {%- if settings.card_show_free_shipping_badge != false and card_product.available -%}
-              <span class="badge kk-badge--freeship">
-                {%- if settings.card_free_shipping_icon != blank -%}
-                  {{ settings.card_free_shipping_icon | image_url: width: 30 | image_tag: style: 'width: 14px; height: 14px; object-fit: contain;' }}
-                {%- else -%}
-                  <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="1" y="3" width="15" height="13"/>
-                    <polygon points="16 8 20 8 23 11 23 16 16 16 8"/>
-                    <circle cx="5.5" cy="18.5" r="2.5"/>
-                    <circle cx="18.5" cy="18.5" r="2.5"/>
-                  </svg>
-                {%- endif -%}
-                <span>{{ settings.card_free_shipping_text | default: 'Gratis fragt' | escape }}</span>
-              </span>
-            {%- endif -%}
-            {%- if card_product.available == false -%}
-              <span
-                id="Badge-{{ section_id }}-{{ card_product.id }}"
-                class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}"
-              >
-                {{- 'products.product.sold_out' | t -}}
-              </span>
-            {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
-              <span
-                id="Badge-{{ section_id }}-{{ card_product.id }}"
-                class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
-              >
-                {{- 'products.product.on_sale' | t -}}
-              </span>
-            {%- endif -%}
-          </div>
         </div>
       </div>
     </div>

@@ -281,31 +281,51 @@ h1, h2, h3, h4, h5, h6,
   z-index: 2 !important;
 }
 
-/* Compact Sale Badge */
-.card-wrapper .card__inner .card__badge .badge {
+/* Compact Badges on Image */
+.card-wrapper .card__inner .card__badge {
+  position: absolute !important;
+  bottom: 10px !important;
+  left: 10px !important;
+  top: auto !important;
+  right: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 4px !important;
+  z-index: 3 !important;
+  pointer-events: none !important;
+}
+
+.card-wrapper .card__inner .card__badge .badge.badge--kk-sale,
+.card-wrapper .card__inner .card__badge .badge:not(.kk-badge--freeship) {
   font-family: var(--kk-font-family) !important;
   font-size: 11px !important;
-  font-weight: 700 !important;
-  padding: 4px 10px !important;
+  font-weight: 600 !important;
+  padding: 3px 9px !important;
   min-height: 0 !important;
   letter-spacing: 0.02em !important;
-  background-color: var(--kk-brand) !important;
+  background-color: #8AA0F2 !important;
   color: #ffffff !important;
   border: none !important;
   border-radius: var(--kk-radius-pill) !important;
-  box-shadow: 0 2px 6px rgba(42, 44, 66, 0.12) !important;
+  box-shadow: 0 2px 6px rgba(138, 160, 242, 0.25) !important;
+  display: inline-flex !important;
+  align-items: center !important;
 }
 
+.card-wrapper .card__inner .card__badge .kk-badge--freeship,
 .kk-badge--freeship {
   order: -1;
   background-color: #ffffff !important;
-  color: var(--kk-brand-deep) !important;
-  border: 1px solid var(--kk-border-soft) !important;
+  color: #5B6CC4 !important;
+  border: 1px solid #d7dbf0 !important;
   border-radius: var(--kk-radius-pill) !important;
-  padding: 3px 10px !important;
+  padding: 3px 9px !important;
   font-family: var(--kk-font-family) !important;
-  font-size: 10px !important;
-  font-weight: 700 !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
   box-shadow: 0 2px 6px rgba(42, 44, 66, 0.08) !important;
   white-space: nowrap !important;
   display: inline-flex !important;
@@ -313,11 +333,13 @@ h1, h2, h3, h4, h5, h6,
   gap: 5px !important;
 }
 
+.card-wrapper .card__inner .card__badge .kk-badge--freeship svg,
 .kk-badge--freeship svg {
-  width: 12px;
-  height: 12px;
-  color: var(--kk-brand-deep);
-  flex: 0 0 auto;
+  width: 13px !important;
+  height: 13px !important;
+  color: #5B6CC4 !important;
+  stroke: #5B6CC4 !important;
+  flex: 0 0 auto !important;
 }
 
 .card__heading {
