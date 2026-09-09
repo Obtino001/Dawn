@@ -208,12 +208,59 @@
         "media_image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/collage_home.jpg?v=1781819895",
         "media_image_alt": "Rescued cats fed by the KittyKloset community",
         "card_bg_color": "#f4f6ff",
-        "brand_color": "#8AA0F2",
+        "brand_color": "#8aa0f2",
         "brand_deep_color": "#6c72e0",
         "text_color": "#2a2c42",
         "color_scheme": "",
         "padding_top": 0,
         "padding_bottom": 12
+      }
+    },
+    "how_it_works_steps_XANVDY": {
+      "type": "how-it-works-steps",
+      "blocks": {
+        "step_YYYPbz": {
+          "type": "step",
+          "settings": {
+            "step_number": "1",
+            "title": "Vælg din stil",
+            "text_1": "Hver t-shirt hjælper os med at give 10 måltider til forladte killinger.",
+            "text_2": "Mange kunder bestiller et par stykker for at dele med venner og hjælpe os med at give endnu flere måltider.",
+            "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/circleremera.png?v=1781830560"
+          }
+        },
+        "step_tWq83E": {
+          "type": "step",
+          "settings": {
+            "step_number": "2",
+            "title": "Vi bringer måltiderne ud",
+            "text_1": "Vi samarbejder med betroede lokale internater og koordinerer med vores frivillige fodringsteam.",
+            "text_2": "Dit køb hjælper os med at levere mad til nødstedte katte gennem dem, der ved præcis, hvor de venter.",
+            "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/Logo_KittyKloset_printed_on_tube_202606191255.png?v=1781884657"
+          }
+        },
+        "step_AhCPM4": {
+          "type": "step",
+          "settings": {
+            "step_number": "3",
+            "title": "Månedlige billedopdateringer",
+            "text_1": "Hver måned modtager du billeder fra vores fodringsindsatser.",
+            "text_2": "Billederne fanger ægte øjeblikke fra felten og deles med dig hver eneste måned.",
+            "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/pinky_1.png?v=1781831026"
+          }
+        }
+      },
+      "block_order": [
+        "step_YYYPbz",
+        "step_tWq83E",
+        "step_AhCPM4"
+      ],
+      "name": "Sådan fungerer det",
+      "settings": {
+        "heading": "Hvordan dit køb hjælper med at give måltider",
+        "heading_highlight": "i 3 enkle trin",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     }
   },
@@ -222,6 +269,7 @@
     "impact_tracker",
     "related_products",
     "sticky_atc",
-    "mission_story_WrwPzC"
+    "mission_story_WrwPzC",
+    "how_it_works_steps_XANVDY"
   ]
 }
