@@ -29,6 +29,7 @@
   assign money_price = price | money
   assign money_price_min = price_min | money
   assign money_price_max = price_max | money
+  assign price_from_prefix = ''
   if settings.currency_code_enabled
     assign money_price = price | money_with_currency
     assign money_price_min = price_min | money_with_currency
@@ -36,7 +37,7 @@
   endif
 
   if target == product and product.price_varies
-    assign money_price = 'products.product.price.from_price_html' | t: price: money_price
+    assign price_from_prefix = 'products.product.price.from_price_html' | t: price: '' | strip
   endif
 -%}
 
@@ -86,7 +87,10 @@
         {%- else -%}
           <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
           <span class="price-item price-item--regular">
-            {{ money_price }}
+            {%- if price_from_prefix != blank -%}
+              <span class="price-item__from">{{ price_from_prefix }}</span>
+            {%- endif -%}
+            <span class="price-item__amount">{{ money_price }}</span>
           </span>
         {%- endif -%}
       </div>
@@ -105,7 +109,10 @@
         {%- endunless -%}
         <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
         <span class="price-item price-item--sale price-item--last">
-          {{ money_price }}
+          {%- if price_from_prefix != blank -%}
+            <span class="price-item__from">{{ price_from_prefix }}</span>
+          {%- endif -%}
+          <span class="price-item__amount">{{ money_price }}</span>
         </span>
       </div>
       {%- if product.selected_or_first_available_variant.unit_price_measurement -%}

@@ -132,9 +132,9 @@
                   {%- if settings.card_free_shipping_icon != blank -%}
                     {{ settings.card_free_shipping_icon | image_url: width: 30 | image_tag: style: 'width: 14px; height: 14px; object-fit: contain;' }}
                   {%- else -%}
-                    <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                       <rect x="1" y="3" width="15" height="13"/>
-                      <polygon points="16 8 20 8 23 11 23 16 16 8"/>
+                      <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
                       <circle cx="5.5" cy="18.5" r="2.5"/>
                       <circle cx="18.5" cy="18.5" r="2.5"/>
                     </svg>
@@ -178,16 +178,14 @@
               </a>
             </h3>
             <div class="card-information">
-              {%- if show_vendor or card_product.vendor != blank -%}
-                <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
-                <div class="caption-with-letter-spacing light">{{ card_product.vendor | default: shop.name }}</div>
+              <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
+              <div class="caption-with-letter-spacing light">{{ card_product.vendor | default: shop.name }}</div>
+
+              {%- if block.settings.description != blank -%}
+                <span class="caption-large light">{{ block.settings.description | escape }}</span>
               {%- endif -%}
 
-              <span class="caption-large light">{{ block.settings.description | escape }}</span>
-
-              {%- if show_rating -%}
-                {% render 'product-review-badge', product: card_product %}
-              {%- endif -%}
+              {% render 'product-review-badge', product: card_product %}
 
               {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
               {%- if card_product.quantity_price_breaks_configured? -%}
