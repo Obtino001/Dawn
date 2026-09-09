@@ -1876,11 +1876,6 @@ h6,
   color: #6B7088;
 }
 
-/* Custom Global Overrides for Light Font Weight and Section Spacing */
-*:not(svg):not(path):not(circle):not(use):not(g) {
-  font-weight: 300;
-}
-
 .title-wrapper-with-link,
 .collection__title.title-wrapper,
 .collection__title {
