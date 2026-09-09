@@ -35,7 +35,7 @@
           "type": "free_shipping_badge",
           "settings": {
             "badge_highlight": "GRATIS fragt",
-            "badge_text": "\u2014 kun p\u00e5 denne side"
+            "badge_text": "— kun på denne side"
           }
         },
         "variant_picker": {
@@ -48,8 +48,8 @@
         "perks": {
           "type": "perks_list",
           "settings": {
-            "perk_1": "Hurtig, p\u00e5lidelig sporet levering",
-            "perk_2": "10 m\u00e5ltider doneret pr. bestilt vare",
+            "perk_1": "Hurtig, pålidelig sporet levering",
+            "perk_2": "10 måltider doneret pr. bestilt vare",
             "perk_3": "30 dages fuld tilfredshedsgaranti"
           }
         },
@@ -61,13 +61,16 @@
           "type": "buy_buttons",
           "settings": {
             "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true
+            "show_gift_card_recipient": true,
+            "show_rating": false
           }
         },
         "accordion_sizing": {
           "type": "custom_accordion",
           "settings": {
-            "heading": "Beskrivelse og st\u00f8rrelsesguide",
+            "heading": "Beskrivelse og størrelsesguide",
+            "content": "",
+            "page": "",
             "open_by_default": true
           }
         },
@@ -75,6 +78,8 @@
           "type": "custom_accordion",
           "settings": {
             "heading": "Fragt og levering",
+            "content": "",
+            "page": "",
             "open_by_default": false
           }
         },
@@ -82,6 +87,8 @@
           "type": "custom_accordion",
           "settings": {
             "heading": "Materialer og vaskeanvisning",
+            "content": "",
+            "page": "",
             "open_by_default": false
           }
         },
@@ -89,6 +96,8 @@
           "type": "custom_accordion",
           "settings": {
             "heading": "Retur og ombytning",
+            "content": "",
+            "page": "",
             "open_by_default": false
           }
         },
@@ -126,7 +135,7 @@
         "media_size": "large",
         "constrain_to_viewport": true,
         "media_fit": "contain",
-        "gallery_layout": "stacked",
+        "gallery_layout": "thumbnail_slider",
         "mobile_thumbnails": "show",
         "media_position": "left",
         "image_zoom": "lightbox",
@@ -139,18 +148,18 @@
     "impact_tracker": {
       "type": "impact-tracker",
       "settings": {
-        "crisis_badge_text": "Akut f\u00f8devarekrise",
-        "goal_title": "72-timers fodringsm\u00e5l",
+        "crisis_badge_text": "Akut fødevarekrise",
+        "goal_title": "72-timers fodringsmål",
         "funded_count": "3,320",
-        "funded_label": "M\u00e5ltider doneret hidtil",
+        "funded_label": "Måltider doneret hidtil",
         "needed_count": "6,680",
-        "needed_label": "M\u00e5ltider der stadig mangler",
+        "needed_label": "Måltider der stadig mangler",
         "goal_count": "10,000",
-        "goal_label": "Akut m\u00e5l",
+        "goal_label": "Akut mål",
         "progress_percent": 33,
-        "lead_text": "Hver t-shirt tilf\u00f8jer 10 m\u00e5ltider til dette m\u00e5l.",
-        "sub_text": "N\u00e5r vi n\u00e5r 10.000 m\u00e5ltider, rykker vores frivillige straks ud til de mest kritiske internater f\u00f8rst.",
-        "note_text": "Hvert m\u00e5ltid spores og verificeres af vores frivillige team i felten.",
+        "lead_text": "Hver t-shirt tilføjer 10 måltider til dette mål.",
+        "sub_text": "Når vi når 10.000 måltider, rykker vores frivillige straks ud til de mest kritiske internater først.",
+        "note_text": "Hvert måltid spores og verificeres af vores frivillige team i felten.",
         "color_scheme": "scheme-1",
         "padding_top": 24,
         "padding_bottom": 16
@@ -162,22 +171,28 @@
         "step_1": {
           "type": "column",
           "settings": {
-            "title": "1. V\u00e6lg din stil",
-            "text": "<p>Hver t-shirt hj\u00e6lper os med at give 10 m\u00e5ltider til forladte killinger. Mange kunder bestiller flere for at dele med venner og hj\u00e6lpe os med at donere endnu flere m\u00e5ltider.</p>"
+            "title": "1. Vælg din stil",
+            "text": "<p>Hver t-shirt hjælper os med at give 10 måltider til forladte killinger. Mange kunder bestiller flere for at dele med venner og hjælpe os med at donere endnu flere måltider.</p>",
+            "link_label": "",
+            "link": ""
           }
         },
         "step_2": {
           "type": "column",
           "settings": {
-            "title": "2. Vi s\u00f8rger for maden",
-            "text": "<p>Vi samarbejder med betroede lokale redningsgrupper og frivillige. Dit k\u00f8b hj\u00e6lper os med at f\u00e5 mad ud til katte i n\u00f8d via de mennesker, der ved pr\u00e6cis, hvor de venter.</p>"
+            "title": "2. Vi sørger for maden",
+            "text": "<p>Vi samarbejder med betroede lokale redningsgrupper og frivillige. Dit køb hjælper os med at få mad ud til katte i nød via de mennesker, der ved præcis, hvor de venter.</p>",
+            "link_label": "",
+            "link": ""
           }
         },
         "step_3": {
           "type": "column",
           "settings": {
-            "title": "3. M\u00e5nedlige fotoupdates",
-            "text": "<p>Hver m\u00e5ned modtager du billeder fra vores hj\u00e6lpeindsatser. Disse billeder fanger \u00e6gte \u00f8jeblikke fra hverdagen, delt med dig hver m\u00e5ned.</p>"
+            "title": "3. Månedlige fotoupdates",
+            "text": "<p>Hver måned modtager du billeder fra vores hjælpeindsatser. Disse billeder fanger ægte øjeblikke fra hverdagen, delt med dig hver måned.</p>",
+            "link_label": "",
+            "link": ""
           }
         }
       },
@@ -187,10 +202,12 @@
         "step_3"
       ],
       "settings": {
-        "title": "S\u00e5dan hj\u00e6lper dit k\u00f8b med at give mad i 3 enkle trin",
+        "title": "Sådan hjælper dit køb med at give mad i 3 enkle trin",
         "heading_size": "h1",
         "image_width": "full",
         "image_ratio": "adapt",
+        "button_label": "Knaptekst",
+        "button_link": "",
         "columns_desktop": 3,
         "column_alignment": "left",
         "background_style": "none",
@@ -207,7 +224,7 @@
         "caption": {
           "type": "caption",
           "settings": {
-            "caption": "Vores l\u00f8fte",
+            "caption": "Vores løfte",
             "text_style": "uppercase",
             "text_size": "small"
           }
@@ -215,14 +232,15 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Hvert k\u00f8b hj\u00e6lper os med at give 10 m\u00e5ltider til forladte killinger",
+            "heading": "Hvert køb hjælper os med at give 10 måltider til forladte killinger",
             "heading_size": "h1"
           }
         },
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Hver dag sulter herrel\u00f8se killinger p\u00e5 gaden \u2014 kolde, bange og uden nogen at regne med.</p><p>Hver ordre du afgiver, hj\u00e6lper med at \u00e6ndre det. Vi samarbejder med lokale redningsorganisationer for at forvandle dit k\u00f8b til rigtige m\u00e5ltider til katte i n\u00f8d.</p><p><strong>600.000+</strong> m\u00e5ltider finansieret af vores f\u00e6llesskab \u2014 og vi t\u00e6ller stadig.</p>"
+            "text": "<p>Hver dag sulter herreløse killinger på gaden — kolde, bange og uden nogen at regne med.</p><p>Hver ordre du afgiver, hjælper med at ændre det. Vi samarbejder med lokale redningsorganisationer for at forvandle dit køb til rigtige måltider til katte i nød.</p><p><strong>600.000+</strong> måltider finansieret af vores fællesskab — og vi tæller stadig.</p>",
+            "text_style": "body"
           }
         }
       },
@@ -235,21 +253,22 @@
         "height": "adapt",
         "desktop_image_width": "medium",
         "layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
         "desktop_content_position": "middle",
         "desktop_content_alignment": "left",
-        "content_layout": "no-overlap",
+        "mobile_content_alignment": "left",
         "section_color_scheme": "scheme-1",
         "color_scheme": "scheme-1",
-        "image_behavior": "none",
-        "mobile_content_alignment": "left",
         "padding_top": 24,
         "padding_bottom": 24
       }
     },
     "related_products": {
       "type": "related-products",
+      "disabled": true,
       "settings": {
-        "heading": "Du vil m\u00e5ske ogs\u00e5 synes om",
+        "heading": "Du vil måske også synes om",
         "heading_size": "h2",
         "products_to_show": 4,
         "columns_desktop": 4,
@@ -267,8 +286,8 @@
     "sticky_atc": {
       "type": "sticky-atc",
       "settings": {
-        "promo_text": "GRATIS FRAGT P\u00c5 DENNE ORDRE",
-        "button_text": "L\u00e6g i kurv"
+        "promo_text": "GRATIS FRAGT PÅ DENNE ORDRE",
+        "button_text": "Læg i kurv"
       }
     }
   },
