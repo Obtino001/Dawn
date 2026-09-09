@@ -2170,6 +2170,54 @@ h6,
   margin-bottom: 40px !important;
 }
 
+/* Product Card Styling to match Image 1 */
+.card-wrapper .card__heading,
+.card-wrapper .card__heading a {
+  font-size: 15px !important;
+  color: #2a2c42 !important;
+  margin-bottom: 2px !important;
+}
+
+.card-wrapper .caption-with-letter-spacing {
+  font-size: 10px !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+  color: #7f86a0 !important;
+  margin-top: 4px !important;
+  margin-bottom: 6px !important;
+}
+
+.card-wrapper .price,
+.card-wrapper .price__sale {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin-top: 8px !important;
+}
+
+.card-wrapper .price-item--regular {
+  font-size: 11px !important;
+  color: #b0b5c9 !important;
+}
+s.price-item--regular {
+  text-decoration: line-through !important;
+}
+
+.card-wrapper .price-item--sale,
+.card-wrapper .price__regular .price-item--regular {
+  font-size: 14px !important;
+  color: #000000 !important;
+}
+
+.card-wrapper .rating-star {
+  color: #6c72e0 !important;
+}
+.card-wrapper .rating-text {
+  font-size: 12px !important;
+  color: #6b7088 !important;
+}
+
 .TotalBlock .Price {
   color: #6C72E0;
 }
