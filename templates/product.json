@@ -15,7 +15,7 @@
         "vendor": {
           "type": "text",
           "settings": {
-            "text": "SHOP MIAV!",
+            "text": "{{ product.vendor }}",
             "text_style": "uppercase"
           }
         },
@@ -31,6 +31,10 @@
             "rating_label": "anmeldelser"
           }
         },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
         "free_shipping": {
           "type": "free_shipping_badge",
           "settings": {
@@ -38,15 +42,16 @@
             "badge_text": "— kun på denne side"
           }
         },
-        "price": {
-          "type": "price",
-          "settings": {}
-        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
             "picker_type": "button",
-            "swatch_shape": "circle"
+            "swatch_shape": "circle",
+            "show_size_chart": true,
+            "size_chart_label": "Størrelsesguide",
+            "size_chart_title": "Størrelsesguide",
+            "size_chart_content": "",
+            "size_chart_page": ""
           }
         },
         "perks": {
@@ -65,39 +70,54 @@
           "type": "buy_buttons",
           "settings": {
             "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true
+            "show_gift_card_recipient": true,
+            "show_rating": false
           }
         },
-        "accordion_mission": {
+        "accordion_sizing": {
           "type": "custom_accordion",
           "settings": {
-            "heading": "Our Mission",
-            "content": "<p>Between 2.8 and 3 million homeless cats enter shelters every year — many with no resources, in harsh conditions. We're a small group of cat lovers turning a portion of every sale into food and care for kittens abandoned on the streets. Every order helps give them the love they deserve.</p>",
+            "heading": "Beskrivelse og størrelsesguide",
+            "content": "",
+            "page": "",
+            "open_by_default": true
+          }
+        },
+        "accordion_shipping": {
+          "type": "custom_accordion",
+          "settings": {
+            "heading": "Fragt og levering",
+            "content": "",
+            "page": "",
             "open_by_default": false
           }
         },
-        "accordion_guarantee": {
+        "accordion_materials": {
           "type": "custom_accordion",
           "settings": {
-            "heading": "30-Day Love-It Guarantee",
-            "content": "<p>Wear your tee for a full 30 days. If it's not everything you hoped, send it back for a complete refund — no questions, no hassle.</p><p>Your happiness matters to us as much as the kittens you're helping feed.</p>",
+            "heading": "Materialer og vaskeanvisning",
+            "content": "",
+            "page": "",
             "open_by_default": false
           }
         },
-        "accordion_help": {
+        "accordion_returns": {
           "type": "custom_accordion",
           "settings": {
-            "heading": "Does my purchase really help?",
-            "content": "<p>Yes — every order directly helps feed cats in need.</p><ul class=\"kk-acc__check\"><li>Trusted by thousands of cat lovers worldwide</li><li>600,000+ meals funded so far</li><li>Real photos shared from our feeding operations</li><li>Genuine reviews from real customers</li></ul><p>We're a small, passionate team with a big mission. Every tee provides 10 meals to abandoned kittens — and you'll get your first photos of the impact within 30 days.</p><p>Need the details on shipping, tracking, and how it all works? Say hi here: <a href=\"mailto:support@kittyklosetco.com\">support@kittyklosetco.com</a>.</p>",
+            "heading": "Retur og ombytning",
+            "content": "",
+            "page": "",
             "open_by_default": false
           }
         },
-        "accordion_about": {
-          "type": "custom_accordion",
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
           "settings": {
-            "heading": "About This Tee",
-            "content": "<p>Perfect for all cat lovers, this design has been hand-printed to give the print great depth and texture.</p><ul class=\"kk-acc__check\"><li>Hand printed</li><li>100% Cotton</li><li>Portions of each sale go directly to cat shelters</li></ul><p>Comfortable enough to get you through the day, this t-shirt design will surely turn heads and get smiles from friends and family!</p>",
-            "open_by_default": false
+            "share_label": "Share"
           }
         }
       },
@@ -105,16 +125,18 @@
         "vendor",
         "title",
         "rating",
-        "free_shipping",
         "price",
+        "free_shipping",
         "variant_picker",
         "perks",
         "quantity_selector",
         "buy_buttons",
-        "accordion_mission",
-        "accordion_guarantee",
-        "accordion_help",
-        "accordion_about"
+        "accordion_sizing",
+        "accordion_shipping",
+        "accordion_materials",
+        "accordion_returns",
+        "description",
+        "share"
       ],
       "settings": {
         "enable_sticky_info": true,
@@ -128,74 +150,13 @@
         "image_zoom": "lightbox",
         "hide_variants": true,
         "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 0
+        "padding_top": 28,
+        "padding_bottom": 24
       }
     },
     "impact_tracker": {
       "type": "impact-tracker",
-      "settings": {
-        "crisis_badge_text": "Akut fødevarekrise",
-        "goal_title": "72-timers fodringsmål",
-        "funded_count": "3,320",
-        "funded_label": "Måltider doneret hidtil",
-        "needed_count": "6,680",
-        "needed_label": "Måltider der stadig mangler",
-        "goal_count": "10,000",
-        "goal_label": "Akut mål",
-        "progress_percent": 33,
-        "lead_text": "Hver t-shirt tilføjer 10 måltider til dette mål.",
-        "sub_text": "Når vi når 10.000 måltider, rykker vores frivillige straks ud til de mest kritiske internater først.",
-        "note_text": "Hvert måltid spores og verificeres af vores frivillige team i felten.",
-        "color_scheme": "scheme-1",
-        "padding_top": 24,
-        "padding_bottom": 16
-      }
-    },
-    "how_it_works_steps": {
-      "type": "how-it-works-steps",
-      "blocks": {
-        "step_1": {
-          "type": "step",
-          "settings": {
-            "title": "1. V\u00e6lg din stil",
-            "text": "<p>Hver t-shirt hj\u00e6lper os med at give 10 m\u00e5ltider til forladte killinger. Mange kunder bestiller flere for at dele med venner og hj\u00e6lpe os med at donere endnu flere m\u00e5ltider.</p>"
-          }
-        },
-        "step_2": {
-          "type": "step",
-          "settings": {
-            "title": "2. Vi s\u00f8rger for maden",
-            "text": "<p>Vi samarbejder med betroede lokale redningsgrupper og frivillige. Dit k\u00f8b hj\u00e6lper os med at f\u00e5 mad ud til katte i n\u00f8d via de mennesker, der ved pr\u00e6cis, hvor de venter.</p>"
-          }
-        },
-        "step_3": {
-          "type": "step",
-          "settings": {
-            "title": "3. M\u00e5nedlige fotoupdates",
-            "text": "<p>Hver m\u00e5ned modtager du billeder fra vores hj\u00e6lpeindsatser. Disse billeder fanger \u00e6gte \u00f8jeblikke fra hverdagen, delt med dig hver m\u00e5ned.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "step_1",
-        "step_2",
-        "step_3"
-      ],
-      "settings": {
-        "title": "S\u00e5dan hj\u00e6lper dit k\u00f8b med at give mad i 3 enkle trin",
-        "heading_size": "h1",
-        "image_width": "full",
-        "image_ratio": "adapt",
-        "columns_desktop": 3,
-        "column_alignment": "left",
-        "background_style": "none",
-        "color_scheme": "scheme-1",
-        "columns_mobile": "1",
-        "swipe_on_mobile": false,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
+      "settings": {}
     },
     "related_products": {
       "type": "related-products",
@@ -219,15 +180,23 @@
     "sticky_atc": {
       "type": "sticky-atc",
       "settings": {
-        "promo_text": "GRATIS FRAGT PÅ DENNE ORDRE",
-        "button_text": "Læg i kurv"
+        "button_text": "Læg i kurv",
+        "qty_label": "Antal",
+        "sold_out_text": "Udsolgt",
+        "adding_text": "Tilføjer...",
+        "added_text": "Tilføjet ✓",
+        "unavailable_text": "Ikke tilgængelig",
+        "tier_2_pct": 15,
+        "tier_2_label": "spar 15%",
+        "tier_3_pct": 20,
+        "tier_3_label": "spar 20%",
+        "scroll_percent": 12
       }
     }
   },
   "order": [
     "main",
     "impact_tracker",
-    "how_it_works_steps",
     "related_products",
     "sticky_atc"
   ]
