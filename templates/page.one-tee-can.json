@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "page-one-tee-can",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -1,0 +1,859 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="color-background-1 gradient">
+  <div class="section-{{ section.id }}-padding">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+      <symbol id="comPaw" viewBox="0 0 24 24"><g fill="currentColor"><circle cx="4.9" cy="10.6" r="2.1"></circle><circle cx="9.1" cy="6.4" r="2.3"></circle><circle cx="14.9" cy="6.4" r="2.3"></circle><circle cx="19.1" cy="10.6" r="2.1"></circle><path d="M12 10.1c2.6 0 4.5 1.9 5.5 3.8.9 1.7.7 4-1.3 5-1.6.9-2.9-.1-4.2-.1s-2.6 1-4.2.1c-2-1-2.2-3.3-1.3-5 1-1.9 2.9-3.8 5.5-3.8z"></path></g></symbol>
+      <symbol id="comBowl" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18"></path><path d="M4 12a8 8 0 0 0 16 0"></path><path d="M9.5 8c0-1.3 1-1.7 1-3M14.5 8c0-1.3 1-1.7 1-3"></path></g></symbol>
+      <symbol id="comCam" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-2.5h6L17 8h3a1.5 1.5 0 0 1 1.5 1.5V18a1.5 1.5 0 0 1-1.5 1.5H4A1.5 1.5 0 0 1 2.5 18V9.5A1.5 1.5 0 0 1 4 8z"></path><circle cx="12" cy="13.4" r="3.4"></circle></g></symbol>
+      <symbol id="comHeart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 21 C12 21 4 14.5 4 8.8 C4 5.5 6.5 4 8.7 4.6 C10.2 5 12 7 12 7 C12 7 13.8 5 15.3 4.6 C17.5 4 20 5.5 20 8.8 C20 14.5 12 21 12 21 Z"></path></symbol>
+      <symbol id="comStar" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.5 14.9 8.6 21.5 9.4 16.7 14 18 20.6 12 17.3 6 20.6 7.3 14 2.5 9.4 9.1 8.6z"></path></symbol>
+    </svg>
+    <div class="kk-com">
+      <!-- ═══ HERO ═══ -->
+      <section class="kk-com__hero">
+        <div class="kk-com__hero-inner">
+          <span class="kk-com__chip"><svg class="kk-com__ic"><use href="#comPaw"></use></svg> {{ section.settings.hero_chip }}</span>
+          <h1 class="kk-com__h1">{{ section.settings.hero_heading }}</h1>
+          <p class="kk-com__hero-sub">{{ section.settings.hero_sub }}</p>
+          <a class="kk-com__btn kk-com__btn--light" href="{{ section.settings.hero_btn_link }}">{{ section.settings.hero_btn_text }}</a>
+          <p class="kk-com__hero-proof"><span class="kk-com__stars">★★★★★</span> {{ section.settings.hero_proof }}</p>
+        </div>
+        <div class="kk-com__wave" aria-hidden="true"></div>
+      </section>
+      
+      <!-- ═══ WHERE THE MEALS GO — photo strip ═══ -->
+      <div class="kk-com__wrap">
+        <div class="kk-com__strip">
+          <figure class="kk-com__ph">
+            {%- if section.settings.strip_img_1 != blank -%}
+              {{ section.settings.strip_img_1 | image_url: width: 500 | image_tag: loading: 'lazy' }}
+            {%- else -%}
+              <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/feeding-operations-06_73859cf6-8a46-474c-b76f-e7df7e6dd6e5.jpg?v=1784125700&width=500" alt="Street cats being fed" loading="lazy">
+            {%- endif -%}
+            <span class="kk-com__wm">{{ section.settings.watermark }}</span>
+          </figure>
+          <figure class="kk-com__ph">
+            {%- if section.settings.strip_img_2 != blank -%}
+              {{ section.settings.strip_img_2 | image_url: width: 500 | image_tag: loading: 'lazy' }}
+            {%- else -%}
+              <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/july-2026-02.jpg?v=1784250412&width=500" alt="A busy street feeding spot" loading="lazy">
+            {%- endif -%}
+            <span class="kk-com__wm">{{ section.settings.watermark }}</span>
+          </figure>
+          <figure class="kk-com__ph">
+            {%- if section.settings.strip_img_3 != blank -%}
+              {{ section.settings.strip_img_3 | image_url: width: 500 | image_tag: loading: 'lazy' }}
+            {%- else -%}
+              <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/july-2026-03.jpg?v=1784250412&width=500" alt="Street cats at their feeding corner" loading="lazy">
+            {%- endif -%}
+            <span class="kk-com__wm">{{ section.settings.watermark }}</span>
+          </figure>
+          <figure class="kk-com__ph">
+            {%- if section.settings.strip_img_4 != blank -%}
+              {{ section.settings.strip_img_4 | image_url: width: 500 | image_tag: loading: 'lazy' }}
+            {%- else -%}
+              <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/july-2026-04.jpg?v=1784250412&width=500" alt="Cats at a water bowl in the heat" loading="lazy">
+            {%- endif -%}
+            <span class="kk-com__wm">{{ section.settings.watermark }}</span>
+          </figure>
+        </div>
+        <p class="kk-com__cap">{{ section.settings.strip_caption }}</p>
+
+        <!-- ═══ RESCUE OF THE MONTH ═══ -->
+        <section class="kk-com__rom" aria-label="Rescue of the month">
+          <span class="kk-com__rom-ribbon"><svg class="kk-com__ic"><use href="#comStar"></use></svg> {{ section.settings.rom_ribbon }}</span>
+          <div class="kk-com__rom-card">
+            <div class="kk-com__rom-media">
+              {%- if section.settings.rom_image != blank -%}
+                {{ section.settings.rom_image | image_url: width: 800 | image_tag: loading: 'lazy' }}
+              {%- else -%}
+                <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/sca-hamburger-sun.jpg?v=1788263716" alt="Hamburger Helper" loading="lazy">
+              {%- endif -%}
+            </div>
+            <div class="kk-com__rom-body">
+              <span class="kk-com__eyebrow">{{ section.settings.rom_eyebrow }}</span>
+              <h3 class="kk-com__rom-name">{{ section.settings.rom_name }}</h3>
+              <p class="kk-com__rom-mission">{{ section.settings.rom_mission }}</p>
+              <div class="kk-com__rom-stats">
+                <div class="kk-com__rom-stat"><b>{{ section.settings.rom_stat_1_val }}</b><span>{{ section.settings.rom_stat_1_lbl }}</span></div>
+                <div class="kk-com__rom-stat"><b>{{ section.settings.rom_stat_2_val }}</b><span>{{ section.settings.rom_stat_2_lbl }}</span></div>
+                <div class="kk-com__rom-stat"><b>{{ section.settings.rom_stat_3_val }}</b><span>{{ section.settings.rom_stat_3_lbl }}</span></div>
+              </div>
+              <a class="kk-com__btn" href="{{ section.settings.rom_btn_link }}">{{ section.settings.rom_btn_text }}</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ HISTORY ═══ -->
+        <section class="kk-com__hist" aria-label="Every rescue we have funded">
+          <div class="kk-com__hist-head">
+            <span class="kk-com__eyebrow">{{ section.settings.hist_eyebrow }}</span>
+            <h2 class="kk-com__h2">{{ section.settings.hist_heading }}</h2>
+            <div class="kk-com__div" aria-hidden="true"><span></span><svg class="kk-com__ic"><use href="#comPaw"></use></svg><span></span></div>
+          </div>
+          <div class="kk-com__hist-grid">
+            <!-- Card 1 -->
+            <a class="kk-com__hist-card" href="{{ section.settings.hist_1_link }}">
+              <span class="kk-com__hist-now">Nu</span>
+              <div class="kk-com__hist-media">
+                {%- if section.settings.hist_1_img != blank -%}
+                  {{ section.settings.hist_1_img | image_url: width: 600 | image_tag: loading: 'lazy' }}
+                {%- else -%}
+                  <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/sca-hamburger-sun.jpg?v=1788263716" loading="lazy">
+                {%- endif -%}
+              </div>
+              <div class="kk-com__hist-body">
+                <span class="kk-com__hist-month">{{ section.settings.hist_1_month }}</span>
+                <h3>{{ section.settings.hist_1_name }}</h3>
+                <p>{{ section.settings.hist_1_text }}</p>
+                <span class="kk-com__hist-link">{{ section.settings.hist_link_text }}</span>
+              </div>
+            </a>
+            <!-- Card 2 -->
+            <a class="kk-com__hist-card" href="{{ section.settings.hist_2_link }}">
+              <div class="kk-com__hist-media">
+                {%- if section.settings.hist_2_img != blank -%}
+                  {{ section.settings.hist_2_img | image_url: width: 600 | image_tag: loading: 'lazy' }}
+                {%- else -%}
+                  <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/fieldhaven-kittens-yard.png?v=1786536311" loading="lazy">
+                {%- endif -%}
+              </div>
+              <div class="kk-com__hist-body">
+                <span class="kk-com__hist-month">{{ section.settings.hist_2_month }}</span>
+                <h3>{{ section.settings.hist_2_name }}</h3>
+                <p>{{ section.settings.hist_2_text }}</p>
+                <span class="kk-com__hist-link">{{ section.settings.hist_link_text }}</span>
+              </div>
+            </a>
+            <!-- Card 3 -->
+            <a class="kk-com__hist-card" href="{{ section.settings.hist_3_link }}">
+              <div class="kk-com__hist-media">
+                {%- if section.settings.hist_3_img != blank -%}
+                  {{ section.settings.hist_3_img | image_url: width: 600 | image_tag: loading: 'lazy' }}
+                {%- else -%}
+                  <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/635377675_1224266016513381_4494898379954458675_n.jpg?v=1784720054" loading="lazy">
+                {%- endif -%}
+              </div>
+              <div class="kk-com__hist-body">
+                <span class="kk-com__hist-month">{{ section.settings.hist_3_month }}</span>
+                <h3>{{ section.settings.hist_3_name }}</h3>
+                <p>{{ section.settings.hist_3_text }}</p>
+                <span class="kk-com__hist-link">{{ section.settings.hist_link_text }}</span>
+              </div>
+            </a>
+          </div>
+          <p class="kk-com__hist-note">{{ section.settings.hist_note }}</p>
+        </section>
+
+        <!-- ═══ HOW IT WORKS ═══ -->
+        <section class="kk-com__sec">
+          <div class="kk-com__head">
+            <span class="kk-com__eyebrow">{{ section.settings.how_eyebrow }}</span>
+            <h2 class="kk-com__h2">{{ section.settings.how_heading }}</h2>
+            <div class="kk-com__div" aria-hidden="true"><span></span><svg class="kk-com__ic"><use href="#comPaw"></use></svg><span></span></div>
+          </div>
+          <div class="kk-com__steps">
+            <div class="kk-com__step">
+              <span class="kk-com__step-ic"><svg class="kk-com__ic"><use href="#comHeart"></use></svg><em>1</em></span>
+              <h3>{{ section.settings.how_1_title }}</h3>
+              <p>{{ section.settings.how_1_text }}</p>
+            </div>
+            <div class="kk-com__step">
+              <span class="kk-com__step-ic"><svg class="kk-com__ic"><use href="#comBowl"></use></svg><em>2</em></span>
+              <h3>{{ section.settings.how_2_title }}</h3>
+              <p>{{ section.settings.how_2_text }}</p>
+            </div>
+            <div class="kk-com__step">
+              <span class="kk-com__step-ic"><svg class="kk-com__ic"><use href="#comCam"></use></svg><em>3</em></span>
+              <h3>{{ section.settings.how_3_title }}</h3>
+              <p>{{ section.settings.how_3_text }}</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ WHY APPLY ═══ -->
+        <section class="kk-com__why">
+          <div class="kk-com__head">
+            <span class="kk-com__eyebrow">{{ section.settings.why_eyebrow }}</span>
+            <h2 class="kk-com__h2">{{ section.settings.why_heading }}</h2>
+            <div class="kk-com__div" aria-hidden="true"><span></span><svg class="kk-com__ic"><use href="#comPaw"></use></svg><span></span></div>
+          </div>
+          <ul class="kk-com__ul">
+            <li><span class="kk-com__check" aria-hidden="true"><svg class="kk-com__ic"><use href="#comPaw"></use></svg></span><span>{{ section.settings.why_1_text }}</span></li>
+            <li><span class="kk-com__check" aria-hidden="true"><svg class="kk-com__ic"><use href="#comPaw"></use></svg></span><span>{{ section.settings.why_2_text }}</span></li>
+            <li><span class="kk-com__check" aria-hidden="true"><svg class="kk-com__ic"><use href="#comPaw"></use></svg></span><span>{{ section.settings.why_3_text }}</span></li>
+          </ul>
+          <p class="kk-com__elig">{{ section.settings.why_elig }}</p>
+        </section>
+
+        <!-- ═══ APPLICATION FORM ═══ -->
+        <section class="kk-com__sec" id="comApply">
+          <div class="kk-com__head">
+            <span class="kk-com__eyebrow">{{ section.settings.form_eyebrow }}</span>
+            <h2 class="kk-com__h2">{{ section.settings.form_heading }}</h2>
+            <div class="kk-com__div" aria-hidden="true"><span></span><svg class="kk-com__ic"><use href="#comPaw"></use></svg><span></span></div>
+          </div>
+          <div class="kk-com__card">
+            {%- form 'contact', id: 'contact_form' -%}
+              {%- if form.posted_successfully? -%}
+                <div class="kk-com__ok" tabindex="-1" autofocus>{{ 'templates.contact.form.post_success' | t }}</div>
+              {%- elsif form.errors -%}
+                <div class="kk-com__err">{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</div>
+              {%- endif -%}
+
+              <input type="hidden" name="contact[Application]" value="One Tee Can">
+              <div class="kk-com__form">
+                <label class="kk-com__field"><span>{{ section.settings.f_org }} *</span><input type="text" name="contact[Organization]" required=""></label>
+                <label class="kk-com__field"><span>{{ section.settings.f_country }} *</span>
+                  <select name="contact[Country]" required="">
+                    <option value="">Choose…</option>
+                    <option>United States</option>
+                    <option>United Kingdom</option>
+                    <option>Canada</option>
+                    <option>International (other country)</option>
+                  </select>
+                </label>
+                <label class="kk-com__field"><span>{{ section.settings.f_web }} *</span><input type="url" name="contact[Website]" placeholder="https://" required=""></label>
+                <label class="kk-com__field"><span>{{ section.settings.f_reg }}</span><input type="text" name="contact[Registration number]"></label>
+                <label class="kk-com__field"><span>{{ section.settings.f_name }} *</span><input type="text" name="contact[name]" required=""></label>
+                <label class="kk-com__field"><span>{{ section.settings.f_email }} *</span><input type="email" name="contact[email]" required=""></label>
+                <label class="kk-com__field"><span>{{ section.settings.f_social }}</span><input type="text" name="contact[Social]" placeholder="@yourrescue"></label>
+                <label class="kk-com__field"><span>{{ section.settings.f_cats }}</span><input type="text" name="contact[Cats in care]"></label>
+                <label class="kk-com__field kk-com__field--full"><span>{{ section.settings.f_msg }} *</span><textarea name="contact[body]" rows="5" required=""></textarea></label>
+              </div>
+              <div class="kk-com__submit">
+                <button type="submit" class="kk-com__btn">{{ section.settings.f_btn }}</button>
+                <p class="kk-com__small">{{ section.settings.f_note }}</p>
+              </div>
+            {%- endform -%}
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .kk-com{--kk-acc:#8AA0F2;--kk-acc-deep:#6c72e0;--kk-text:#2a2c42;--kk-muted:#7f86a0;--kk-cream:#f6f5f2;--kk-band:#f4f6ff;--kk-line:#e6e8f5;
+    font-family:'Poppins',system-ui,-apple-system,sans-serif;color:var(--kk-text);line-height:1.7;font-size:17px;
+    width:100vw;max-width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);}
+  .kk-com *{box-sizing:border-box;}
+  .kk-com p{margin:0 0 14px;}
+  .kk-com strong{font-weight:700;color:var(--kk-text);}
+  .kk-com__h1,.kk-com__h2,.kk-com__step h3{font-family:'Baloo 2','Poppins',sans-serif;letter-spacing:0;}
+  .kk-com__ic{width:1em;height:1em;display:inline-block;vertical-align:-.12em;fill:none;}
+  .kk-com__wrap{max-width:900px;margin:0 auto;padding:0 20px;}
+  /* ── hero ── */
+  .kk-com__hero{position:relative;background:linear-gradient(135deg,#93a6f5 0%,#6c72e0 100%);color:#fff;text-align:center;padding:70px 20px 92px;overflow:hidden;}
+  .kk-com__hero::before{content:"";position:absolute;inset:0;opacity:.16;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='%23ffffff'%3E%3Ccircle cx='20' cy='30' r='4'/%3E%3Ccircle cx='30' cy='22' r='4.5'/%3E%3Ccircle cx='42' cy='22' r='4.5'/%3E%3Ccircle cx='52' cy='30' r='4'/%3E%3Cellipse cx='36' cy='40' rx='11' ry='8'/%3E%3C/g%3E%3C/svg%3E");background-size:150px 150px;}
+  .kk-com__hero-inner{position:relative;z-index:1;max-width:680px;margin:0 auto;display:flex;flex-direction:column;align-items:center;}
+  .kk-com__chip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);color:#fff;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:7px 15px;border-radius:999px;margin:0 0 18px;}
+  .kk-com__chip .kk-com__ic{font-size:14px;}
+  .kk-com__h1{color:#fff;font-size:clamp(30px,4vw + 12px,48px);line-height:1.1;font-weight:800;margin:0 0 16px;text-wrap:balance;}
+  .kk-com p.kk-com__hero-sub{max-width:600px;margin:0 0 22px;font-size:clamp(16px,2.2vw,19px);color:#eef0fb;font-weight:500;}
+  .kk-com__hero-inner .kk-com__btn{margin:0;}
+  .kk-com__hero-proof{margin:16px 0 0;font-size:14px;color:#eef0fb;font-weight:500;}
+  .kk-com__stars{color:#ffd76b;letter-spacing:1px;}
+  .kk-com__wave{position:absolute;left:0;right:0;bottom:-1px;height:46px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 46' preserveAspectRatio='none'%3E%3Cpath d='M0,46 C320,6 1120,6 1440,46 L1440,46 L0,46 Z' fill='%23ffffff'/%3E%3C/svg%3E") no-repeat bottom center;background-size:100% 100%;}
+  /* ── buttons ── */
+  .kk-com__btn{display:inline-block;background:var(--kk-acc-deep);color:#fff !important;text-decoration:none;font-weight:700;font-size:16px;border:none;cursor:pointer;padding:15px 34px;border-radius:999px;box-shadow:0 8px 22px rgba(108,114,224,.32);transition:transform .15s ease,background .15s ease;}
+  .kk-com__btn:hover{background:#585ec9;transform:translateY(-2px);}
+  .kk-com__btn--light{background:#fff;color:var(--kk-acc-deep) !important;box-shadow:0 8px 22px rgba(0,0,0,.18);}
+  .kk-com__btn--light:hover{background:#f2f3ff;}
+  /* ── photo strip ── */
+  .kk-com__strip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:-38px auto 0;position:relative;z-index:2;}
+  .kk-com__ph{position:relative;margin:0;border-radius:16px;overflow:hidden;box-shadow:0 14px 34px rgba(42,44,66,.16);aspect-ratio:1/1;background:var(--kk-cream);}
+  .kk-com__ph img{width:100%;height:100%;object-fit:cover;display:block;}
+  .kk-com__wm{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-8deg);font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(13px,3.4vw,17px);color:#fff;opacity:.34;letter-spacing:.02em;text-shadow:0 1px 6px rgba(0,0,0,.4);pointer-events:none;white-space:nowrap;}
+  .kk-com p.kk-com__cap{text-align:center;color:var(--kk-muted);font-size:14px;margin:16px auto 0;max-width:560px;}
+  /* ── rescue of the month ── */
+  .kk-com__rom{margin:46px 0 8px;}
+  .kk-com__rom-ribbon{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,#8AA0F2,#6c72e0);padding:8px 16px;border-radius:999px;box-shadow:0 6px 16px rgba(108,114,224,.28);margin:0 0 -18px 18px;position:relative;z-index:2;}
+  .kk-com__rom-ribbon .kk-com__ic{font-size:14px;fill:currentColor;}
+  .kk-com__rom-card{display:grid;grid-template-columns:minmax(0,300px) 1fr;background:#fff;border:1px solid var(--kk-line);border-radius:22px;overflow:hidden;box-shadow:0 14px 40px rgba(42,44,66,.10);}
+  .kk-com__rom-media{position:relative;min-height:250px;background:var(--kk-band);}
+  .kk-com__rom-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .kk-com__rom-body{padding:28px 30px;}
+  .kk-com__rom-body .kk-com__eyebrow{margin-bottom:5px;}
+  .kk-com__rom-name{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(24px,3vw,30px);line-height:1.1;margin:0 0 10px;}
+  .kk-com p.kk-com__rom-mission{font-size:15px;line-height:1.6;color:#4b5069;margin:0 0 18px;}
+  .kk-com__rom-stats{display:flex;gap:24px;flex-wrap:wrap;padding:14px 0;border-top:1px solid var(--kk-line);border-bottom:1px solid var(--kk-line);margin:0 0 20px;}
+  .kk-com__rom-stat b{display:block;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:22px;color:var(--kk-acc-deep);line-height:1;}
+  .kk-com__rom-stat span{font-size:12px;color:var(--kk-muted);}
+  .kk-com__hist{margin:52px 0 8px;}
+  .kk-com__hist-head{text-align:center;margin:0 0 26px;}
+  .kk-com__hist-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;}
+  .kk-com__hist-card{position:relative;display:flex;gap:0;flex-direction:column;background:#fff;border:1px solid var(--kk-line);border-radius:18px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .16s ease,box-shadow .16s ease;}
+  .kk-com__hist-card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(42,44,66,.12);}
+  .kk-com__hist-now{position:absolute;top:12px;right:12px;z-index:2;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,#8AA0F2,#6c72e0);padding:5px 12px;border-radius:999px;}
+  .kk-com__hist-media{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--kk-band);}
+  .kk-com__hist-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+  .kk-com__hist-body{display:flex;flex-direction:column;flex:1;}
+  .kk-com__hist-body{padding:18px 20px 20px;}
+  .kk-com__hist-month{display:block;font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--kk-acc-deep);margin:0 0 4px;}
+  .kk-com__hist-body h3{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:20px;line-height:1.15;margin:0 0 7px;}
+  .kk-com p.kk-com__hist-note{text-align:center;font-size:13px;color:var(--kk-muted);margin:20px 0 0;}
+  .kk-com__hist-body p{font-size:14px;line-height:1.55;color:#4b5069;margin:0 0 12px;}
+  .kk-com__hist-link{font-size:13.5px;font-weight:700;color:var(--kk-acc-deep);margin-top:auto;}
+  /* ── designed section header ── */
+  .kk-com__sec{padding:52px 0;}
+  .kk-com__why{padding:44px 32px;background:var(--kk-band);border-radius:24px;margin:8px 0;}
+  .kk-com__head{text-align:center;margin:0 0 6px;}
+  .kk-com__eyebrow{display:block;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--kk-acc-deep);margin:0 0 10px;}
+  .kk-com__h2{font-size:clamp(23px,2.4vw,31px);line-height:1.2;font-weight:800;margin:0;text-wrap:balance;}
+  .kk-com__div{display:flex;align-items:center;justify-content:center;gap:14px;color:var(--kk-acc);font-size:20px;margin:14px 0 6px;}
+  .kk-com__div span{height:2px;width:60px;background:var(--kk-line);border-radius:2px;}
+  /* ── steps ── */
+  .kk-com__steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:26px;}
+  .kk-com__step{background:#fff;border:1px solid var(--kk-line);border-radius:20px;padding:28px 24px;text-align:center;box-shadow:0 6px 22px rgba(42,44,66,.06);transition:transform .18s ease,box-shadow .18s ease;}
+  .kk-com__step:hover{transform:translateY(-4px);box-shadow:0 18px 38px rgba(42,44,66,.12);}
+  .kk-com__step-ic{position:relative;display:inline-flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:18px;background:linear-gradient(135deg,#eef1ff,#dfe4fb);color:var(--kk-acc-deep);font-size:28px;margin-bottom:14px;}
+  .kk-com__step-ic em{position:absolute;top:-8px;right:-8px;width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--kk-acc),var(--kk-acc-deep));color:#fff;font-style:normal;font-family:'Baloo 2',sans-serif;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(108,114,224,.4);}
+  .kk-com__step h3{font-size:18px;font-weight:700;margin:0 0 6px;}
+  .kk-com__step p{font-size:14.5px;color:var(--kk-muted);margin:0;}
+  /* ── why apply list ── */
+  .kk-com__ul{list-style:none;margin:24px auto 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .kk-com__ul li{display:flex;flex-direction:column;gap:10px;font-size:15px;background:#fff;border:1px solid var(--kk-line);border-radius:16px;padding:20px 18px;}
+  .kk-com__check{flex:0 0 auto;width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--kk-acc),var(--kk-acc-deep));color:#fff;font-size:16px;box-shadow:0 5px 12px rgba(108,114,224,.28);}
+  .kk-com p.kk-com__elig{text-align:center;max-width:600px;margin:22px auto 0;font-size:14px;color:var(--kk-muted);}
+  /* ── form ── */
+  .kk-com__card{background:#fff;border:1px solid var(--kk-line);border-radius:22px;padding:30px;box-shadow:0 14px 40px rgba(42,44,66,.08);margin-top:26px;}
+  .kk-com__form{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 20px;}
+  .kk-com__field{display:flex;flex-direction:column;gap:6px;}
+  .kk-com__field--full{grid-column:1 / -1;}
+  .kk-com__field span{font-weight:600;font-size:14px;color:var(--kk-text);}
+  .kk-com__field input,.kk-com__field select,.kk-com__field textarea{font-family:'Poppins',sans-serif;font-size:15px;color:var(--kk-text);background:#fff;border:1.5px solid var(--kk-line);border-radius:12px;padding:12px 14px;width:100%;}
+  .kk-com__field input:focus,.kk-com__field select:focus,.kk-com__field textarea:focus{outline:none;border-color:var(--kk-acc-deep);box-shadow:0 0 0 3px rgba(108,114,224,.14);}
+  .kk-com__field textarea{resize:vertical;}
+  .kk-com__submit{text-align:center;}
+  .kk-com p.kk-com__small{font-size:13px;color:var(--kk-muted);margin:14px auto 0;max-width:460px;}
+  .kk-com__ok{background:#eafaf0;border:1px solid #b9e6c9;color:#1a8a5a;border-radius:14px;padding:16px 18px;font-weight:600;margin:0 0 20px;}
+  .kk-com__err{background:#fdecec;border:1px solid #f4c7c7;color:#c0392b;border-radius:14px;padding:14px 18px;margin:0 0 16px;}
+  @media (max-width:760px){
+    .kk-com{font-size:16px;}
+    .kk-com__hero{padding:54px 18px 74px;}
+    .kk-com__strip{grid-template-columns:repeat(2,1fr);gap:10px;margin-top:-30px;}
+    .kk-com__rom-card{grid-template-columns:1fr;}
+    .kk-com__rom-media{min-height:0;aspect-ratio:16/10;}
+    .kk-com__rom-media img{position:static;}
+    .kk-com__rom-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+    .kk-com__rom-stat b{font-size:19px;}
+    .kk-com__rom-stat span{font-size:10.5px;line-height:1.25;display:block;}
+    .kk-com__steps{grid-template-columns:1fr;gap:14px;}
+    .kk-com__why{padding:30px 20px;}
+    .kk-com__ul{grid-template-columns:1fr;gap:12px;}
+    .kk-com__card{padding:20px;}
+    .kk-com__form{grid-template-columns:1fr;gap:13px;}
+    .kk-com__btn{width:100%;text-align:center;}
+  }
+  /* solo esconder el título de página duplicado — NO tocar header/footer del theme */
+  .shopify-section:has(.kk-com) .main-page-title,
+  .main-page-title{display:none !important;}
+</style>
+
+{% schema %}
+{
+  "name": "One Tee Can",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero Section"
+    },
+    {
+      "type": "text",
+      "id": "hero_chip",
+      "label": "Chip Text",
+      "default": "One Tee Can"
+    },
+    {
+      "type": "text",
+      "id": "hero_heading",
+      "label": "Hero Heading",
+      "default": "Hver t-shirt brødføder en kat.<br>Hver måned viser vi dig hvilke."
+    },
+    {
+      "type": "textarea",
+      "id": "hero_sub",
+      "label": "Hero Subtitle",
+      "default": "Vi vælger ét rigtigt internat, finansierer en måneds måltider til deres katte, og deler præcis hvor måltiderne gik hen med hele vores fællesskab."
+    },
+    {
+      "type": "text",
+      "id": "hero_btn_text",
+      "label": "Button Text",
+      "default": "Få dit internat finansieret →"
+    },
+    {
+      "type": "url",
+      "id": "hero_btn_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "text",
+      "id": "hero_proof",
+      "label": "Proof Text",
+      "default": "50.000+ kattemennesker · 600.000+ måltider givet"
+    },
+    {
+      "type": "header",
+      "content": "Photo Strip"
+    },
+    {
+      "type": "image_picker",
+      "id": "strip_img_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "strip_img_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "strip_img_3",
+      "label": "Image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "strip_img_4",
+      "label": "Image 4"
+    },
+    {
+      "type": "text",
+      "id": "watermark",
+      "label": "Watermark",
+      "default": "KittyKloset"
+    },
+    {
+      "type": "text",
+      "id": "strip_caption",
+      "label": "Caption below strip",
+      "default": "Rigtige billeder fra fodringsrunderne, som dine ordrer gør mulige."
+    },
+    {
+      "type": "header",
+      "content": "Rescue of the Month"
+    },
+    {
+      "type": "text",
+      "id": "rom_ribbon",
+      "label": "Ribbon Text",
+      "default": "Månedens Internat"
+    },
+    {
+      "type": "image_picker",
+      "id": "rom_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "rom_eyebrow",
+      "label": "Eyebrow",
+      "default": "Hvor en del af din ordre går hen i denne måned"
+    },
+    {
+      "type": "text",
+      "id": "rom_name",
+      "label": "Name",
+      "default": "Stray Cat Alliance"
+    },
+    {
+      "type": "textarea",
+      "id": "rom_mission",
+      "label": "Mission Text",
+      "default": "Et Los Angeles-internat, der går bevidst ind på byens internater med højest aflivningsrate og henter de katte, der har mindst tid. I denne måned finansierer dine t-shirts dyrlægebehandling, plejefamilier og uger med tålmodighed, som en kat som Hamburger Helper havde brug for at overleve."
+    },
+    {
+      "type": "text",
+      "id": "rom_stat_1_val",
+      "label": "Stat 1 Value",
+      "default": "Internatredninger"
+    },
+    {
+      "type": "text",
+      "id": "rom_stat_1_lbl",
+      "label": "Stat 1 Label",
+      "default": "fra internater med højest aflivningsrate"
+    },
+    {
+      "type": "text",
+      "id": "rom_stat_2_val",
+      "label": "Stat 2 Value",
+      "default": "Fuld behandling"
+    },
+    {
+      "type": "text",
+      "id": "rom_stat_2_lbl",
+      "label": "Stat 2 Label",
+      "default": "operation, vacciner, behandling"
+    },
+    {
+      "type": "text",
+      "id": "rom_stat_3_val",
+      "label": "Stat 3 Value",
+      "default": "Plejefamilie"
+    },
+    {
+      "type": "text",
+      "id": "rom_stat_3_lbl",
+      "label": "Stat 3 Label",
+      "default": "tid til at hele, derefter et hjem"
+    },
+    {
+      "type": "text",
+      "id": "rom_btn_text",
+      "label": "Button Text",
+      "default": "Læs deres historie & se kattene →"
+    },
+    {
+      "type": "url",
+      "id": "rom_btn_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "History Section"
+    },
+    {
+      "type": "text",
+      "id": "hist_eyebrow",
+      "label": "Section Eyebrow",
+      "default": "Hvert internat vi har finansieret"
+    },
+    {
+      "type": "text",
+      "id": "hist_heading",
+      "label": "Section Heading",
+      "default": "Ét internat om måneden, officielt"
+    },
+    {
+      "type": "text",
+      "id": "hist_link_text",
+      "label": "Card Link Text",
+      "default": "Læs deres historie →"
+    },
+    {
+      "type": "text",
+      "id": "hist_note",
+      "label": "Bottom Note",
+      "default": "Hvert internat vi finansierer får en historie her, med deres rigtige billeder. Intet fjernes når måneden slutter."
+    },
+    {
+      "type": "paragraph",
+      "content": "Card 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "hist_1_img",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "hist_1_month",
+      "label": "Month",
+      "default": "September 2026"
+    },
+    {
+      "type": "text",
+      "id": "hist_1_name",
+      "label": "Name",
+      "default": "Stray Cat Alliance"
+    },
+    {
+      "type": "textarea",
+      "id": "hist_1_text",
+      "label": "Text",
+      "default": "Katte hentet fra LA's internater med højest aflivningsrate — inklusiv en killing kaldet Hamburger Helper, angrebet og efterladt til at dø, nu sund og venter på et hjem."
+    },
+    {
+      "type": "url",
+      "id": "hist_1_link",
+      "label": "Link"
+    },
+    {
+      "type": "paragraph",
+      "content": "Card 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "hist_2_img",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "hist_2_month",
+      "label": "Month",
+      "default": "August 2026"
+    },
+    {
+      "type": "text",
+      "id": "hist_2_name",
+      "label": "Name",
+      "default": "FieldHaven Feline Center"
+    },
+    {
+      "type": "textarea",
+      "id": "hist_2_text",
+      "label": "Text",
+      "default": "Sterilisering/kastrations-operationer gennem deres SNAP-program — en mor-kat, fire killinger, en familie der lærte at hjælpe."
+    },
+    {
+      "type": "url",
+      "id": "hist_2_link",
+      "label": "Link"
+    },
+    {
+      "type": "paragraph",
+      "content": "Card 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "hist_3_img",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "hist_3_month",
+      "label": "Month",
+      "default": "Juli 2026"
+    },
+    {
+      "type": "text",
+      "id": "hist_3_name",
+      "label": "Name",
+      "default": "Spencerville TNR"
+    },
+    {
+      "type": "textarea",
+      "id": "hist_3_text",
+      "label": "Text",
+      "default": "Indfang, neutralisér og genudsæt for de kolonier de passer — plus dyrlægebehandling til de katte, de henter ind fra gaden."
+    },
+    {
+      "type": "url",
+      "id": "hist_3_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "How it works"
+    },
+    {
+      "type": "text",
+      "id": "how_eyebrow",
+      "label": "Eyebrow",
+      "default": "Sådan fungerer det"
+    },
+    {
+      "type": "text",
+      "id": "how_heading",
+      "label": "Heading",
+      "default": "Ét internat, finansieret og fremhævet, hver måned"
+    },
+    {
+      "type": "text",
+      "id": "how_1_title",
+      "label": "Step 1 Title",
+      "default": "Du ansøger"
+    },
+    {
+      "type": "textarea",
+      "id": "how_1_text",
+      "label": "Step 1 Text",
+      "default": "Fortæl os om dit internat med formularen nedenfor. Det tager to minutter."
+    },
+    {
+      "type": "text",
+      "id": "how_2_title",
+      "label": "Step 2 Title",
+      "default": "Vi vælger & finansierer"
+    },
+    {
+      "type": "textarea",
+      "id": "how_2_text",
+      "label": "Step 2 Text",
+      "default": "Hver måned vælger vi ét internat og finansierer en måneds måltider til de katte, I tager jer af."
+    },
+    {
+      "type": "text",
+      "id": "how_3_title",
+      "label": "Step 3 Title",
+      "default": "Vi fremhæver dig"
+    },
+    {
+      "type": "textarea",
+      "id": "how_3_text",
+      "label": "Step 3 Text",
+      "default": "Vi deler din historie med hele vores fællesskab — via e-mail og sociale medier — for at sende nye støtter din vej."
+    },
+    {
+      "type": "header",
+      "content": "Why apply"
+    },
+    {
+      "type": "text",
+      "id": "why_eyebrow",
+      "label": "Eyebrow",
+      "default": "Hvorfor ansøge"
+    },
+    {
+      "type": "text",
+      "id": "why_heading",
+      "label": "Heading",
+      "default": "Ingen omkostninger. Ingen skjulte dagsordener. Bare hjælp — og et rampelys."
+    },
+    {
+      "type": "textarea",
+      "id": "why_1_text",
+      "label": "Point 1",
+      "default": "<strong>En måneds måltider finansieret</strong> til de katte, I tager jer af."
+    },
+    {
+      "type": "textarea",
+      "id": "why_2_text",
+      "label": "Point 2",
+      "default": "<strong>Et rampelys til 50.000+ katteelskere</strong> — nye støtter, donorer og adoptanter sendes din vej."
+    },
+    {
+      "type": "textarea",
+      "id": "why_3_text",
+      "label": "Point 3",
+      "default": "<strong>Vi står for historiefortællingen.</strong> Send et par billeder og en kort opdatering; vi klarer resten."
+    },
+    {
+      "type": "textarea",
+      "id": "why_elig",
+      "label": "Eligibility Text",
+      "default": "Vi arbejder med <strong>registrerede katteinternater og -redninger</strong> — <strong>USA, Storbritannien, Canada og resten af verden</strong>. Kattefokuserede organisationer har prioritet."
+    },
+    {
+      "type": "header",
+      "content": "Application Form"
+    },
+    {
+      "type": "text",
+      "id": "form_eyebrow",
+      "label": "Eyebrow",
+      "default": "Ansøg"
+    },
+    {
+      "type": "text",
+      "id": "form_heading",
+      "label": "Heading",
+      "default": "Fortæl os om dit internat"
+    },
+    {
+      "type": "text",
+      "id": "f_org",
+      "label": "Organization Label",
+      "default": "Internat / organisationsnavn"
+    },
+    {
+      "type": "text",
+      "id": "f_country",
+      "label": "Country Label",
+      "default": "Land"
+    },
+    {
+      "type": "text",
+      "id": "f_web",
+      "label": "Website Label",
+      "default": "Hjemmeside"
+    },
+    {
+      "type": "text",
+      "id": "f_reg",
+      "label": "Registration Label",
+      "default": "CVR / registreringsnummer"
+    },
+    {
+      "type": "text",
+      "id": "f_name",
+      "label": "Name Label",
+      "default": "Dit navn"
+    },
+    {
+      "type": "text",
+      "id": "f_email",
+      "label": "Email Label",
+      "default": "E-mail"
+    },
+    {
+      "type": "text",
+      "id": "f_social",
+      "label": "Social Label",
+      "default": "Instagram / sociale medier"
+    },
+    {
+      "type": "text",
+      "id": "f_cats",
+      "label": "Cats Label",
+      "default": "Omtrent hvor mange katte tager du dig af?"
+    },
+    {
+      "type": "text",
+      "id": "f_msg",
+      "label": "Message Label",
+      "default": "Fortæl os om dit internat — hvad du gør, og de katte, der har brug for hjælp lige nu"
+    },
+    {
+      "type": "text",
+      "id": "f_btn",
+      "label": "Button Text",
+      "default": "Send min ansøgning 🐾"
+    },
+    {
+      "type": "textarea",
+      "id": "f_note",
+      "label": "Small Note",
+      "default": "Ved at ansøge accepterer du, at vi kan kontakte dig, og hvis udvalgt, at vi må nævne og fremhæve dit internat."
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "One Tee Can"
+    }
+  ]
+}
+{% endschema %}
