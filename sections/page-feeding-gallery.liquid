@@ -82,7 +82,9 @@
               {%- if block.settings.image != blank -%}
                 {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: section.settings.img_alt_text }}
               {%- else -%}
-                <img loading="lazy" src="{{ block.settings.fallback_image }}" alt="{{ section.settings.img_alt_text }}">
+                {%- assign num = forloop.index -%}
+                {%- if num < 10 -%}{%- assign num = '0' | append: num -%}{%- endif -%}
+                <img loading="lazy" src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/feeding-operations-{{ num }}.jpg" alt="{{ section.settings.img_alt_text }}">
               {%- endif -%}
             </a>
           {%- endif -%}
@@ -113,7 +115,9 @@
               {%- if block.settings.image != blank -%}
                 {{ block.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', alt: section.settings.img_alt_text }}
               {%- else -%}
-                <img src="{{ block.settings.fallback_image }}" alt="{{ section.settings.img_alt_text }}">
+                {%- assign num = index -%}
+                {%- if num < 10 -%}{%- assign num = '0' | append: num -%}{%- endif -%}
+                <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/feeding-operations-{{ num }}.jpg" alt="{{ section.settings.img_alt_text }}">
               {%- endif -%}
             </span>
           </div>
