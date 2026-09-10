@@ -13,6 +13,20 @@
   assign sticky_btn_label = section.settings.sticky_btn_text | default: 'Choose Your Tee'
 -%}
 
+<style data-shopify="">
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+</style>
+
 <div class="color-background-1 gradient">
   <div class="section-{{ section.id }}-padding">
     {%- if section.settings.enable_sticky_bar != false -%}
@@ -87,7 +101,7 @@
           <img class="kk-adv__logo" src="https://kittyklosetco.com/cdn/shop/files/Untitled_design_5.png?v=1686776466&amp;width=320" alt="KittyKloset" loading="eager">
         {%- endif -%}
       </div>
-      <div class="kk-adv__article">
+      <div class="kk-adv__article page-width">
         <header class="kk-adv__head">
           <h1 class="kk-adv__h1">5 Reasons This Isn't Just a T-Shirt</h1>
           <div class="kk-adv__byline">
@@ -124,7 +138,7 @@
       .kk-adv__brandbar{ text-align:center; padding:14px 16px; border-bottom:1px solid var(--kk-line); }
       .kk-adv__logo{ display:block; height:60px; width:auto; margin:0 auto; }
 
-      .kk-adv__article{ max-width:1080px; margin:0 auto; padding:0 20px; }
+      .kk-adv__article{ margin:0 auto; }
 
       .kk-adv__head, .kk-adv__intro{ max-width:760px; margin-left:0; margin-right:auto; }
 
@@ -206,7 +220,7 @@
       .footer{ display:none  ; }
     </style>
 
-    <div class="kk-adv"><div class="kk-adv__article">
+    <div class="kk-adv"><div class="kk-adv__article page-width">
       <section class="kk-adv__reason">
         <div class="kk-adv__reason-body">
           <h2 class="kk-adv__h2"><span class="kk-adv__num">1.</span> Each Tee Helps Us Provide 10 Meals to Abandoned Cats</h2>
@@ -222,7 +236,7 @@
       </section>
     </div></div>
 
-    <div class="kk-adv kk-adv--band"><div class="kk-adv__article">
+    <div class="kk-adv kk-adv--band"><div class="kk-adv__article page-width">
       <section class="kk-adv__reason kk-adv__reason--rev">
         <div class="kk-adv__reason-body">
           <h2 class="kk-adv__h2"><span class="kk-adv__num">2.</span> Hundreds of Photos From the Field, Published Every Month</h2>
@@ -236,7 +250,7 @@
       </section>
     </div></div>
 
-    <div class="kk-adv"><div class="kk-adv__article">
+    <div class="kk-adv"><div class="kk-adv__article page-width">
       <section class="kk-adv__reason">
         <div class="kk-adv__reason-body">
           <h2 class="kk-adv__h2"><span class="kk-adv__num">3.</span> A Tee You'll Actually Want to Wear</h2>
@@ -251,7 +265,7 @@
       </section>
     </div></div>
 
-    <div class="kk-adv"><div class="kk-adv__article">
+    <div class="kk-adv"><div class="kk-adv__article page-width">
       <section class="kk-adv__cta-block">
         <div class="kk-adv__cta-media">
           <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/designcollage.jpg?v=1781966844&amp;width=800" alt="KittyKloset cat tees" loading="lazy" style="width:100%;height:auto;border-radius:16px;display:block;">
@@ -267,7 +281,7 @@
       </section>
     </div></div>
 
-    <div class="kk-adv"><div class="kk-adv__article">
+    <div class="kk-adv"><div class="kk-adv__article page-width">
       <section class="kk-adv__reviews">
         <h2 class="kk-adv__h2 kk-adv__h2--center"><span class="kk-adv__num">4.</span> Here's What 50,000+ Cat Lovers Are Saying</h2>
         <p class="kk-adv__center kk-adv__muted">We could tell you what our customers think. But they say it better.</p>
@@ -492,7 +506,7 @@
     })();
     </script>
 
-    <div class="kk-adv"><div class="kk-adv__article">
+    <div class="kk-adv"><div class="kk-adv__article page-width">
       <section class="kk-adv__guarantee">
         <h2 class="kk-adv__h2 kk-adv__h2--center"><span class="kk-adv__num">5.</span> No Risk. Just a Simple Way to Help.</h2>
         <p class="kk-adv__center">Here's what we want you to know:</p>
@@ -505,7 +519,7 @@
       .kk-adv__guarantee{ padding-bottom:0; }
     </style>
 
-    <div class="kk-adv"><div class="kk-adv__article">
+    <div class="kk-adv"><div class="kk-adv__article page-width">
       <section class="kk-adv__cta-block kk-adv__cta-block--final">
         <div class="kk-adv__cta-media">
           <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/Five_t-shirts_at_market_202606201240.jpg?v=1781970032&amp;width=800" alt="KittyKloset cat tees at the market" loading="lazy" style="width:100%;height:auto;border-radius:16px;display:block;">
@@ -682,6 +696,30 @@
       "unit": "px",
       "label": "Logo Height",
       "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 36
     }
   ],
   "presets": [

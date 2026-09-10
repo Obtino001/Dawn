@@ -2,7 +2,7 @@
   <div class="color-background-1 gradient">
     <div id="kk-sticky-atc" class="kk-sticky" aria-hidden="true">
       <div class="kk-sticky__promo" hidden=""></div>
-      <div class="kk-sticky__inner">
+      <div class="kk-sticky__inner page-width">
         <div class="kk-sticky__opts">
           {%- unless product.has_only_default_variant -%}
             {%- for option in product.options_with_values -%}
@@ -282,7 +282,7 @@
       background:#f4f6ff; border-radius:8px; padding:4px 8px; margin:0 0 6px; letter-spacing:.01em;
     }
     .kk-sticky__promo[hidden]{ display:none; }
-    .kk-sticky__inner{ display:flex; flex-wrap:wrap; align-items:flex-end; gap:8px; max-width:1100px; margin:0 auto; }
+    .kk-sticky__inner{ display:flex; flex-wrap:wrap; align-items:flex-end; gap:8px; }
     .kk-sticky__opts{ display:flex; align-items:flex-end; gap:6px; flex:1 1 100%; min-width:0; }
     .kk-sticky__field{ display:flex; flex-direction:column; gap:2px; min-width:0; }
     .kk-sticky__opts > .kk-sticky__field:not(.kk-sticky__qty){ flex:1 1 0; }

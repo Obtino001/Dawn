@@ -20,9 +20,6 @@
     --text: #2a2c42;
     --band: #f4f6ff;
     font-family: 'Poppins', sans-serif;
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
     background: linear-gradient(180deg, #ffffff 0%, var(--band) 72px);
     color: var(--text);
     text-align: center;
@@ -38,7 +35,6 @@
   }
   .kk-steps__row {
     position: relative;
-    max-width: 560px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -111,7 +107,7 @@
 {%- endstyle -%}
 
 <div class="color-background-1 gradient">
-  <div class="section-{{ section.id }}-padding">
+  <div class="page-width section-{{ section.id }}-padding">
     <div class="kk-steps">
       {%- if section.settings.eyebrow != blank -%}
         <p class="kk-steps__eyebrow">{{ section.settings.eyebrow | escape }}</p>

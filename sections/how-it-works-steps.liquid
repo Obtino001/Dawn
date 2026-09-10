@@ -1,19 +1,19 @@
 <style data-shopify="">
   .section-{{ section.id }}-padding {
-    padding-top: calc(0px * 0.75);
-    padding-bottom: calc(0px  * 0.75);
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
-      padding-top: 0px;
-      padding-bottom: 0px;
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
 </style>
 
-<div class="color-background-1 gradient">
-  <div class="section-{{ section.id }}-padding">
+<div class="color-{{ section.settings.color_scheme | default: 'background-1' }} gradient">
+  <div class="page-width section-{{ section.id }}-padding">
     <div class="kk-steps3">
       <div class="kk-steps3__inner">
         <h2 class="kk-steps3__title">How Your Purchase Helps Provide Meals <span>in 3 Simple Steps</span></h2>
@@ -50,13 +50,10 @@
         color: var(--text);
         text-align: center;
         background: #f4f5f7;          /* fondo gris para diferenciar */
-        width: 100vw;                 /* full-bleed de borde a borde */
-        margin-left: calc(50% - 50vw);
-        margin-right: calc(50% - 50vw);
         padding: 40px 16px;
+        border-radius: 24px;
       }
       .kk-steps3__inner {
-        max-width: 1100px;
         margin: 0 auto;
       }
       .kk-steps3__title {
@@ -120,7 +117,38 @@
   "name": "3 Simple Steps",
   "tag": "section",
   "class": "section",
-  "settings": [],
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "background-1"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 36
+    }
+  ],
   "presets": [
     {
       "name": "3 Simple Steps",
