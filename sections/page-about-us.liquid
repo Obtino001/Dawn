@@ -32,7 +32,7 @@
     </a>
     {%- endif -%}
 
-    <div class="kk-ab page-width">
+    <div class="kk-ab">
       <section class="kk-ab__hero" style="background-image: url('{{ section.settings.hero_image | image_url: width: 2000 | default: 'https://cdn.shopify.com/s/files/1/0755/0864/6210/files/jun3.jpg?v=1782851269' }}');">
         <div class="kk-ab__hero-inner">
           <span class="kk-ab__eyebrow kk-ab__eyebrow--light">{{ section.settings.hero_eyebrow }}</span>
@@ -61,7 +61,13 @@
               {%- if block.settings.image != blank -%}
                 {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy' }}
               {%- else -%}
-                <img src="{{ block.settings.fallback_image }}" alt="{{ block.settings.heading | escape }}" loading="lazy">
+                {%- if forloop.index == 1 -%}
+                  <img src="https://ucarecdn.com/2d072830-c4e4-4102-ad9b-ce1a9867d218/-/format/auto/-/preview/1400x1400/-/quality/lighter/luku-muffin-OeN9QeoQ99I-unsplash.jpg" alt="{{ block.settings.heading | escape }}" loading="lazy">
+                {%- elsif forloop.index == 2 -%}
+                  <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/collage_home.jpg?v=1781819895&width=900" alt="{{ block.settings.heading | escape }}" loading="lazy">
+                {%- else -%}
+                  <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/shelter_8efca6c3-3a75-4f4f-be89-38dfa0437ed5.jpg?v=1781884333&width=900" alt="{{ block.settings.heading | escape }}" loading="lazy">
+                {%- endif -%}
               {%- endif -%}
             </div>
           </section>
@@ -160,6 +166,7 @@
     --kk-muted:#7f86a0; --kk-cream:#f6f5f2; --kk-band:#f4f6ff; --kk-line:#e6e8f5;
     font-family:'Poppins', system-ui, -apple-system, sans-serif;
     color:var(--kk-text); line-height:1.7; font-size:17px; background:#fff;
+    width:100vw; max-width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw);
   }
   .kk-ab *{ box-sizing:border-box; }
   .kk-ab p{ margin:0 0 14px; }
@@ -176,7 +183,6 @@
   .kk-ab__hero{
     position:relative; background-color:#2a2c42; background-size:cover; background-position:center;
     padding:104px 20px; text-align:center; color:#fff;
-    border-radius:24px; margin-bottom: 24px; overflow: hidden;
   }
   .kk-ab__hero::before{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(34,36,54,.34) 0%, rgba(34,36,54,.74) 100%); }
   .kk-ab__hero-inner{ position:relative; z-index:1; max-width:680px; margin:0 auto; }
@@ -580,11 +586,6 @@
           "label": "Image"
         },
         {
-          "type": "text",
-          "id": "fallback_image",
-          "label": "Fallback Image URL"
-        },
-        {
           "type": "checkbox",
           "id": "reverse",
           "label": "Reverse Layout (Image Left)",
@@ -648,7 +649,6 @@
             "text": "<p>Hos KittyKloset går vores mission ud over at tilbyde moderigtigt tøj til katteelskere. Vi er på en hjertelig mission for at gøre en forskel i livet for forladte killinger.</p>",
             "sign_name": "Olivia F.",
             "sign_title": "Stifter, KittyKloset",
-            "fallback_image": "https://ucarecdn.com/2d072830-c4e4-4102-ad9b-ce1a9867d218/-/format/auto/-/preview/1400x1400/-/quality/lighter/luku-muffin-OeN9QeoQ99I-unsplash.jpg",
             "reverse": false,
             "band": false
           }
@@ -659,7 +659,6 @@
             "eyebrow": "Inspirerer verden",
             "heading": "Ethvert Køb Har et Formål",
             "text": "<p>Når du handler hos KittyKloset, går en del af overskuddet direkte til at redde, rehabilitere og finde kærlige hjem til forladte killinger.</p>",
-            "fallback_image": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/collage_home.jpg?v=1781819895&width=900",
             "reverse": true,
             "band": true
           }
@@ -670,7 +669,6 @@
             "eyebrow": "Vores mission & vision",
             "heading": "Et Netværk af Støtte",
             "text": "<p>Vi samarbejder med lokale dyreinternater og redningsorganisationer for at danne et stærkt netværk af støtte for disse sårbare killinger.</p>",
-            "fallback_image": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/shelter_8efca6c3-3a75-4f4f-be89-38dfa0437ed5.jpg?v=1781884333&width=900",
             "reverse": false,
             "band": false
           }
