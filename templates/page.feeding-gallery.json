@@ -11,7 +11,51 @@
   "sections": {
     "main": {
       "type": "page-feeding-gallery",
-      "settings": {}
+      "blocks": {
+        "image_KJcfjg": {
+          "type": "image",
+          "settings": {
+            "image_url": "",
+            "alt_text": "Street cats being fed"
+          }
+        },
+        "image_EWgU3g": {
+          "type": "image",
+          "settings": {
+            "image_url": "",
+            "alt_text": "Street cats being fed"
+          }
+        },
+        "image_rcNVpB": {
+          "type": "image",
+          "settings": {
+            "image_url": "",
+            "alt_text": "Street cats being fed"
+          }
+        }
+      },
+      "block_order": [
+        "image_KJcfjg",
+        "image_EWgU3g",
+        "image_rcNVpB"
+      ],
+      "settings": {
+        "eyebrow": "Straight from the streets",
+        "heading": "Feeding Operations Gallery",
+        "intro": "We've helped provide over 600,000 meals to cats living on the street. Here's what that looks like.",
+        "stat1_val": "600,000+",
+        "stat1_label": "Meals we've helped provide",
+        "stat2_val": "10 meals",
+        "stat2_label": "With every single order",
+        "stat3_val": "50,000+",
+        "stat3_label": "Cat lovers who made it happen",
+        "stat4_val": "37",
+        "stat4_label": "Countries worldwide",
+        "cta_eyebrow": "Every order helps",
+        "cta_heading": "Pick something you love. Help us provide 10 meals.",
+        "cta_btn_label": "Shop now",
+        "cta_btn_link": ""
+      }
     }
   },
   "order": [
