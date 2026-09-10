@@ -9,8 +9,8 @@
     assign sticky_link = cta_link
   endif
 
-  assign cta_btn_label = section.settings.cta_text | default: 'Choose Your Tee'
-  assign sticky_btn_label = section.settings.sticky_btn_text | default: 'Choose Your Tee'
+  assign cta_btn_label = section.settings.cta_text
+  assign sticky_btn_label = section.settings.sticky_btn_text
 -%}
 
 <style data-shopify="">
@@ -34,11 +34,7 @@
         <span class="kk-sticky__copy">
           <span class="kk-sticky__ic" aria-hidden="true">🐾</span>
           <span class="kk-sticky__txt">
-            {%- if section.settings.sticky_text != blank -%}
-              <strong>1 tee = 10 meals</strong> for abandoned cats
-            {%- else -%}
-              <strong>1 tee = 10 meals</strong> for abandoned cats
-            {%- endif -%}
+            {{ section.settings.sticky_text }}
           </span>
         </span>
         <span class="kk-sticky__btn">{{ sticky_btn_label }}</span>
@@ -91,35 +87,38 @@
     {%- endif -%}
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&amp;family=Poppins:wght@400;500;600;700;800&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap">
 
     <div class="kk-adv">
       <div class="kk-adv__brandbar">
         {%- if section.settings.brand_logo != blank -%}
           {{ section.settings.brand_logo | image_url: width: 400 | image_tag: class: 'kk-adv__logo', loading: 'eager', alt: 'KittyKloset', style: 'max-height: ' | append: section.settings.logo_height | append: 'px;' }}
         {%- else -%}
-          <img class="kk-adv__logo" src="https://kittyklosetco.com/cdn/shop/files/Untitled_design_5.png?v=1686776466&amp;width=320" alt="KittyKloset" loading="eager">
+          <img class="kk-adv__logo" src="https://kittyklosetco.com/cdn/shop/files/Untitled_design_5.png?v=1686776466&width=320" alt="KittyKloset" loading="eager">
         {%- endif -%}
       </div>
       <div class="kk-adv__article page-width">
         <header class="kk-adv__head">
-          <h1 class="kk-adv__h1">5 Reasons This Isn't Just a T-Shirt</h1>
+          <h1 class="kk-adv__h1">{{ section.settings.main_headline }}</h1>
           <div class="kk-adv__byline">
-            <img class="kk-adv__avatar" src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/olivia.jpg?v=1781970391&amp;width=120" alt="Olivia F." loading="lazy">
+            {%- if section.settings.author_image != blank -%}
+              {{ section.settings.author_image | image_url: width: 120 | image_tag: class: 'kk-adv__avatar', loading: 'lazy' }}
+            {%- else -%}
+              <img class="kk-adv__avatar" src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/olivia.jpg?v=1781970391&width=120" alt="{{ section.settings.author_name }}" loading="lazy">
+            {%- endif -%}
             <div class="kk-adv__byline-text">
-              <span class="kk-adv__author">By Olivia F.</span>
-              <span class="kk-adv__date">Last updated June 2026</span>
+              <span class="kk-adv__author">{{ section.settings.author_name }}</span>
+              <span class="kk-adv__date">{{ section.settings.update_date }}</span>
             </div>
           </div>
         </header>
         <section class="kk-adv__intro">
-          <p>It looks like a t-shirt. And it is one, a soft one you'll reach for constantly. But every order helps feed cats who have no one looking for them.</p>
-          <p><strong>That's why 50,000+ cat people keep coming back.</strong> Here are 5 reasons why.</p>
+          {{ section.settings.intro_text }}
           <div class="kk-adv__promise">
             <span class="kk-adv__promise-tee" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5l4-2 4 2 4-2 4 2-2 4-2-1v11H8V8L6 9z"></path></svg></span>
-            <span class="kk-adv__promise-eq">1 tee</span>
+            <span class="kk-adv__promise-eq">{{ section.settings.promise_tee }}</span>
             <span class="kk-adv__promise-arrow" aria-hidden="true">=</span>
-            <span class="kk-adv__promise-meals"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18M5 11a7 7 0 0 0 14 0M12 11V7"></path></svg> 10 real meals</span>
+            <span class="kk-adv__promise-meals"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18M5 11a7 7 0 0 0 14 0M12 11V7"></path></svg> {{ section.settings.promise_meals }}</span>
           </div>
         </section>
       </div>
@@ -223,15 +222,15 @@
     <div class="kk-adv"><div class="kk-adv__article page-width">
       <section class="kk-adv__reason">
         <div class="kk-adv__reason-body">
-          <h2 class="kk-adv__h2"><span class="kk-adv__num">1.</span> Each Tee Helps Us Provide 10 Meals to Abandoned Cats</h2>
-          <p>Here's how it works.</p>
-          <p>You pick a design you love. There are dozens to choose from.</p>
-          <p>Your order helps fund real meals for cats living on the street. We work with trusted local shelters and rescuers who know exactly where the cats are and how to reach them.</p>
-          <p>Then, every month, we publish photos from those feedings so you can see the results yourself.</p>
-          <p>That's it. Something good for you, and help for cats who need it.</p>
+          <h2 class="kk-adv__h2">{{ section.settings.r1_title }}</h2>
+          {{ section.settings.r1_body }}
         </div>
         <div class="kk-adv__reason-media">
-          <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/collage_home.jpg?v=1781819895&amp;width=900" alt="Street cats being fed" loading="lazy">
+          {%- if section.settings.r1_image != blank -%}
+            {{ section.settings.r1_image | image_url: width: 900 | image_tag: loading: 'lazy' }}
+          {%- else -%}
+            <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/collage_home.jpg?v=1781819895&width=900" alt="Street cats being fed" loading="lazy">
+          {%- endif -%}
         </div>
       </section>
     </div></div>
@@ -239,13 +238,15 @@
     <div class="kk-adv kk-adv--band"><div class="kk-adv__article page-width">
       <section class="kk-adv__reason kk-adv__reason--rev">
         <div class="kk-adv__reason-body">
-          <h2 class="kk-adv__h2"><span class="kk-adv__num">2.</span> Hundreds of Photos From the Field, Published Every Month</h2>
-          <p><strong>Every month we publish new photos</strong> from feedings on the ground. Hundreds are already online for you to scroll through anytime.</p>
-          <p>When you place an order, you'll also get monthly updates by email. New photos and stories straight from the street, so you never miss a thing.</p>
-          <p>Over <strong>600,000 meals</strong> have been funded so far, and the community keeps growing.</p>
+          <h2 class="kk-adv__h2">{{ section.settings.r2_title }}</h2>
+          {{ section.settings.r2_body }}
         </div>
         <div class="kk-adv__reason-media">
-          <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/shelter_8efca6c3-3a75-4f4f-be89-38dfa0437ed5.jpg?v=1781884333&amp;width=700" alt="Cats being fed on the street" loading="lazy">
+          {%- if section.settings.r2_image != blank -%}
+            {{ section.settings.r2_image | image_url: width: 700 | image_tag: loading: 'lazy' }}
+          {%- else -%}
+            <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/shelter_8efca6c3-3a75-4f4f-be89-38dfa0437ed5.jpg?v=1781884333&width=700" alt="Cats being fed on the street" loading="lazy">
+          {%- endif -%}
         </div>
       </section>
     </div></div>
@@ -253,14 +254,15 @@
     <div class="kk-adv"><div class="kk-adv__article page-width">
       <section class="kk-adv__reason">
         <div class="kk-adv__reason-body">
-          <h2 class="kk-adv__h2"><span class="kk-adv__num">3.</span> A Tee You'll Actually Want to Wear</h2>
-          <p>Every tee is printed on soft, true-to-size cotton. Dozens of cat designs and colors to choose from.</p>
-          <p>Our shirts are loved by cat people everywhere. People don't just buy them to help cats. They buy them because they love wearing them.</p>
-          <p>And here's what we keep seeing: people come back for more. One for themselves, then one for a friend who loves cats too. Because it's the kind of gift that actually means something.</p>
-          <p>We also have hoodies, long sleeves, and v-necks if you want more styles.</p>
+          <h2 class="kk-adv__h2">{{ section.settings.r3_title }}</h2>
+          {{ section.settings.r3_body }}
         </div>
         <div class="kk-adv__reason-media">
-          <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/170040697-1744374994.3641.jpg?v=1781966285&amp;width=700" alt="KittyKloset cat tee" loading="lazy">
+          {%- if section.settings.r3_image != blank -%}
+            {{ section.settings.r3_image | image_url: width: 700 | image_tag: loading: 'lazy' }}
+          {%- else -%}
+            <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/170040697-1744374994.3641.jpg?v=1781966285&width=700" alt="KittyKloset cat tee" loading="lazy">
+          {%- endif -%}
         </div>
       </section>
     </div></div>
@@ -268,13 +270,17 @@
     <div class="kk-adv"><div class="kk-adv__article page-width">
       <section class="kk-adv__cta-block">
         <div class="kk-adv__cta-media">
-          <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/designcollage.jpg?v=1781966844&amp;width=800" alt="KittyKloset cat tees" loading="lazy" style="width:100%;height:auto;border-radius:16px;display:block;">
+          {%- if section.settings.cta1_image != blank -%}
+            {{ section.settings.cta1_image | image_url: width: 800 | image_tag: loading: 'lazy', style: 'width:100%;height:auto;border-radius:16px;display:block;' }}
+          {%- else -%}
+            <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/designcollage.jpg?v=1781966844&width=800" alt="KittyKloset cat tees" loading="lazy" style="width:100%;height:auto;border-radius:16px;display:block;">
+          {%- endif -%}
         </div>
         <div class="kk-adv__cta-copy">
-          <h3 class="kk-adv__h3">Choose Your Tee</h3>
-          <p>Each tee helps us provide 10 meals to abandoned cats.</p>
+          <h3 class="kk-adv__h3">{{ section.settings.cta_title }}</h3>
+          <p>{{ section.settings.cta_subtitle }}</p>
           {%- if section.settings.show_free_shipping -%}
-          <p class="kk-adv__small">Gode nyheder, din ordre kvalificerer sig til GRATIS fragt.</p>
+          <p class="kk-adv__small">{{ section.settings.cta_shipping_text }}</p>
           {%- endif -%}
           <a class="kk-adv__btn" href="{{ cta_link }}">{{ cta_btn_label }}</a>
         </div>
@@ -283,62 +289,28 @@
 
     <div class="kk-adv"><div class="kk-adv__article page-width">
       <section class="kk-adv__reviews">
-        <h2 class="kk-adv__h2 kk-adv__h2--center"><span class="kk-adv__num">4.</span> Here's What 50,000+ Cat Lovers Are Saying</h2>
-        <p class="kk-adv__center kk-adv__muted">We could tell you what our customers think. But they say it better.</p>
+        <h2 class="kk-adv__h2 kk-adv__h2--center">{{ section.settings.r4_title }}</h2>
+        <p class="kk-adv__center kk-adv__muted">{{ section.settings.r4_subtitle }}</p>
 
         <div class="kk-adv__carousel">
           <button class="kk-adv__nav kk-adv__nav--prev" aria-label="Previous review">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
           </button>
           <div class="kk-adv__cards">
-            <div class="kk-adv__card">
-              <img class="kk-adv__rimg" src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/review_11.jpg?v=1781967981&amp;width=600" alt="Customer holding her cat, wearing the un deux trois cat tee" loading="lazy">
-              <div class="kk-adv__stars" aria-label="5 out of 5 stars">★★★★★</div>
-              <p>This little guy approves. Knowing every shirt helps feed cats who have no one means everything to me, and the monthly photos are the sweetest part. Already ordered again.</p>
-              <span class="kk-adv__name">Maria T.</span>
-            </div>
-            <div class="kk-adv__card">
-              <img class="kk-adv__rimg" src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/review_22.jpg?v=1781967981&amp;width=600" alt="Customer wearing a KittyKloset cat tee" loading="lazy">
-              <div class="kk-adv__stars" aria-label="5 out of 5 stars">★★★★★</div>
-              <p>I was a little skeptical at first, but it showed up fast and the print is gorgeous. The little card about the cats my order helped feed made my whole week. Obsessed.</p>
-              <span class="kk-adv__name">Jenna L.</span>
-            </div>
-            <div class="kk-adv__card">
-              <img class="kk-adv__rimg" src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/review_33.jpg?v=1781967981&amp;width=600" alt="Customer's two cats" loading="lazy">
-              <div class="kk-adv__stars" aria-label="5 out of 5 stars">★★★★★</div>
-              <p>Had to share my two. Every shirt I buy helps feed cats who don't have a cozy windowsill like these guys do. Such an easy way to help, and I love the tees too.</p>
-              <span class="kk-adv__name">Emily R.</span>
-            </div>
-            <div class="kk-adv__card">
-              <img class="kk-adv__rimg" src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/review_44.jpg?v=1781967982&amp;width=600" alt="Customer wearing a KittyKloset cat tee" loading="lazy">
-              <div class="kk-adv__stars" aria-label="5 out of 5 stars">★★★★★</div>
-              <p>Better quality than I expected and it has held up great after plenty of washes. I reach for it all the time now. Coming back for more designs.</p>
-              <span class="kk-adv__name">Mark T.</span>
-            </div>
-            <div class="kk-adv__card">
-              <img class="kk-adv__rimg" src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/review_55.jpg?v=1781967981&amp;width=600" alt="Customer wearing the un deux trois cat tee" loading="lazy">
-              <div class="kk-adv__stars" aria-label="5 out of 5 stars">★★★★★</div>
-              <p>True to size and the cotton is really soft. As a lifelong cat person this is exactly the kind of thing I love to spend money on. Will be ordering more.</p>
-              <span class="kk-adv__name">Linda K.</span>
-            </div>
-            <div class="kk-adv__card">
-              <img class="kk-adv__rimg" src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/review_66.jpg?v=1781967981&amp;width=600" alt="Customer wearing a KittyKloset cat tee" loading="lazy">
-              <div class="kk-adv__stars" aria-label="5 out of 5 stars">★★★★★</div>
-              <p>Wore it out and three people asked where I got it. Great quality, true to size, and it supports something that actually matters. Can't beat that.</p>
-              <span class="kk-adv__name">Dave R.</span>
-            </div>
-            <div class="kk-adv__card">
-              <img class="kk-adv__rimg" src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/review_77.jpg?v=1781967981&amp;width=600" alt="Customer wearing a KittyKloset cat tee" loading="lazy">
-              <div class="kk-adv__stars" aria-label="5 out of 5 stars">★★★★★</div>
-              <p>This is my favorite shirt to throw on. It's comfy, the design always gets a laugh, and knowing my order helps feed cats on the street makes it even better.</p>
-              <span class="kk-adv__name">Sharon A.</span>
-            </div>
-            <div class="kk-adv__card">
-              <img class="kk-adv__rimg" src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/review_88.jpg?v=1781967981&amp;width=600" alt="Customer wearing the I Like Cats and Coffee tee" loading="lazy">
-              <div class="kk-adv__stars" aria-label="5 out of 5 stars">★★★★★</div>
-              <p>Cats and coffee is basically my whole personality, so this was made for me. Super soft, great print, and I get compliments every time I wear it. Already ordered another.</p>
-              <span class="kk-adv__name">Gary M.</span>
-            </div>
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'review' -%}
+              <div class="kk-adv__card" {{ block.shopify_attributes }}>
+                {%- if block.settings.image != blank -%}
+                  {{ block.settings.image | image_url: width: 600 | image_tag: class: 'kk-adv__rimg', loading: 'lazy' }}
+                {%- else -%}
+                  <img class="kk-adv__rimg" src="{{ block.settings.image_url }}" alt="Review" loading="lazy">
+                {%- endif -%}
+                <div class="kk-adv__stars" aria-label="5 out of 5 stars">★★★★★</div>
+                <p>{{ block.settings.text }}</p>
+                <span class="kk-adv__name">{{ block.settings.name }}</span>
+              </div>
+              {%- endif -%}
+            {%- endfor -%}
           </div>
           <button class="kk-adv__nav kk-adv__nav--next" aria-label="Next review">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
@@ -347,7 +319,7 @@
 
         <div class="kk-adv__dots"></div>
 
-        <p class="kk-adv__center kk-adv__muted kk-adv__small">(5,000)+ verified reviews. 97% positive. New ones come in every day.</p>
+        <p class="kk-adv__center kk-adv__muted kk-adv__small">{{ section.settings.r4_footer_text }}</p>
       </section>
     </div></div>
 
@@ -415,7 +387,7 @@
       .kk-adv__reviews .kk-adv__card p::after{ content:"\201D"; }
 
       .kk-adv__reviews .kk-adv__name::after{
-        content:"Verified Buyer";
+        content:"{{ section.settings.verified_text | default: 'Verified Buyer' }}";
         display:inline-block;
         margin-left:8px;
         vertical-align:middle;
@@ -508,11 +480,8 @@
 
     <div class="kk-adv"><div class="kk-adv__article page-width">
       <section class="kk-adv__guarantee">
-        <h2 class="kk-adv__h2 kk-adv__h2--center"><span class="kk-adv__num">5.</span> No Risk. Just a Simple Way to Help.</h2>
-        <p class="kk-adv__center">Here's what we want you to know:</p>
-        <p class="kk-adv__center"><strong>30-Day Guarantee.</strong> If you're not happy with your tee for any reason, we'll make it right. No questions asked.</p>
-        <p class="kk-adv__center"><strong>Gratis fragt</strong> på kvalificerede ordrer.</p>
-        <p class="kk-adv__center kk-adv__muted">No hidden fees. Just a tee you'll love, real meals for cats who need them, and photos every month so you can see the results.</p>
+        <h2 class="kk-adv__h2 kk-adv__h2--center">{{ section.settings.r5_title }}</h2>
+        {{ section.settings.r5_body }}
       </section>
     </div></div>
     <style>
@@ -522,29 +491,33 @@
     <div class="kk-adv"><div class="kk-adv__article page-width">
       <section class="kk-adv__cta-block kk-adv__cta-block--final">
         <div class="kk-adv__cta-media">
-          <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/Five_t-shirts_at_market_202606201240.jpg?v=1781970032&amp;width=800" alt="KittyKloset cat tees at the market" loading="lazy" style="width:100%;height:auto;border-radius:16px;display:block;">
+          {%- if section.settings.cta2_image != blank -%}
+            {{ section.settings.cta2_image | image_url: width: 800 | image_tag: loading: 'lazy', style: 'width:100%;height:auto;border-radius:16px;display:block;' }}
+          {%- else -%}
+            <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/Five_t-shirts_at_market_202606201240.jpg?v=1781970032&width=800" alt="KittyKloset cat tees at the market" loading="lazy" style="width:100%;height:auto;border-radius:16px;display:block;">
+          {%- endif -%}
         </div>
         <div class="kk-adv__cta-copy">
-          <h3 class="kk-adv__h3">Choose Your Tee</h3>
-          <p>Each tee helps us provide 10 meals to abandoned cats.</p>
-          <p class="kk-adv__small">Gratis fragt på kvalificerede ordrer.</p>
+          <h3 class="kk-adv__h3">{{ section.settings.cta_title }}</h3>
+          <p>{{ section.settings.cta_subtitle }}</p>
+          <p class="kk-adv__small">{{ section.settings.cta_shipping_text }}</p>
           <a class="kk-adv__btn" href="{{ cta_link }}">{{ cta_btn_label }}</a>
 
           <div class="kk-adv__proof">
             <div class="kk-proof__item">
               <span class="kk-proof__top"><span class="kk-proof__stars">★★★★★</span></span>
-              <span class="kk-proof__value">4.99</span>
-              <span class="kk-proof__label">5,000+ reviews</span>
+              <span class="kk-proof__value">{{ section.settings.proof_val_1 }}</span>
+              <span class="kk-proof__label">{{ section.settings.proof_lbl_1 }}</span>
             </div>
             <div class="kk-proof__item">
               <span class="kk-proof__top"><svg class="kk-proof__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="12" cy="16" rx="4.5" ry="3.5"></ellipse><circle cx="6.3" cy="11" r="1.8"></circle><circle cx="10" cy="8" r="1.8"></circle><circle cx="14" cy="8" r="1.8"></circle><circle cx="17.7" cy="11" r="1.8"></circle></svg></span>
-              <span class="kk-proof__value">50,000+</span>
-              <span class="kk-proof__label">happy cat parents</span>
+              <span class="kk-proof__value">{{ section.settings.proof_val_2 }}</span>
+              <span class="kk-proof__label">{{ section.settings.proof_lbl_2 }}</span>
             </div>
             <div class="kk-proof__item">
               <span class="kk-proof__top"><svg class="kk-proof__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12 h18 l-1.5 5.5 a2.5 2.5 0 0 1 -2.4 1.8 H6.9 a2.5 2.5 0 0 1 -2.4 -1.8 z"></path><path d="M4.5 12 c2.5 -3.5 12.5 -3.5 15 0"></path></svg></span>
-              <span class="kk-proof__value">600,000+</span>
-              <span class="kk-proof__label">meals donated</span>
+              <span class="kk-proof__value">{{ section.settings.proof_val_3 }}</span>
+              <span class="kk-proof__label">{{ section.settings.proof_lbl_3 }}</span>
             </div>
           </div>
         </div>
@@ -576,16 +549,22 @@
         <span class="kk-foot__mark" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21 C12 21 4 14.5 4 8.8 C4 5.5 6.5 4 8.7 4.6 C10.2 5 12 7 12 7 C12 7 13.8 5 15.3 4.6 C17.5 4 20 5.5 20 8.8 C20 14.5 12 21 12 21 Z"></path></svg>
         </span>
-        <span>Made with love for cats in need</span>
+        <span>{{ section.settings.footer_signoff }}</span>
       </p>
       <nav class="kk-foot__nav" aria-label="Footer">
-        <a href="https://kittyklosetco.com/policies/shipping-policy">Shipping policy</a>
-        <a href="https://kittyklosetco.com/policies/refund-policy">Refund policy</a>
-        <a href="https://kittyklosetco.com/policies/privacy-policy">Privacy policy</a>
-        <a href="https://kittyklosetco.com/policies/terms-of-service">Terms of service</a>
-        <a href="https://kittyklosetco.com/pages/contact">Contact</a>
+        {%- if section.settings.footer_menu != blank -%}
+          {%- for link in linklists[section.settings.footer_menu].links -%}
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          {%- endfor -%}
+        {%- else -%}
+          <a href="/policies/shipping-policy">Forsendelsespolitik</a>
+          <a href="/policies/refund-policy">Refusionspolitik</a>
+          <a href="/policies/privacy-policy">Privatlivspolitik</a>
+          <a href="/policies/terms-of-service">Servicevilkår</a>
+          <a href="/pages/contact">Kontakt</a>
+        {%- endif -%}
       </nav>
-      <p class="kk-foot__copy">© 2026, KittyKloset Co</p>
+      <p class="kk-foot__copy">{{ section.settings.footer_copyright }}</p>
     </div>
     <style>
       .shopify-section:has(.kk-foot){ padding:0  ; }
@@ -647,16 +626,16 @@
       "default": true
     },
     {
-      "type": "text",
+      "type": "inline_richtext",
       "id": "sticky_text",
       "label": "Sticky Bar Text",
-      "default": "1 tee = 10 meals for abandoned cats"
+      "default": "<strong>1 t-shirt = 10 måltider</strong> til efterladte katte"
     },
     {
       "type": "text",
       "id": "sticky_btn_text",
       "label": "Sticky Button Text",
-      "default": "Choose Your Tee"
+      "default": "Vælg Din T-Shirt"
     },
     {
       "type": "url",
@@ -671,7 +650,7 @@
       "type": "text",
       "id": "cta_text",
       "label": "CTA Button Text",
-      "default": "Choose Your Tee"
+      "default": "Vælg Din T-Shirt"
     },
     {
       "type": "url",
@@ -680,7 +659,7 @@
     },
     {
       "type": "header",
-      "content": "Branding"
+      "content": "Branding & Header"
     },
     {
       "type": "image_picker",
@@ -696,6 +675,253 @@
       "unit": "px",
       "label": "Logo Height",
       "default": 60
+    },
+    {
+      "type": "text",
+      "id": "main_headline",
+      "label": "Main Headline",
+      "default": "5 Grunde til at Dette Ikke Bare er en T-Shirt"
+    },
+    {
+      "type": "image_picker",
+      "id": "author_image",
+      "label": "Author Avatar"
+    },
+    {
+      "type": "text",
+      "id": "author_name",
+      "label": "Author Name",
+      "default": "Af Olivia F."
+    },
+    {
+      "type": "text",
+      "id": "update_date",
+      "label": "Last Updated Date",
+      "default": "Sidst opdateret Juni 2026"
+    },
+    {
+      "type": "richtext",
+      "id": "intro_text",
+      "label": "Introduction Text",
+      "default": "<p>Det ligner en t-shirt. Og det er det også, en blød én du vil tage på hele tiden. Men hver ordre hjælper med at brødføde katte, der ikke har nogen til at passe på sig.</p><p><strong>Det er derfor over 50.000 kattemennesker bliver ved med at vende tilbage.</strong> Her er 5 grunde til hvorfor.</p>"
+    },
+    {
+      "type": "text",
+      "id": "promise_tee",
+      "label": "Promise Part 1",
+      "default": "1 t-shirt"
+    },
+    {
+      "type": "text",
+      "id": "promise_meals",
+      "label": "Promise Part 2",
+      "default": "10 rigtige måltider"
+    },
+    {
+      "type": "header",
+      "content": "Reason 1"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "r1_title",
+      "label": "Title",
+      "default": "<span class=\"kk-adv__num\">1.</span> Hver T-Shirt Hjælper Os Med at Give 10 Måltider"
+    },
+    {
+      "type": "richtext",
+      "id": "r1_body",
+      "label": "Body",
+      "default": "<p>Sådan fungerer det.</p><p>Du vælger et design, du elsker. Der er mange at vælge imellem.</p><p>Din ordre er med til at finansiere rigtige måltider til katte, der lever på gaden. Vi samarbejder med betroede lokale internater, som ved præcis, hvor kattene er.</p><p>Så udgiver vi hver måned billeder fra fodringerne, så du selv kan se resultatet.</p><p>Det er det hele. Noget godt til dig, og hjælp til katte, der har brug for det.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "r1_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Reason 2"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "r2_title",
+      "label": "Title",
+      "default": "<span class=\"kk-adv__num\">2.</span> Hundredvis af Fotos Fra Marken, Udgivet Hver Måned"
+    },
+    {
+      "type": "richtext",
+      "id": "r2_body",
+      "label": "Body",
+      "default": "<p><strong>Hver måned udgiver vi nye fotos</strong> fra fodringerne. Hundredvis er allerede online.</p><p>Når du afgiver en ordre, får du også månedlige opdateringer via e-mail. Nye historier direkte fra gaden.</p><p>Over <strong>600.000 måltider</strong> er blevet doneret indtil videre, og fællesskabet vokser fortsat.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "r2_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Reason 3"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "r3_title",
+      "label": "Title",
+      "default": "<span class=\"kk-adv__num\">3.</span> En T-Shirt Du Faktisk Vil Gå Med"
+    },
+    {
+      "type": "richtext",
+      "id": "r3_body",
+      "label": "Body",
+      "default": "<p>Hver t-shirt er trykt på blødt bomuld og er 'true to size'. Mange kattedesigns at vælge imellem.</p><p>Folk køber dem ikke kun for at hjælpe katte. De køber dem, fordi de elsker at have dem på.</p><p>Vi ser ofte, at folk vender tilbage for at købe flere, eller giver dem som en gave, der betyder noget.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "r3_image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "CTA Block (used twice)"
+    },
+    {
+      "type": "text",
+      "id": "cta_title",
+      "label": "CTA Title",
+      "default": "Vælg Din T-Shirt"
+    },
+    {
+      "type": "text",
+      "id": "cta_subtitle",
+      "label": "CTA Subtitle",
+      "default": "Hver t-shirt hjælper os med at give 10 måltider til efterladte katte."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_free_shipping",
+      "label": "Show Free Shipping Text",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_shipping_text",
+      "label": "Free Shipping Text",
+      "default": "Gode nyheder, din ordre kvalificerer sig til GRATIS fragt."
+    },
+    {
+      "type": "image_picker",
+      "id": "cta1_image",
+      "label": "First CTA Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "cta2_image",
+      "label": "Second (Bottom) CTA Image"
+    },
+    {
+      "type": "header",
+      "content": "Reason 4: Reviews"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "r4_title",
+      "label": "Title",
+      "default": "<span class=\"kk-adv__num\">4.</span> Her er hvad 50.000+ Katteelskere Siger"
+    },
+    {
+      "type": "text",
+      "id": "r4_subtitle",
+      "label": "Subtitle",
+      "default": "Vi kunne fortælle dig hvad vores kunder synes. Men de siger det bedre."
+    },
+    {
+      "type": "text",
+      "id": "r4_footer_text",
+      "label": "Footer Text",
+      "default": "(5.000)+ bekræftede anmeldelser. 97% positive."
+    },
+    {
+      "type": "text",
+      "id": "verified_text",
+      "label": "Verified Buyer Text",
+      "default": "Verificeret Køber"
+    },
+    {
+      "type": "header",
+      "content": "Reason 5: Guarantee"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "r5_title",
+      "label": "Title",
+      "default": "<span class=\"kk-adv__num\">5.</span> Ingen Risiko. Bare en Simpel Måde at Hjælpe På."
+    },
+    {
+      "type": "richtext",
+      "id": "r5_body",
+      "label": "Body",
+      "default": "<p class=\"kk-adv__center\">Her er hvad vi vil have, du skal vide:</p><p class=\"kk-adv__center\"><strong>30-Dages Garanti.</strong> Hvis du af en eller anden grund ikke er tilfreds med din t-shirt, retter vi op på det. Uden spørgsmål.</p><p class=\"kk-adv__center\"><strong>Gratis fragt</strong> på kvalificerede ordrer.</p><p class=\"kk-adv__center kk-adv__muted\">Ingen skjulte gebyrer. Bare en t-shirt du vil elske, og rigtige måltider til katte, der har brug for dem.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Footer Area"
+    },
+    {
+      "type": "text",
+      "id": "footer_signoff",
+      "label": "Sign-off Text",
+      "default": "Lavet med kærlighed til katte i nød"
+    },
+    {
+      "type": "link_list",
+      "id": "footer_menu",
+      "label": "Footer Menu"
+    },
+    {
+      "type": "text",
+      "id": "footer_copyright",
+      "label": "Copyright Text",
+      "default": "© 2026, KittyKloset Co"
+    },
+    {
+      "type": "header",
+      "content": "Final Proof Stats"
+    },
+    {
+      "type": "text",
+      "id": "proof_val_1",
+      "label": "Value 1",
+      "default": "4.99"
+    },
+    {
+      "type": "text",
+      "id": "proof_lbl_1",
+      "label": "Label 1",
+      "default": "5.000+ anmeldelser"
+    },
+    {
+      "type": "text",
+      "id": "proof_val_2",
+      "label": "Value 2",
+      "default": "50.000+"
+    },
+    {
+      "type": "text",
+      "id": "proof_lbl_2",
+      "label": "Label 2",
+      "default": "glade katteejere"
+    },
+    {
+      "type": "text",
+      "id": "proof_val_3",
+      "label": "Value 3",
+      "default": "600.000+"
+    },
+    {
+      "type": "text",
+      "id": "proof_lbl_3",
+      "label": "Label 3",
+      "default": "måltider doneret"
     },
     {
       "type": "header",
@@ -722,9 +948,74 @@
       "default": 36
     }
   ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Review Image"
+        },
+        {
+          "type": "text",
+          "id": "image_url",
+          "label": "Image URL (fallback)",
+          "default": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/review_11.jpg?v=1781967981&width=600"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Review Text",
+          "default": "Denne lille fyr godkender den. At vide, at hver trøje hjælper med at fodre katte, betyder alt for mig."
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Customer Name",
+          "default": "Maria T."
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "LP1 Advertorial"
+      "name": "LP1 Advertorial",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/review_11.jpg?v=1781967981&width=600",
+            "text": "Denne lille fyr godkender den. At vide, at hver trøje hjælper med at fodre katte, der ikke har nogen, betyder alt for mig. Allerede bestilt igen.",
+            "name": "Maria T."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/review_22.jpg?v=1781967981&width=600",
+            "text": "Var lidt skeptisk først, men den ankom hurtigt, og printet er smukt. Det lille kort om kattene gjorde hele min uge.",
+            "name": "Jenna L."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/review_33.jpg?v=1781967981&width=600",
+            "text": "Bliver nødt til at dele mine to. Hver trøje, jeg køber, hjælper med at fodre katte, der ikke har en hyggelig vindueskarm som disse to.",
+            "name": "Emily R."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/review_44.jpg?v=1781967982&width=600",
+            "text": "Bedre kvalitet end forventet, og den har holdt fantastisk efter mange vaske. Vil bestille flere designs.",
+            "name": "Mark T."
+          }
+        }
+      ]
     }
   ]
 }
