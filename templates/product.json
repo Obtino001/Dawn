@@ -42,6 +42,14 @@
             "badge_text": "— kun på denne side"
           }
         },
+        "perks": {
+          "type": "perks_list",
+          "settings": {
+            "perk_1": "Hurtig, pålidelig sporet levering",
+            "perk_2": "10 måltider doneret pr. bestilt vare",
+            "perk_3": "30 dages fuld tilfredshedsgaranti"
+          }
+        },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
@@ -52,14 +60,6 @@
             "size_chart_title": "Størrelsesguide",
             "size_chart_content": "",
             "size_chart_page": ""
-          }
-        },
-        "perks": {
-          "type": "perks_list",
-          "settings": {
-            "perk_1": "Hurtig, pålidelig sporet levering",
-            "perk_2": "10 måltider doneret pr. bestilt vare",
-            "perk_3": "30 dages fuld tilfredshedsgaranti"
           }
         },
         "quantity_selector": {
@@ -127,8 +127,8 @@
         "rating",
         "price",
         "free_shipping",
-        "variant_picker",
         "perks",
+        "variant_picker",
         "quantity_selector",
         "buy_buttons",
         "accordion_sizing",
@@ -156,7 +156,11 @@
     },
     "impact_tracker": {
       "type": "impact-tracker",
-      "settings": {}
+      "settings": {
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     },
     "related_products": {
       "type": "related-products",
@@ -219,7 +223,11 @@
     "how_it_works_steps_PHbRmE": {
       "type": "how-it-works-steps",
       "name": "3 Simple Steps",
-      "settings": {}
+      "settings": {
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
