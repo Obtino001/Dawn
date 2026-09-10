@@ -16,115 +16,141 @@
     <div class="page-width section-{{ section.id }}-padding">
       <div class="kk-crisis">
         <div class="kk-crisis__media">
-    <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/shelter_8efca6c3-3a75-4f4f-be89-38dfa0437ed5.jpg?v=1781884333" alt="Kittens being fed">
-  </div>
-  <div class="kk-crisis__body">
-    <div class="kk-crisis__badge">
-      <span class="kk-crisis__crisis"><span class="kk-dot"></span> Emergency Food Crisis</span>
-      <span class="kk-crisis__gtitle">72-Hour Feeding Goal</span>
-    </div>
-    <div class="kk-crisis__stats">
-      <div class="kk-stat"><span class="kk-stat__num" id="kk-funded">9,650</span><span class="kk-stat__lbl">Meals Funded So Far</span></div>
-      <div class="kk-stat"><span class="kk-stat__num" id="kk-needed">350</span><span class="kk-stat__lbl">Meals Still Needed</span></div>
-      <div class="kk-stat"><span class="kk-stat__num" id="kk-goal">10,000</span><span class="kk-stat__lbl">Emergency Goal</span></div>
-    </div>
-    <div class="kk-crisis__track">
-      <div class="kk-crisis__fill" id="kk-bar" style="width: 97%;"><span id="kk-pct">97%</span></div>
-    </div>
-    <p class="kk-crisis__lead">Each tee adds 10 meals to this goal.</p>
-    <p class="kk-crisis__sub">When we hit 10,000 meals our volunteers deploy immediately to the most critical shelters first.</p>
-    <p class="kk-crisis__note">Every meal is tracked and verified by our volunteer team on the ground.</p>
-  </div>
-</div>
+          {% if section.settings.image != blank %}
+            <img src="{{ section.settings.image | image_url: width: 800 }}" alt="{{ section.settings.image.alt | default: 'Emergency crisis image' }}" loading="lazy">
+          {% else %}
+            <img src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/shelter_8efca6c3-3a75-4f4f-be89-38dfa0437ed5.jpg?v=1781884333" alt="Kittens being fed" loading="lazy">
+          {% endif %}
+        </div>
+        <div class="kk-crisis__body">
+          <div class="kk-crisis__badge">
+            <span class="kk-crisis__crisis"><span class="kk-dot"></span> {{ section.settings.badge_top }}</span>
+            <span class="kk-crisis__gtitle">{{ section.settings.badge_bottom }}</span>
+          </div>
+          <div class="kk-crisis__stats">
+            <div class="kk-stat"><span class="kk-stat__num" id="kk-funded">{{ section.settings.tracker_base }}</span><span class="kk-stat__lbl">{{ section.settings.stat1_label }}</span></div>
+            <div class="kk-stat"><span class="kk-stat__num" id="kk-needed">0</span><span class="kk-stat__lbl">{{ section.settings.stat2_label }}</span></div>
+            <div class="kk-stat"><span class="kk-stat__num" id="kk-goal">{{ section.settings.tracker_goal }}</span><span class="kk-stat__lbl">{{ section.settings.stat3_label }}</span></div>
+          </div>
+          <div class="kk-crisis__track">
+            <div class="kk-crisis__fill" id="kk-bar" style="width: 0%;"><span id="kk-pct">0%</span></div>
+          </div>
+          <p class="kk-crisis__lead">{{ section.settings.lead_text }}</p>
+          <p class="kk-crisis__sub">{{ section.settings.sub_text }}</p>
+          <p class="kk-crisis__note">{{ section.settings.note_text }}</p>
+        </div>
+      </div>
+
 <style>
-  .kk-crisis{
-    --acc:
-#8AA0F2;       /* brand periwinkle — switch to 
-#ef8b46 for the orange "emergency" look */
-    --text:
-#2a2c42; --muted:
-#9a9bad; --card:
+  #shopify-section-{{ section.id }} .kk-crisis{
+    --acc: {{ section.settings.accent_color }};
+    --text: #2a2c42; --muted: #9a9bad; --card: #ffffff;
     --track: #e7e7e3;
     font-family:'Poppins',sans-serif; color:var(--text);
-    margin:0 auto;        /* narrower block → whitespace on the sides (desktop) */
+    margin:0 auto; 
     background:var(--card); border:2px solid var(--acc); border-radius:24px;
     padding:12px; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
     gap:12px; box-sizing:border-box;
   }
-  .kk-crisis *{ font-family:'Poppins',sans-serif; box-sizing:border-box; }
-  .kk-crisis__media{ min-height:360px; }
-  .kk-crisis__media img{ width:100%; height:100%; object-fit:cover; border-radius:16px; display:block; }
-  .kk-crisis__body{ padding:22px 26px 26px; }
-  .kk-crisis__badge{
+  #shopify-section-{{ section.id }} .kk-crisis *{ font-family:'Poppins',sans-serif; box-sizing:border-box; }
+  #shopify-section-{{ section.id }} .kk-crisis__media{ min-height:360px; }
+  #shopify-section-{{ section.id }} .kk-crisis__media img{ width:100%; height:100%; object-fit:cover; border-radius:16px; display:block; }
+  #shopify-section-{{ section.id }} .kk-crisis__body{ padding:22px 26px 26px; }
+  #shopify-section-{{ section.id }} .kk-crisis__badge{
     display:inline-flex; flex-direction:column; gap:2px;
     background:var(--acc); color:#fff;
     border-radius:16px; padding:12px 20px; margin-bottom:22px;
-    box-shadow:0 6px 16px rgba(42,44,66,.20);   /* lifts the badge off the image */
+    box-shadow:0 6px 16px rgba(42,44,66,.20); 
   }
-  .kk-crisis__crisis{ font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; display:flex; align-items:center; gap:8px; }
-  .kk-crisis__gtitle{ font-size:22px; font-weight:800; letter-spacing:.5px; text-transform:uppercase; line-height:1.1; }
-  .kk-dot{ width:10px; height:10px; border-radius:50%; background:
-#e5484d; animation:kkLive 1.6s infinite; }
+  #shopify-section-{{ section.id }} .kk-crisis__crisis{ font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; display:flex; align-items:center; gap:8px; }
+  #shopify-section-{{ section.id }} .kk-crisis__gtitle{ font-size:22px; font-weight:800; letter-spacing:.5px; text-transform:uppercase; line-height:1.1; }
+  #shopify-section-{{ section.id }} .kk-dot{ width:10px; height:10px; border-radius:50%; background: #e5484d; animation:kkLive 1.6s infinite; }
   @keyframes kkLive{ 0%{box-shadow:0 0 0 0 rgba(229,72,77,.55)} 70%{box-shadow:0 0 0 7px rgba(229,72,77,0)} 100%{box-shadow:0 0 0 0 rgba(229,72,77,0)} }
-  .kk-crisis__stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:18px; }
-  .kk-stat{ display:flex; flex-direction:column; }
-  .kk-stat__num{ font-size:clamp(24px,3vw,34px); font-weight:800; color:var(--acc); line-height:1; }
-  .kk-stat__lbl{ margin-top:8px; font-size:11px; font-weight:700; letter-spacing:.6px; text-transform:uppercase; color:var(--muted); }
-  .kk-stat__num.kk-bump{ animation:kkBump .45s ease; }
+  #shopify-section-{{ section.id }} .kk-crisis__stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:18px; }
+  #shopify-section-{{ section.id }} .kk-stat{ display:flex; flex-direction:column; }
+  #shopify-section-{{ section.id }} .kk-stat__num{ font-size:clamp(24px,3vw,34px); font-weight:800; color:var(--acc); line-height:1; }
+  #shopify-section-{{ section.id }} .kk-stat__lbl{ margin-top:8px; font-size:11px; font-weight:700; letter-spacing:.6px; text-transform:uppercase; color:var(--muted); }
+  #shopify-section-{{ section.id }} .kk-stat__num.kk-bump{ animation:kkBump .45s ease; }
   @keyframes kkBump{ 0%{transform:scale(1)} 30%{transform:scale(1.12)} 100%{transform:scale(1)} }
-  .kk-crisis__track{ background:var(--track); border-radius:999px; height:38px; overflow:hidden; margin-bottom:22px; }
-  .kk-crisis__fill{ height:100%; background:var(--acc); border-radius:999px; display:flex; align-items:center; justify-content:flex-end; padding:0 16px; min-width:54px; color:#fff; font-weight:800; font-size:14px; transition:width .8s cubic-bezier(.22,.61,.36,1); }
-  .kk-crisis__lead{ color:var(--acc); font-weight:700; font-size:clamp(16px,1.5vw,19px); margin:0 0 8px; }
-  .kk-crisis__sub{ color:var(--text); font-weight:700; font-size:clamp(15px,1.4vw,18px); line-height:1.35; margin:0 0 12px; }
-  .kk-crisis__note{ color:var(--text); font-style:italic; font-size:14px; line-height:1.4; margin:0; opacity:.85; }
+  #shopify-section-{{ section.id }} .kk-crisis__track{ background:var(--track); border-radius:999px; height:38px; overflow:hidden; margin-bottom:22px; }
+  #shopify-section-{{ section.id }} .kk-crisis__fill{ height:100%; background:var(--acc); border-radius:999px; display:flex; align-items:center; justify-content:flex-end; padding:0 16px; min-width:54px; color:#fff; font-weight:800; font-size:14px; transition:width .8s cubic-bezier(.22,.61,.36,1); }
+  #shopify-section-{{ section.id }} .kk-crisis__lead{ color:var(--acc); font-weight:700; font-size:clamp(16px,1.5vw,19px); margin:0 0 8px; }
+  #shopify-section-{{ section.id }} .kk-crisis__sub{ color:var(--text); font-weight:700; font-size:clamp(15px,1.4vw,18px); line-height:1.35; margin:0 0 12px; }
+  #shopify-section-{{ section.id }} .kk-crisis__note{ color:var(--text); font-style:italic; font-size:14px; line-height:1.4; margin:0; opacity:.85; }
+  
   @media (max-width:749px){
-    .kk-crisis{
+    #shopify-section-{{ section.id }} .kk-crisis{
       grid-template-columns:1fr; gap:0; padding:0; overflow:hidden;
-      margin:20px 14px;                /* side margins on mobile (raise/lower the 14px) */
+      margin:20px 14px; 
     }
-    .kk-crisis__media{ min-height:0; }
-    .kk-crisis__media img{ height:300px; border-radius:0; }
-    .kk-crisis__body{ padding:0 18px 22px; }
-    .kk-crisis__badge{
+    #shopify-section-{{ section.id }} .kk-crisis__media{ min-height:0; }
+    #shopify-section-{{ section.id }} .kk-crisis__media img{ height:300px; border-radius:0; }
+    #shopify-section-{{ section.id }} .kk-crisis__body{ padding:0 18px 22px; }
+    #shopify-section-{{ section.id }} .kk-crisis__badge{
       display:flex; width:fit-content; max-width:92%;
       margin:-50px auto 22px;
       align-items:center; text-align:center;
       position:relative; z-index:2;
     }
-    .kk-crisis__stats{ gap:8px; }
+    #shopify-section-{{ section.id }} .kk-crisis__stats{ gap:8px; }
   }
 </style>
+
 <script>
-(function(){
-  var GOAL     = 10000;   // total goal
-  var BASE     = 3320;    // meals funded at the reference time
-  var MAX      = 9650;    // cap: never reaches 0 "needed" (keeps urgency alive)
-  var REF      = Date.UTC(2026,5,19,0,0,0); // reference moment (month is 0-indexed: 5 = June)
-  var PER_HOUR = 18;      // growth per real hour (seed, so it doesn't reset awkwardly on each refresh)
-  var TICK_MS  = 5000;    // every 5 seconds
-  var TICK_MIN = 4, TICK_MAX = 14; // increment per tick
-  var fEl=document.getElementById('kk-funded'), nEl=document.getElementById('kk-needed'),
-      bEl=document.getElementById('kk-bar'),    pEl=document.getElementById('kk-pct');
+document.addEventListener("DOMContentLoaded", function() {
+  var container = document.querySelector('#shopify-section-{{ section.id }}');
+  if(!container) return;
+
+  var GOAL     = {{ section.settings.tracker_goal | default: 10000 }};
+  var BASE     = {{ section.settings.tracker_base | default: 3320 }};
+  var MAX      = {{ section.settings.tracker_max | default: 9650 }};
+  var REF      = Date.UTC(2026, 5, 19, 0, 0, 0); 
+  var PER_HOUR = 18;      
+  var TICK_MS  = 5000;    
+  var TICK_MIN = 4, TICK_MAX = 14; 
+  
+  var fEl = container.querySelector('#kk-funded');
+  var nEl = container.querySelector('#kk-needed');
+  var bEl = container.querySelector('#kk-bar');
+  var pEl = container.querySelector('#kk-pct');
+  
   if(!fEl) return;
   var hours  = Math.max(0,(Date.now()-REF)/3600000);
   var funded = Math.min(MAX, Math.round(BASE + hours*PER_HOUR));
+  
   function fmt(n){ return n.toLocaleString('en-US'); }
+  
   function render(bump){
-    var needed=Math.max(0,GOAL-funded), pct=Math.min(100,Math.round(funded/GOAL*100));
-    fEl.textContent=fmt(funded); nEl.textContent=fmt(needed);
-    if(bEl) bEl.style.width=pct+'%'; if(pEl) pEl.textContent=pct+'%';
-    if(bump){ [fEl,nEl].forEach(function(el){ el.classList.remove('kk-bump'); void el.offsetWidth; el.classList.add('kk-bump'); }); }
+    var needed = Math.max(0, GOAL - funded);
+    var pct = Math.min(100, Math.round(funded / GOAL * 100));
+    
+    fEl.textContent = fmt(funded); 
+    nEl.textContent = fmt(needed);
+    
+    if(bEl) bEl.style.width = pct + '%'; 
+    if(pEl) pEl.textContent = pct + '%';
+    
+    if(bump){ 
+      [fEl, nEl].forEach(function(el){ 
+        el.classList.remove('kk-bump'); 
+        void el.offsetWidth; 
+        el.classList.add('kk-bump'); 
+      }); 
+    }
   }
+  
   render(false);
+  
   setInterval(function(){
-    if(funded>=MAX) return;
-    funded=Math.min(MAX, funded + TICK_MIN + Math.floor(Math.random()*(TICK_MAX-TICK_MIN+1)));
+    if(funded >= MAX) return;
+    funded = Math.min(MAX, funded + TICK_MIN + Math.floor(Math.random()*(TICK_MAX-TICK_MIN+1)));
     render(true);
   }, TICK_MS);
-})();
+});
 </script>
+    </div>
   </div>
-</div>
+</section>
 
 {% schema %}
 {
@@ -137,6 +163,97 @@
       "id": "color_scheme",
       "label": "Color Scheme",
       "default": "background-1"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent / Emergency Color",
+      "default": "#ef8b46",
+      "info": "Changes the border, badge, and progress bar color."
+    },
+    {
+      "type": "header",
+      "content": "Image & Badges"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Section Image"
+    },
+    {
+      "type": "text",
+      "id": "badge_top",
+      "label": "Badge Top Text",
+      "default": "Emergency Food Crisis"
+    },
+    {
+      "type": "text",
+      "id": "badge_bottom",
+      "label": "Badge Bottom Text",
+      "default": "72-Hour Feeding Goal"
+    },
+    {
+      "type": "header",
+      "content": "Statistics & Tracker Logic"
+    },
+    {
+      "type": "number",
+      "id": "tracker_goal",
+      "label": "Total Goal Amount",
+      "default": 10000
+    },
+    {
+      "type": "number",
+      "id": "tracker_base",
+      "label": "Starting/Base Amount",
+      "default": 3320
+    },
+    {
+      "type": "number",
+      "id": "tracker_max",
+      "label": "Max Cap Amount",
+      "default": 9650,
+      "info": "Tracker will stop here to maintain urgency."
+    },
+    {
+      "type": "text",
+      "id": "stat1_label",
+      "label": "Stat 1 Label",
+      "default": "Meals Funded So Far"
+    },
+    {
+      "type": "text",
+      "id": "stat2_label",
+      "label": "Stat 2 Label",
+      "default": "Meals Still Needed"
+    },
+    {
+      "type": "text",
+      "id": "stat3_label",
+      "label": "Stat 3 Label",
+      "default": "Emergency Goal"
+    },
+    {
+      "type": "header",
+      "content": "Content Texts"
+    },
+    {
+      "type": "textarea",
+      "id": "lead_text",
+      "label": "Lead Text",
+      "default": "Each tee adds 10 meals to this goal."
+    },
+    {
+      "type": "textarea",
+      "id": "sub_text",
+      "label": "Sub Text",
+      "default": "When we hit 10,000 meals our volunteers deploy immediately to the most critical shelters first."
+    },
+    {
+      "type": "textarea",
+      "id": "note_text",
+      "label": "Note Text",
+      "default": "Every meal is tracked and verified by our volunteer team on the ground."
     },
     {
       "type": "header",
