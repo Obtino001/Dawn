@@ -11,7 +11,152 @@
   "sections": {
     "main": {
       "type": "page-about-us",
-      "settings": {}
+      "blocks": {
+        "feed_bpYVE8": {
+          "type": "feed",
+          "settings": {
+            "image_url": "",
+            "image_alt": "",
+            "eyebrow": "Feeding update",
+            "title": "",
+            "excerpt": "",
+            "link": ""
+          }
+        },
+        "feed_9RVitU": {
+          "type": "feed",
+          "settings": {
+            "image_url": "",
+            "image_alt": "",
+            "eyebrow": "Feeding update",
+            "title": "",
+            "excerpt": "",
+            "link": ""
+          }
+        },
+        "feed_bQfypY": {
+          "type": "feed",
+          "settings": {
+            "image_url": "",
+            "image_alt": "",
+            "eyebrow": "Feeding update",
+            "title": "",
+            "excerpt": "",
+            "link": ""
+          }
+        },
+        "feed_iwBFNT": {
+          "type": "feed",
+          "settings": {
+            "image_url": "",
+            "image_alt": "",
+            "eyebrow": "Feeding update",
+            "title": "",
+            "excerpt": "",
+            "link": ""
+          }
+        },
+        "review_76KDKR": {
+          "type": "review",
+          "settings": {
+            "text": "",
+            "name": "",
+            "verified": "Verified Buyer"
+          }
+        },
+        "review_cxLmQW": {
+          "type": "review",
+          "settings": {
+            "text": "",
+            "name": "",
+            "verified": "Verified Buyer"
+          }
+        },
+        "review_GRq4i4": {
+          "type": "review",
+          "settings": {
+            "text": "",
+            "name": "",
+            "verified": "Verified Buyer"
+          }
+        },
+        "row_LqANmz": {
+          "type": "row",
+          "settings": {
+            "eyebrow": "",
+            "heading": "",
+            "text": "",
+            "signature": "",
+            "image_url": "",
+            "image_alt": "",
+            "reverse": false,
+            "band": false
+          }
+        },
+        "value_eTYfbP": {
+          "type": "value",
+          "settings": {
+            "icon": "",
+            "heading": "",
+            "text": ""
+          }
+        },
+        "value_wCR8y7": {
+          "type": "value",
+          "settings": {
+            "icon": "",
+            "heading": "",
+            "text": ""
+          }
+        },
+        "value_dP7DP4": {
+          "type": "value",
+          "settings": {
+            "icon": "",
+            "heading": "",
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "feed_bpYVE8",
+        "feed_9RVitU",
+        "feed_bQfypY",
+        "feed_iwBFNT",
+        "review_76KDKR",
+        "review_cxLmQW",
+        "review_GRq4i4",
+        "row_LqANmz",
+        "value_eTYfbP",
+        "value_wCR8y7",
+        "value_dP7DP4"
+      ],
+      "settings": {
+        "sticky_text": "<p><strong>1 tee = 10 meals</strong> for abandoned cats</p>",
+        "sticky_btn_label": "Choose Your Tee",
+        "sticky_btn_link": "",
+        "hero_image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/jun3.jpg?v=1782851269",
+        "hero_eyebrow": "Our Story",
+        "hero_heading": "More Than Just Cat Tees",
+        "hero_sub": "Every order helps feed and care for abandoned cats who have no one looking for them.",
+        "hero_btn_label": "Choose Your Tee",
+        "hero_btn_link": "",
+        "hero_proof": "4.99 from 50,000+ cat parents",
+        "mission_eyebrow": "Our Mission",
+        "mission_heading": "Shop with <span>Purpose</span>",
+        "mission_sub": "Cat-inspired apparel that helps feed homeless kittens.",
+        "stat1_val": "4.99",
+        "stat1_label": "5,000+ reviews",
+        "stat2_val": "50,000+",
+        "stat2_label": "happy cat parents",
+        "stat3_val": "600,000+",
+        "stat3_label": "meals donated",
+        "cta_heading": "Shop With Purpose",
+        "cta_sub": "Find a tee you love and help feed a cat who needs it.",
+        "cta_btn_label": "Choose Your Tee",
+        "cta_btn_link": "",
+        "cta_love": "Made with love"
+      }
     }
   },
   "order": [
