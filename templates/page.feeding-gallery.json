@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "page-feeding-gallery",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
