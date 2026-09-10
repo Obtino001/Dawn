@@ -1,0 +1,149 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "page_about_us_9hKfkp": {
+      "type": "page-about-us",
+      "blocks": {
+        "row_gKxGkP": {
+          "type": "row",
+          "settings": {
+            "eyebrow": "Meet the founder",
+            "heading": "Hi, nice to meet you!",
+            "text": "<p>At KittyKloset, our mission goes beyond offering fashionable clothing for cat lovers. We are on a heartfelt mission to make a difference in the lives of abandoned kittens that roam the streets, longing for love and care.</p>",
+            "signature": "<strong>Olivia F.</strong><span>Founder, KittyKloset</span>",
+            "image_url": "https://ucarecdn.com/2d072830-c4e4-4102-ad9b-ce1a9867d218/-/format/auto/-/preview/1400x1400/-/quality/lighter/luku-muffin-OeN9QeoQ99I-unsplash.jpg",
+            "image_alt": "A rescued cat resting",
+            "reverse": false,
+            "band": false
+          }
+        },
+        "row_Mx3RKE": {
+          "type": "row",
+          "settings": {
+            "eyebrow": "Inspiring the world",
+            "heading": "Every Purchase Has a Purpose",
+            "text": "<p>When you shop at KittyKloset, a portion of the proceeds goes directly toward rescuing, rehabilitating, and finding loving homes for abandoned kittens.</p><p>Our mission doesn't stop there. We take part in TNR (Trap-Neuter-Return) programs to help control the stray cat population...</p>",
+            "signature": "",
+            "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/collage_home.jpg?v=1781819895&width=900",
+            "image_alt": "Street cats being fed",
+            "reverse": true,
+            "band": true
+          }
+        },
+        "row_PVjMAK": {
+          "type": "row",
+          "settings": {
+            "eyebrow": "Our mission & vision",
+            "heading": "A Network of Support",
+            "text": "<p>Countless kittens are left abandoned on the cold and unforgiving streets, struggling to survive without shelter...</p>",
+            "signature": "",
+            "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/shelter_8efca6c3-3a75-4f4f-be89-38dfa0437ed5.jpg?v=1781884333&width=900",
+            "image_alt": "Cats cared for at a partner shelter",
+            "reverse": false,
+            "band": false
+          }
+        },
+        "value_98rwb8": {
+          "type": "value",
+          "settings": {
+            "icon": "<svg viewbox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 21s-7-4.35-9-9c-1.5-3.5 1-7 4.5-6.5C10 6 12 8 12 8s2-2 4.5-2.5C20 5 22.5 8.5 21 12c-2 4.65-9 9-9 9z\"></path></svg>",
+            "heading": "100% natural materials",
+            "text": "Soft, breathable fabrics chosen to feel good on and last wash after wash."
+          }
+        },
+        "value_c9b7mp": {
+          "type": "value",
+          "settings": {
+            "icon": "<svg viewbox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 5l4-2 4 2 4-2 4 2-2 4-2-1v11H8V8L6 9z\"></path></svg>",
+            "heading": "Premium quality",
+            "text": "The tee our cat parents keep calling the softest one they own."
+          }
+        },
+        "value_C7zRDq": {
+          "type": "value",
+          "settings": {
+            "icon": "<svg viewbox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 2s6 4 6 10a6 6 0 0 1-12 0c0-6 6-10 6-10zM12 22v-6\"></path></svg>",
+            "heading": "Lighter footprint",
+            "text": "Made thoughtfully to keep our impact on the planet as low as we can."
+          }
+        },
+        "review_cJfmWV": {
+          "type": "review",
+          "settings": {
+            "text": "I have fallen in love with the quality at KittyKloset. This is my third time buying here...",
+            "name": "Kary Matthington",
+            "verified": "Verified Buyer"
+          }
+        },
+        "feed_CwYeid": {
+          "type": "feed",
+          "settings": {
+            "image_url": "//kittyklosetco.com/cdn/shop/articles/sca-hamburger-sun_a65c15fc-3f5c-4595-bf2c-fad1dc672518.jpg?v=1788264184&width=600",
+            "image_alt": "",
+            "eyebrow": "Feeding update",
+            "title": "A New Partnership: Meet Stray Cat Alliance",
+            "excerpt": "He was a tiny kitten when an animal attacked him. A rescue in Los Angeles took him in...",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "row_gKxGkP",
+        "row_Mx3RKE",
+        "row_PVjMAK",
+        "value_98rwb8",
+        "value_c9b7mp",
+        "value_C7zRDq",
+        "review_cJfmWV",
+        "feed_CwYeid"
+      ],
+      "name": "About Us (Dynamic)",
+      "settings": {
+        "sticky_text": "<p><strong>1 tee = 10 meals</strong> for abandoned cats</p>",
+        "sticky_btn_label": "Choose Your Tee",
+        "sticky_btn_link": "",
+        "hero_image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/jun3.jpg?v=1782851269",
+        "hero_eyebrow": "Our Story",
+        "hero_heading": "More Than Just Cat Tees",
+        "hero_sub": "Every order helps feed and care for abandoned cats who have no one looking for them.",
+        "hero_btn_label": "Choose Your Tee",
+        "hero_btn_link": "",
+        "hero_proof": "4.99 from 50,000+ cat parents",
+        "mission_eyebrow": "Our Mission",
+        "mission_heading": "Shop with <span>Purpose</span>",
+        "mission_sub": "Cat-inspired apparel that helps feed homeless kittens.",
+        "stat1_val": "4.99",
+        "stat1_label": "5,000+ reviews",
+        "stat2_val": "50,000+",
+        "stat2_label": "happy cat parents",
+        "stat3_val": "600,000+",
+        "stat3_label": "meals donated",
+        "cta_heading": "Shop With Purpose",
+        "cta_sub": "Find a tee you love and help feed a cat who needs it.",
+        "cta_btn_label": "Choose Your Tee",
+        "cta_btn_link": "",
+        "cta_love": "Made with love"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "page_about_us_9hKfkp"
+  ]
+}
