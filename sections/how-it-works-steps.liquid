@@ -14,28 +14,32 @@
 
 <div class="color-{{ section.settings.color_scheme | default: 'background-1' }} gradient">
   <div class="kk-steps3">
-  <div class="page-width section-{{ section.id }}-padding">
+    <div class="page-width section-{{ section.id }}-padding">
       <div class="kk-steps3__inner">
-        <h2 class="kk-steps3__title">How Your Purchase Helps Provide Meals <span>in 3 Simple Steps</span></h2>
+        <h2 class="kk-steps3__title">
+          {{ section.settings.heading }} <span>{{ section.settings.heading_highlight }}</span>
+        </h2>
         <div class="kk-steps3__grid">
-          <div class="kk-steps3__col">
-            <h3 class="kk-steps3__head"><span class="kk-steps3__num">1</span> Choose Your Style</h3>
-            <p>Each tee helps us provide 10 meals to abandoned kittens.</p>
-            <p>Many customers order a few to share with friends and help us provide even more meals.</p>
-            <img class="kk-steps3__img" src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/circleremera.png?v=1781830560" alt="" loading="lazy">
-          </div>
-          <div class="kk-steps3__col">
-            <h3 class="kk-steps3__head"><span class="kk-steps3__num">2</span> We Help Get Meals to Cats</h3>
-            <p>We partner with trusted local rescues and coordinate with our street feeding volunteers.</p>
-            <p>Your purchase helps us get meals to cats in need, through the people who know exactly where they wait.</p>
-            <img class="kk-steps3__img" src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/Logo_KittyKloset_printed_on_tube_202606191255.png?v=1781884657" alt="" loading="lazy">
-          </div>
-          <div class="kk-steps3__col">
-            <h3 class="kk-steps3__head"><span class="kk-steps3__num">3</span> Monthly Photo Updates</h3>
-            <p>Each month, you'll receive photos from our feeding operations.</p>
-            <p>These photos capture real moments from the field, shared with you every month.</p>
-            <img class="kk-steps3__img" src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/pinky_1.png?v=1781831026" alt="" loading="lazy">
-          </div>
+          {% for block in section.blocks %}
+            <div class="kk-steps3__col" {{ block.shopify_attributes }}>
+              <h3 class="kk-steps3__head">
+                <span class="kk-steps3__num">{{ forloop.index }}</span> {{ block.settings.title }}
+              </h3>
+              <div class="kk-steps3__text">
+                {{ block.settings.text }}
+              </div>
+              
+              {% liquid
+                assign img_src = block.settings.image_url
+                if block.settings.image != blank
+                  assign img_src = block.settings.image | image_url: width: 360
+                endif
+              %}
+              {% if img_src != blank %}
+                <img class="kk-steps3__img" src="{{ img_src }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+              {% endif %}
+            </div>
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -90,7 +94,7 @@
         font-size: 15px;
         font-weight: 700;
       }
-      .kk-steps3__col p {
+      .kk-steps3__text p {
         margin: 0 0 14px;
         line-height: 1.5;
         font-size: clamp(14px, 1vw, 16px);
@@ -117,6 +121,18 @@
   "tag": "section",
   "class": "section",
   "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "How Your Purchase Helps Provide Meals"
+    },
+    {
+      "type": "text",
+      "id": "heading_highlight",
+      "label": "Heading Highlight (Colored)",
+      "default": "in 3 Simple Steps"
+    },
     {
       "type": "color_scheme",
       "id": "color_scheme",
@@ -148,10 +164,65 @@
       "default": 36
     }
   ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Step Title"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Step Description"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "image_url",
+          "label": "Image URL (Fallback)"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
       "name": "3 Simple Steps",
-      "category": "Custom Sections"
+      "category": "Custom Sections",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "title": "Choose Your Style",
+            "text": "<p>Each tee helps us provide 10 meals to abandoned kittens.</p><p>Many customers order a few to share with friends and help us provide even more meals.</p>",
+            "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/circleremera.png?v=1781830560"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "We Help Get Meals to Cats",
+            "text": "<p>We partner with trusted local rescues and coordinate with our street feeding volunteers.</p><p>Your purchase helps us get meals to cats in need, through the people who know exactly where they wait.</p>",
+            "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/Logo_KittyKloset_printed_on_tube_202606191255.png?v=1781884657"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Monthly Photo Updates",
+            "text": "<p>Each month, you'll receive photos from our feeding operations.</p><p>These photos capture real moments from the field, shared with you every month.</p>",
+            "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/pinky_1.png?v=1781831026"
+          }
+        }
+      ]
     }
   ]
 }
