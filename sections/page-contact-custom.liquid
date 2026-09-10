@@ -1,0 +1,312 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="section-{{ section.id }}-padding">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap">
+
+  <div class="kk-ct page-width">
+    <div class="kk-ct__wrap">
+
+      <header class="kk-ct__head">
+        <span class="kk-ct__eyebrow">{{ section.settings.eyebrow }}</span>
+        <h1 class="kk-ct__h1">{{ section.settings.heading }}</h1>
+        <p class="kk-ct__intro">{{ section.settings.intro }}</p>
+      </header>
+
+      <div class="kk-ct__grid">
+
+        <aside class="kk-ct__info">
+          <div class="kk-ct__block">
+            <span class="kk-ct__label">{{ section.settings.email_label }}</span>
+            <a class="kk-ct__email" href="mailto:{{ section.settings.email_address }}">{{ section.settings.email_address }}</a>
+          </div>
+          <div class="kk-ct__block">
+            <span class="kk-ct__label">{{ section.settings.response_label }}</span>
+            <p class="kk-ct__text">{{ section.settings.response_text }}</p>
+          </div>
+          <div class="kk-ct__block">
+            <span class="kk-ct__label">{{ section.settings.quick_label }}</span>
+            <ul class="kk-ct__links">
+              <li><a href="{{ section.settings.link1_url | default: '/policies/shipping-policy' }}">{{ section.settings.link1_text }}</a></li>
+              <li><a href="{{ section.settings.link2_url | default: '/policies/refund-policy' }}">{{ section.settings.link2_text }}</a></li>
+            </ul>
+          </div>
+          <p class="kk-ct__note">{{ section.settings.note_text }}</p>
+        </aside>
+
+        <div class="kk-ct__formcard">
+          {%- form 'contact', id: 'contact_form' -%}
+            {%- if form.posted_successfully? -%}
+              <div class="kk-ct__success" tabindex="-1" autofocus>
+                {{ 'templates.contact.form.post_success' | t }}
+              </div>
+            {%- elsif form.errors -%}
+              <div class="kk-ct__error">
+                {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}
+              </div>
+            {%- endif -%}
+
+            <div class="kk-ct__field">
+              <label for="ct-name">{{ section.settings.form_name }}</label>
+              <input type="text" id="ct-name" name="contact[name]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" required="">
+            </div>
+            <div class="kk-ct__field">
+              <label for="ct-email">{{ section.settings.form_email }}</label>
+              <input type="email" id="ct-email" name="contact[email]" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" required="">
+            </div>
+            <div class="kk-ct__field">
+              <label for="ct-order">{{ section.settings.form_order }} <span class="kk-ct__optional">{{ section.settings.form_optional }}</span></label>
+              <input type="text" id="ct-order" name="contact[Order number]">
+            </div>
+            <div class="kk-ct__field">
+              <label for="ct-body">{{ section.settings.form_message }}</label>
+              <textarea id="ct-body" name="contact[body]" rows="5" required="">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+            </div>
+            <button type="submit" class="kk-ct__btn">{{ section.settings.form_button }}</button>
+          {%- endform -%}
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .kk-ct{
+      --kk-acc:#8AA0F2; --kk-acc-deep:#6c72e0; --kk-text:#2a2c42;
+      --kk-muted:#7f86a0; --kk-cream:#f6f5f2; --kk-band:#f4f6ff; --kk-line:#e6e8f5;
+      font-family:'Poppins', system-ui, -apple-system, sans-serif;
+      color:var(--kk-text); line-height:1.7; font-size:17px; background:#fff;
+    }
+    .kk-ct *{ box-sizing:border-box; }
+    .kk-ct p{ margin:0 0 14px; }
+
+    .kk-ct__wrap{ max-width:980px; margin:0 auto; padding:54px 20px 64px; }
+
+    .kk-ct__head{ text-align:center; max-width:620px; margin:0 auto 40px; }
+    .kk-ct__eyebrow{ display:block; font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--kk-acc-deep); margin:0 0 10px; }
+    .kk-ct__h1{ font-family:'Baloo 2', 'Poppins', sans-serif; font-size:clamp(30px, 5vw, 46px); line-height:1.1; font-weight:800; margin:0 0 14px; }
+    .kk-ct__intro{ margin:0; color:var(--kk-muted); font-size:clamp(15px, 2.2vw, 18px); }
+
+    .kk-ct__grid{ display:grid; grid-template-columns:1fr 1.3fr; gap:28px; align-items:start; }
+
+    .kk-ct__info{ background:var(--kk-band); border-radius:20px; padding:32px 30px; }
+    .kk-ct__block{ margin-bottom:22px; }
+    .kk-ct__label{ display:block; font-size:12px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--kk-acc-deep); margin-bottom:7px; }
+    .kk-ct__email{ font-size:18px; font-weight:600; color:var(--kk-text); text-decoration:none; word-break:break-word; }
+    .kk-ct__email:hover{ color:var(--kk-acc-deep); }
+    .kk-ct__text{ margin:0; }
+    .kk-ct__links{ list-style:none; margin:0; padding:0; }
+    .kk-ct__links li{ margin-bottom:6px; }
+    .kk-ct__links a{ color:var(--kk-acc-deep); text-decoration:none; font-weight:500; }
+    .kk-ct__links a:hover{ text-decoration:underline; }
+    .kk-ct__note{ margin:24px 0 0; padding-top:20px; border-top:1px solid #dde2f5; font-size:14px; color:var(--kk-muted); line-height:1.55; }
+
+    .kk-ct__formcard{ background:#fff; border:1px solid var(--kk-line); border-radius:20px; padding:32px 30px; box-shadow:0 8px 30px rgba(42,44,66,.06); }
+    .kk-ct__field{ margin-bottom:16px; }
+    .kk-ct__field label{ display:block; font-size:13px; font-weight:600; margin-bottom:6px; }
+    .kk-ct__optional{ font-weight:400; color:var(--kk-muted); }
+    .kk-ct__field input, .kk-ct__field textarea{
+      width:100%; font-family:inherit; font-size:15px; color:var(--kk-text);
+      background:#fff; border:1px solid var(--kk-line); border-radius:12px;
+      padding:12px 14px; transition:border-color .15s ease, box-shadow .15s ease;
+    }
+    .kk-ct__field input:focus, .kk-ct__field textarea:focus{
+      outline:none; border-color:var(--kk-acc); box-shadow:0 0 0 3px rgba(138,160,242,.25);
+    }
+    .kk-ct__field textarea{ resize:vertical; min-height:120px; }
+    .kk-ct__btn{
+      width:100%; cursor:pointer; border:0;
+      background:var(--kk-acc-deep); color:#fff;
+      font-family:inherit; font-weight:700; font-size:16px; letter-spacing:.2px;
+      padding:15px 34px; border-radius:999px; margin-top:6px;
+      box-shadow:0 6px 18px rgba(108,114,224,.32);
+      transition:transform .15s ease, background .15s ease;
+    }
+    .kk-ct__btn:hover{ background:#585ec9; transform:translateY(-2px); }
+    .kk-ct__success{ background:#eaf7ee; border:1px solid #b9e3c6; color:#1f7a44; border-radius:12px; padding:14px 16px; font-size:14px; margin-bottom:20px; }
+    .kk-ct__error{ background:#fdecec; border:1px solid #f3c2c2; color:#b3261e; border-radius:12px; padding:14px 16px; font-size:14px; margin-bottom:20px; }
+
+    @media (max-width:760px){
+      .kk-ct{ font-size:16px; }
+      .kk-ct__wrap{ padding:36px 18px 48px; }
+      .kk-ct__grid{ grid-template-columns:1fr; gap:20px; }
+      .kk-ct__info, .kk-ct__formcard{ padding:26px 22px; }
+    }
+    @media (prefers-reduced-motion:reduce){ .kk-ct__btn{ transition:none; } }
+  </style>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Contact Page",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header Section"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "Kontakt"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Vi vil meget gerne høre fra dig"
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro Text",
+      "default": "Spørgsmål om en ordre, et produkt eller vores mission? Send os en besked, og en rigtig person på vores team vil vende tilbage til dig."
+    },
+    {
+      "type": "header",
+      "content": "Contact Info Sidebar"
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Email Label",
+      "default": "Send os en e-mail"
+    },
+    {
+      "type": "text",
+      "id": "email_address",
+      "label": "Email Address",
+      "default": "support@kittyklosetco.com"
+    },
+    {
+      "type": "text",
+      "id": "response_label",
+      "label": "Response Time Label",
+      "default": "Svartid"
+    },
+    {
+      "type": "textarea",
+      "id": "response_text",
+      "label": "Response Time Text",
+      "default": "Vi bestræber os på at svare inden for 24 timer, mandag til fredag."
+    },
+    {
+      "type": "text",
+      "id": "quick_label",
+      "label": "Quick Answers Label",
+      "default": "Hurtige svar"
+    },
+    {
+      "type": "text",
+      "id": "link1_text",
+      "label": "Link 1 Text",
+      "default": "Fragt & leveringstider"
+    },
+    {
+      "type": "url",
+      "id": "link1_url",
+      "label": "Link 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "link2_text",
+      "label": "Link 2 Text",
+      "default": "Returnering & refusion"
+    },
+    {
+      "type": "url",
+      "id": "link2_url",
+      "label": "Link 2 URL"
+    },
+    {
+      "type": "textarea",
+      "id": "note_text",
+      "label": "Note Text",
+      "default": "Hver besked læses af vores lille team. Din ordre hjælper med at brødføde katte, der ikke har nogen, og det tager vi aldrig let på."
+    },
+    {
+      "type": "header",
+      "content": "Contact Form Labels"
+    },
+    {
+      "type": "text",
+      "id": "form_name",
+      "label": "Name Field",
+      "default": "Navn"
+    },
+    {
+      "type": "text",
+      "id": "form_email",
+      "label": "Email Field",
+      "default": "E-mail"
+    },
+    {
+      "type": "text",
+      "id": "form_order",
+      "label": "Order Number Field",
+      "default": "Ordrenummer"
+    },
+    {
+      "type": "text",
+      "id": "form_optional",
+      "label": "Optional Text",
+      "default": "(valgfrit)"
+    },
+    {
+      "type": "text",
+      "id": "form_message",
+      "label": "Message Field",
+      "default": "Besked"
+    },
+    {
+      "type": "text",
+      "id": "form_button",
+      "label": "Submit Button",
+      "default": "Send besked"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Contact Page"
+    }
+  ]
+}
+{% endschema %}
