@@ -1,0 +1,319 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="page-width page-width--narrow section-{{ section.id }}-padding">
+  <div class="rte">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap">
+    <style>.main-page-title,.page-title{display:none!important}</style>
+    <div class="kkfg">
+      <style>
+      .kkfg{--kk-acc:#8AA0F2;--kk-acc-deep:#6c72e0;--kk-text:#2a2c42;--kk-muted:#7f86a0;--kk-cream:#f6f5f2;--kk-band:#f4f6ff;--kk-line:#e6e8f5;max-width:1040px;margin:0 auto;padding:4px 14px 56px;font-family:'Poppins',system-ui,-apple-system,sans-serif;color:var(--kk-text);line-height:1.7}
+      .kkfg *{box-sizing:border-box}
+      .kkfg-header{text-align:center;margin:4px 0 30px}
+      .kkfg-eyebrow2{margin:0;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--kk-acc-deep);font-weight:700}
+      .kkfg-h1{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(30px,5vw,44px);line-height:1.12;color:var(--kk-text);margin:10px 0 14px}
+      .kkfg-intro{color:var(--kk-muted);font-size:16px;max-width:600px;margin:0 auto}
+      .kkfg-stats{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;background:var(--kk-band);border:1px solid var(--kk-line);border-radius:16px;padding:22px 16px;margin:0 0 32px}
+      .kkfg-stat{flex:1 1 150px;text-align:center;min-width:128px}
+      .kkfg-stat b{display:block;font-family:'Baloo 2',sans-serif;font-size:27px;color:var(--kk-acc-deep);line-height:1.1}
+      .kkfg-stat span{display:block;font-size:12.5px;color:var(--kk-muted);margin-top:4px}
+      .kkfg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+      @media(max-width:640px){.kkfg-grid{grid-template-columns:repeat(2,1fr)}}
+      .kkfg-thumb{position:relative;display:block;border-radius:14px;overflow:hidden;aspect-ratio:1/1;background:var(--kk-band);cursor:zoom-in;container-type:inline-size}
+      .kkfg-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+      .kkfg-thumb:hover img{transform:scale(1.06)}
+      .kkfg-thumb::after{content:'{{ section.settings.overlay_text | escape }}';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Baloo 2',sans-serif;font-weight:800;font-size:15cqi;letter-spacing:.01em;white-space:nowrap;color:#fff;opacity:.30;text-shadow:0 1px 5px rgba(0,0,0,.28);pointer-events:none;z-index:2}
+      .kkfg-lb{display:none;position:fixed;inset:0;z-index:99999;background:rgba(24,25,38,.93);align-items:center;justify-content:center;padding:22px}
+      .kkfg-lb:target{display:flex}
+      .kkfg-lb-bg{position:absolute;inset:0}
+      .kkfg-fig{position:relative;display:inline-block;line-height:0}
+      .kkfg-fig img{display:block;max-width:90vw;max-height:88vh;border-radius:14px;box-shadow:0 24px 70px rgba(0,0,0,.55)}
+      .kkfg-fig::after{content:'{{ section.settings.overlay_text | escape }}';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(26px,6vw,58px);letter-spacing:.01em;white-space:nowrap;color:#fff;opacity:.32;text-shadow:0 1px 8px rgba(0,0,0,.3);pointer-events:none;z-index:1}
+      .kkfg-close{position:absolute;top:10px;right:10px;width:46px;height:46px;display:flex;align-items:center;justify-content:center;background:var(--kk-acc-deep);border:2px solid #fff;border-radius:50%;color:#fff;font-size:28px;line-height:1;text-decoration:none;z-index:4;box-shadow:0 3px 14px rgba(108,114,224,.55)}
+      .kkfg-close:hover{background:#585ec9}
+      .kkfg-nav{position:fixed;top:50%;transform:translateY(-50%);width:52px;height:52px;display:flex;align-items:center;justify-content:center;background:var(--kk-acc-deep);border:2px solid #fff;border-radius:50%;color:#fff;font-size:30px;line-height:0;padding-bottom:4px;text-decoration:none;z-index:5;box-shadow:0 3px 14px rgba(108,114,224,.55)}
+      .kkfg-nav:hover{background:#585ec9}
+      .kkfg-prev{left:20px}
+      .kkfg-next{right:20px}
+      @media(max-width:640px){.kkfg-prev{left:8px}.kkfg-next{right:8px}.kkfg-nav{width:44px;height:44px;font-size:26px}}
+      .kkfg-cta{text-align:center;margin:42px 0 0;background:var(--kk-cream);border-radius:22px;padding:38px 22px}
+      .kkfg-eyebrow{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--kk-acc);font-weight:700}
+      .kkfg-cta h2{font-family:'Baloo 2',sans-serif;font-size:26px;margin:8px 0 20px;color:var(--kk-text);font-weight:700}
+      .kkfg-btn{display:inline-block;background:var(--kk-acc-deep);color:#fff!important;text-decoration:none;font-weight:700;padding:15px 36px;border-radius:999px;font-size:16px;box-shadow:0 6px 18px rgba(108,114,224,.32);transition:transform .15s,background .15s}
+      .kkfg-btn:hover{background:#585ec9;transform:translateY(-2px)}
+      </style>
+      
+      <div class="kkfg-header">
+        <p class="kkfg-eyebrow2">{{ section.settings.header_eyebrow }}</p>
+        <h1 class="kkfg-h1">{{ section.settings.header_title }}</h1>
+        <p class="kkfg-intro">{{ section.settings.header_intro }}</p>
+      </div>
+
+      <div class="kkfg-stats">
+        <div class="kkfg-stat">
+          <b>{{ section.settings.stat1_val }}</b><span>{{ section.settings.stat1_lbl }}</span>
+        </div>
+        <div class="kkfg-stat">
+          <b>{{ section.settings.stat2_val }}</b><span>{{ section.settings.stat2_lbl }}</span>
+        </div>
+        <div class="kkfg-stat">
+          <b>{{ section.settings.stat3_val }}</b><span>{{ section.settings.stat3_lbl }}</span>
+        </div>
+        <div class="kkfg-stat">
+          <b>{{ section.settings.stat4_val }}</b><span>{{ section.settings.stat4_lbl }}</span>
+        </div>
+      </div>
+
+      <div class="kkfg-grid">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'gallery_image' -%}
+            <a class="kkfg-thumb" href="#g{{ forloop.index }}" {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', alt: section.settings.img_alt_text }}
+              {%- else -%}
+                <img loading="lazy" src="{{ block.settings.fallback_image }}" alt="{{ section.settings.img_alt_text }}">
+              {%- endif -%}
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      <div class="kkfg-cta">
+        <div class="kkfg-eyebrow">{{ section.settings.cta_eyebrow }}</div>
+        <h2>{{ section.settings.cta_title }}</h2>
+        <a class="kkfg-btn" href="{{ section.settings.cta_link }}">{{ section.settings.cta_btn_text }}</a>
+      </div>
+
+      {%- assign total_images = section.blocks | where: "type", "gallery_image" | size -%}
+      {%- assign index = 1 -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'gallery_image' -%}
+          {%- assign prev_index = index | minus: 1 -%}
+          {%- if prev_index == 0 -%}{%- assign prev_index = total_images -%}{%- endif -%}
+          {%- assign next_index = index | plus: 1 -%}
+          {%- if next_index > total_images -%}{%- assign next_index = 1 -%}{%- endif -%}
+          
+          <div class="kkfg-lb" id="g{{ index }}">
+            <a class="kkfg-lb-bg" href="#_"></a>
+            <a class="kkfg-nav kkfg-prev" href="#g{{ prev_index }}">‹</a>
+            <a class="kkfg-nav kkfg-next" href="#g{{ next_index }}">›</a>
+            <span class="kkfg-fig">
+              <a class="kkfg-close" href="#_">×</a>
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', alt: section.settings.img_alt_text }}
+              {%- else -%}
+                <img src="{{ block.settings.fallback_image }}" alt="{{ section.settings.img_alt_text }}">
+              {%- endif -%}
+            </span>
+          </div>
+          {%- assign index = index | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Feeding Gallery",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header Section"
+    },
+    {
+      "type": "text",
+      "id": "header_eyebrow",
+      "label": "Eyebrow Text",
+      "default": "Direkte fra gaderne"
+    },
+    {
+      "type": "text",
+      "id": "header_title",
+      "label": "Title",
+      "default": "Fodringsoperationer Galleri"
+    },
+    {
+      "type": "textarea",
+      "id": "header_intro",
+      "label": "Intro Text",
+      "default": "Vi har hjulpet med at give over 600.000 måltider til katte, der lever på gaden. Her er hvordan det ser ud."
+    },
+    {
+      "type": "header",
+      "content": "Statistics"
+    },
+    {
+      "type": "text",
+      "id": "stat1_val",
+      "label": "Stat 1 Value",
+      "default": "600,000+"
+    },
+    {
+      "type": "text",
+      "id": "stat1_lbl",
+      "label": "Stat 1 Label",
+      "default": "Måltider vi har hjulpet med at give"
+    },
+    {
+      "type": "text",
+      "id": "stat2_val",
+      "label": "Stat 2 Value",
+      "default": "10 måltider"
+    },
+    {
+      "type": "text",
+      "id": "stat2_lbl",
+      "label": "Stat 2 Label",
+      "default": "Med hver eneste ordre"
+    },
+    {
+      "type": "text",
+      "id": "stat3_val",
+      "label": "Stat 3 Value",
+      "default": "50,000+"
+    },
+    {
+      "type": "text",
+      "id": "stat3_lbl",
+      "label": "Stat 3 Label",
+      "default": "Katteelskere der gjorde det muligt"
+    },
+    {
+      "type": "text",
+      "id": "stat4_val",
+      "label": "Stat 4 Value",
+      "default": "37"
+    },
+    {
+      "type": "text",
+      "id": "stat4_lbl",
+      "label": "Stat 4 Label",
+      "default": "Lande verden over"
+    },
+    {
+      "type": "header",
+      "content": "Gallery Settings"
+    },
+    {
+      "type": "text",
+      "id": "overlay_text",
+      "label": "Watermark Overlay Text",
+      "default": "KittyKloset"
+    },
+    {
+      "type": "text",
+      "id": "img_alt_text",
+      "label": "Images Alt Text",
+      "default": "Gadekatte bliver fodret"
+    },
+    {
+      "type": "header",
+      "content": "Bottom CTA"
+    },
+    {
+      "type": "text",
+      "id": "cta_eyebrow",
+      "label": "CTA Eyebrow",
+      "default": "Hver ordre hjælper"
+    },
+    {
+      "type": "text",
+      "id": "cta_title",
+      "label": "CTA Title",
+      "default": "Vælg noget du elsker. Hjælp os med at give 10 måltider."
+    },
+    {
+      "type": "text",
+      "id": "cta_btn_text",
+      "label": "Button Text",
+      "default": "Køb nu"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button Link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "gallery_image",
+      "name": "Gallery Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "fallback_image",
+          "label": "Fallback Image URL (Optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Feeding Gallery",
+      "blocks": [
+        { "type": "gallery_image", "settings": { "fallback_image": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/feeding-operations-01.jpg?v=1784121545" } },
+        { "type": "gallery_image", "settings": { "fallback_image": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/feeding-operations-02.jpg?v=1784121545" } },
+        { "type": "gallery_image", "settings": { "fallback_image": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/feeding-operations-03.jpg?v=1784121545" } },
+        { "type": "gallery_image", "settings": { "fallback_image": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/feeding-operations-04.jpg?v=1784121545" } },
+        { "type": "gallery_image", "settings": { "fallback_image": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/feeding-operations-05.jpg?v=1784121545" } },
+        { "type": "gallery_image", "settings": { "fallback_image": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/feeding-operations-06.jpg?v=1784121545" } },
+        { "type": "gallery_image", "settings": { "fallback_image": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/feeding-operations-07.jpg?v=1784121545" } },
+        { "type": "gallery_image", "settings": { "fallback_image": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/feeding-operations-08.jpg?v=1784121546" } },
+        { "type": "gallery_image", "settings": { "fallback_image": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/feeding-operations-09.jpg?v=1784121546" } },
+        { "type": "gallery_image", "settings": { "fallback_image": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/feeding-operations-10.jpg?v=1784121546" } },
+        { "type": "gallery_image", "settings": { "fallback_image": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/feeding-operations-11.jpg?v=1784121546" } },
+        { "type": "gallery_image", "settings": { "fallback_image": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/feeding-operations-12.jpg?v=1784121546" } },
+        { "type": "gallery_image", "settings": { "fallback_image": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/feeding-operations-13.jpg?v=1784121546" } },
+        { "type": "gallery_image", "settings": { "fallback_image": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/feeding-operations-14.jpg?v=1784121546" } },
+        { "type": "gallery_image", "settings": { "fallback_image": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/feeding-operations-15.jpg?v=1784121546" } },
+        { "type": "gallery_image", "settings": { "fallback_image": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/feeding-operations-16.jpg?v=1784121546" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
