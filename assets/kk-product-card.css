@@ -10,8 +10,8 @@
 .kk-card .card__inner,
 .kk-card .card__media,
 .kk-card .card__media .media {
-  background-color: #f5f5f5 !important;
-  border-radius: 0 !important;
+  background-color: #f5f5f5;
+  border-radius: 0;
 }
 
 .kk-card .card__media img {
@@ -21,205 +21,203 @@
 }
 
 .kk-card .card--media .card__inner .card__content {
-  position: absolute !important;
-  inset: 0 !important;
-  padding: 0 !important;
-  display: block !important;
-  width: 100% !important;
-  height: 100% !important;
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
 }
 
 .kk-card .card__inner .card__badge,
 .kk-card .card__badge--kk {
-  position: absolute !important;
-  bottom: 10px !important;
-  left: 10px !important;
-  top: auto !important;
-  right: auto !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: flex-start !important;
-  gap: 4px !important;
-  z-index: 4 !important;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  top: auto;
+  right: auto;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  z-index: 4;
   pointer-events: none;
 }
 
 .kk-card .kk-badge--freeship {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 5px !important;
-  background: #fff !important;
-  color: #6c72e0 !important;
-  border: 1px solid #e2e7ff !important;
-  border-radius: 999px !important;
-  padding: 3px 9px !important;
-  font-size: 10px !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.02em !important;
-  line-height: 1.2 !important;
-  box-shadow: 0 2px 8px rgba(42, 44, 66, 0.12) !important;
-  white-space: nowrap !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #fff;
+  color: #6c72e0;
+  border: 1px solid #e2e7ff;
+  border-radius: 999px;
+  padding: 3px 9px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.2;
+  box-shadow: 0 2px 8px rgba(42, 44, 66, 0.12);
+  white-space: nowrap;
 }
 
 .kk-card .kk-badge--freeship svg {
-  width: 11px !important;
-  height: 11px !important;
-  stroke: #6c72e0 !important;
-  color: #6c72e0 !important;
+  width: 11px;
+  height: 11px;
+  stroke: #6c72e0;
+  color: #6c72e0;
 }
 
 .kk-card .badge--kk-sale,
 .kk-card .card__badge .badge:not(.kk-badge--freeship) {
-  display: inline-flex !important;
-  align-items: center !important;
-  background: #8aa0f2 !important;
-  color: #fff !important;
-  border: 0 !important;
-  border-radius: 999px !important;
-  padding: 3px 9px !important;
-  font-size: 10px !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.02em !important;
-  line-height: 1.2 !important;
-  min-height: 0 !important;
-  box-shadow: none !important;
+  display: inline-flex;
+  align-items: center;
+  background: #8aa0f2;
+  color: #fff;
+  border: 0;
+  border-radius: 999px;
+  padding: 3px 9px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.2;
+  min-height: 0;
+  box-shadow: none;
 }
 
 .kk-card > .card > .card__content {
-  padding: 0 !important;
+  padding: 0;
 }
 
 .kk-card .card--standard > .card__content .card__information {
-  padding: 10px 0 4px !important;
-  text-align: left !important;
+  padding: 10px 0 4px;
+  text-align: left;
 }
 
 .kk-card .card-information {
-  text-align: left !important;
+  text-align: left;
 }
 
 .kk-card .card-information > .caption-large,
 .kk-card .card__information-volume-pricing-note {
-  display: none !important;
+  display: none;
 }
 
 .kk-card .card-information > * + *,
 .kk-card .card-information > *:not(.visually-hidden:first-child) + * {
-  margin-top: 10px !important;
+  margin-top: 10px;
 }
 
 .kk-card .card__heading,
 .kk-card .card__heading.h5,
 .kk-card .card__heading a {
-  font-family: 'Poppins', sans-serif !important;
-  font-size: 15px !important;
-  font-weight: 500 !important;
-  line-height: 1.3 !important;
-  letter-spacing: 0 !important;
-  color: #000 !important;
-  margin: 0 0 2px !important;
-  text-decoration: none !important;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0;
+  color: #000;
+  margin: 0 0 2px;
+  text-decoration: none;
 }
 
 .kk-card .kk-card__vendor {
-  font-family: 'Poppins', sans-serif !important;
-  font-size: 10px !important;
-  font-weight: 400 !important;
-  letter-spacing: 0.14em !important;
-  text-transform: uppercase !important;
-  color: #9aa0ad !important;
-  opacity: 1 !important;
-  margin: 0 !important;
-  display: block !important;
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #9aa0ad;
+  opacity: 1;
+  margin: 0;
+  display: block;
 }
 
 .kk-card .kk-card-rating {
-  display: flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-  margin: 0 !important;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
 }
 
 .kk-card .kk-card-rating__stars {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 1px !important;
-  color: #8aa0f2 !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  color: #8aa0f2;
 }
 
 .kk-card .kk-card-rating__stars svg {
-  width: 14px !important;
-  height: 14px !important;
-  color: #8aa0f2 !important;
-  fill: #8aa0f2 !important;
+  width: 14px;
+  height: 14px;
+  color: #8aa0f2;
+  fill: #8aa0f2;
 }
 
 .kk-card .kk-card-rating__count {
-  font-family: 'Poppins', sans-serif !important;
-  font-size: 13px !important;
-  font-weight: 400 !important;
-  color: #808080 !important;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: #808080;
 }
 
 .kk-card .price,
 .kk-card .kk-card-price {
-  display: block !important;
-  margin: 2px 0 0 !important;
-  font-family: 'Poppins', sans-serif !important;
-  letter-spacing: 0 !important;
+  display: block;
+  margin: 2px 0 0;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0;
 }
 
 .kk-card .price__container,
 .kk-card .price__sale,
 .kk-card .price__regular {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: wrap !important;
-  align-items: baseline !important;
-  gap: 8px !important;
-  margin: 0 !important;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0;
 }
 
 .kk-card .price.price--on-sale .price__regular {
-  display: none !important;
+  display: none;
 }
 
 .kk-card .price:not(.price--on-sale) .price__sale {
-  display: none !important;
+  display: none;
 }
 
 .kk-card .price .price-item {
-  margin: 0 !important;
+  margin: 0;
 }
 
 .kk-card .price__sale s,
 .kk-card .price__sale .price-item--regular,
 .kk-card s.price-item--regular {
-  font-size: 12.5px !important;
-  font-weight: 400 !important;
-  color: #9aa0ad !important;
-  text-decoration: line-through !important;
-  letter-spacing: 0 !important;
+  font-size: 12.5px;
+  font-weight: 400;
+  color: #9aa0ad;
+  text-decoration: line-through;
+  letter-spacing: 0;
 }
 
 .kk-card .price-item--sale,
 .kk-card .price-item--last,
 .kk-card .price__regular .price-item--regular {
-  font-size: 16px !important;
-  font-weight: 700 !important;
-  color: #000 !important;
-  letter-spacing: 0 !important;
+  font-size: 16px;
+  font-weight: 700;
+  color: #000;
+  letter-spacing: 0;
 }
 
 .kk-card .price-item__from {
-  font-weight: 700 !important;
+  font-weight: 700;
   margin-right: 0.25em;
 }
 
 .kk-card .price-item__amount {
-  font-weight: 700 !important;
-  color: #000 !important;
+  font-weight: 700;
+  color: #000;
 }
