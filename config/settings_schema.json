@@ -1266,18 +1266,18 @@
       },
       {
         "type": "header",
-        "content": "Free Shipping Badge"
+        "content": "Gratis fragt Badge"
       },
       {
         "type": "checkbox",
         "id": "card_show_free_shipping_badge",
-        "label": "Show Free Shipping Badge on Product Cards",
+        "label": "Show Gratis fragt Badge on Product Cards",
         "default": true
       },
       {
         "type": "text",
         "id": "card_free_shipping_text",
-        "label": "Free Shipping Badge Text",
+        "label": "Gratis fragt Badge Text",
         "default": "Gratis fragt"
       },
       {
@@ -1474,12 +1474,12 @@
       },
       {
         "type": "header",
-        "content": "Free Shipping Progress Bar"
+        "content": "Gratis fragt Progress Bar"
       },
       {
         "type": "checkbox",
         "id": "enable_free_shipping_bar",
-        "label": "Enable Free Shipping Goal Bar",
+        "label": "Enable Gratis fragt Goal Bar",
         "default": true
       },
       {
@@ -1489,7 +1489,7 @@
         "max": 500,
         "step": 10,
         "unit": "kr",
-        "label": "Free Shipping Threshold",
+        "label": "Gratis fragt Threshold",
         "default": 350
       },
       {
@@ -1501,7 +1501,7 @@
       {
         "type": "text",
         "id": "free_shipping_success_text",
-        "label": "Unlocked Free Shipping Message",
+        "label": "Unlocked Gratis fragt Message",
         "default": "Du har opn\u00e5et GRATIS fragt!"
       },
       {
