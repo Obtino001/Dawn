@@ -25,6 +25,7 @@
         },
         "rating": {
           "type": "rating",
+          "disabled": true,
           "settings": {
             "rating_score": "5.0",
             "rating_count": "209",
