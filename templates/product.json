@@ -78,7 +78,7 @@
           "type": "custom_accordion",
           "settings": {
             "heading": "Beskrivelse og størrelsesguide",
-            "content": "",
+            "content": "{{ product.description }}",
             "page": "",
             "open_by_default": true
           }
