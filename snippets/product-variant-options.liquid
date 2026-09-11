@@ -88,7 +88,7 @@
         assign is_color = true
       endif
 
-      assign val_lower = value | downcase
+      assign val_lower = escaped_value | downcase
       assign swatch_bg = val_lower
       if val_lower contains 'black' or val_lower contains 'sort'
         assign swatch_bg = 'rgb(0, 0, 0)'
