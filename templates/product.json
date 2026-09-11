@@ -110,10 +110,6 @@
             "open_by_default": false
           }
         },
-        "description": {
-          "type": "description",
-          "settings": {}
-        },
         "share": {
           "type": "share",
           "settings": {
@@ -135,7 +131,6 @@
         "accordion_shipping",
         "accordion_materials",
         "accordion_returns",
-        "description",
         "share"
       ],
       "settings": {
