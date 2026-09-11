@@ -1587,12 +1587,12 @@ h6,
 }
 
 /* Size Chart Trigger & Modal */
-.ks-chart-container {
+.kk-size-guide-container {
   margin-top: 8px;
   margin-bottom: 12px;
 }
 
-.ks-chart-modal-link {
+.kk-size-guide-trigger {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -1606,11 +1606,11 @@ h6,
   transition: opacity 0.2s ease;
 }
 
-.ks-chart-modal-link:hover {
+.kk-size-guide-trigger:hover {
   opacity: 0.8;
 }
 
-.ks-chart-modal-link ._ks_text {
+.kk-size-guide-trigger .kk-size-guide-text {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
