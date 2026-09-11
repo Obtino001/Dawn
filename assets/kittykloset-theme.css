@@ -1420,6 +1420,10 @@ h6,
 
 /* PDP Price */
 .product__info-container .price {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
   margin: 12px 0 8px;
 }
 
