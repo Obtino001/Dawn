@@ -258,7 +258,7 @@ h6,
 }
 
 .kk-proof__value {
-   
+   font-weight: 700;
   font-size: clamp(15px, 4vw, 20px);
   color: var(--kk-text-dark);
   line-height: 1.1;
