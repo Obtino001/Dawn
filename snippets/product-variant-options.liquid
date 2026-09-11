@@ -50,7 +50,6 @@
   {%- capture input_dataset -%}
     data-product-url="{{ value.product_url }}"
     data-option-value-id="{{ value.id }}"
-    data-option-name="{{ option.name | escape }}"
   {%- endcapture -%}
 
   {%- capture label_unavailable -%}
@@ -81,33 +80,6 @@
       additional_props: input_dataset
     %}
   {%- elsif picker_type == 'button' -%}
-    {%- liquid
-      assign opt_name_lower = option.name | downcase
-      assign is_color = false
-      if opt_name_lower contains 'color' or opt_name_lower contains 'farve' or opt_name_lower contains 'colour'
-        assign is_color = true
-      endif
-
-      assign val_lower = escaped_value | downcase
-      assign swatch_bg = val_lower
-      if val_lower contains 'black' or val_lower contains 'sort'
-        assign swatch_bg = 'rgb(0, 0, 0)'
-      elsif val_lower contains 'dark red' or val_lower contains 'mørkerød' or val_lower contains 'bordeaux'
-        assign swatch_bg = 'rgb(156, 47, 81)'
-      elsif val_lower contains 'navy' or val_lower contains 'marine' or val_lower contains 'mørkeblå'
-        assign swatch_bg = 'rgb(69, 78, 134)'
-      elsif val_lower contains 'grey' or val_lower contains 'gray' or val_lower contains 'grå'
-        assign swatch_bg = 'rgb(213, 213, 213)'
-      elsif val_lower contains 'light blue' or val_lower contains 'lyseblå'
-        assign swatch_bg = 'rgb(189, 215, 254)'
-      elsif val_lower contains 'white' or val_lower contains 'hvid'
-        assign swatch_bg = 'rgb(255, 255, 255)'
-      elsif val_lower contains 'red' or val_lower contains 'rød'
-        assign swatch_bg = 'rgb(180, 40, 60)'
-      elsif val_lower contains 'blue' or val_lower contains 'blå'
-        assign swatch_bg = 'rgb(60, 100, 200)'
-      endif
-    -%}
     <input
       type="radio"
       id="{{ input_id }}"
@@ -122,21 +94,8 @@
       {% endif %}
       {{ input_dataset }}
     >
-    <label
-      for="{{ input_id }}"
-      {% if is_color %}
-        class="kk-swatch-circle"
-        style="--swatch-color: {{ swatch_bg }};"
-        aria-label="{{ value }}"
-        title="{{ value }}"
-      {% endif %}
-    >
-      {%- if is_color -%}
-        <span class="visually-hidden">{{ value }}</span>
-        <span class="kk-swatch-circle__color" style="background-color: {{ swatch_bg }};"></span>
-      {%- else -%}
-        {{ value -}}
-      {%- endif -%}
+    <label for="{{ input_id }}">
+      {{ value -}}
       {{ label_unavailable }}
     </label>
   {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}
