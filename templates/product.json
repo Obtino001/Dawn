@@ -239,7 +239,7 @@
           "type": "step",
           "settings": {
             "title": "Vælg din stil",
-            "text": "<p>Hver t-shirt hjælper os med at give 10 måltider til efterladte killinger.</p><p>Mange kunder bestiller et par stykker for at dele med venner og hjælpe os med at skaffe endnu flere måltider.</p>",
+            "text": "<p>Hver t-shirt hjælper os med at give <strong>10</strong> måltider til efterladte killinger.</p><p>Mange kunder bestiller et par stykker for at dele med venner og hjælpe os med at skaffe endnu flere måltider.</p>",
             "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/circleremera.png?v=1781830560"
           }
         },
