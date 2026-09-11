@@ -3595,3 +3595,8 @@ details-disclosure > details {
     transform: translateX(100%) scaleX(0);
   }
 }
+
+/* Remove text decoration globally as requested */
+a, .link, .list-menu__item, .header__menu-item, .underlined-link, .list-menu__item--active, .list-menu__item--active:hover, .header__menu-item:hover span {
+  text-decoration: none !important;
+}
