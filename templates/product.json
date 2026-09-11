@@ -238,25 +238,25 @@
         "step_HF6F6e": {
           "type": "step",
           "settings": {
-            "title": "",
-            "text": "",
-            "image_url": ""
+            "title": "Vælg din stil",
+            "text": "<p>Hver t-shirt hjælper os med at give 10 måltider til efterladte killinger.</p><p>Mange kunder bestiller et par stykker for at dele med venner og hjælpe os med at skaffe endnu flere måltider.</p>",
+            "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/circleremera.png?v=1781830560"
           }
         },
         "step_F7LpkQ": {
           "type": "step",
           "settings": {
-            "title": "",
-            "text": "",
-            "image_url": ""
+            "title": "Vi hjælper med at give katte mad",
+            "text": "<p>Vi samarbejder med betroede lokale internater og koordinerer med vores gadefodrings-frivillige.</p><p>Dit køb hjælper os med at skaffe måltider til katte i nød, gennem de mennesker, der ved præcis, hvor de venter.</p>",
+            "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/Logo_KittyKloset_printed_on_tube_202606191255.png?v=1781884657"
           }
         },
         "step_xXcGpq": {
           "type": "step",
           "settings": {
-            "title": "",
-            "text": "",
-            "image_url": ""
+            "title": "Månedlige fotoopdateringer",
+            "text": "<p>Hver måned modtager du billeder fra vores fodringsindsatser.</p><p>Disse billeder fanger ægte øjeblikke fra marken, som deles med dig hver måned.</p>",
+            "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/pinky_1.png?v=1781831026"
           }
         }
       },
@@ -267,8 +267,8 @@
       ],
       "name": "3 Simple Steps",
       "settings": {
-        "heading": "How Your Purchase Helps Provide Meals",
-        "heading_highlight": "in 3 Simple Steps",
+        "heading": "Hvordan dit køb hjælper med at give måltider",
+        "heading_highlight": "i 3 enkle trin",
         "color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 36
