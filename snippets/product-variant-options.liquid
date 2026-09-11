@@ -88,8 +88,7 @@
         assign is_color = true
       endif
 
-      assign swatch_bg = ''
-      assign val_lower = value | downcase
+      assign swatch_bg = val_lower
       if val_lower contains 'black' or val_lower contains 'sort'
         assign swatch_bg = 'rgb(0, 0, 0)'
       elsif val_lower contains 'dark red' or val_lower contains 'mørkerød' or val_lower contains 'bordeaux'
@@ -124,14 +123,14 @@
     >
     <label
       for="{{ input_id }}"
-      {% if is_color and swatch_bg != '' %}
+      {% if is_color %}
         class="kk-swatch-circle"
         style="--swatch-color: {{ swatch_bg }};"
         aria-label="{{ value }}"
         title="{{ value }}"
       {% endif %}
     >
-      {%- if is_color and swatch_bg != '' -%}
+      {%- if is_color -%}
         <span class="visually-hidden">{{ value }}</span>
         <span class="kk-swatch-circle__color" style="background-color: {{ swatch_bg }};"></span>
       {%- else -%}

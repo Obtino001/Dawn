@@ -1612,22 +1612,15 @@ h6,
 }
 
 .kk-size-modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  max-width: 560px;
+  width: 100%;
+  border-radius: 16px;
 }
 
-.kk-size-modal.is-open {
-  display: flex;
-}
-
-.kk-size-modal__backdrop {
-  position: absolute;
-  inset: 0;
+.kk-size-modal::backdrop {
   background: rgba(42, 44, 66, 0.5);
   backdrop-filter: blur(2px);
 }
@@ -1638,10 +1631,8 @@ h6,
   border-radius: 16px;
   box-shadow: 0 12px 36px rgba(42, 44, 66, 0.2);
   width: 100%;
-  max-width: 560px;
   max-height: 85vh;
   overflow-y: auto;
-  z-index: 1;
   padding: 24px;
 }
 

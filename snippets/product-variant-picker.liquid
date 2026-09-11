@@ -63,7 +63,7 @@
         {%- if opt_name_lower contains 'size' or opt_name_lower contains 'størrelse' -%}
           {%- if block.settings.show_size_chart != false -%}
             <div class="kk-size-guide-container">
-              <button type="button" class="kk-size-guide-trigger with-icon" onclick="document.getElementById('kk-size-modal-{{ section.id }}')?.classList.add('is-open')" aria-haspopup="dialog">
+              <button type="button" class="kk-size-guide-trigger with-icon" onclick="document.getElementById('kk-size-modal-{{ section.id }}')?.showModal()" aria-haspopup="dialog">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.025 512.025" class="kiwi-svg kiwi-injectable" width="15" height="15" fill="currentColor">
                   <path d="M226.333.013h-160c-8.837 0-16 7.163-16 16v480c0 8.837 7.163 16 16 16h160c8.837 0 16-7.163 16-16v-480c0-8.837-7.164-16-16-16zm-16 480h-128v-48h80v-32h-80v-48h48v-32h-48v-48h80v-32h-80v-48h48v-32h-48v-48h80v-32h-80v-48h128v448zm228.8-75.2l-52.8 52.64V54.573l52.64 52.64 22.56-22.56-80-80c-6.24-6.204-16.32-6.204-22.56 0l-80 80 22.56 22.56 52.8-52.64v402.88l-52.64-52.64-22.56 22.56 80 80c6.24 6.204 16.32 6.204 22.56 0l80-80-22.56-22.56z"></path>
                 </svg>
@@ -108,12 +108,13 @@
     {%- endfor -%}
 
     {%- if block.settings.show_size_chart != false -%}
-      <div id="kk-size-modal-{{ section.id }}" class="kk-size-modal" role="dialog" aria-modal="true" aria-label="{{ block.settings.size_chart_title | default: 'Størrelsesguide' }}">
-        <div class="kk-size-modal__backdrop" onclick="document.getElementById('kk-size-modal-{{ section.id }}')?.classList.remove('is-open')"></div>
+      <dialog id="kk-size-modal-{{ section.id }}" class="kk-size-modal" aria-label="{{ block.settings.size_chart_title | default: 'Størrelsesguide' }}" onclick="if (event.target === this) this.close()">
         <div class="kk-size-modal__dialog">
           <div class="kk-size-modal__header">
             <h3 class="kk-size-modal__title">{{ block.settings.size_chart_title | default: 'Størrelsesguide' }}</h3>
-            <button type="button" class="kk-size-modal__close" onclick="document.getElementById('kk-size-modal-{{ section.id }}')?.classList.remove('is-open')" aria-label="Luk størrelsesguide">&times;</button>
+            <form method="dialog">
+              <button type="submit" class="kk-size-modal__close" aria-label="Luk størrelsesguide">&times;</button>
+            </form>
           </div>
           <div class="kk-size-modal__body">
             {%- if block.settings.size_chart_content != blank -%}
