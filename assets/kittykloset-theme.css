@@ -988,7 +988,7 @@ h6,
 }
 
 /* ==========================================================================
-   Cart Drawer Free Shipping Progress Bar
+   Cart Drawer Gratis fragt Progress Bar
    ========================================================================== */
 .kk-cart-shipping-bar {
   padding: 14px 16px;
@@ -1172,7 +1172,7 @@ h6,
   pointer-events: none;
 }
 
-/* Free shipping badge (White pill + Purple truck) */
+/* Gratis fragt badge (White pill + Purple truck) */
 .card-wrapper .card__inner .card__badge .kk-badge--freeship,
 .kk-badge--freeship {
   display: inline-flex;
@@ -1389,7 +1389,7 @@ h6,
   margin-bottom: 8px;
 }
 
-/* Free Shipping Badge */
+/* Gratis fragt Badge */
 .kk-freeship {
   display: inline-flex;
   align-items: center;
