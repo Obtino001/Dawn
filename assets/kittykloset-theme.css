@@ -1494,37 +1494,33 @@ h6,
   color: #2A2C42;
 }
 
-.product-form__input--color-swatches .kk-swatch-circle {
-  background-color: transparent !important;
+.product-form__input--color-swatches input[type="radio"] + label.kk-swatch-circle {
+  position: relative;
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+  min-height: 48px !important;
   padding: 0 !important;
   margin: 0 !important;
   border-radius: 50% !important;
-}
-
-.product-form__input--color-swatches input[type="radio"] + label.kk-swatch-circle::before {
-  display: none !important;
-}
-
-.product-form__input--color-swatches .kk-swatch-circle {
-  position: relative;
-  width: 48px;
-  height: 48px;
-  min-width: 48px;
-  min-height: 48px;
-  padding: 0;
-  border-radius: 50%;
-  border: 1.5px solid transparent;
-  display: inline-flex;
+  border: 1.5px solid transparent !important;
+  display: inline-flex !important;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
-  background-color: transparent;
+  background-color: transparent !important;
   box-sizing: border-box;
+  letter-spacing: normal !important;
+  line-height: normal !important;
 }
 
-.product-form__input--color-swatches .kk-swatch-circle:hover {
+.product-form__input--color-swatches input[type="radio"] + label.kk-swatch-circle:hover {
   transform: scale(1.06);
+}
+
+.product-form__input--color-swatches input[type="radio"] + label.kk-swatch-circle::before {
+  display: none !important;
 }
 
 .product-form__input--color-swatches .kk-swatch-circle__color {
