@@ -186,7 +186,7 @@
         "price_at_each_html": "til {{ price }} pr. stk."
       },
       "product_variants": "Produktvarianter",
-      "taxes_included": "Inklusive skatter.",
+      "taxes_included": "Alle priser er inkl. moms",
       "duties_included": "Inklusive told.",
       "duties_and_taxes_included": "Inklusive told og skatter."
     },
@@ -311,7 +311,7 @@
       "new_estimated_total": "Ny estimeret totalbeløb",
       "duties_and_taxes_included_shipping_at_checkout_with_policy_html": "Inklusive told og skatter. Rabatter og <a href=\"{{ link }}\">levering</a> beregnes ved betaling.",
       "duties_and_taxes_included_shipping_at_checkout_without_policy": "Inklusive told og skatter. Rabatter og levering beregnes ved betaling.",
-      "taxes_included_shipping_at_checkout_with_policy_html": "Inklusive skatter. Rabatter og <a href=\"{{ link }}\">levering</a> beregnes ved betaling.",
+      "taxes_included_shipping_at_checkout_with_policy_html": "Alle priser er inkl. moms Rabatter og <a href=\"{{ link }}\">levering</a> beregnes ved betaling.",
       "taxes_included_shipping_at_checkout_without_policy": " Inkl. moms · Fri fragt ved 2+ · 10 måltider pr. t-shirt 🐾",
       "duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html": "Inklusive told. Skatter, rabatter og <a href=\"{{ link }}\">levering</a> beregnes ved betaling.",
       "duties_included_taxes_at_checkout_shipping_at_checkout_without_policy": "Inklusive told. Skatter, rabatter og levering beregnes ved betaling.",
