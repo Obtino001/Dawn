@@ -109,7 +109,7 @@
     "featured_blog": {
       "type": "featured-blog",
       "settings": {
-        "blog": "",
+        "blog": "nyheder",
         "post_limit": 3,
         "heading": "Opdateringer fra felten",
         "heading_size": "h2",
