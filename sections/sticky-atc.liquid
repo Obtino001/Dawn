@@ -415,8 +415,11 @@
 
     /* ── Mobile: only button ── */
     @media (max-width: 749px) {
-      .kk-sticky__opts { display: none; }
-      .kk-sticky__add { flex: 1 1 100%; width: 100%; }
+      .kk-sticky__opts { display: none !important; }
+      .kk-sticky__product { display: none !important; }
+      .kk-sticky__divider { display: none !important; }
+      .kk-sticky__inner { flex-wrap: nowrap !important; }
+      .kk-sticky__add { flex: 1 1 100% !important; width: 100% !important; min-width: 0 !important; border-radius: 12px !important; }
     }
   </style>
 {%- endif -%}
