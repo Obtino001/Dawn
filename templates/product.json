@@ -39,7 +39,7 @@
           "type": "free_shipping_badge",
           "settings": {
             "badge_highlight": "GRATIS fragt",
-            "badge_text": "— kun på denne side"
+            "badge_text": ""
           }
         },
         "perks": {

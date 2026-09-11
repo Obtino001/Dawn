@@ -229,7 +229,7 @@
                       {%- endif -%}
                     </span>
                     <span class="kk-freeship__text">
-                      <strong>{{ block.settings.badge_highlight | default: 'GRATIS fragt' }}</strong> {{ block.settings.badge_text | default: '— kun på denne side' }}
+                      <strong>{{ block.settings.badge_highlight | default: 'GRATIS fragt' }}</strong> {{ block.settings.badge_text }}
                     </span>
                   </div>
                 {%- when 'perks_list' -%}
@@ -1494,7 +1494,7 @@
           "type": "text",
           "id": "badge_text",
           "label": "Undertekst",
-          "default": "— kun på denne side"
+          "default": ""
         }
       ]
     },
