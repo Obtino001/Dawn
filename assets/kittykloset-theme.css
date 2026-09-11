@@ -1869,3 +1869,45 @@ header-drawer {
     display: none !important;
   }
 }
+
+/* ── Color swatches: style pill buttons as color circles ── */
+.product-form__input--pill .swatch-input__label,
+.product-form__input--pill label {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Map color names to background colors on the button labels */
+.product-form__input--pill input[value='Black'] + label,
+.product-form__input--pill input[value='black'] + label { background:#1a1a1a !important; color:transparent !important; border-radius:50% !important; width:3.6rem !important; height:3.6rem !important; border:2px solid #ccc !important; }
+.product-form__input--pill input[value='White'] + label,
+.product-form__input--pill input[value='white'] + label { background:#fff !important; color:transparent !important; border-radius:50% !important; width:3.6rem !important; height:3.6rem !important; border:2px solid #ccc !important; }
+.product-form__input--pill input[value='Grey'] + label,
+.product-form__input--pill input[value='gray'] + label,
+.product-form__input--pill input[value='Gray'] + label,
+.product-form__input--pill input[value='grey'] + label { background:#c8c8c8 !important; color:transparent !important; border-radius:50% !important; width:3.6rem !important; height:3.6rem !important; border:2px solid #ccc !important; }
+.product-form__input--pill input[value='Light Blue'] + label,
+.product-form__input--pill input[value='light blue'] + label,
+.product-form__input--pill input[value='LightBlue'] + label { background:#add8e6 !important; color:transparent !important; border-radius:50% !important; width:3.6rem !important; height:3.6rem !important; border:2px solid #ccc !important; }
+.product-form__input--pill input[value='Navy'] + label,
+.product-form__input--pill input[value='navy'] + label { background:#2a2f6e !important; color:transparent !important; border-radius:50% !important; width:3.6rem !important; height:3.6rem !important; border:2px solid #ccc !important; }
+.product-form__input--pill input[value='Pink'] + label,
+.product-form__input--pill input[value='pink'] + label { background:#ffb6c1 !important; color:transparent !important; border-radius:50% !important; width:3.6rem !important; height:3.6rem !important; border:2px solid #ccc !important; }
+.product-form__input--pill input[value='Red'] + label,
+.product-form__input--pill input[value='red'] + label { background:#e63946 !important; color:transparent !important; border-radius:50% !important; width:3.6rem !important; height:3.6rem !important; border:2px solid #ccc !important; }
+.product-form__input--pill input[value='Burgundy'] + label,
+.product-form__input--pill input[value='burgundy'] + label,
+.product-form__input--pill input[value='Wine'] + label { background:#7c2a2a !important; color:transparent !important; border-radius:50% !important; width:3.6rem !important; height:3.6rem !important; border:2px solid #ccc !important; }
+.product-form__input--pill input[value='Yellow'] + label,
+.product-form__input--pill input[value='yellow'] + label { background:#f4d03f !important; color:transparent !important; border-radius:50% !important; width:3.6rem !important; height:3.6rem !important; border:2px solid #ccc !important; }
+.product-form__input--pill input[value='Green'] + label,
+.product-form__input--pill input[value='green'] + label { background:#2d6a4f !important; color:transparent !important; border-radius:50% !important; width:3.6rem !important; height:3.6rem !important; border:2px solid #ccc !important; }
+.product-form__input--pill input[value='Brown'] + label,
+.product-form__input--pill input[value='brown'] + label,
+.product-form__input--pill input[value='Tan'] + label { background:#5c3d2e !important; color:transparent !important; border-radius:50% !important; width:3.6rem !important; height:3.6rem !important; border:2px solid #ccc !important; }
+.product-form__input--pill input[value='Purple'] + label,
+.product-form__input--pill input[value='purple'] + label { background:#7b2d8b !important; color:transparent !important; border-radius:50% !important; width:3.6rem !important; height:3.6rem !important; border:2px solid #ccc !important; }
+.product-form__input--pill input[value='Orange'] + label,
+.product-form__input--pill input[value='orange'] + label { background:#f4830a !important; color:transparent !important; border-radius:50% !important; width:3.6rem !important; height:3.6rem !important; border:2px solid #ccc !important; }
+/* Selected state - ring effect */
+.product-form__input--pill input:checked + label { outline:2px solid #333 !important; outline-offset:3px !important; }
