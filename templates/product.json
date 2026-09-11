@@ -158,7 +158,7 @@
         "accent_color": "#ef8b46",
         "badge_top": "🐾 VI ER LIGE BEGYNDT",
         "badge_bottom": "SAMMEN INDTIL NU",
-        "tracker_goal": 10000,
+        "tracker_goal": 100000,
         "tracker_base": 3320,
         "tracker_max": 200000000,
         "stat1_label": "MÅLTIDER GIVET",
