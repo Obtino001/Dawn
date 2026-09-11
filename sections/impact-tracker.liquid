@@ -92,7 +92,15 @@
       align-items:center; text-align:center;
       position:relative; z-index:2;
     }
-    #shopify-section-{{ section.id }} .kk-crisis__stats{ gap:8px; }
+    #shopify-section-{{ section.id }} .kk-crisis__stats{ 
+      grid-template-columns: 1fr 1fr; 
+      gap: 12px 8px; 
+    }
+    #shopify-section-{{ section.id }} .kk-stat:last-child{
+      grid-column: 1 / -1;
+      text-align: center;
+      padding-top: 4px;
+    }
   }
 </style>
 
