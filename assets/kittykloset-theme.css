@@ -2085,3 +2085,19 @@ h6,
 .TotalBlock .Price {
   color: #6C72E0;
 }
+/* PDP Payment Icons */
+.pdp-payment-icons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  padding: 12px 0 4px;
+  margin: 0;
+}
+
+.pdp-payment-icons li {
+  display: flex;
+  align-items: center;
+}
