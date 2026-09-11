@@ -53,6 +53,7 @@
         },
         "variant_picker": {
           "type": "variant_picker",
+          "disabled": true,
           "settings": {
             "picker_type": "button",
             "swatch_shape": "circle",
@@ -156,9 +157,10 @@
       "settings": {
         "color_scheme": "",
         "accent_color": "#ef8b46",
+        "image": "shopify://shop_images/hf_20260911_180726_bfa5d18c-3dd6-4a3b-bdb9-b0915a9976a5.jpg",
         "badge_top": "🐾 VI ER LIGE BEGYNDT",
         "badge_bottom": "SAMMEN INDTIL NU",
-        "tracker_goal": 10000,
+        "tracker_goal": 100000,
         "tracker_base": 3100,
         "tracker_max": 10000,
         "stat1_label": "MÅLTIDER GIVET",
