@@ -1855,18 +1855,16 @@ h6,
   align-items: center;
 }
 
-/* Fix: hamburger always in left grid area, duplicate search hidden on mobile */
+/* Fix: hamburger always in left grid area; hide any orphaned left search */
 header-drawer {
   grid-area: left-icons;
   justify-self: start;
 }
 
-@media screen and (max-width: 749px) {
-
-  .header>.header__search:first-of-type,
-  .header>span.small-hide {
-    display: none !important;
-  }
+/* Hide any .header__search that is a direct child of .header (not inside header__icons) */
+.header > .header__search,
+.header > details-modal {
+  display: none !important;
 }
 
 /* ── Color swatches: style pill buttons as color circles ── */
