@@ -161,7 +161,7 @@
         "badge_bottom": "72-Hour Feeding Goal",
         "tracker_goal": 10000,
         "tracker_base": 3320,
-        "tracker_max": 9650,
+        "tracker_max": 9990,
         "stat1_label": "Meals Funded So Far",
         "stat2_label": "Meals Still Needed",
         "stat3_label": "Emergency Goal",
