@@ -90,6 +90,10 @@
               {%- case block.type -%}
                 {%- when '@app' -%}
                   {% render block %}
+                {%- when 'sale_badge' -%}
+                  <div class="pdp-sale-badge" {{ block.shopify_attributes }}>
+                    💗 {{ block.settings.text }} 💗
+                  </div>
                 {%- when 'text' -%}
                   <p
                     class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
@@ -899,6 +903,19 @@
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "sale_badge",
+      "name": "Sale Badge",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "SALE ENDS TOMORROW"
+        }
+      ]
     },
     {
       "type": "text",
