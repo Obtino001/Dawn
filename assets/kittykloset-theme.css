@@ -1476,7 +1476,7 @@ h6,
 .kk-perks strong {
    
 }
-
+/* 
 /* Variant Swatches (Color) */
 .product-form__input--color-swatches {
   display: flex;
@@ -1584,7 +1584,7 @@ h6,
   background-color: #000000 !important;
   border-color: #000000 !important;
   color: #ffffff !important;
-}
+} */
 
 /* Size Chart Trigger & Modal */
 .kk-size-guide-container {
