@@ -53,7 +53,6 @@
         },
         "variant_picker": {
           "type": "variant_picker",
-          "disabled": true,
           "settings": {
             "picker_type": "button",
             "swatch_shape": "circle",
@@ -157,17 +156,17 @@
       "settings": {
         "color_scheme": "",
         "accent_color": "#ef8b46",
-        "badge_top": "Emergency Food Crisis",
-        "badge_bottom": "72-Hour Feeding Goal",
+        "badge_top": "🐾 VI ER LIGE BEGYNDT",
+        "badge_bottom": "SAMMEN INDTIL NU",
         "tracker_goal": 10000,
         "tracker_base": 3320,
-        "tracker_max": 9990,
-        "stat1_label": "Meals Funded So Far",
-        "stat2_label": "Meals Still Needed",
-        "stat3_label": "Emergency Goal",
-        "lead_text": "Each tee adds 10 meals to this goal.",
-        "sub_text": "When we hit 10,000 meals our volunteers deploy immediately to the most critical shelters first.",
-        "note_text": "Every meal is tracked and verified by our volunteer team on the ground.",
+        "tracker_max": 200000000,
+        "stat1_label": "MÅLTIDER GIVET",
+        "stat2_label": "MÅLTIDER PR. T-SHIRT",
+        "stat3_label": "VORES MÅL DENNE VINTER",
+        "lead_text": "Vores mål er 10.000 måltider inden vinteren er ovre.",
+        "sub_text": "Hver t-shirt giver 10. \nVær med fra start.",
+        "note_text": "Vi opdaterer tallet hver uge og lægger \nkvitteringerne op, så du kan følge med.",
         "padding_top": 36,
         "padding_bottom": 36
       }
