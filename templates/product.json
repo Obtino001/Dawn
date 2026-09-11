@@ -158,6 +158,18 @@
       "type": "impact-tracker",
       "settings": {
         "color_scheme": "",
+        "accent_color": "#ef8b46",
+        "badge_top": "Emergency Food Crisis",
+        "badge_bottom": "72-Hour Feeding Goal",
+        "tracker_goal": 10000,
+        "tracker_base": 3320,
+        "tracker_max": 9650,
+        "stat1_label": "Meals Funded So Far",
+        "stat2_label": "Meals Still Needed",
+        "stat3_label": "Emergency Goal",
+        "lead_text": "Each tee adds 10 meals to this goal.",
+        "sub_text": "When we hit 10,000 meals our volunteers deploy immediately to the most critical shelters first.",
+        "note_text": "Every meal is tracked and verified by our volunteer team on the ground.",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -222,8 +234,41 @@
     },
     "how_it_works_steps_PHbRmE": {
       "type": "how-it-works-steps",
+      "blocks": {
+        "step_HF6F6e": {
+          "type": "step",
+          "settings": {
+            "title": "",
+            "text": "",
+            "image_url": ""
+          }
+        },
+        "step_F7LpkQ": {
+          "type": "step",
+          "settings": {
+            "title": "",
+            "text": "",
+            "image_url": ""
+          }
+        },
+        "step_xXcGpq": {
+          "type": "step",
+          "settings": {
+            "title": "",
+            "text": "",
+            "image_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "step_HF6F6e",
+        "step_F7LpkQ",
+        "step_xXcGpq"
+      ],
       "name": "3 Simple Steps",
       "settings": {
+        "heading": "How Your Purchase Helps Provide Meals",
+        "heading_highlight": "in 3 Simple Steps",
         "color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 36
