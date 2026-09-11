@@ -12,6 +12,7 @@
     "collection_banner": {
       "type": "collection-banner",
       "settings": {
+        "image_desktop": "shopify://shop_images/hf_20260911_165400_20a03924-c737-4f0f-8e3c-c563de9265b5.jpg",
         "image_desktop_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/banner-poppins.jpg?v=1781818271",
         "image_mobile_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/banner._new_test_1.jpg?v=1781959840",
         "alt_text": "KittyKloset — Hvert t-shirt-køb hjælper med at mætte forladte killinger",
