@@ -12,13 +12,6 @@
   <variant-selects
     id="variant-selects-{{ section.id }}"
     data-section="{{ section.id }}"
-    data-product-handle="{{ product.handle }}"
-    data-product-title="{{ product.title | escape }}"
-    data-product-id="{{ product.id }}"
-    data-currency-code="{{ cart.currency.iso_code }}"
-    {% # theme-check-disable %}
-    data-selected-price-amount="{{ product.selected_or_first_available_variant.price | default: 0 | money_amount | escape }}"
-    {% # theme-check-enable %}
     {{ block.shopify_attributes }}
   >
     {%- for option in product.options_with_values -%}
@@ -50,8 +43,7 @@
           %}
         </fieldset>
       {%- elsif picker_type == 'button' -%}
-        {%- assign opt_name_lower = option.name | downcase -%}
-        <fieldset class="js product-form__input product-form__input--pill{% if opt_name_lower contains 'color' or opt_name_lower contains 'farve' %} product-form__input--color-swatches{% endif %}">
+        <fieldset class="js product-form__input product-form__input--pill">
           <legend class="form__label">{{ option.name }}</legend>
           {% render 'product-variant-options',
             product: product,
@@ -60,18 +52,6 @@
             picker_type: picker_type
           %}
         </fieldset>
-        {%- if opt_name_lower contains 'size' or opt_name_lower contains 'størrelse' -%}
-          {%- if block.settings.show_size_chart != false -%}
-            <div class="kk-size-guide-container">
-              <button type="button" class="kk-size-guide-trigger with-icon" onclick="document.getElementById('kk-size-modal-{{ section.id }}')?.showModal()" aria-haspopup="dialog">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.025 512.025" class="kiwi-svg kiwi-injectable" width="15" height="15" fill="currentColor">
-                  <path d="M226.333.013h-160c-8.837 0-16 7.163-16 16v480c0 8.837 7.163 16 16 16h160c8.837 0 16-7.163 16-16v-480c0-8.837-7.164-16-16-16zm-16 480h-128v-48h80v-32h-80v-48h48v-32h-48v-48h80v-32h-80v-48h48v-32h-48v-48h80v-32h-80v-48h128v448zm228.8-75.2l-52.8 52.64V54.573l52.64 52.64 22.56-22.56-80-80c-6.24-6.204-16.32-6.204-22.56 0l-80 80 22.56 22.56 52.8-52.64v402.88l-52.64-52.64-22.56 22.56 80 80c6.24 6.204 16.32 6.204 22.56 0l80-80-22.56-22.56z"></path>
-                </svg>
-                <span class="kk-size-guide-text">{{ block.settings.size_chart_label | default: 'Størrelsesguide' }}</span>
-              </button>
-            </div>
-          {%- endif -%}
-        {%- endif -%}
       {%- else -%}
         <div class="product-form__input product-form__input--dropdown">
           <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
@@ -107,48 +87,6 @@
       {%- endif -%}
     {%- endfor -%}
 
-    {%- if block.settings.show_size_chart != false -%}
-      <dialog id="kk-size-modal-{{ section.id }}" class="kk-size-modal" aria-label="{{ block.settings.size_chart_title | default: 'Størrelsesguide' }}" onclick="if (event.target === this) this.close()">
-        <div class="kk-size-modal__dialog">
-          <div class="kk-size-modal__header">
-            <h3 class="kk-size-modal__title">{{ block.settings.size_chart_title | default: 'Størrelsesguide' }}</h3>
-            <form method="dialog">
-              <button type="submit" class="kk-size-modal__close" aria-label="Luk størrelsesguide">&times;</button>
-            </form>
-          </div>
-          <div class="kk-size-modal__body">
-            {%- if block.settings.size_chart_content != blank -%}
-              {{ block.settings.size_chart_content }}
-            {%- elsif block.settings.size_chart_page != blank and block.settings.size_chart_page.content != blank -%}
-              {{ block.settings.size_chart_page.content }}
-            {%- else -%}
-              <table class="kk-size-table">
-                <thead>
-                  <tr>
-                    <th>Størrelse</th>
-                    <th>Brystvidde</th>
-                    <th>Længde</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr><td>S</td><td>46 cm / 18 tommer</td><td>71 cm / 28 tommer</td></tr>
-                  <tr><td>S (Børn)</td><td>41 cm / 16 tommer</td><td>56 cm / 22 tommer</td></tr>
-                  <tr><td>M</td><td>51 cm / 20 tommer</td><td>74 cm / 29 tommer</td></tr>
-                  <tr><td>M (Børn)</td><td>43 cm / 17 tommer</td><td>60 cm / 23.5 tommer</td></tr>
-                  <tr><td>L</td><td>56 cm / 22 tommer</td><td>76 cm / 30 tommer</td></tr>
-                  <tr><td>L (Børn)</td><td>46 cm / 18 tommer</td><td>64 cm / 25 tommer</td></tr>
-                  <tr><td>XL</td><td>61 cm / 24 tommer</td><td>79 cm / 31 tommer</td></tr>
-                  <tr><td>2XL</td><td>66 cm / 26 tommer</td><td>81 cm / 32 tommer</td></tr>
-                  <tr><td>3XL</td><td>71 cm / 28 tommer</td><td>84 cm / 33 tommer</td></tr>
-                  <tr><td>4XL</td><td>76 cm / 30 tommer</td><td>86 cm / 34 tommer</td></tr>
-                  <tr><td>5XL</td><td>81 cm / 32 tommer</td><td>89 cm / 35 tommer</td></tr>
-                </tbody>
-              </table>
-            {%- endif -%}
-          </div>
-        </div>
-      </div>
-    {%- endif -%}
     <script type="application/json" data-selected-variant>
       {{ product.selected_or_first_available_variant | json }}
     </script>
