@@ -174,11 +174,13 @@
       if section.settings.menu != blank
         render 'header-drawer', show_country_selector: country_selector, show_language_selector: language_selector, show_social_links: social_links
       endif
-
-      if render_search_left
-        render 'header-search', input_id: 'Search-In-Modal-1'
-      endif
     -%}
+
+    {%- if render_search_left -%}
+      <span class="small-hide medium-hide">
+        {%- render 'header-search', input_id: 'Search-In-Modal-1' -%}
+      </span>
+    {%- endif -%}
 
     {%- if section.settings.logo_position != 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
