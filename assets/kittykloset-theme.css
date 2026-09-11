@@ -1856,22 +1856,3 @@ h6,
   display: flex;
   align-items: center;
 }
-
-/* Fix: hamburger always in left grid area; hide any orphaned left search */
-header-drawer {
-  grid-area: left-icons;
-  justify-self: start;
-}
-
-/* Hide any .header__search that is a direct child of .header (not inside header__icons) */
-.header > .header__search,
-.header > details-modal {
-  display: none !important;
-}
-
-/* ── Color swatches: style pill buttons as color circles ── */
-.product-form__input--pill .swatch-input__label,
-.product-form__input--pill label {
-  position: relative;
-  overflow: hidden;
-}
