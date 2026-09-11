@@ -81,12 +81,13 @@ h6,
 /* ==========================================================================
    Header & Navigation Styling
    ========================================================================== */
-.header {}
+.header {
+}
 
 .header__menu-item,
 .header__menu-item span {
   font-size: 14px;
-
+   
   color: var(--kk-text-dark);
   text-decoration: none;
   transition: color 0.15s ease;
@@ -106,7 +107,7 @@ h6,
 .cart-count-bubble {
   background-color: var(--kk-brand-deep);
   color: #ffffff;
-
+   
 }
 
 /* ==========================================================================
@@ -155,7 +156,7 @@ h6,
 .kk-title__eyebrow {
   margin: 0 0 10px;
   font-size: 12px;
-
+   
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--kk-brand-deep);
@@ -164,7 +165,7 @@ h6,
 .kk-title__main {
   margin: 0;
   color: var(--kk-text-dark);
-
+   
   text-transform: uppercase;
   letter-spacing: 0.04em;
   line-height: 1.05;
@@ -202,7 +203,7 @@ h6,
   margin: 16px 0 0;
   color: var(--kk-text-dark);
   opacity: 0.75;
-
+   
   line-height: 1.4;
   font-size: clamp(14px, 3.2vw, 17px);
 }
@@ -257,7 +258,7 @@ h6,
 }
 
 .kk-proof__value {
-  font-weight: 700;
+   font-weight: 700;
   font-size: clamp(15px, 4vw, 20px);
   color: var(--kk-text-dark);
   line-height: 1.1;
@@ -377,7 +378,7 @@ h6,
 }
 
 .kk-card-rating__score {
-
+   
   color: var(--kk-text-dark);
 }
 
@@ -430,7 +431,7 @@ h6,
 .kk-mission--soft .kk-mission__eyebrow {
   margin: 0 0 10px;
   font-size: 12px;
-
+   
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--brand-deep);
@@ -438,7 +439,7 @@ h6,
 
 .kk-mission--soft .kk-mission__title {
   margin: 0;
-
+   
   line-height: 1.15;
   font-size: clamp(24px, 2.6vw, 36px);
   color: var(--text);
@@ -500,7 +501,7 @@ h6,
   flex: 0 0 auto;
 }
 
-.kk-mission--soft . {
+.kk-mission--soft .  {
   font-weight: 700;
   font-size: clamp(26px, 3vw, 34px);
   color: var(--brand-deep);
@@ -577,7 +578,7 @@ h6,
 
 .kk-freeship__text strong {
   color: var(--kk-brand-deep);
-
+   
 }
 
 .kk-perks {
@@ -608,7 +609,9 @@ h6,
   color: var(--kk-brand-deep);
 }
 
-.kk-perks strong {}
+.kk-perks strong {
+   
+}
 
 /* Stylized Accordions (kk-acc) - Reference Match (Kitty Kloset) */
 .product__info-container>.kk-acc {
@@ -657,7 +660,7 @@ h6,
   justify-content: space-between;
   gap: 16px;
   padding: 16px 0;
-
+   
   font-size: 16px;
   line-height: 1.4;
   color: #2a2c42;
@@ -735,7 +738,7 @@ h6,
   position: absolute;
   left: 0;
   color: #8AA0F2;
-
+   
 }
 
 
@@ -781,7 +784,7 @@ h6,
 .button--primary,
 .button {
   border-radius: var(--kk-radius-sm);
-
+   
 }
 
 .product-form__submit {
@@ -884,7 +887,8 @@ h6,
 /* ==========================================================================
    Product Card Exact Design (Reference Match)
    ========================================================================== */
-.card-wrapper.product-card-wrapper {}
+.card-wrapper.product-card-wrapper {
+}
 
 .card-wrapper .card__inner {
   border-radius: 12px;
@@ -1032,7 +1036,7 @@ h6,
 
 .card-wrapper .kk-card-rating__count {
   font-size: 12px;
-
+   
   color: #8A8EA6;
   line-height: 1;
 }
@@ -1049,7 +1053,7 @@ h6,
 
 .kk-pdp-rating .kk-card-rating__count {
   font-size: 14px;
-
+   
 }
 
 /* Price Row - Strikethrough on left, Sale price on right */
@@ -1123,7 +1127,7 @@ h6,
 /* PDP Title & Rating */
 .product__info-container .product__title h1 {
   font-size: 28px;
-
+   
   color: #2A2C42;
   margin-bottom: 0px;
   line-height: 1.25;
@@ -1166,7 +1170,7 @@ h6,
 
 .kk-freeship__text strong {
   color: #6c72e0;
-
+   
 }
 
 /* PDP Price */
@@ -1188,7 +1192,7 @@ h6,
 .product__info-container .price-item--sale {
   color: #2A2C42;
   font-size: 22px;
-
+   
 }
 
 .product__info-container .price__badge-sale {
@@ -1196,7 +1200,7 @@ h6,
   color: #ffffff;
   border: none;
   font-size: 12px;
-
+   
   border-radius: 4px;
   padding: 3px 8px;
 }
@@ -1228,8 +1232,9 @@ h6,
   display: block;
 }
 
-.kk-perks strong {}
-
+.kk-perks strong {
+   
+}
 /* 
 /* Variant Swatches (Color) */
 .product-form__input--color-swatches {
@@ -1248,7 +1253,7 @@ h6,
   color: #2A2C42;
 }
 
-.product-form__input--color-swatches input[type="radio"]+label.kk-swatch-circle {
+.product-form__input--color-swatches input[type="radio"] + label.kk-swatch-circle {
   position: relative;
   width: 48px !important;
   height: 48px !important;
@@ -1269,11 +1274,11 @@ h6,
   line-height: normal !important;
 }
 
-.product-form__input--color-swatches input[type="radio"]+label.kk-swatch-circle:hover {
+.product-form__input--color-swatches input[type="radio"] + label.kk-swatch-circle:hover {
   transform: scale(1.06);
 }
 
-.product-form__input--color-swatches input[type="radio"]+label.kk-swatch-circle::before {
+.product-form__input--color-swatches input[type="radio"] + label.kk-swatch-circle::before {
   display: none !important;
 }
 
@@ -1307,13 +1312,13 @@ h6,
   color: #2A2C42;
 }
 
-.product-form__input--pill input[type="radio"]+label:not(.kk-swatch-circle) {
+.product-form__input--pill input[type="radio"] + label:not(.kk-swatch-circle) {
   background-color: #ffffff !important;
   border: 1px solid #dcdcdc !important;
   border-radius: 4px !important;
   color: #2a2c42 !important;
   font-size: 14px;
-
+   
   padding: 8px 16px !important;
   margin: 0 !important;
   min-width: 48px;
@@ -1325,17 +1330,15 @@ h6,
   transition: all 0.15s ease;
 }
 
-.product-form__input--pill input[type="radio"]+label:not(.kk-swatch-circle)::before {
+.product-form__input--pill input[type="radio"] + label:not(.kk-swatch-circle)::before {
   display: none !important;
 }
 
-.product-form__input--pill input[type="radio"]:checked+label:not(.kk-swatch-circle) {
+.product-form__input--pill input[type="radio"]:checked + label:not(.kk-swatch-circle) {
   background-color: #000000 !important;
   border-color: #000000 !important;
   color: #ffffff !important;
-}
-
-*/
+} */
 
 /* Size Chart Trigger & Modal */
 .kk-size-guide-container {
@@ -1402,7 +1405,7 @@ h6,
 
 .kk-size-modal__title {
   font-size: 18px;
-
+   
   margin: 0;
   color: #2a2c42;
 }
@@ -1457,7 +1460,7 @@ h6,
 .widget_title {
   text-align: center;
   font-size: 15px;
-
+   
   color: #2A2C42;
   margin: 0 0 12px;
   letter-spacing: 0.04em;
@@ -1538,7 +1541,7 @@ h6,
   background: #6C72E0;
   color: #ffffff;
   font-size: 10px;
-
+   
   letter-spacing: 0.06em;
   padding: 2px 8px;
   border-radius: 4px;
@@ -1548,7 +1551,7 @@ h6,
 .OfferText {
   margin: 0;
   font-size: 15px;
-
+   
   color: #2A2C42;
   line-height: 1.2;
 }
@@ -1563,7 +1566,7 @@ h6,
 .SaveText {
   margin: 0;
   font-size: 12px;
-
+   
   color: #388e3c;
   background: #e8f5e9;
   padding: 2px 6px;
@@ -1585,7 +1588,7 @@ h6,
 
 .Price {
   color: #2A2C42;
-
+   
 }
 
 .TotalBlock {
@@ -1692,8 +1695,8 @@ h6,
   box-shadow: none;
 }
 
-.card-wrapper.product-card-wrapper>.card>.card__content,
-.card-wrapper.product-card-wrapper .card--standard>.card__content {
+.card-wrapper.product-card-wrapper > .card > .card__content,
+.card-wrapper.product-card-wrapper .card--standard > .card__content {
   padding: 0;
 }
 
@@ -1706,7 +1709,7 @@ h6,
   text-align: left;
 }
 
-.card-wrapper.product-card-wrapper .card-information>.caption-large {
+.card-wrapper.product-card-wrapper .card-information > .caption-large {
   display: none;
 }
 
@@ -1714,8 +1717,8 @@ h6,
   display: none;
 }
 
-.card-wrapper.product-card-wrapper .card-information>*+*,
-.card-wrapper.product-card-wrapper .card-information>*:not(.visually-hidden:first-child)+*:not(.rating):not(.card__information-volume-pricing-note) {
+.card-wrapper.product-card-wrapper .card-information > * + *,
+.card-wrapper.product-card-wrapper .card-information > *:not(.visually-hidden:first-child) + *:not(.rating):not(.card__information-volume-pricing-note) {
   margin-top: 4px;
 }
 
@@ -1837,7 +1840,6 @@ h6,
 .TotalBlock .Price {
   color: #6C72E0;
 }
-
 /* PDP Payment Icons */
 .pdp-payment-icons {
   display: flex;
@@ -1862,16 +1864,8 @@ header-drawer {
 }
 
 @media screen and (max-width: 749px) {
-
-  .header>.header__search:first-of-type,
-  .header>span.small-hide {
+  .header > .header__search:first-of-type,
+  .header > span.small-hide {
     display: none !important;
   }
-}
-
-/* ── Color swatches: style pill buttons as color circles ── */
-.product-form__input--pill .swatch-input__label,
-.product-form__input--pill label {
-  position: relative;
-  overflow: hidden;
 }
