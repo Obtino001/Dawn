@@ -1533,8 +1533,7 @@ h6,
 }
 
 .product-form__input--color-swatches input[type="radio"]:checked+.kk-swatch-circle {
-  border-color: #2A2C42;
-  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #2A2C42;
+  border-color: #2A2C42 !important;
 }
 
 /* Variant Size Pills */
