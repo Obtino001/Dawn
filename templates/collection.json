@@ -37,7 +37,7 @@
           "type": "step",
           "settings": {
             "step_number": "2",
-            "title": "Vi hjælper med<br>at fodre",
+            "title": "VI KØBER FODER",
             "icon_svg": "bowl"
           }
         },
@@ -45,7 +45,7 @@
           "type": "step",
           "settings": {
             "step_number": "3",
-            "title": "Liv du<br>ændrede",
+            "title": "DU GJORDE EN FORSKEL",
             "icon_svg": "cat_heart"
           }
         }
