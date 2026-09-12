@@ -70,7 +70,11 @@
               assign quantity_rule_soldout = true
             endif
           -%}
-          <p style="color: grey; font-size: 14px; text-align: center; margin-bottom: 12px; margin-top: 12px; line-height: 1.4;">Vinteren er på vej.<br><br>Nogle af dem er løbet hjemmefra. Andre blev efterladt. Ingen af dem har noget at spise i nat.<br><br>Trøje nummer to koster 150 kr.</p>
+          {%- if block.settings.text_above_button != blank -%}
+            <div style="color: grey; font-size: 14px; text-align: center; margin-bottom: 12px; margin-top: 12px; line-height: 1.4;">
+              {{ block.settings.text_above_button }}
+            </div>
+          {%- endif -%}
           <button
             id="ProductSubmitButton-{{ section_id }}"
             type="submit"
@@ -94,6 +98,11 @@
             </span>
             {%- render 'loading-spinner' -%}
           </button>
+          {%- if block.settings.text_below_button != blank -%}
+            <div style="color: grey; font-size: 12px; text-align: center; margin-bottom: 12px; margin-top: 12px; line-height: 1.4;">
+              {{ block.settings.text_below_button }}
+            </div>
+          {%- endif -%}
           {%- if show_dynamic_checkout -%}
             {{ form | payment_button }}
           {%- endif -%}
