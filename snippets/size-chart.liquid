@@ -332,11 +332,16 @@ body.ks-modal-open {
 .kiwi-sizing-modal {
   position: fixed !important;
   inset: 0 !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
   z-index: 2147483000 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  width: 100vw !important;
+  width: 100% !important;
+  height: 100% !important;
   height: 100dvh !important;
   margin: 0 !important;
   padding: 24px !important;
@@ -347,6 +352,12 @@ body.ks-modal-open {
   visibility: hidden;
   pointer-events: none;
   transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.product__info-wrapper:has(.kiwi-sizing-modal.ks-is-open),
+.product__info-container:has(.kiwi-sizing-modal.ks-is-open) {
+  transform: none !important;
+  animation: none !important;
 }
 
 .kiwi-sizing-modal.ks-is-open {
@@ -964,7 +975,7 @@ body.ks-modal-open {
   const modalOpeners = new WeakMap();
 
   function getModalForTrigger(trigger) {
-    const controlledId = trigger.getAttribute('aria-controls');
+    const controlledId = trigger.getAttribute('aria-controls') || trigger.getAttribute('data-target-modal');
 
     if (controlledId) {
       const controlledModal = document.getElementById(controlledId);
@@ -1007,7 +1018,7 @@ body.ks-modal-open {
 
     const triggerIndex = triggers.indexOf(trigger);
 
-    return modals[triggerIndex] || modals[0] || null;
+    return modals[triggerIndex] || modals[0] || document.querySelector('.kiwi-sizing-modal');
   }
 
   function setTriggerExpanded(modal, expanded) {
@@ -1090,14 +1101,20 @@ body.ks-modal-open {
   }
 
   function setupModal(modal) {
-    if (!modal || modal.dataset.ksInitialized === 'true') return;
-
-    modal.dataset.ksInitialized = 'true';
+    if (!modal) return;
 
     if (!modal.id) {
       modalIdCounter += 1;
       modal.id = `ks-size-chart-modal-${modalIdCounter}`;
     }
+
+    if (modal.parentElement !== document.body) {
+      document.body.appendChild(modal);
+    }
+
+    if (modal.dataset.ksInitialized === 'true') return;
+
+    modal.dataset.ksInitialized = 'true';
 
     modal.classList.remove('ks-is-open');
     modal.setAttribute('aria-hidden', 'true');
@@ -1161,12 +1178,17 @@ body.ks-modal-open {
       if (modal) {
         setupModal(modal);
         trigger.setAttribute('aria-controls', modal.id);
+        trigger.setAttribute('data-target-modal', modal.id);
       }
     });
   }
 
   function openModal(modal, opener) {
     if (!modal) return;
+
+    if (modal.parentElement !== document.body) {
+      document.body.appendChild(modal);
+    }
 
     setupModal(modal);
 
