@@ -88,8 +88,8 @@
         "accordion_materials": {
           "type": "custom_accordion",
           "settings": {
-            "heading": "Materialer og vaskeanvisning",
-            "content": "",
+            "heading": "Vores mission",
+            "content": "<p>Hver dag bliver katte i Danmark efterladt. Nogle fordi familien<br/>flyttede. Andre fordi ingen kom og hentede dem.</p><p>Vi er en lille flok katteelskere, og vi kan ikke give dem alle<br/>et hjem. Men vi kan give dem mad.</p><p>Derfor findes Kattehjerte. Du får en trøje, du faktisk har lyst<br/>til at gå med. Katte, der klarer sig selv, får noget at spise.</p><p>Vores mål er 10.000 måltider inden vinteren er ovre.</p>",
             "page": "",
             "open_by_default": false
           }
