@@ -340,6 +340,39 @@
             "text": "<p>I use it every day early in the morning and on our dining table, it is do convenient and cool</p>",
             "author": "<p><strong>@dwithpatty</strong></p>"
           }
+        },
+        "slide_VTHdkJ": {
+          "type": "slide",
+          "settings": {
+            "media_style": "image",
+            "video_url": "",
+            "controls": false,
+            "stars_count": 5,
+            "text": "<p>Text</p>",
+            "author": "<p>Author</p>"
+          }
+        },
+        "slide_8i4NVb": {
+          "type": "slide",
+          "settings": {
+            "media_style": "image",
+            "video_url": "",
+            "controls": false,
+            "stars_count": 5,
+            "text": "<p>Text</p>",
+            "author": "<p>Author</p>"
+          }
+        },
+        "slide_3wXRmm": {
+          "type": "slide",
+          "settings": {
+            "media_style": "image",
+            "video_url": "",
+            "controls": false,
+            "stars_count": 5,
+            "text": "<p>Text</p>",
+            "author": "<p>Author</p>"
+          }
         }
       },
       "block_order": [
@@ -349,7 +382,10 @@
         "slide_jVtLTd",
         "slide_NqU6Tt",
         "slide_6tUxeT",
-        "slide_VE86hJ"
+        "slide_VE86hJ",
+        "slide_VTHdkJ",
+        "slide_8i4NVb",
+        "slide_3wXRmm"
       ],
       "name": "SS - Testimonials #12",
       "settings": {
