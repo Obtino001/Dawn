@@ -58,7 +58,7 @@
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
           </svg>
           <span class="kk-sticky__add-label">{{ section.settings.button_text | default: 'Læg i kurv' }}</span>
-          <span class="kk-sticky__add-price">· {{ product.selected_or_first_available_variant.price | money }}</span>
+          <span class="kk-sticky__add-price">· {{ product.selected_or_first_available_variant.price | money | replace: ',00', ''}}</span>
         </button>
       </div>
     </div>

@@ -290,13 +290,13 @@
                             <div class="OfferContent__ResultBlock-sc-1xtpph2-4 dpVtfu ResultBlock">
                               <p class="OfferContent__Save-sc-1xtpph2-5 euiFfu SaveText">{{ block.settings.offer_1_save | default: 'SPAR 15%' }}</p>
                               <span class="OfferContent__PriceBlock-sc-1xtpph2-10 bHlafX PriceBlock">
-                                <span class="OfferContent__ComparePrice-sc-1xtpph2-7 jmEaRX ComparePrice">{{ product.price | money }}</span>
-                                <span class="OfferContent__Price-sc-1xtpph2-6 jcPFcu Price">{{ price_1 | money }}</span>
+                                <span class="OfferContent__ComparePrice-sc-1xtpph2-7 jmEaRX ComparePrice">{{ product.price | money | replace: ',00', ''}}</span>
+                                <span class="OfferContent__Price-sc-1xtpph2-6 jcPFcu Price">{{ price_1 | money | replace: ',00', ''}}</span>
                               </span>
                               <span class="OfferContent__TotalBlock-sc-1xtpph2-9 fbBLKM TotalBlock">
                                 <span class="OfferContent__Total-sc-1xtpph2-8 cqjaTE Total">{{ block.settings.total_label | default: 'I alt' }}&ensp;</span>
-                                <span class="OfferContent__ComparePrice-sc-1xtpph2-7 jmEaRX ComparePrice">{{ total_reg_1 | money }}</span>
-                                <span class="OfferContent__Price-sc-1xtpph2-6 efyshx Price">&ensp;{{ total_sale_1 | money }}</span>
+                                <span class="OfferContent__ComparePrice-sc-1xtpph2-7 jmEaRX ComparePrice">{{ total_reg_1 | money | replace: ',00', ''}}</span>
+                                <span class="OfferContent__Price-sc-1xtpph2-6 efyshx Price">&ensp;{{ total_sale_1 | money | replace: ',00', ''}}</span>
                               </span>
                             </div>
                           </div>
@@ -317,13 +317,13 @@
                             <div class="OfferContent__ResultBlock-sc-1xtpph2-4 dpVtfu ResultBlock">
                               <p class="OfferContent__Save-sc-1xtpph2-5 euiFfu SaveText">{{ block.settings.offer_2_save | default: 'SPAR 20%' }}</p>
                               <span class="OfferContent__PriceBlock-sc-1xtpph2-10 bHlafX PriceBlock">
-                                <span class="OfferContent__ComparePrice-sc-1xtpph2-7 jmEaRX ComparePrice">{{ product.price | money }}</span>
-                                <span class="OfferContent__Price-sc-1xtpph2-6 jcPFcu Price">{{ price_2 | money }}</span>
+                                <span class="OfferContent__ComparePrice-sc-1xtpph2-7 jmEaRX ComparePrice">{{ product.price | money | replace: ',00', ''}}</span>
+                                <span class="OfferContent__Price-sc-1xtpph2-6 jcPFcu Price">{{ price_2 | money | replace: ',00', ''}}</span>
                               </span>
                               <span class="OfferContent__TotalBlock-sc-1xtpph2-9 fbBLKM TotalBlock">
                                 <span class="OfferContent__Total-sc-1xtpph2-8 cqjaTE Total">{{ block.settings.total_label | default: 'I alt' }}&ensp;</span>
-                                <span class="OfferContent__ComparePrice-sc-1xtpph2-7 jmEaRX ComparePrice">{{ total_reg_2 | money }}</span>
-                                <span class="OfferContent__Price-sc-1xtpph2-6 efyshx Price">&ensp;{{ total_sale_2 | money }}</span>
+                                <span class="OfferContent__ComparePrice-sc-1xtpph2-7 jmEaRX ComparePrice">{{ total_reg_2 | money | replace: ',00', ''}}</span>
+                                <span class="OfferContent__Price-sc-1xtpph2-6 efyshx Price">&ensp;{{ total_sale_2 | money | replace: ',00', ''}}</span>
                               </span>
                             </div>
                           </div>
@@ -455,22 +455,21 @@
                                   </dt>
                                   <dd>
                                     <s class="variant-item__old-price">
-                                      {{ variant_price_compare | money_with_currency }}
+                                      {{ variant_price_compare | money_with_currency | replace: ',00', ''}}
                                     </s>
                                   </dd>
                                 </dl>
                               {%- endif -%}
                               {%- if current_qty_for_volume_pricing < volume_pricing_array.last.minimum_quantity -%}
                                 {%- assign variant_price = product.selected_or_first_available_variant.price
-                                  | money_with_currency
-                                -%}
+                                  | money_with_currency | replace: ',00', ''-%}
                                 <span class="price-per-item--current">
                                   {{- 'products.product.volume_pricing.price_at_each_html' | t: price: variant_price -}}
                                 </span>
                               {%- else -%}
                                 {%- for price_break in volume_pricing_array -%}
                                   {%- if current_qty_for_volume_pricing >= price_break.minimum_quantity -%}
-                                    {%- assign price_break_price = price_break.price | money_with_currency -%}
+                                    {%- assign price_break_price = price_break.price | money_with_currency | replace: ',00', ''-%}
                                     <span class="price-per-item--current">
                                       {{-
                                         'products.product.volume_pricing.price_at_each_html'
@@ -484,8 +483,7 @@
                             </div>
                           {%- else -%}
                             {%- assign variant_price = product.selected_or_first_available_variant.price
-                              | money_with_currency
-                            -%}
+                              | money_with_currency | replace: ',00', ''-%}
                             {%- assign variant_price_compare = product.selected_or_first_available_variant.compare_at_price -%}
                             <div class="price-per-item">
                               {%- if variant_price_compare -%}
@@ -495,7 +493,7 @@
                                   </dt>
                                   <dd>
                                     <s class="variant-item__old-price">
-                                      {{ variant_price_compare | money_with_currency }}
+                                      {{ variant_price_compare | money_with_currency | replace: ',00', ''}}
                                     </s>
                                   </dd>
                                   <dt class="visually-hidden">
@@ -554,14 +552,13 @@
                             <li>
                               <span>{{ product.selected_or_first_available_variant.quantity_rule.min }}+</span>
                               {%- assign price = product.selected_or_first_available_variant.price
-                                | money_with_currency
-                              -%}
+                                | money_with_currency | replace: ',00', ''-%}
                               <span data-text="{{ 'products.product.volume_pricing.price_at_each_html' | t: price: variant_price }}">
                                 {{- 'sections.quick_order_list.each' | t: money: price -}}
                               </span>
                             </li>
                             {%- for price_break in product.selected_or_first_available_variant.quantity_price_breaks -%}
-                              {%- assign price_break_price = price_break.price | money_with_currency -%}
+                              {%- assign price_break_price = price_break.price | money_with_currency | replace: ',00', ''-%}
                               <li class="{%- if forloop.index >= 3 -%}show-more-item hidden{%- endif -%}">
                                 <span>
                                   {{- price_break.minimum_quantity -}}
