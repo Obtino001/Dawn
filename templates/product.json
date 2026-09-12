@@ -106,8 +106,8 @@
         "accordion_sizing": {
           "type": "custom_accordion",
           "settings": {
-            "heading": "Beskrivelse og størrelsesguide",
-            "content": "{{ product.description }}",
+            "heading": "Om trøjen",
+            "content": "<p><strong>180 g ringspundet bomuld.</strong><br/>T-shirten er lavet i kraftigere bomuld end en almindelig T-shirt. Den falder pænt, er ikke gennemsigtig og holder formen, også efter vask.</p><p><strong>Dobbeltsyet hals og ærmer.</strong><br/>Giver en mere solid T-shirt, der holder til at blive brugt igen og igen.</p><p><strong>Garment-dyed.</strong><br/>T-shirten bliver farvet efter den er syet. Det giver farven mere dybde og et naturligt, let ujævnt udtryk — samtidig med at stoffet føles blødt allerede fra første dag.</p>",
             "page": "",
             "open_by_default": false
           }
