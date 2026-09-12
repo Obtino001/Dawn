@@ -53,7 +53,6 @@
         },
         "variant_picker": {
           "type": "variant_picker",
-          "disabled": true,
           "settings": {
             "picker_type": "button",
             "swatch_shape": "circle",
@@ -63,10 +62,6 @@
             "size_chart_content": "",
             "size_chart_page": ""
           }
-        },
-        "quantity_selector": {
-          "type": "quantity_selector",
-          "settings": {}
         },
         "size_chart_6VWRiL": {
           "type": "size_chart",
@@ -132,7 +127,6 @@
         "free_shipping",
         "perks",
         "variant_picker",
-        "quantity_selector",
         "size_chart_6VWRiL",
         "buy_buttons",
         "accordion_shipping",
@@ -162,7 +156,6 @@
       "settings": {
         "color_scheme": "",
         "accent_color": "#ef8b46",
-        "image": "shopify://shop_images/hf_20260911_180726_bfa5d18c-3dd6-4a3b-bdb9-b0915a9976a5.jpg",
         "badge_top": "🐾 VI ER LIGE BEGYNDT",
         "badge_bottom": "SAMMEN INDTIL NU",
         "tracker_goal": 100000,
@@ -210,7 +203,9 @@
         "tier_2_label": "spar 15%",
         "tier_3_pct": 20,
         "tier_3_label": "spar 20%",
-        "scroll_percent": 12
+        "scroll_percent": 12,
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "mission_story_WrwPzC": {
@@ -225,7 +220,6 @@
         "body_text_2": "For hver ordre køber vi foder og giver det til Kattens Værn.",
         "stat_number": "3,000+",
         "stat_label": "Vi samarbejder med Kattens Værn og arbejder løbende på at finde flere katteorganisationer og internater, vi kan støtte. Vores mål er at få så meget hjælp ud til kattene som muligt — og at kunne gøre en forskel for endnu flere katte rundt omkring i Danmark.",
-        "image": "shopify://shop_images/KATTEHJERTE_-_STATIC_-_11092026_1.jpg",
         "media_image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/collage_home.jpg?v=1781819895",
         "media_image_alt": "",
         "card_bg_color": "#f4f6ff",
@@ -245,7 +239,6 @@
           "settings": {
             "title": "Vælg din t-shirt",
             "text": "<p>Hver t-shirt giver 10 måltider til katte uden et hjem.<br/><br/>De fleste tager to. Én til sig selv og én til en, der også elsker katte.</p>",
-            "image": "shopify://shop_images/hf_20260912_092156_754eb72f-24e5-4d67-bda2-6cb430748393.jpg",
             "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/circleremera.png?v=1781830560"
           }
         },
@@ -254,7 +247,6 @@
           "settings": {
             "title": "Vi køber foder",
             "text": "<p>Vi samarbejder med Kattens Værn, som ved præcis hvilke katte der har brug for hjælp, og hvor de er.<br/><br/>Dit køb bliver til foder i skålen.</p>",
-            "image": "shopify://shop_images/hf_20260912_092321_0688e395-a7cf-413a-b1cb-07967725f347.jpg",
             "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/Logo_KittyKloset_printed_on_tube_202606191255.png?v=1781884657"
           }
         },
@@ -263,7 +255,6 @@
           "settings": {
             "title": "Du får kvitteringen",
             "text": "<p>Hver måned lægger vi kvitteringer og billeder op fra <br/>fodringerne.<br/><br/>Så kan du selv se, hvad din ordre blev til.</p>",
-            "image": "shopify://shop_images/hf_20260912_092340_607e1d7c-f796-43eb-b556-a84e2f2ee62e.jpg",
             "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/pinky_1.png?v=1781831026"
           }
         }
