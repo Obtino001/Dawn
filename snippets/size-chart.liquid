@@ -273,3 +273,513 @@
   </div>
       </div>
     </div>
+<style>
+
+/* =========================
+   SIZE CHART TRIGGER
+========================= */
+
+.ks-chart-container,
+.ks-chart-container *,
+.kiwi-sizing-modal,
+.kiwi-sizing-modal * {
+  box-sizing: border-box;
+}
+
+.ks-chart-modal-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #111;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.ks-chart-modal-link:hover {
+  opacity: 0.65;
+}
+
+.ks-chart-modal-link > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ks-chart-modal-link svg {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 19px;
+  fill: currentColor;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+body.ks-modal-open {
+  overflow: hidden !important;
+}
+
+.kiwi-sizing-modal {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 2147483000 !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.62);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s ease;
+}
+
+.kiwi-sizing-modal.ks-is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.kiwi-sizing-modal-inner {
+  position: relative !important;
+  width: min(1120px, 100%) !important;
+  max-width: 1120px !important;
+  max-height: calc(100dvh - 40px) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+  transform: translateY(18px) scale(0.985);
+  transition: transform 0.25s ease;
+}
+
+.kiwi-sizing-modal.ks-is-open .kiwi-sizing-modal-inner {
+  transform: translateY(0) scale(1);
+}
+
+.ks-modal-content-wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.ks-modal-content-wrapper > div {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.85fr) minmax(0, 1.15fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  width: 100%;
+  height: min(760px, calc(100dvh - 40px));
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.kiwi-sizing-modal .ks-modal-header {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-height: 88px;
+  padding: 15px 65px 15px 24px;
+  background: #fff;
+  border-bottom: 1px solid #e7e7e7;
+}
+
+.kiwi-sizing-modal .ks-modal-logo {
+  flex: 0 0 auto;
+}
+
+.kiwi-sizing-modal .ks-modal-logo img {
+  display: block;
+  width: auto;
+  max-width: 145px;
+  height: auto;
+  max-height: 56px;
+  object-fit: contain;
+}
+
+.kiwi-sizing-modal .modal-title {
+  display: block;
+  color: #111;
+}
+
+.kiwi-sizing-modal .modal-title-header {
+  margin-bottom: 4px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.kiwi-sizing-modal .modal-title-sub-header {
+  color: #6b6b6b;
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.kiwi-sizing-modal .ks-modal-close {
+  position: absolute !important;
+  top: 20px !important;
+  right: 20px !important;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #111;
+  font-family: Arial, sans-serif;
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1;
+  background: #f4f4f4;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.kiwi-sizing-modal .ks-modal-close:hover {
+  color: #fff;
+  background: #111;
+  transform: rotate(90deg);
+}
+
+/* =========================
+   IMAGE GALLERY
+========================= */
+
+.kiwi-sizing-modal .ks-modal-image-wrapper {
+  position: relative !important;
+  grid-column: 1;
+  grid-row: 2;
+  width: 100%;
+  height: auto !important;
+  min-height: 0;
+  overflow: hidden;
+  background: #f6f6f6;
+}
+
+.kiwi-sizing-modal .ks-modal-image {
+  position: absolute;
+  inset: 0;
+  display: none !important;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.kiwi-sizing-modal .ks-modal-image.ks-is-active {
+  display: flex !important;
+}
+
+.kiwi-sizing-modal .ks-modal-image-hide:not(.ks-is-active) {
+  display: none !important;
+}
+
+.kiwi-sizing-modal .ks-modal-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.kiwi-sizing-modal .kw-slide-prev,
+.kiwi-sizing-modal .kw-slide-next {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  color: #111;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+  transform: translateY(-50%);
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.kiwi-sizing-modal .kw-slide-prev {
+  left: 14px;
+}
+
+.kiwi-sizing-modal .kw-slide-next {
+  right: 14px;
+}
+
+.kiwi-sizing-modal .kw-slide-prev:hover,
+.kiwi-sizing-modal .kw-slide-next:hover {
+  color: #fff;
+  background: #111;
+}
+
+.kiwi-sizing-modal .kw-slide-prev i,
+.kiwi-sizing-modal .kw-slide-next i {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+}
+
+.kiwi-sizing-modal .kw-slide-prev i {
+  margin-left: 4px;
+  transform: rotate(-135deg);
+}
+
+.kiwi-sizing-modal .kw-slide-next i {
+  margin-right: 4px;
+  transform: rotate(45deg);
+}
+
+.kiwi-sizing-modal .kw-slide-prev[hidden],
+.kiwi-sizing-modal .kw-slide-next[hidden] {
+  display: none !important;
+}
+
+/* =========================
+   CHART CONTENT
+========================= */
+
+.kiwi-sizing-modal .ks-modal-content {
+  grid-column: 2;
+  grid-row: 2;
+  width: 100%;
+  height: auto !important;
+  min-height: 0;
+  padding: 28px;
+  overflow-y: auto;
+  color: #222;
+  background: #fff;
+}
+
+.kiwi-sizing-modal .ks-table-content-wrapper + .ks-table-content-wrapper {
+  margin-top: 32px;
+}
+
+.kiwi-sizing-modal .ks-table-header {
+  margin-bottom: 14px;
+  color: #111;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.kiwi-sizing-modal .ks-unit-toggle-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 0 12px;
+}
+
+.kiwi-sizing-modal .ks-unit-toggle {
+  display: inline-flex;
+  padding: 3px;
+  background: #ededed;
+  border-radius: 999px;
+}
+
+.kiwi-sizing-modal .ks-unit-toggle-label {
+  min-width: 70px;
+  padding: 8px 13px;
+  color: #555;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+  border-radius: 999px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.kiwi-sizing-modal .ks-unit-toggle-label.kiwi-active {
+  color: #fff;
+  background: #111;
+}
+
+.kiwi-sizing-modal .ks-table-wrapper {
+  width: 100%;
+  padding-bottom: 1px !important;
+  overflow-x: auto;
+  border: 1px solid #dedede;
+  border-radius: 8px;
+}
+
+.kiwi-sizing-modal .ks-table {
+  width: 100%;
+  min-width: 480px;
+  margin: 0;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.kiwi-sizing-modal .ks-table-cell {
+  padding: 12px 14px;
+  color: #222;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: center;
+  white-space: nowrap;
+  border-right: 1px solid #e3e3e3;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.kiwi-sizing-modal .ks-table-cell:last-child {
+  border-right: 0;
+}
+
+.kiwi-sizing-modal .ks-table-row:last-child .ks-table-cell {
+  border-bottom: 0;
+}
+
+.kiwi-sizing-modal .ks-table-header-cell {
+  color: #111;
+  font-weight: 700;
+  background: #f5f5f5;
+}
+
+.kiwi-sizing-modal .ks-image {
+  margin: 26px 0 !important;
+}
+
+.kiwi-sizing-modal .ks-image img {
+  display: block;
+  width: auto !important;
+  max-width: 100%;
+  height: auto !important;
+  margin: auto;
+}
+
+.kiwi-sizing-modal .ks-html-content {
+  color: #333;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.kiwi-sizing-modal .ks-html-content ol,
+.kiwi-sizing-modal .ks-html-content ul {
+  padding-left: 22px;
+}
+
+.kiwi-sizing-modal .ks-powered-by {
+  display: none !important;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media screen and (max-width: 749px) {
+  .kiwi-sizing-modal {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .kiwi-sizing-modal-inner {
+    width: 100% !important;
+    max-width: none !important;
+    height: 94dvh;
+    max-height: 94dvh !important;
+    border-radius: 18px 18px 0 0;
+  }
+
+  .ks-modal-content-wrapper {
+    height: 100%;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .ks-modal-content-wrapper > div {
+    display: block;
+    height: auto;
+  }
+
+  .kiwi-sizing-modal .ks-modal-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    min-height: 76px;
+    padding: 12px 62px 12px 16px;
+  }
+
+  .kiwi-sizing-modal .ks-modal-logo img {
+    max-width: 105px;
+    max-height: 46px;
+  }
+
+  .kiwi-sizing-modal .modal-title-header {
+    font-size: 16px;
+  }
+
+  .kiwi-sizing-modal .ks-modal-close {
+    position: fixed !important;
+    top: calc(6dvh + 14px) !important;
+    right: 14px !important;
+    width: 38px;
+    height: 38px;
+    font-size: 29px;
+  }
+
+  .kiwi-sizing-modal .ks-modal-image-wrapper {
+    width: 100%;
+    height: 38dvh !important;
+    min-height: 250px;
+    max-height: 390px;
+  }
+
+  .kiwi-sizing-modal .ks-modal-image {
+    padding: 15px;
+  }
+
+  .kiwi-sizing-modal .ks-modal-content {
+    height: auto !important;
+    padding: 20px 15px 34px;
+    overflow: visible;
+  }
+
+  .kiwi-sizing-modal .ks-table-cell {
+    padding: 10px 11px;
+    font-size: 12px;
+  }
+
+  .kiwi-sizing-modal .ks-table-header {
+    font-size: 16px;
+  }
+
+  .kiwi-sizing-modal .kw-slide-prev,
+  .kiwi-sizing-modal .kw-slide-next {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kiwi-sizing-modal,
+  .kiwi-sizing-modal-inner,
+  .kiwi-sizing-modal .ks-modal-close {
+    transition: none !important;
+  }
+}
+</style>
