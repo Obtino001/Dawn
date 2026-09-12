@@ -783,3 +783,450 @@ body.ks-modal-open {
   }
 }
 </style>
+
+<script>
+(() => {
+  'use strict';
+
+  if (window.KSStandaloneSizeChartLoaded) return;
+  window.KSStandaloneSizeChartLoaded = true;
+
+  let activeModal = null;
+  let modalIdCounter = 0;
+  const modalOpeners = new WeakMap();
+
+  function getModalForTrigger(trigger) {
+    const controlledId = trigger.getAttribute('aria-controls');
+
+    if (controlledId) {
+      const controlledModal = document.getElementById(controlledId);
+      if (controlledModal) return controlledModal;
+    }
+
+    const container = trigger.closest('.ks-chart-container');
+
+    if (container) {
+      let sibling = container.nextElementSibling;
+
+      while (sibling) {
+        if (sibling.matches('.kiwi-sizing-modal')) {
+          return sibling;
+        }
+
+        sibling = sibling.nextElementSibling;
+      }
+    }
+
+    const section = trigger.closest(
+      '.shopify-section, product-info, .product__info-container, main'
+    );
+
+    if (section) {
+      const sectionModals = section.querySelectorAll('.kiwi-sizing-modal');
+
+      if (sectionModals.length === 1) {
+        return sectionModals[0];
+      }
+    }
+
+    const triggers = Array.from(
+      document.querySelectorAll('.ks-chart-modal-link')
+    );
+
+    const modals = Array.from(
+      document.querySelectorAll('.kiwi-sizing-modal')
+    );
+
+    const triggerIndex = triggers.indexOf(trigger);
+
+    return modals[triggerIndex] || modals[0] || null;
+  }
+
+  function setTriggerExpanded(modal, expanded) {
+    document.querySelectorAll('.ks-chart-modal-link').forEach((trigger) => {
+      if (getModalForTrigger(trigger) === modal) {
+        trigger.setAttribute('aria-expanded', String(expanded));
+      }
+    });
+  }
+
+  function loadImage(imageContainer) {
+    const image = imageContainer.querySelector('img');
+    if (!image) return;
+
+    const lazySource = image.getAttribute('data-src');
+
+    if (lazySource && !image.getAttribute('src')) {
+      image.setAttribute('src', lazySource);
+    }
+  }
+
+  function showImage(wrapper, requestedIndex) {
+    if (!wrapper) return;
+
+    const slides = Array.from(
+      wrapper.querySelectorAll('.ks-modal-image')
+    );
+
+    if (!slides.length) return;
+
+    const total = slides.length;
+    const index = ((requestedIndex % total) + total) % total;
+
+    wrapper.dataset.activeIndex = String(index);
+
+    slides.forEach((slide, slideIndex) => {
+      const isActive = slideIndex === index;
+
+      slide.classList.toggle('ks-is-active', isActive);
+      slide.classList.toggle('ks-modal-image-hide', !isActive);
+      slide.setAttribute('aria-hidden', String(!isActive));
+
+      if (isActive) {
+        loadImage(slide);
+      }
+    });
+  }
+
+  function changeImage(modal, direction) {
+    const wrapper = modal.querySelector('.ks-modal-image-wrapper');
+    if (!wrapper) return;
+
+    const currentIndex = Number(wrapper.dataset.activeIndex || 0);
+    showImage(wrapper, currentIndex + direction);
+  }
+
+  function updateUnits(modal, selectedUnit) {
+    if (!modal) return;
+
+    modal.querySelectorAll('.ks-unit-toggle-label').forEach((label) => {
+      const isActive = label.dataset.value === selectedUnit;
+
+      label.classList.toggle('kiwi-active', isActive);
+      label.setAttribute('aria-pressed', String(isActive));
+    });
+
+    modal.querySelectorAll('[data-unit-values]').forEach((cell) => {
+      try {
+        const unitValues = JSON.parse(
+          cell.getAttribute('data-unit-values')
+        );
+
+        if (unitValues[selectedUnit] !== undefined) {
+          cell.textContent = unitValues[selectedUnit];
+        }
+      } catch (error) {
+        console.warn('Invalid size chart unit data:', cell);
+      }
+    });
+  }
+
+  function setupModal(modal) {
+    if (!modal || modal.dataset.ksInitialized === 'true') return;
+
+    modal.dataset.ksInitialized = 'true';
+
+    if (!modal.id) {
+      modalIdCounter += 1;
+      modal.id = `ks-size-chart-modal-${modalIdCounter}`;
+    }
+
+    modal.classList.remove('ks-is-open');
+    modal.setAttribute('aria-hidden', 'true');
+
+    if ('inert' in modal) {
+      modal.inert = true;
+    }
+
+    const wrapper = modal.querySelector('.ks-modal-image-wrapper');
+
+    if (wrapper) {
+      const slides = Array.from(
+        wrapper.querySelectorAll('.ks-modal-image')
+      );
+
+      let activeIndex = slides.findIndex(
+        (slide) => !slide.classList.contains('ks-modal-image-hide')
+      );
+
+      if (activeIndex < 0) activeIndex = 0;
+
+      showImage(wrapper, activeIndex);
+
+      modal.querySelectorAll('.kw-slide-prev, .kw-slide-next').forEach(
+        (arrow) => {
+          arrow.hidden = slides.length <= 1;
+        }
+      );
+    }
+
+    const previousButton = modal.querySelector('.kw-slide-prev');
+    const nextButton = modal.querySelector('.kw-slide-next');
+
+    if (previousButton) {
+      previousButton.setAttribute('aria-label', 'Previous image');
+    }
+
+    if (nextButton) {
+      nextButton.setAttribute('aria-label', 'Next image');
+    }
+
+    modal.querySelectorAll('.ks-unit-toggle-label').forEach((label) => {
+      label.setAttribute('role', 'button');
+      label.setAttribute('tabindex', '0');
+      label.setAttribute(
+        'aria-pressed',
+        String(label.classList.contains('kiwi-active'))
+      );
+    });
+  }
+
+  function setupTriggers() {
+    document.querySelectorAll('.ks-chart-modal-link').forEach((trigger) => {
+      trigger.setAttribute('role', 'button');
+      trigger.setAttribute('tabindex', '0');
+      trigger.setAttribute('aria-haspopup', 'dialog');
+      trigger.setAttribute('aria-expanded', 'false');
+
+      const modal = getModalForTrigger(trigger);
+
+      if (modal) {
+        setupModal(modal);
+        trigger.setAttribute('aria-controls', modal.id);
+      }
+    });
+  }
+
+  function openModal(modal, opener) {
+    if (!modal) return;
+
+    setupModal(modal);
+
+    if (activeModal && activeModal !== modal) {
+      closeModal(activeModal, false);
+    }
+
+    activeModal = modal;
+    modalOpeners.set(modal, opener);
+
+    modal.classList.add('ks-is-open');
+    modal.setAttribute('aria-hidden', 'false');
+
+    if ('inert' in modal) {
+      modal.inert = false;
+    }
+
+    document.body.classList.add('ks-modal-open');
+    setTriggerExpanded(modal, true);
+
+    requestAnimationFrame(() => {
+      const closeButton = modal.querySelector('.ks-modal-close');
+      (closeButton || modal).focus();
+    });
+  }
+
+  function closeModal(modal, restoreFocus = true) {
+    if (!modal) return;
+
+    modal.classList.remove('ks-is-open');
+    modal.setAttribute('aria-hidden', 'true');
+
+    if ('inert' in modal) {
+      modal.inert = true;
+    }
+
+    setTriggerExpanded(modal, false);
+
+    if (activeModal === modal) {
+      activeModal = null;
+    }
+
+    if (!document.querySelector('.kiwi-sizing-modal.ks-is-open')) {
+      document.body.classList.remove('ks-modal-open');
+    }
+
+    if (restoreFocus) {
+      const opener = modalOpeners.get(modal);
+
+      if (opener && document.contains(opener)) {
+        requestAnimationFrame(() => opener.focus());
+      }
+    }
+  }
+
+  function trapFocus(event, modal) {
+    const selector = [
+      'a[href]',
+      'button:not([disabled])',
+      '[role="button"][tabindex="0"]',
+      '[tabindex]:not([tabindex="-1"])'
+    ].join(',');
+
+    const focusableElements = Array.from(
+      modal.querySelectorAll(selector)
+    ).filter((element) => {
+      return (
+        !element.hidden &&
+        !element.hasAttribute('disabled') &&
+        element.getClientRects().length > 0
+      );
+    });
+
+    if (!focusableElements.length) {
+      event.preventDefault();
+      modal.focus();
+      return;
+    }
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (event.shiftKey && document.activeElement === firstElement) {
+      event.preventDefault();
+      lastElement.focus();
+    } else if (
+      !event.shiftKey &&
+      document.activeElement === lastElement
+    ) {
+      event.preventDefault();
+      firstElement.focus();
+    }
+  }
+
+  function initializeSizeCharts() {
+    document.querySelectorAll('.kiwi-sizing-modal').forEach(setupModal);
+    setupTriggers();
+  }
+
+  document.addEventListener('click', (event) => {
+    const target =
+      event.target instanceof Element ? event.target : null;
+
+    if (!target) return;
+
+    const trigger = target.closest('.ks-chart-modal-link');
+
+    if (trigger) {
+      event.preventDefault();
+
+      const modal = getModalForTrigger(trigger);
+      openModal(modal, trigger);
+      return;
+    }
+
+    const closeButton = target.closest('.ks-modal-close');
+
+    if (closeButton) {
+      event.preventDefault();
+      closeModal(closeButton.closest('.kiwi-sizing-modal'));
+      return;
+    }
+
+    const previousButton = target.closest('.kw-slide-prev');
+
+    if (previousButton) {
+      event.preventDefault();
+      changeImage(
+        previousButton.closest('.kiwi-sizing-modal'),
+        -1
+      );
+      return;
+    }
+
+    const nextButton = target.closest('.kw-slide-next');
+
+    if (nextButton) {
+      event.preventDefault();
+      changeImage(
+        nextButton.closest('.kiwi-sizing-modal'),
+        1
+      );
+      return;
+    }
+
+    const unitButton = target.closest('.ks-unit-toggle-label');
+
+    if (unitButton) {
+      event.preventDefault();
+
+      updateUnits(
+        unitButton.closest('.kiwi-sizing-modal'),
+        unitButton.dataset.value
+      );
+
+      return;
+    }
+
+    const modalBackground = target.closest('.kiwi-sizing-modal');
+
+    if (modalBackground && target === modalBackground) {
+      closeModal(modalBackground);
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    const target =
+      event.target instanceof Element ? event.target : null;
+
+    if (
+      target &&
+      (event.key === 'Enter' || event.key === ' ') &&
+      target.matches(
+        '.ks-chart-modal-link, .ks-unit-toggle-label'
+      )
+    ) {
+      event.preventDefault();
+      target.click();
+      return;
+    }
+
+    if (!activeModal) return;
+
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeModal(activeModal);
+      return;
+    }
+
+    if (event.key === 'ArrowLeft') {
+      changeImage(activeModal, -1);
+      return;
+    }
+
+    if (event.key === 'ArrowRight') {
+      changeImage(activeModal, 1);
+      return;
+    }
+
+    if (event.key === 'Tab') {
+      trapFocus(event, activeModal);
+    }
+  });
+
+  document.addEventListener('shopify:section:load', initializeSizeCharts);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeSizeCharts);
+  } else {
+    initializeSizeCharts();
+  }
+
+  let observerQueued = false;
+
+  const observer = new MutationObserver(() => {
+    if (observerQueued) return;
+
+    observerQueued = true;
+
+    requestAnimationFrame(() => {
+      initializeSizeCharts();
+      observerQueued = false;
+    });
+  });
+
+  observer.observe(document.documentElement, {
+    childList: true,
+    subtree: true
+  });
+})();
+</script>
