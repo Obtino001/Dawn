@@ -278,7 +278,278 @@
 /* =========================
    SIZE CHART TRIGGER
 ========================= */
+/* =====================================
+   FINAL SIZE CHART RESPONSIVE FIX
+   Keep this at the very end of CSS file
+===================================== */
 
+@media screen and (max-width: 989px) {
+  html body .kiwi-sizing-modal.modal-style-0 {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 2147483000 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    margin: 0 !important;
+    padding: 12px !important;
+    overflow: hidden !important;
+  }
+
+  html body .kiwi-sizing-modal.modal-style-0 .kiwi-sizing-modal-inner {
+    position: relative !important;
+    display: block !important;
+    width: min(680px, 100%) !important;
+    min-width: 0 !important;
+    max-width: 680px !important;
+    height: min(900px, calc(100dvh - 24px)) !important;
+    min-height: 0 !important;
+    max-height: calc(100dvh - 24px) !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    background: #fff !important;
+    border-radius: 16px !important;
+  }
+
+  html body .kiwi-sizing-modal.modal-style-0 .ks-modal-content-wrapper {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+  }
+
+  html body .kiwi-sizing-modal.modal-style-0
+    .ks-modal-content-wrapper > div {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: none !important;
+    grid-template-rows: none !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 100% !important;
+  }
+
+  /* Header */
+
+  html body .kiwi-sizing-modal.modal-style-0 .ks-modal-header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 15 !important;
+    order: 1 !important;
+    display: flex !important;
+    flex: 0 0 auto !important;
+    align-items: center !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 82px !important;
+    margin: 0 !important;
+    padding: 12px 65px 12px 20px !important;
+    background: #fff !important;
+    border-bottom: 1px solid #e5e5e5 !important;
+  }
+
+  html body .kiwi-sizing-modal.modal-style-0 .ks-modal-logo {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    max-width: 150px !important;
+  }
+
+  html body .kiwi-sizing-modal.modal-style-0 .ks-modal-logo img {
+    display: block !important;
+    width: auto !important;
+    max-width: 135px !important;
+    height: auto !important;
+    max-height: 52px !important;
+    object-fit: contain !important;
+  }
+
+  html body .kiwi-sizing-modal.modal-style-0 .modal-title {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+
+  html body .kiwi-sizing-modal.modal-style-0 .modal-title-header {
+    font-size: 19px !important;
+    line-height: 1.2 !important;
+  }
+
+  html body .kiwi-sizing-modal.modal-style-0 .ks-modal-close {
+    position: absolute !important;
+    top: 19px !important;
+    right: 18px !important;
+    z-index: 30 !important;
+    width: 42px !important;
+    height: 42px !important;
+    margin: 0 !important;
+  }
+
+  /* Image becomes full width */
+
+  html body .kiwi-sizing-modal.modal-style-0 .ks-modal-image-wrapper {
+    position: relative !important;
+    order: 2 !important;
+    display: block !important;
+    flex: 0 0 auto !important;
+    grid-column: auto !important;
+    grid-row: auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: 330px !important;
+    min-height: 330px !important;
+    max-height: 330px !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+  }
+
+  html body .kiwi-sizing-modal.modal-style-0 .ks-modal-image {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    padding: 18px !important;
+  }
+
+  html body .kiwi-sizing-modal.modal-style-0
+    .ks-modal-image.ks-is-active {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  html body .kiwi-sizing-modal.modal-style-0 .ks-modal-image img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+  }
+
+  /* Chart becomes full width */
+
+  html body .kiwi-sizing-modal.modal-style-0 .ks-modal-content {
+    position: relative !important;
+    order: 3 !important;
+    display: block !important;
+    flex: 0 0 auto !important;
+    grid-column: auto !important;
+    grid-row: auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 24px 18px 40px !important;
+    overflow: visible !important;
+  }
+
+  html body .kiwi-sizing-modal.modal-style-0 .ks-chart-tab-container,
+  html body .kiwi-sizing-modal.modal-style-0 .ks-chart-individual,
+  html body .kiwi-sizing-modal.modal-style-0
+    .ks-table-content-wrapper {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  html body .kiwi-sizing-modal.modal-style-0 .ks-table-header {
+    width: 100% !important;
+    margin: 0 0 14px !important;
+    font-size: 18px !important;
+    line-height: 1.3 !important;
+    text-align: left !important;
+    word-break: normal !important;
+  }
+
+  html body .kiwi-sizing-modal.modal-style-0
+    .ks-unit-toggle-wrapper {
+    display: flex !important;
+    justify-content: flex-end !important;
+    width: 100% !important;
+    margin-bottom: 14px !important;
+  }
+
+  html body .kiwi-sizing-modal.modal-style-0 .ks-table-wrapper {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  html body .kiwi-sizing-modal.modal-style-0 .ks-table {
+    width: 100% !important;
+    min-width: 520px !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+}
+
+/* Actual mobile bottom-sheet layout */
+
+@media screen and (max-width: 749px) {
+  html body .kiwi-sizing-modal.modal-style-0 {
+    align-items: flex-end !important;
+    padding: 0 !important;
+  }
+
+  html body .kiwi-sizing-modal.modal-style-0 .kiwi-sizing-modal-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 94dvh !important;
+    max-height: 94dvh !important;
+    border-radius: 18px 18px 0 0 !important;
+  }
+
+  html body .kiwi-sizing-modal.modal-style-0 .ks-modal-header {
+    min-height: 76px !important;
+    padding: 11px 60px 11px 15px !important;
+  }
+
+  html body .kiwi-sizing-modal.modal-style-0 .ks-modal-logo img {
+    max-width: 110px !important;
+    max-height: 45px !important;
+  }
+
+  html body .kiwi-sizing-modal.modal-style-0 .modal-title-header {
+    font-size: 16px !important;
+  }
+
+  html body .kiwi-sizing-modal.modal-style-0 .ks-modal-close {
+    top: 17px !important;
+    right: 14px !important;
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  html body .kiwi-sizing-modal.modal-style-0 .ks-modal-image-wrapper {
+    height: 280px !important;
+    min-height: 280px !important;
+    max-height: 280px !important;
+  }
+
+  html body .kiwi-sizing-modal.modal-style-0 .ks-modal-content {
+    padding: 22px 15px 35px !important;
+  }
+
+  html body .kiwi-sizing-modal.modal-style-0 .ks-table {
+    min-width: 480px !important;
+  }
+}
 .ks-chart-container,
 .ks-chart-container *,
 .kiwi-sizing-modal,
