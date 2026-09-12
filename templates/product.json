@@ -36,6 +36,13 @@
           "type": "price",
           "settings": {}
         },
+        "free_shipping_badge_m9LGw8": {
+          "type": "free_shipping_badge",
+          "settings": {
+            "badge_highlight": "Fri fragt ved 2 eller flere",
+            "badge_text": ""
+          }
+        },
         "perks": {
           "type": "perks_list",
           "settings": {
@@ -120,6 +127,7 @@
         "title",
         "rating",
         "price",
+        "free_shipping_badge_m9LGw8",
         "perks",
         "variant_picker",
         "size_chart_6VWRiL",
