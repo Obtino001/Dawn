@@ -46,9 +46,9 @@
         "perks": {
           "type": "perks_list",
           "settings": {
-            "perk_1": "Hurtig, pålidelig sporet levering",
-            "perk_2": "10 måltider doneret pr. bestilt vare",
-            "perk_3": "30 dages fuld tilfredshedsgaranti"
+            "perk_1": "10 måltider til katte uden et hjem",
+            "perk_2": "Sporet levering, 6-10 hverdage",
+            "perk_3": "30 dages tilfredshedsgaranti"
           }
         },
         "variant_picker": {
