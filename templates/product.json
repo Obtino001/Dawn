@@ -76,20 +76,11 @@
             "show_rating": false
           }
         },
-        "accordion_sizing": {
-          "type": "custom_accordion",
-          "settings": {
-            "heading": "Beskrivelse og størrelsesguide",
-            "content": "{{ product.description }}",
-            "page": "",
-            "open_by_default": false
-          }
-        },
         "accordion_shipping": {
           "type": "custom_accordion",
           "settings": {
-            "heading": "Fragt og levering",
-            "content": "",
+            "heading": "Virker mit køb egentlig?",
+            "content": "<p><strong>Ja. Og du kan se det.</strong></p><p>Vi startede ikke Katttehjerte fordi verden manglede endnu en T-shirt.</p><p>Vi startede, fordi der er katte, som mangler mad.</p><p>Vi er en lille gruppe katteelskere, der har valgt at bruge vores salg til noget, der betyder langt mere for os end selve T-shirten:</p><p><strong>At give mad og omsorg til katte, der mangler det.</strong></p><p>Derfor samarbejder vi med <strong>Kattens Værn</strong>, som hver dag hjælper katte, der har brug for en ekstra hånd.</p><p>For hver T-shirt, du køber, sørger vi for foder svarende til <strong>10 måltider</strong>, som gives til Kattens Værn.</p><p>Og vi vil gerne vise dig, at det ikke bare er fine ord.</p><p><strong>Hver måned deler vi vores kvitteringer</strong>, så du kan se præcis, hvor meget foder der er blevet købt, hvor mange kilo det svarer til, og hvornår det er købt.</p><p>Vi er ikke en forening eller en velgørenhedsorganisation. Vi er bare en lille gruppe mennesker, der elsker katte og har fundet en måde at bruge vores salg til at hjælpe dem.</p><p>For os er T-shirten bare måden, vi kan samle penge ind på.</p><p><strong>Det vigtigste er katten, der får maden.</strong></p><p>Og det er hele grunden til, at vi gør det.</p>",
             "page": "",
             "open_by_default": false
           }
@@ -112,6 +103,15 @@
             "open_by_default": false
           }
         },
+        "accordion_sizing": {
+          "type": "custom_accordion",
+          "settings": {
+            "heading": "Beskrivelse og størrelsesguide",
+            "content": "{{ product.description }}",
+            "page": "",
+            "open_by_default": false
+          }
+        },
         "share": {
           "type": "share",
           "disabled": true,
@@ -130,10 +130,10 @@
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
-        "accordion_sizing",
         "accordion_shipping",
         "accordion_materials",
         "accordion_returns",
+        "accordion_sizing",
         "share"
       ],
       "settings": {
