@@ -238,24 +238,24 @@
         "step_HF6F6e": {
           "type": "step",
           "settings": {
-            "title": "Vælg din stil",
-            "text": "<p>Hver t-shirt hjælper os med at give <strong>10</strong> måltider til efterladte killinger.</p><p>Mange kunder bestiller et par stykker for at dele med venner og hjælpe os med at skaffe endnu flere måltider.</p>",
+            "title": "Vælg din t-shirt",
+            "text": "<p>Hver t-shirt giver 10 måltider til katte uden et hjem.<br/><br/>De fleste tager to. Én til sig selv og én til en, der også elsker katte.</p>",
             "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/circleremera.png?v=1781830560"
           }
         },
         "step_F7LpkQ": {
           "type": "step",
           "settings": {
-            "title": "Vi hjælper med at give katte mad",
-            "text": "<p>Vi samarbejder med betroede lokale internater og koordinerer med vores gadefodrings-frivillige.</p><p>Dit køb hjælper os med at skaffe måltider til katte i nød, gennem de mennesker, der ved præcis, hvor de venter.</p>",
+            "title": "Vi køber foder",
+            "text": "<p>Vi samarbejder med Kattens Værn, som ved præcis hvilke katte der har brug for hjælp, og hvor de er.<br/><br/>Dit køb bliver til foder i skålen.</p>",
             "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/Logo_KittyKloset_printed_on_tube_202606191255.png?v=1781884657"
           }
         },
         "step_xXcGpq": {
           "type": "step",
           "settings": {
-            "title": "Månedlige fotoopdateringer",
-            "text": "<p>Hver måned modtager du billeder fra vores fodringsindsatser.</p><p>Disse billeder fanger ægte øjeblikke fra marken, som deles med dig hver måned.</p>",
+            "title": "Du får kvitteringen",
+            "text": "<p>Hver måned lægger vi kvitteringer og billeder op fra <br/>fodringerne.<br/><br/>Så kan du selv se, hvad din ordre blev til.</p>",
             "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/pinky_1.png?v=1781831026"
           }
         }
@@ -267,7 +267,7 @@
       ],
       "name": "3 Simple Steps",
       "settings": {
-        "heading": "Hvordan dit køb hjælper med at give måltider",
+        "heading": "Sådan bliver din t-shirt til mad",
         "heading_highlight": "i 3 enkle trin",
         "color_scheme": "",
         "padding_top": 36,
