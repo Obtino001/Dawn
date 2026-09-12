@@ -249,6 +249,7 @@
           "settings": {
             "title": "Vi køber foder",
             "text": "<p>Vi samarbejder med Kattens Værn, som ved præcis hvilke katte der har brug for hjælp, og hvor de er.<br/><br/>Dit køb bliver til foder i skålen.</p>",
+            "image": "shopify://shop_images/hf_20260912_092321_0688e395-a7cf-413a-b1cb-07967725f347.jpg",
             "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/Logo_KittyKloset_printed_on_tube_202606191255.png?v=1781884657"
           }
         },
@@ -257,6 +258,7 @@
           "settings": {
             "title": "Du får kvitteringen",
             "text": "<p>Hver måned lægger vi kvitteringer og billeder op fra <br/>fodringerne.<br/><br/>Så kan du selv se, hvad din ordre blev til.</p>",
+            "image": "shopify://shop_images/hf_20260912_092340_607e1d7c-f796-43eb-b556-a84e2f2ee62e.jpg",
             "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/pinky_1.png?v=1781831026"
           }
         }
