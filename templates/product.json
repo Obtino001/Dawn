@@ -12,10 +12,6 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "size_chart_6VWRiL": {
-          "type": "size_chart",
-          "settings": {}
-        },
         "vendor": {
           "type": "text",
           "settings": {
@@ -72,6 +68,10 @@
           "type": "quantity_selector",
           "settings": {}
         },
+        "size_chart_6VWRiL": {
+          "type": "size_chart",
+          "settings": {}
+        },
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
@@ -125,7 +125,6 @@
         }
       },
       "block_order": [
-        "size_chart_6VWRiL",
         "vendor",
         "title",
         "rating",
@@ -134,6 +133,7 @@
         "perks",
         "variant_picker",
         "quantity_selector",
+        "size_chart_6VWRiL",
         "buy_buttons",
         "accordion_shipping",
         "accordion_materials",
