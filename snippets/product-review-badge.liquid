@@ -43,15 +43,4 @@
       {{ r_score }} ({{ r_count }} {{ r_label }})
     </span>
   </div>
-{%- else -%}
-  <div class="kk-card-rating{% if class != blank %} {{ class }}{% endif %}">
-    <div class="kk-card-rating__stars" aria-label="5 out of 5 stars">
-<div class="rating" role="img" aria-label="4.97 out of 5.0 stars">
-                <span aria-hidden="true" class="rating-star color-icon-text" style="--rating: 4; --rating-max: 5.0; --rating-decimal: 1;"></span>
-              </div>
-    </div>
-    {%- if show_count != false -%}
-      <span class="kk-card-rating__count">({{ review_count }})</span>
-    {%- endif -%}
-  </div>
 {%- endif -%}
