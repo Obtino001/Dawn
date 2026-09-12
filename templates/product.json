@@ -12,6 +12,10 @@
     "main": {
       "type": "main-product",
       "blocks": {
+        "size_chart_6VWRiL": {
+          "type": "size_chart",
+          "settings": {}
+        },
         "vendor": {
           "type": "text",
           "settings": {
@@ -121,6 +125,7 @@
         }
       },
       "block_order": [
+        "size_chart_6VWRiL",
         "vendor",
         "title",
         "rating",
