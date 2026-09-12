@@ -389,7 +389,7 @@
       ],
       "name": "SS - Testimonials #12",
       "settings": {
-        "heading": "<h2>Loved by everyone, everywhere. Don't miss out.</h2>",
+        "heading": "<p>Fra andre katteelskere</p>",
         "heading_custom": true,
         "heading_font": "josefin_sans_n4",
         "heading_size": 30,
