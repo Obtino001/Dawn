@@ -11,7 +11,29 @@
   "sections": {
     "main": {
       "type": "page-contact-custom",
-      "settings": {}
+      "settings": {
+        "eyebrow": "Kontakt",
+        "heading": "Vi vil meget gerne høre fra dig",
+        "intro": "Spørgsmål om en ordre, et produkt eller vores mission? Send os en besked, og vi vil vende tilbage til dig.",
+        "email_label": "Send os en e-mail",
+        "email_address": "support@kittyklosetco.com",
+        "response_label": "Svartid",
+        "response_text": "Vi bestræber os på at svare inden for 24 timer, mandag til fredag.",
+        "quick_label": "Hurtige svar",
+        "link1_text": "Fragt & leveringstider",
+        "link1_url": "",
+        "link2_text": "Returnering & refusion",
+        "link2_url": "",
+        "note_text": "Hver besked læses af vores lille team. Din ordre hjælper med at brødføde katte, der ikke har nogen, og det tager vi aldrig let på.",
+        "form_name": "Navn",
+        "form_email": "E-mail",
+        "form_order": "Ordrenummer",
+        "form_optional": "(valgfrit)",
+        "form_message": "Besked",
+        "form_button": "Send besked",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
