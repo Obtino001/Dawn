@@ -70,7 +70,7 @@
               assign quantity_rule_soldout = true
             endif
           -%}
-          <p style="color: grey; font-size: 14px; text-align: center; margin-bottom: 12px; margin-top: 12px; line-height: 1.4;">Vinteren er på vej.<br><br>Nogle katte løb hjemmefra. Nogle blev efterladt. Fælles for dem er, at ingen fodrer dem i nat.<br><br>To trøjer rækker dobbelt så langt. Nummer to koster 150 kr.</p>
+          <p style="color: grey; font-size: 14px; text-align: center; margin-bottom: 12px; margin-top: 12px; line-height: 1.4;">Fragten koster det samme, uanset om pakken indeholder én eller to trøjer. Den besparelse går videre til kattene.</p>
           <button
             id="ProductSubmitButton-{{ section_id }}"
             type="submit"
@@ -94,7 +94,7 @@
             </span>
             {%- render 'loading-spinner' -%}
           </button>
-          <p style="color: grey; font-size: 12px; text-align: center; margin-bottom: 12px; margin-top: 12px; line-height: 1.4;">Fragten fra vores lager koster det samme, uanset om pakken indeholder én eller to trøjer. Ved at sende sæt sparer vi omkring 45 kr. per ordre — og den besparelse går videre til kattene.</p>
+          <p style="color: grey; font-size: 12px; text-align: center; margin-bottom: 12px; margin-top: 12px; line-height: 1.4;">Vinteren er på vej.<br><br>Nogle af dem er løbet hjemmefra. Andre blev efterladt. Ingen af dem har noget at spise i nat.<br><br>Trøje nummer to koster 150 kr.</p>
           {%- if show_dynamic_checkout -%}
             {{ form | payment_button }}
           {%- endif -%}
