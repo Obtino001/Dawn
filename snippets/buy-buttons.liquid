@@ -94,6 +94,7 @@
             </span>
             {%- render 'loading-spinner' -%}
           </button>
+          <p style="color: grey; font-size: 12px; text-align: center; margin-bottom: 12px; margin-top: 12px; line-height: 1.4;">Fragten fra vores lager koster det samme, uanset om pakken indeholder én eller to trøjer. Ved at sende sæt sparer vi omkring 45 kr. per ordre — og den besparelse går videre til kattene.</p>
           {%- if show_dynamic_checkout -%}
             {{ form | payment_button }}
           {%- endif -%}
