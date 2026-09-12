@@ -36,13 +36,6 @@
           "type": "price",
           "settings": {}
         },
-        "free_shipping": {
-          "type": "free_shipping_badge",
-          "settings": {
-            "badge_highlight": "GRATIS fragt",
-            "badge_text": ""
-          }
-        },
         "perks": {
           "type": "perks_list",
           "settings": {
@@ -75,7 +68,7 @@
             "show_gift_card_recipient": true,
             "show_rating": false,
             "text_above_button": "<p>Vinteren er på vej.<br/><br/>Nogle af dem er løbet hjemmefra. Andre blev efterladt. Ingen af dem har noget at spise i nat.<br/><br/>Trøje nummer to koster 150 kr.</p>",
-            "text_below_button": ""
+            "text_below_button": "<p>Fragten koster det samme, uanset om pakken indeholder én eller to trøjer. Den besparelse går videre til kattene.</p>"
           }
         },
         "accordion_shipping": {
@@ -127,7 +120,6 @@
         "title",
         "rating",
         "price",
-        "free_shipping",
         "perks",
         "variant_picker",
         "size_chart_6VWRiL",
