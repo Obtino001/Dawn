@@ -271,6 +271,17 @@
     "ss_testimonial_12_RM4KFN": {
       "type": "ss-testimonial-12",
       "blocks": {
+        "slide_3HGWjU": {
+          "type": "slide",
+          "settings": {
+            "media_style": "image",
+            "video_url": "",
+            "controls": false,
+            "stars_count": 0,
+            "text": "<p>Jeg tror, ALLE katteejere forstår vigtigheden af det her koncept 🐱❤️ Jeg var i hvert fald ikke ét sekund i tvivl om, at jeg skulle støtte det. En virkelig god idé, som bare giver så god mening, når man er katteejer!</p>",
+            "author": "<p>Signe</p>"
+          }
+        },
         "slide_cgT8HF": {
           "type": "slide",
           "settings": {
@@ -380,12 +391,13 @@
             "video_url": "",
             "controls": false,
             "stars_count": 0,
-            "text": "<p>Bestilte fire til jul. Vi er fire søstre, og vi har alle sammen mistet en kat på et tidspunkt. Nu går vi alle sammen med den samme🥰❤️</p>",
+            "text": "<p>Bestilte fire til jul. Vi er fire søstre, og vi har alle sammen mistet en kat på et tidspunkt. Nu går vi alle sammen med en hver🥰❤️</p>",
             "author": "<p>Kirsten</p>"
           }
         }
       },
       "block_order": [
+        "slide_3HGWjU",
         "slide_cgT8HF",
         "slide_XiDQyw",
         "slide_AEFpqq",
