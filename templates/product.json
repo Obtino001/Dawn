@@ -240,6 +240,7 @@
           "settings": {
             "title": "Vælg din t-shirt",
             "text": "<p>Hver t-shirt giver 10 måltider til katte uden et hjem.<br/><br/>De fleste tager to. Én til sig selv og én til en, der også elsker katte.</p>",
+            "image": "shopify://shop_images/hf_20260912_092156_754eb72f-24e5-4d67-bda2-6cb430748393.jpg",
             "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/circleremera.png?v=1781830560"
           }
         },
