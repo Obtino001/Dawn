@@ -401,6 +401,15 @@
       };
     </script>
 
+    {% if template.name == 'cart' %}
+  <style>
+    /* Sirf footer menus (link lists) ko hide karega cart page par */
+    .footer-block--menu {
+      display: none !important;
+    }
+  </style>
+{% endif %}
+
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
