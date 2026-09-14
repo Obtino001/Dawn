@@ -39,7 +39,7 @@
         "perks": {
           "type": "perks_list",
           "settings": {
-            "perk_1": "10 måltider til katte uden et hjem",
+            "perk_1": "10 måltider til katte uden et hjem ❤️🐾😻",
             "perk_2": "Sporet levering, 6-10 hverdage",
             "perk_3": "30 dages tilfredshedsgaranti"
           }
@@ -288,6 +288,7 @@
           "settings": {
             "media_style": "image",
             "image": "shopify://shop_images/Skaermbillede_2026-09-12_kl._20.13.47.jpg",
+            "video_url": "",
             "controls": false,
             "stars_count": 0,
             "text": "<p>Så den på Facebook og tænkte den var sød. Så læste jeg hvad den handlede om, og så sad jeg og tudede over min kaffe. Bestilte to.</p>",
@@ -299,6 +300,7 @@
           "settings": {
             "media_style": "image",
             "image": "shopify://shop_images/hf_20260912_181520_c1bd03f0-c396-414e-b36c-1019268e005a.jpg",
+            "video_url": "",
             "controls": false,
             "stars_count": 0,
             "text": "<p>Købte den til mig selv uden at tænke over det. Hver gang jeg fodrer min lille Bodil kan jeg ikke helt lade være med at tænke på dem der ikke får noget 😭....</p>",
@@ -310,6 +312,7 @@
           "settings": {
             "media_style": "image",
             "image": "shopify://shop_images/hf_20260912_180859_7fa8df66-3efc-4f9d-9e88-182d3a140138.jpg",
+            "video_url": "",
             "controls": false,
             "stars_count": 0,
             "text": "<p>Vores Simba forsvandt i marts. Vi ved ikke om han lever. Jeg håber bare der er nogen derude, der giver ham noget at spise. Det er derfor jeg købte den!</p>",
@@ -321,6 +324,7 @@
           "settings": {
             "media_style": "image",
             "image": "shopify://shop_images/hf_20260912_181149_fa7777eb-3f72-4be1-975f-e216f434d6d0.jpg",
+            "video_url": "",
             "controls": false,
             "stars_count": 0,
             "text": "<p>Jeg har fodret en fremmed kat i min carport siden august. Kunne ikke lade være. Nu er der i det mindste et par ekstra måltider til en anden også 😍</p>",
@@ -332,6 +336,7 @@
           "settings": {
             "media_style": "image",
             "image": "shopify://shop_images/hf_20260912_210521_270d5cbd-89e3-4796-b5eb-034e015141c4.jpg",
+            "video_url": "",
             "controls": false,
             "stars_count": 0,
             "text": "<p>Jeg havde delt hundrede efterlysninger i diverse grupper efter Bente blev væk 😢 men heldigvis fandt jeg hende igen! ❤️  Men jeg havde hele tiden en fornemmelse af, at nogen måske havde givet hende mad og det er faktisk derfor jeg selv hjælper til her..🥹</p>",
@@ -343,6 +348,7 @@
           "settings": {
             "media_style": "image",
             "image": "shopify://shop_images/hf_20260912_212339_456414f0-d4cd-4fc5-9ea1-7aa1e7ccd246.jpg",
+            "video_url": "",
             "controls": false,
             "stars_count": 0,
             "text": "<p>Da vores gamle dreng ikke kom hjem, gik jeg rundt med foder i tasken i tre uger. Jeg fandt ham aldrig. Men jeg blev ved med at stille skåle ud... Den her trøje er det samme, bare nemmere.😊 💕</p>",
@@ -354,6 +360,7 @@
           "settings": {
             "media_style": "image",
             "image": "shopify://shop_images/hf_20260912_212637_4a7203a4-c3a9-4630-8395-73936b47753f.jpg",
+            "video_url": "",
             "controls": false,
             "stars_count": 0,
             "text": "<p>Bestilte to. Min datter tog den ene med, da hun flyttede hjemmefra. Hun har fundet en kat i baggården, som hun nu fodrer.</p>",
@@ -486,21 +493,21 @@
         "dots_show_mobile": true,
         "btn_icon_size": 50,
         "btn_icon_size_mobile": 40,
-        "card_bg_color": "#FFFFFF",
+        "card_bg_color": "#ffffff",
         "card_bg_gradient": "",
-        "card_border_color": "#DEDBC4",
+        "card_border_color": "#dedbc4",
         "media_border_color": "#121212",
-        "stars_color": "#89A1F2",
+        "stars_color": "#89a1f2",
         "text_color": "#323232",
         "author_color": "#323232",
-        "video_icon_bg_color": "#FFFFFF",
+        "video_icon_bg_color": "#ffffff",
         "video_icon_color": "#121212",
         "arrow_color": "#837c5c",
         "arrow_hover_color": "#837c5c",
-        "dots_color": "#89A1F2",
-        "heading_color": "#89A1F2",
+        "dots_color": "#89a1f2",
+        "heading_color": "#89a1f2",
         "sub_heading_color": "#837c5c",
-        "background_color": "#F6F5F2",
+        "background_color": "#f6f5f2",
         "background_gradient": "",
         "border_color": "#121212",
         "margin_top": 0,
