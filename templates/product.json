@@ -39,9 +39,9 @@
         "perks": {
           "type": "perks_list",
           "settings": {
-            "perk_1": "🐾❤️ 10 måltider for hver trøje – til katte uden et hjem 😻",
-            "perk_2": "Sporet levering, 6-10 hverdage",
-            "perk_3": "30 dages tilfredshedsgaranti"
+            "perk_1": "<strong>🐾😻 10 måltider for hver trøje – til katte uden et hjem ❤️</strong>",
+            "perk_2": "<strong>På vej hjem til dig på 6–10 hverdage</strong>🐾",
+            "perk_3": "<strong>Ikke tilfreds? Kattemor og kattefar har 30 dage til at fortryde ❤️</strong>"
           }
         },
         "variant_picker": {
