@@ -258,6 +258,16 @@
                       {%- endif -%}
                       <span>{{ block.settings.perk_3 | default: '<strong>Hand-printed</strong> soft cotton — wear your impact every day' }}</span>
                     </li>
+                    {%- if block.settings.perk_4 != blank or block.settings.perk_icon_4 != blank -%}
+                    <li>
+                      {%- if block.settings.perk_icon_4 != blank -%}
+                        {{ block.settings.perk_icon_4 | image_url: width: 80 | image_tag: class: 'kk-perks__icon', loading: 'lazy' }}
+                      {%- else -%}
+                        <img class="kk-perks__icon" src="https://cdn.shopify.com/s/files/1/0755/0864/6210/files/tshirt_kitty_1.png?v=1781884820" alt="" loading="lazy">
+                      {%- endif -%}
+                      <span>{{ block.settings.perk_4 | default: '' }}</span>
+                    </li>
+                    {%- endif -%}
                   </ul>
                 {%- when 'bundle_deals' -%}
                   {%- liquid
@@ -1554,6 +1564,20 @@
           "id": "perk_3",
           "label": "Fordel 3 tekst",
           "default": "<strong>Håndtrykt</strong> blød bomuld — bær din forskel hver dag"
+        },
+        {
+          "type": "header",
+          "content": "Fordel 4"
+        },
+        {
+          "type": "image_picker",
+          "id": "perk_icon_4",
+          "label": "Fordel 4 ikon (Image Picker)"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "perk_4",
+          "label": "Fordel 4 tekst"
         }
       ]
     },
