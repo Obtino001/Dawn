@@ -24,6 +24,12 @@
       endif
     -%}
 
+    {%- if block.settings.text_above_button != blank -%}
+      <div style="color: #333; font-size: 14px; text-align: left; margin-bottom: 12px; margin-top: 12px; line-height: 1.4;">
+        {{ block.settings.text_above_button }}
+      </div>
+    {%- endif -%}
+
     <product-form
       class="product-form"
       data-hide-errors="{{ gift_card_recipient_feature_active }}"
@@ -70,11 +76,7 @@
               assign quantity_rule_soldout = true
             endif
           -%}
-          {%- if block.settings.text_above_button != blank -%}
-            <div style="color: grey; font-size: 14px; text-align: center; margin-bottom: 12px; margin-top: 12px; line-height: 1.4;">
-              {{ block.settings.text_above_button }}
-            </div>
-          {%- endif -%}
+
           <button
             id="ProductSubmitButton-{{ section_id }}"
             type="submit"
@@ -99,7 +101,7 @@
             {%- render 'loading-spinner' -%}
           </button>
           {%- if block.settings.text_below_button != blank -%}
-            <div style="color: grey; font-size: 12px; text-align: center; margin-bottom: 12px; margin-top: 12px; line-height: 1.4;">
+            <div style="color: #333; font-size: 12px; text-align: left; margin-bottom: 12px; margin-top: 12px; line-height: 1.4;">
               {{ block.settings.text_below_button }}
             </div>
           {%- endif -%}
