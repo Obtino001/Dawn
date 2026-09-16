@@ -125,7 +125,7 @@
           "type": "custom_accordion",
           "settings": {
             "heading": "Hvad koster fragten?",
-            "content": "",
+            "content": "<p>39 kr. ved én trøje.<br/>Fri fragt fra to trøjer og op.<br/><br/>Vi sender med PostNord til døren. </p>",
             "page": "",
             "open_by_default": false
           }
