@@ -116,7 +116,7 @@
           "type": "custom_accordion",
           "settings": {
             "heading": "Hvornår kommer den?",
-            "content": "",
+            "content": "<p>4-7 hverdage.<br/><br/>Trøjerne sendes fra vores lager, og du får et<br/>track and trace så snart pakken er afsted.<br/><br/>Måltiderne gives med det samme. Du skal ikke vente på dem!<br/><br/>Er der gået mere end 7 hverdage, så skriv til os. Vi svarer samme dag.</p>",
             "page": "",
             "open_by_default": false
           }
