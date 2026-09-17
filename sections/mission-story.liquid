@@ -68,6 +68,7 @@
     margin: 0 0 14px;
     line-height: 1.55;
     font-size: clamp(15px, 1.1vw, 17px);
+    text-align: left;
   }
 
   .kk-mission--{{ section.id }} .kk-mission__body p:last-child {
@@ -109,6 +110,7 @@
     font-size: 13px;
     color: #6b7088;
     line-height: 1.3;
+    text-align: left;
   }
 
   .kk-mission--{{ section.id }} .kk-mission__media img {
@@ -125,15 +127,18 @@
       padding: 24px 18px;
       text-align: center;
     }
+    .kk-mission--{{ section.id }} .kk-mission__body {
+      text-align: left;
+    }
     .kk-mission--{{ section.id }} .kk-mission__divider {
       justify-content: center;
     }
     .kk-mission--{{ section.id }} .kk-mission__stat {
-      align-items: center;
-      text-align: center;
+      align-items: flex-start;
+      text-align: left;
     }
     .kk-mission--{{ section.id }} .kk-mission__statrow {
-      justify-content: center;
+      justify-content: flex-start;
     }
   }
 {%- endstyle -%}
@@ -165,7 +170,15 @@
 
         <div class="kk-mission__body">
           {%- if section.settings.body_text_1 != blank -%}
-            <p>{{ section.settings.body_text_1 }}</p>
+            {%- assign paragraphs_1 = section.settings.body_text_1 | split: '
+
+' -%}
+            {%- for para in paragraphs_1 -%}
+              {%- assign trimmed = para | strip -%}
+              {%- if trimmed != blank -%}
+                <p>{{ trimmed | newline_to_br }}</p>
+              {%- endif -%}
+            {%- endfor -%}
           {%- endif -%}
           {%- if section.settings.body_text_2 != blank -%}
             <p>{{ section.settings.body_text_2 }}</p>
