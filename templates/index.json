@@ -108,6 +108,7 @@
     },
     "featured_blog": {
       "type": "featured-blog",
+      "disabled": true,
       "settings": {
         "blog": "nyheder",
         "post_limit": 3,
