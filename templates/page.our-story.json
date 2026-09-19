@@ -23,12 +23,13 @@
         "row_gKxGkP": {
           "type": "row",
           "settings": {
-            "eyebrow": "Meet the founder",
-            "heading": "Hi, nice to meet you!",
-            "text": "<p>At KittyKloset, our mission goes beyond offering fashionable clothing for cat lovers. We are on a heartfelt mission to make a difference in the lives of abandoned kittens that roam the streets, longing for love and care.</p>",
-            "signature": "<strong>Olivia F.</strong><span>Founder, KittyKloset</span>",
+            "eyebrow": "",
+            "heading": "BAG KATTEHJERTE",
+            "text": "<p>Der var en kat i min carport<br/><br/>Han kom første gang i september. Grå, mager, holdt<br/>sig på afstand. Jeg stillede en skål ud, fordi jeg<br/>ikke kunne lade være, og så kom han igen dagen<br/>efter. Og dagen efter.<br/><br/>Jeg gav ham aldrig et navn. Jeg tror jeg vidste, at<br/>hvis jeg gav ham et navn, så var han min, og så<br/>skulle jeg gøre noget rigtigt ved det. Så jeg<br/>stillede bare mad ud og lod som om det var nok.<br/><br/>I november holdt han op med at komme.<br/><br/>Jeg ved ikke hvad der skete med ham. Jeg gik rundt<br/>og kiggede i et par uger. Spurgte naboerne. Der var<br/>ikke noget at finde. Det værste var ikke at han var<br/>væk — det var at jeg ikke vidste det, og at jeg<br/>aldrig havde gjort mere end at stille en skål ud.<br/><br/>Jeg kan ikke give dem alle et hjem. Det kan du<br/>heller ikke. Men jeg kan købe foder hver måned og<br/>køre det ud til nogen, der ved hvad de laver, og<br/>det gør jeg nu for hver trøje der bliver solgt.<br/><br/>Det er ikke stort. Det er bare mere end en skål i<br/>en carport.<br/><br/></p>",
+            "signature": "<strong>Hanne</strong>",
+            "image": "shopify://shop_images/hf_20260919_140901_870ef5f5-51c3-432f-a0dd-4669b21c7c63.jpg",
             "image_url": "https://ucarecdn.com/2d072830-c4e4-4102-ad9b-ce1a9867d218/-/format/auto/-/preview/1400x1400/-/quality/lighter/luku-muffin-OeN9QeoQ99I-unsplash.jpg",
-            "image_alt": "A rescued cat resting",
+            "image_alt": "",
             "reverse": false,
             "band": false
           }
@@ -118,6 +119,7 @@
         "sticky_text": "<p><strong>1 tee = 10 meals</strong> for abandoned cats</p>",
         "sticky_btn_label": "Choose Your Tee",
         "sticky_btn_link": "",
+        "hero_image": "shopify://shop_images/hf_20260919_140901_870ef5f5-51c3-432f-a0dd-4669b21c7c63.jpg",
         "hero_image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/jun3.jpg?v=1782851269",
         "hero_eyebrow": "Our Story",
         "hero_heading": "More Than Just Cat Tees",
