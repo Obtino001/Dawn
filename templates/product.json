@@ -270,6 +270,7 @@
           "settings": {
             "title": "Foderet bliver købt",
             "text": "<p>Vi køber foderet og sender det afsted til<br/>Kattens Værn, som nødfodrer over hele landet.</p>",
+            "image": "shopify://shop_images/hf_20260919_082338_a76c19bd-454b-4745-8103-f1e022b977fe.jpg",
             "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/Logo_KittyKloset_printed_on_tube_202606191255.png?v=1781884657"
           }
         },
