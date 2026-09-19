@@ -36,6 +36,7 @@
         },
         "row_Mx3RKE": {
           "type": "row",
+          "disabled": true,
           "settings": {
             "eyebrow": "Inspiring the world",
             "heading": "Every Purchase Has a Purpose",
@@ -49,6 +50,7 @@
         },
         "row_PVjMAK": {
           "type": "row",
+          "disabled": true,
           "settings": {
             "eyebrow": "Our mission & vision",
             "heading": "A Network of Support",
@@ -62,6 +64,7 @@
         },
         "value_98rwb8": {
           "type": "value",
+          "disabled": true,
           "settings": {
             "icon": "<svg viewbox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 21s-7-4.35-9-9c-1.5-3.5 1-7 4.5-6.5C10 6 12 8 12 8s2-2 4.5-2.5C20 5 22.5 8.5 21 12c-2 4.65-9 9-9 9z\"></path></svg>",
             "heading": "100% natural materials",
@@ -70,6 +73,7 @@
         },
         "value_c9b7mp": {
           "type": "value",
+          "disabled": true,
           "settings": {
             "icon": "<svg viewbox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 5l4-2 4 2 4-2 4 2-2 4-2-1v11H8V8L6 9z\"></path></svg>",
             "heading": "Premium quality",
@@ -78,6 +82,7 @@
         },
         "value_C7zRDq": {
           "type": "value",
+          "disabled": true,
           "settings": {
             "icon": "<svg viewbox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 2s6 4 6 10a6 6 0 0 1-12 0c0-6 6-10 6-10zM12 22v-6\"></path></svg>",
             "heading": "Lighter footprint",
@@ -86,6 +91,7 @@
         },
         "review_cJfmWV": {
           "type": "review",
+          "disabled": true,
           "settings": {
             "text": "I have fallen in love with the quality at KittyKloset. This is my third time buying here...",
             "name": "Kary Matthington",
@@ -94,6 +100,7 @@
         },
         "feed_CwYeid": {
           "type": "feed",
+          "disabled": true,
           "settings": {
             "image_url": "//kittyklosetco.com/cdn/shop/articles/sca-hamburger-sun_a65c15fc-3f5c-4595-bf2c-fad1dc672518.jpg?v=1788264184&width=600",
             "image_alt": "",
@@ -116,31 +123,31 @@
       ],
       "name": "About Us (Dynamic)",
       "settings": {
-        "sticky_text": "<p><strong>1 tee = 10 meals</strong> for abandoned cats</p>",
-        "sticky_btn_label": "Choose Your Tee",
+        "sticky_text": "",
+        "sticky_btn_label": "",
         "sticky_btn_link": "",
         "hero_image": "shopify://shop_images/hf_20260919_140901_870ef5f5-51c3-432f-a0dd-4669b21c7c63.jpg",
         "hero_image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/jun3.jpg?v=1782851269",
-        "hero_eyebrow": "Our Story",
-        "hero_heading": "More Than Just Cat Tees",
-        "hero_sub": "Every order helps feed and care for abandoned cats who have no one looking for them.",
-        "hero_btn_label": "Choose Your Tee",
+        "hero_eyebrow": "",
+        "hero_heading": "",
+        "hero_sub": "",
+        "hero_btn_label": "",
         "hero_btn_link": "",
-        "hero_proof": "4.99 from 50,000+ cat parents",
-        "mission_eyebrow": "Our Mission",
-        "mission_heading": "Shop with <span>Purpose</span>",
-        "mission_sub": "Cat-inspired apparel that helps feed homeless kittens.",
-        "stat1_val": "4.99",
-        "stat1_label": "5,000+ reviews",
-        "stat2_val": "50,000+",
-        "stat2_label": "happy cat parents",
-        "stat3_val": "600,000+",
-        "stat3_label": "meals donated",
-        "cta_heading": "Shop With Purpose",
-        "cta_sub": "Find a tee you love and help feed a cat who needs it.",
-        "cta_btn_label": "Choose Your Tee",
+        "hero_proof": "",
+        "mission_eyebrow": "",
+        "mission_heading": "",
+        "mission_sub": "",
+        "stat1_val": "",
+        "stat1_label": "",
+        "stat2_val": "",
+        "stat2_label": "",
+        "stat3_val": "",
+        "stat3_label": "",
+        "cta_heading": "",
+        "cta_sub": "",
+        "cta_btn_label": "",
         "cta_btn_link": "",
-        "cta_love": "Made with love"
+        "cta_love": ""
       }
     }
   },
