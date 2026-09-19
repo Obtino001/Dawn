@@ -261,6 +261,7 @@
           "settings": {
             "title": "Vælg din t-shirt",
             "text": "<p>Vælg din trøje<br/>Hver trøje giver 10 måltider til katte<br/>uden et hjem.</p>",
+            "image": "shopify://shop_images/hf_20260912_213125_f2a4a2b9-41bb-4467-8ad1-ffaaeae447e6_3.jpg",
             "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/circleremera.png?v=1781830560"
           }
         },
