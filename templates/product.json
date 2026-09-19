@@ -260,15 +260,15 @@
           "type": "step",
           "settings": {
             "title": "Vælg din t-shirt",
-            "text": "<p>Hver t-shirt giver 10 måltider til katte uden et hjem.<br/><br/>De fleste tager to. Én til sig selv og én til en, der også elsker katte.</p>",
+            "text": "<p>Vælg din trøje<br/>Hver trøje giver 10 måltider til katte<br/>uden et hjem.</p>",
             "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/circleremera.png?v=1781830560"
           }
         },
         "step_F7LpkQ": {
           "type": "step",
           "settings": {
-            "title": "Vi køber foder",
-            "text": "<p>Vi samarbejder med Kattens Værn, som ved præcis hvilke katte der har brug for hjælp, og hvor de er.<br/><br/>Dit køb bliver til foder i skålen.</p>",
+            "title": "Foderet bliver købt",
+            "text": "<p>Vi køber foderet og sender det afsted til<br/>Kattens Værn, som nødfodrer over hele landet.</p>",
             "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/Logo_KittyKloset_printed_on_tube_202606191255.png?v=1781884657"
           }
         },
@@ -276,7 +276,7 @@
           "type": "step",
           "settings": {
             "title": "Du får kvitteringen",
-            "text": "<p>Hver måned lægger vi kvitteringer og billeder op fra <br/>fodringerne.<br/><br/>Så kan du selv se, hvad din ordre blev til.</p>",
+            "text": "<p>Du får kvitteringen<br/>Hver måned lægger vi kvitteringer og<br/>billeder op fra fodringerne.</p>",
             "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/pinky_1.png?v=1781831026"
           }
         }
@@ -288,7 +288,7 @@
       ],
       "name": "3 Simple Steps",
       "settings": {
-        "heading": "Sådan bliver din t-shirt til mad",
+        "heading": "Sådan bliver din trøje til mad i 3 trin",
         "heading_highlight": "i 3 enkle trin",
         "color_scheme": "",
         "padding_top": 36,
