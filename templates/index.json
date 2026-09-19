@@ -32,28 +32,28 @@
         "proof_item_YeKhTm": {
           "type": "proof_item",
           "settings": {
-            "icon_type": "stars",
-            "stars_text": "★★★★★",
-            "value": "4.99",
-            "label": "5.000+ anmeldelser"
+            "icon_type": "paw",
+            "stars_text": "",
+            "value": "10",
+            "label": "måltider pr. trøje"
           }
         },
         "proof_item_wQMpLy": {
           "type": "proof_item",
           "settings": {
-            "icon_type": "paw",
-            "stars_text": "★★★★★",
-            "value": "50,000+",
-            "label": "glade katteejere"
+            "icon_type": "bowl",
+            "stars_text": "",
+            "value": "Kattens Værn",
+            "label": "får foderet"
           }
         },
         "proof_item_d7aXKW": {
           "type": "proof_item",
           "settings": {
-            "icon_type": "bowl",
-            "stars_text": "★★★★★",
-            "value": "600,000+",
-            "label": "måltider doneret"
+            "icon_type": "heart",
+            "stars_text": "",
+            "value": "Hver måned",
+            "label": "lægger vi kvitteringen op"
           }
         }
       },
@@ -64,12 +64,12 @@
       ],
       "name": "Mission & Socialt bevis",
       "settings": {
-        "eyebrow": "Vores mission",
-        "heading": "Køb med",
-        "heading_highlight": "omtanke",
+        "eyebrow": "DET HER GØR VI",
+        "heading": "Vi kan ikke give dem alle et hjem.",
+        "heading_highlight": "Men vi kan give dem mad.",
         "heading_tag": "h1",
         "show_divider": true,
-        "subheading": "Katteinspireret tøj, der hjælper med at brødføde hjemløse killinger.",
+        "subheading": "",
         "brand_color": "#8aa0f2",
         "brand_deep_color": "#6c72e0",
         "text_color": "#2a2c42",
