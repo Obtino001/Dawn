@@ -124,6 +124,7 @@
       "name": "About Us (Dynamic)",
       "settings": {
         "sticky_text": "",
+        "sticky_icon": "🐾",
         "sticky_btn_label": "",
         "sticky_btn_link": "",
         "hero_image": "shopify://shop_images/hf_20260919_140901_870ef5f5-51c3-432f-a0dd-4669b21c7c63.jpg",
@@ -134,6 +135,7 @@
         "hero_btn_label": "",
         "hero_btn_link": "",
         "hero_proof": "",
+        "hero_stars": "★★★★★",
         "mission_eyebrow": "",
         "mission_heading": "",
         "mission_sub": "",
@@ -143,11 +145,25 @@
         "stat2_label": "",
         "stat3_val": "",
         "stat3_label": "",
+        "stat1_stars": "",
+        "values_eyebrow": "",
+        "values_heading": "",
+        "reviews_eyebrow": "",
+        "reviews_heading": "",
+        "review_stars": "",
+        "feed_eyebrow": "",
+        "feed_heading": "",
+        "feed_intro": "",
+        "feed_link_label": "",
         "cta_heading": "",
         "cta_sub": "",
         "cta_btn_label": "",
         "cta_btn_link": "",
-        "cta_love": ""
+        "cta_love": "",
+        "promise_tee": "",
+        "promise_meals": "",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     }
   },
