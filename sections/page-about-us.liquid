@@ -604,9 +604,19 @@
           {% endif %}
         </div>
 
+        {%- liquid
+          assign has_value_blocks = false
+          for block in section.blocks
+            if block.type == 'value'
+              assign has_value_blocks = true
+            endif
+          endfor
+        -%}
+        {% if section.settings.values_heading != blank or section.settings.values_eyebrow != blank or has_value_blocks %}
         <section class="kk-ab__values">
-          <span class="kk-ab__eyebrow kk-ab__eyebrow--center">{{ section.settings.values_eyebrow | escape }}</span>
-          <h2 class="kk-ab__h2 kk-ab__h2--center">{{ section.settings.values_heading | escape }}</h2>
+          {% if section.settings.values_eyebrow != blank %}<span class="kk-ab__eyebrow kk-ab__eyebrow--center">{{ section.settings.values_eyebrow | escape }}</span>{% endif %}
+          {% if section.settings.values_heading != blank %}<h2 class="kk-ab__h2 kk-ab__h2--center">{{ section.settings.values_heading | escape }}</h2>{% endif %}
+          {% if has_value_blocks %}
           <div class="kk-ab__values-grid">
             {% for block in section.blocks %}
               {% if block.type == 'value' %}
@@ -618,11 +628,23 @@
               {% endif %}
             {% endfor %}
           </div>
+          {% endif %}
         </section>
+        {% endif %}
 
+        {%- liquid
+          assign has_review_blocks = false
+          for block in section.blocks
+            if block.type == 'review'
+              assign has_review_blocks = true
+            endif
+          endfor
+        -%}
+        {% if section.settings.reviews_heading != blank or section.settings.reviews_eyebrow != blank or has_review_blocks %}
         <section class="kk-ab__reviews">
-          <span class="kk-ab__eyebrow kk-ab__eyebrow--center">{{ section.settings.reviews_eyebrow | escape }}</span>
-          <h2 class="kk-ab__h2 kk-ab__h2--center">{{ section.settings.reviews_heading | escape }}</h2>
+          {% if section.settings.reviews_eyebrow != blank %}<span class="kk-ab__eyebrow kk-ab__eyebrow--center">{{ section.settings.reviews_eyebrow | escape }}</span>{% endif %}
+          {% if section.settings.reviews_heading != blank %}<h2 class="kk-ab__h2 kk-ab__h2--center">{{ section.settings.reviews_heading | escape }}</h2>{% endif %}
+          {% if has_review_blocks %}
           <div class="kk-ab__cards">
             {% for block in section.blocks %}
               {% if block.type == 'review' %}
@@ -635,13 +657,25 @@
               {% endif %}
             {% endfor %}
           </div>
+          {% endif %}
         </section>
+        {% endif %}
 
+        {%- liquid
+          assign has_feed_blocks = false
+          for block in section.blocks
+            if block.type == 'feed'
+              assign has_feed_blocks = true
+            endif
+          endfor
+        -%}
+        {% if section.settings.feed_heading != blank or section.settings.feed_eyebrow != blank or section.settings.feed_intro != blank or has_feed_blocks %}
         <section class="kk-ab__feed">
-          <span class="kk-ab__eyebrow kk-ab__eyebrow--center">{{ section.settings.feed_eyebrow | escape }}</span>
-          <h2 class="kk-ab__h2 kk-ab__h2--center">{{ section.settings.feed_heading | escape }}</h2>
-          <p class="kk-ab__feed-intro">{{ section.settings.feed_intro | escape }}</p>
+          {% if section.settings.feed_eyebrow != blank %}<span class="kk-ab__eyebrow kk-ab__eyebrow--center">{{ section.settings.feed_eyebrow | escape }}</span>{% endif %}
+          {% if section.settings.feed_heading != blank %}<h2 class="kk-ab__h2 kk-ab__h2--center">{{ section.settings.feed_heading | escape }}</h2>{% endif %}
+          {% if section.settings.feed_intro != blank %}<p class="kk-ab__feed-intro">{{ section.settings.feed_intro | escape }}</p>{% endif %}
           
+          {% if has_feed_blocks %}
           <div class="kk-ab__feed-grid">
             {% for block in section.blocks %}
               {% if block.type == 'feed' %}
@@ -665,7 +699,9 @@
               {% endif %}
             {% endfor %}
           </div>
+          {% endif %}
         </section>
+        {% endif %}
 
         <section class="kk-ab__cta">
           {% if section.settings.promise_tee != blank or section.settings.promise_meals != blank %}
