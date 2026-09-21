@@ -540,11 +540,11 @@
       %}
       <section class="kk-ab__hero" style="background-image: url('{{ hero_bg }}');">
         <div class="kk-ab__hero-inner">
-          <span class="kk-ab__eyebrow kk-ab__eyebrow--light">{{ section.settings.hero_eyebrow }}</span>
-          <h1 class="kk-ab__h1">{{ section.settings.hero_heading }}</h1>
-          <p class="kk-ab__hero-sub">{{ section.settings.hero_sub }}</p>
-          <a class="kk-ab__hero-cta" href="{{ section.settings.hero_btn_link }}">{{ section.settings.hero_btn_label }}</a>
-          <p class="kk-ab__hero-proof"><span class="kk-ab__hero-stars">{{ section.settings.hero_stars | escape }}</span> {{ section.settings.hero_proof }}</p>
+          {% if section.settings.hero_eyebrow != blank %}<span class="kk-ab__eyebrow kk-ab__eyebrow--light">{{ section.settings.hero_eyebrow }}</span>{% endif %}
+          {% if section.settings.hero_heading != blank %}<h1 class="kk-ab__h1">{{ section.settings.hero_heading }}</h1>{% endif %}
+          {% if section.settings.hero_sub != blank %}<p class="kk-ab__hero-sub">{{ section.settings.hero_sub }}</p>{% endif %}
+          {% if section.settings.hero_btn_label != blank %}<a class="kk-ab__hero-cta" href="{{ section.settings.hero_btn_link }}">{{ section.settings.hero_btn_label }}</a>{% endif %}
+          {% if section.settings.hero_proof != blank %}<p class="kk-ab__hero-proof"><span class="kk-ab__hero-stars">{{ section.settings.hero_stars | escape }}</span> {{ section.settings.hero_proof }}</p>{% endif %}
         </div>
       </section>
 
@@ -575,23 +575,33 @@
         {% endfor %}
 
         <div class="kk-title">
-          <p class="kk-title__eyebrow">{{ section.settings.mission_eyebrow }}</p>
-          <h2 class="kk-title__main">{{ section.settings.mission_heading }}</h2>
+          {% if section.settings.mission_eyebrow != blank %}<p class="kk-title__eyebrow">{{ section.settings.mission_eyebrow }}</p>{% endif %}
+          {% if section.settings.mission_heading != blank %}<h2 class="kk-title__main">{{ section.settings.mission_heading }}</h2>{% endif %}
+          {% if section.settings.mission_heading != blank or section.settings.mission_sub != blank %}
           <div class="kk-title__divider" aria-hidden="true">
             <span class="kk-title__line"></span> <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21 C12 21 4 14.5 4 8.8 C4 5.5 6.5 4 8.7 4.6 C10.2 5 12 7 12 7 C12 7 13.8 5 15.3 4.6 C17.5 4 20 5.5 20 8.8 C20 14.5 12 21 12 21 Z"></path></svg> <span class="kk-title__line"></span>
           </div>
-          <p class="kk-title__sub">{{ section.settings.mission_sub }}</p>
+          {% endif %}
+          {% if section.settings.mission_sub != blank %}<p class="kk-title__sub">{{ section.settings.mission_sub }}</p>{% endif %}
+          {% if section.settings.stat1_val != blank or section.settings.stat2_val != blank or section.settings.stat3_val != blank %}
           <div class="kk-title__proof">
+            {% if section.settings.stat1_val != blank or section.settings.stat1_label != blank %}
             <div class="kk-proof__item">
               <span class="kk-proof__top"><span class="kk-proof__stars">{{ section.settings.stat1_stars | escape }}</span></span> <span class="kk-proof__value">{{ section.settings.stat1_val }}</span> <span class="kk-proof__label">{{ section.settings.stat1_label }}</span>
             </div>
+            {% endif %}
+            {% if section.settings.stat2_val != blank or section.settings.stat2_label != blank %}
             <div class="kk-proof__item">
               <span class="kk-proof__top"><svg class="kk-proof__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="12" cy="16" rx="4.5" ry="3.5"></ellipse><circle cx="6.3" cy="11" r="1.8"></circle><circle cx="10" cy="8" r="1.8"></circle><circle cx="14" cy="8" r="1.8"></circle><circle cx="17.7" cy="11" r="1.8"></circle></svg></span> <span class="kk-proof__value">{{ section.settings.stat2_val }}</span> <span class="kk-proof__label">{{ section.settings.stat2_label }}</span>
             </div>
+            {% endif %}
+            {% if section.settings.stat3_val != blank or section.settings.stat3_label != blank %}
             <div class="kk-proof__item">
               <span class="kk-proof__top"><svg class="kk-proof__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12 h18 l-1.5 5.5 a2.5 2.5 0 0 1 -2.4 1.8 H6.9 a2.5 2.5 0 0 1 -2.4 -1.8 z"></path><path d="M4.5 12 c2.5 -3.5 12.5 -3.5 15 0"></path></svg></span> <span class="kk-proof__value">{{ section.settings.stat3_val }}</span> <span class="kk-proof__label">{{ section.settings.stat3_label }}</span>
             </div>
+            {% endif %}
           </div>
+          {% endif %}
         </div>
 
         <section class="kk-ab__values">
@@ -658,13 +668,15 @@
         </section>
 
         <section class="kk-ab__cta">
+          {% if section.settings.promise_tee != blank or section.settings.promise_meals != blank %}
           <div class="kk-ab__promise">
             <span class="kk-ab__promise-tee"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5l4-2 4 2 4-2 4 2-2 4-2-1v11H8V8L6 9z"></path></svg></span> <span>{{ section.settings.promise_tee | escape }}</span> <span class="kk-ab__promise-arrow">=</span> <span class="kk-ab__promise-meals"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18M5 11a7 7 0 0 0 14 0M12 11V7"></path></svg> {{ section.settings.promise_meals | escape }}</span>
           </div>
-          <h2 class="kk-ab__h2 kk-ab__h2--center">{{ section.settings.cta_heading }}</h2>
-          <p class="kk-ab__cta-sub">{{ section.settings.cta_sub }}</p>
-          <a class="kk-ab__btn" href="{{ section.settings.cta_btn_link }}">{{ section.settings.cta_btn_label }}</a>
-          <p class="kk-ab__cta-love">{{ section.settings.cta_love }}</p>
+          {% endif %}
+          {% if section.settings.cta_heading != blank %}<h2 class="kk-ab__h2 kk-ab__h2--center">{{ section.settings.cta_heading }}</h2>{% endif %}
+          {% if section.settings.cta_sub != blank %}<p class="kk-ab__cta-sub">{{ section.settings.cta_sub }}</p>{% endif %}
+          {% if section.settings.cta_btn_label != blank %}<a class="kk-ab__btn" href="{{ section.settings.cta_btn_link }}">{{ section.settings.cta_btn_label }}</a>{% endif %}
+          {% if section.settings.cta_love != blank %}<p class="kk-ab__cta-love">{{ section.settings.cta_love }}</p>{% endif %}
         </section>
 
       </div>
