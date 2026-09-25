@@ -53,6 +53,30 @@
               >
                 {{ block.settings.text }}
               </div>
+            {%- when 'image' -%}
+              <div
+                class="rich-text__image{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                {{ block.shopify_attributes }}
+                {% if settings.animations_reveal_on_scroll %}
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}
+              >
+                {%- if block.settings.image != blank -%}
+                  {%- assign image_height = block.settings.image_height | default: 90 -%}
+                  <img
+                    src="{{ block.settings.image | image_url: width: 300 }}"
+                    alt="{{ block.settings.image.alt | escape }}"
+                    loading="lazy"
+                    width="{{ block.settings.image.width }}"
+                    height="{{ block.settings.image.height }}"
+                    style="max-height: {{ image_height }}px; width: auto; display: block; {% if section.settings.content_alignment == 'center' %}margin: 0 auto;{% elsif section.settings.content_alignment == 'right' %}margin: 0 0 0 auto;{% else %}margin: 0;{% endif %}"
+                  >
+                {%- else -%}
+                  {%- assign image_height = block.settings.image_height | default: 90 -%}
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' | replace: '<svg', '<svg style="height: ' | append: image_height | append: 'px; width: auto;"' }}
+                {%- endif -%}
+              </div>
             {%- when 'button' -%}
               <div
                 class="rich-text__buttons{% if block.settings.button_label != blank and block.settings.button_label_2 != blank %} rich-text__buttons--multiple{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -285,6 +309,28 @@
       ]
     },
     {
+      "type": "image",
+      "name": "Image",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "image_height",
+          "min": 20,
+          "max": 200,
+          "step": 2,
+          "unit": "px",
+          "label": "Image height",
+          "default": 90
+        }
+      ]
+    },
+    {
       "type": "button",
       "name": "t:sections.rich-text.blocks.buttons.name",
       "limit": 2,
@@ -353,3 +399,22 @@
   ]
 }
 {% endschema %}
+
+<style>
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .rich-text__text p {
+      font-size: max(18px, 1em);
+    }
+  }
+
+  /* Outline button custom style for white bg, black text/border */
+  #shopify-section-{{ section.id }} .rich-text__buttons .button--secondary {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #000000;
+  }
+  
+  #shopify-section-{{ section.id }} .rich-text__buttons .button--secondary::after {
+    display: none;
+  }
+</style>

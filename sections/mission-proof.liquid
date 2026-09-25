@@ -36,18 +36,16 @@
   }
 
   #shopify-section-{{ section.id }} .kk-title__main {
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--font-heading-family);
+    font-weight: var(--font-heading-weight);
     margin: 0;
-    color: var(--text);
-     
-    text-transform: uppercase;
-    letter-spacing: .04em;
+    color: #000000;
     line-height: 1.05;
     font-size: clamp(36px, 8vw, 56px);
   }
 
   #shopify-section-{{ section.id }} .kk-title__main span {
-    color: var(--brand-deep);
+    color: inherit;
   }
 
   #shopify-section-{{ section.id }} .kk-title__divider {
@@ -72,12 +70,17 @@
   }
 
   #shopify-section-{{ section.id }} .kk-title__sub {
-    margin: 16px 0 0;
-    color: var(--text);
-    opacity: .7;
-     
-    line-height: 1.35;
-    font-size: clamp(14px, 3.4vw, 17px);
+    margin: 24px auto 0;
+    color: #000000;
+    text-align: left;
+    line-height: 1.5;
+    font-size: clamp(18px, 4vw, 20px);
+    font-family: var(--font-body-family);
+    max-width: 800px;
+  }
+  
+  #shopify-section-{{ section.id }} .kk-title__sub p {
+    margin: 0 0 1em;
   }
 
   #shopify-section-{{ section.id }} .kk-title__proof {
@@ -158,6 +161,10 @@
         {%- endif -%}
       </{{ section.settings.heading_tag | default: 'h1' }}>
 
+      {%- if section.settings.subheading != blank -%}
+        <div class="kk-title__sub">{{ section.settings.subheading }}</div>
+      {%- endif -%}
+
       {%- if section.settings.show_divider -%}
         <div class="kk-title__divider" aria-hidden="true">
           <span class="kk-title__line"></span>
@@ -170,10 +177,6 @@
           {%- endif -%}
           <span class="kk-title__line"></span>
         </div>
-      {%- endif -%}
-
-      {%- if section.settings.subheading != blank -%}
-        <p class="kk-title__sub">{{ section.settings.subheading | escape }}</p>
       {%- endif -%}
 
       {%- if section.blocks.size > 0 -%}
@@ -283,10 +286,10 @@
       "info": "Upload dit eget opdeler-ikon (valgfri)"
     },
     {
-      "type": "text",
+      "type": "richtext",
       "id": "subheading",
       "label": "Subheading",
-      "default": "Cat-inspired apparel that helps feed homeless kittens."
+      "default": "<p>Cat-inspired apparel that helps feed homeless kittens.</p>"
     },
     {
       "type": "header",
