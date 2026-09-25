@@ -173,8 +173,8 @@
         "step_1": {
           "type": "column",
           "settings": {
-            "title": "1. Vælg din stil",
-            "text": "<p>Hver t-shirt hjælper os med at give 10 måltider til forladte killinger. Mange kunder bestiller flere for at dele med venner og hjælpe os med at donere endnu flere måltider.</p>",
+            "title": "1. Vælg en trøje",
+            "text": "<p>Hver trøje giver 10 måltider til katte uden et hjem.</p>",
             "link_label": "",
             "link": ""
           }
@@ -182,8 +182,8 @@
         "step_2": {
           "type": "column",
           "settings": {
-            "title": "2. Vi sørger for maden",
-            "text": "<p>Vi samarbejder med betroede lokale redningsgrupper og frivillige. Dit køb hjælper os med at få mad ud til katte i nød via de mennesker, der ved præcis, hvor de venter.</p>",
+            "title": "2. Vi køber foderet",
+            "text": "<p>Og sender det til Kattens Værn.</p>",
             "link_label": "",
             "link": ""
           }
@@ -191,8 +191,8 @@
         "step_3": {
           "type": "column",
           "settings": {
-            "title": "3. Månedlige fotoupdates",
-            "text": "<p>Hver måned modtager du billeder fra vores hjælpeindsatser. Disse billeder fanger ægte øjeblikke fra hverdagen, delt med dig hver måned.</p>",
+            "title": "3. Du ser kvitteringen",
+            "text": "<p>Den ligger på kattehjerte.dk/kvitteringer istarten af hver måned.</p>",
             "link_label": "",
             "link": ""
           }
@@ -204,7 +204,7 @@
         "step_3"
       ],
       "settings": {
-        "title": "Sådan hjælper dit køb med at give mad i 3 enkle trin",
+        "title": "Du kan ikke nødfodre dem alle. Men du kan gøre det her.",
         "heading_size": "h1",
         "image_width": "full",
         "image_ratio": "adapt",
