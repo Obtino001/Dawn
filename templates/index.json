@@ -87,7 +87,7 @@
             "icon_type": "bowl",
             "stars_text": "",
             "value": "Kattens Værn",
-            "label": "får foderet"
+            "label": "får det"
           }
         },
         "proof_item_d7aXKW": {
@@ -95,8 +95,8 @@
           "settings": {
             "icon_type": "heart",
             "stars_text": "",
-            "value": "Hver måned",
-            "label": "lægger vi kvitteringen op"
+            "value": "Kvitteringen",
+            "label": "ligger på siden"
           }
         }
       },
@@ -108,8 +108,8 @@
       "name": "Mission & Socialt bevis",
       "settings": {
         "eyebrow": "DET HER GØR VI",
-        "heading": "Vi kan ikke give dem alle et hjem.",
-        "heading_highlight": "Men vi kan give dem mad.",
+        "heading": "Det du får, er en trøje.",
+        "heading_highlight": "Det er det samme som at stille en skål ud i carporten. Bare nemmere.",
         "heading_tag": "h1",
         "show_divider": true,
         "subheading": "",
