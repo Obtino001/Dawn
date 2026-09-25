@@ -26,6 +26,49 @@
         "show_text_below": false
       }
     },
+    "rich_text_TxAjqi": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_kNKTmX": {
+          "type": "heading",
+          "settings": {
+            "heading": "SÅDAN HER",
+            "heading_size": "h1"
+          }
+        },
+        "text_thrzzq": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Du har set dem. Katten ved naboens dør. Den der pludselig<br/>ikke kom hjem. Den ingen hentede, da familien flyttede.<br/><br/>Kattens Værn tager dem ind, over hele landet. Og foder<br/>koster.<br/><br/>Derfor køber vi foder til dem for hver ordre — og lægger<br/>kvitteringen op hver måned. Ikke et løfte. En kvittering.<br/><br/></p>"
+          }
+        },
+        "button_UNCPCA": {
+          "type": "button",
+          "settings": {
+            "button_label": "Se kvitteringerne →",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_kNKTmX",
+        "text_thrzzq",
+        "button_UNCPCA"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "mission_proof_pawpwF": {
       "type": "mission-proof",
       "blocks": {
@@ -204,6 +247,7 @@
   },
   "order": [
     "image_banner",
+    "rich_text_TxAjqi",
     "mission_proof_pawpwF",
     "featured_collection",
     "featured_blog",
