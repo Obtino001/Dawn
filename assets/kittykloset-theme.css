@@ -225,15 +225,6 @@ h6,
   padding: 0 4px;
 }
 
-.kk-proof__item+.kk-proof__item::before {
-  content: "";
-  position: absolute;
-  left: -3px;
-  top: 12%;
-  bottom: 12%;
-  width: 1px;
-  background: var(--kk-border-soft);
-}
 
 .kk-proof__top {
   height: 24px;
