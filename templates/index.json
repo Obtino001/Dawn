@@ -42,12 +42,18 @@
             "text": "<p>Du har set dem. Katten ved naboens dør. Den der pludselig<br/>ikke kom hjem. Den ingen hentede, da familien flyttede.<br/><br/>Kattens Værn tager dem ind, over hele landet. Og foder<br/>koster.<br/><br/>Derfor køber vi foder til dem for hver ordre — og lægger<br/>kvitteringen op hver måned. Ikke et løfte. En kvittering.<br/><br/></p>"
           }
         },
+        "image_logo": {
+          "type": "image",
+          "settings": {
+            "image_height": 90
+          }
+        },
         "button_UNCPCA": {
           "type": "button",
           "settings": {
             "button_label": "Se kvitteringerne →",
             "button_link": "shopify://pages/kvitteringerne",
-            "button_style_secondary": false,
+            "button_style_secondary": true,
             "button_label_2": "",
             "button_link_2": "",
             "button_style_secondary_2": false
@@ -56,13 +62,14 @@
       },
       "block_order": [
         "heading_kNKTmX",
+        "image_logo",
         "text_thrzzq",
         "button_UNCPCA"
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
+        "desktop_content_position": "left",
+        "content_alignment": "left",
         "color_scheme": "",
         "full_width": true,
         "padding_top": 40,
