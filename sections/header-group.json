@@ -17,8 +17,8 @@
         "announcement-bar-0": {
           "type": "announcement",
           "settings": {
-            "text": "Hver ordre hjælper os med at give 10 måltider til forladte katte",
-            "link": "shopify://collections/all"
+            "text": "Du kan ikke redde dem alle. Men du kan give 10 måltider 🐾",
+            "link": "shopify://collections/t-shirts"
           }
         }
       },
