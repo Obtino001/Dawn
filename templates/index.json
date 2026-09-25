@@ -45,6 +45,7 @@
         "image_logo": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/cat-logo.png",
             "image_height": 90
           }
         },
