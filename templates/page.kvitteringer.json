@@ -67,14 +67,14 @@
         "heading_zfJ48j": {
           "type": "heading",
           "settings": {
-            "heading": "Billede med tekst",
+            "heading": "",
             "heading_size": "h1"
           }
         },
         "text_gEVByN": {
           "type": "text",
           "settings": {
-            "text": "<p>Kombiner tekst med et billede for at fokusere på dit valgte produkt, din valgte kollektion eller dit valgte blogopslag. Tilføj oplysninger om tilgængelighed, stil og eventuelt også en anmeldelse.</p>",
+            "text": "<p>UGE 32 · 3. august · 2000 kr. · 40 trøjer · 400 måltider · Kattens Værn</p>",
             "text_style": "body"
           }
         },
@@ -94,6 +94,7 @@
       ],
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
+        "image": "shopify://shop_images/Skaermbillede_2026-09-26_kl._13.50.55.png",
         "height": "adapt",
         "desktop_image_width": "medium",
         "layout": "image_first",
