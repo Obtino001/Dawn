@@ -72,7 +72,7 @@
             "show_dynamic_checkout": false,
             "show_gift_card_recipient": false,
             "show_rating": false,
-            "text_above_button": "<p>Vinteren er på vej.<br/>Nogle af dem er løbet hjemmefra. Andre blev forladt.<br/>Ingen af dem har noget at spise i nat.</p><p><br/>Fragten koster det samme for én eller to trøjer. Derfor koster nummer to kun 150 kr.</p>",
+            "text_above_button": "<p>Vinteren er på vej.<br/>Nogle af dem er løbet hjemmefra. Andre blev forladt.<br/>Ingen af dem har noget at spise i nat.</p><p>Fragten koster det samme for én eller to trøjer. Derfor koster nummer to kun 150 kr.</p>",
             "text_below_button": ""
           }
         },
