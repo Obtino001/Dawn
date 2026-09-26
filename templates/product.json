@@ -115,7 +115,7 @@
         "accordion_returns": {
           "type": "custom_accordion",
           "settings": {
-            "heading": "Passer den ikke? 30 dage til at fortryde",
+            "heading": "Passer den ikke?",
             "content": "<p>Er du ikke glad for din trøje, får du pengene tilbage. Ingen<br/>diskussion.</p><p>Skriv til os på <a href=\"mailto:kontakt@kattehjerte.dk\" title=\"mailto:kontakt@kattehjerte.dk\">kontakt@kattehjerte.dk</a> inden for 30 dage, så ordner vi det.</p><p>Du har derudover altid 14 dages fortrydelsesret efter dansk lov.</p>",
             "page": "",
             "open_by_default": false
