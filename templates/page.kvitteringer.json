@@ -61,6 +61,54 @@
         "padding_bottom": 52
       }
     },
+    "image_with_text_Cj3rNf": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_JgmqHe": {
+          "type": "heading",
+          "settings": {
+            "heading": "",
+            "heading_size": "h1"
+          }
+        },
+        "text_KL8FdR": {
+          "type": "text",
+          "settings": {
+            "text": "<p>UGE 40 · 28. september · 11.000 kr. · 220 trøjer · 2200 måltider · Kattens Værn</p>",
+            "text_style": "body"
+          }
+        },
+        "button_8wFgLH": {
+          "type": "button",
+          "settings": {
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_JgmqHe",
+        "text_KL8FdR",
+        "button_8wFgLH"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Skaermbillede_2026-09-26_kl._15.44.58.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "image_with_text_im3aDm": {
       "type": "image-with-text",
       "blocks": {
@@ -427,52 +475,47 @@
         "padding_bottom": 36
       }
     },
-    "image_with_text_Cj3rNf": {
-      "type": "image-with-text",
+    "rich_text_eB3L7X": {
+      "type": "rich-text",
       "blocks": {
-        "heading_JgmqHe": {
+        "heading_HQmjUP": {
           "type": "heading",
           "settings": {
             "heading": "",
             "heading_size": "h1"
           }
         },
-        "text_KL8FdR": {
+        "text_7KdGKc": {
           "type": "text",
           "settings": {
-            "text": "<p>UGE 40 · 28. september · 11.000 kr. · 220 trøjer · 2200 måltider · Kattens Værn</p>",
-            "text_style": "body"
+            "text": "<p>Kattehjerte er en almindelig dansk webshop, ikke en forening. Forskellen er, at en fast<br/>del af hver trøje går til Kattens Værn, og at kvitteringen ligger her. Hver mandag.<br/><br/>Spørgsmål? Skriv til kontakt@kattehjerte.dk. Vi svarer inden 24 timer.</p>"
           }
         },
-        "button_8wFgLH": {
+        "button_Uw94wN": {
           "type": "button",
           "settings": {
-            "button_label": "",
+            "button_label": "Knaptekst",
             "button_link": "",
-            "button_style_secondary": false
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
           }
         }
       },
       "block_order": [
-        "heading_JgmqHe",
-        "text_KL8FdR",
-        "button_8wFgLH"
+        "heading_HQmjUP",
+        "text_7KdGKc",
+        "button_Uw94wN"
       ],
-      "name": "t:sections.image-with-text.presets.name",
+      "name": "t:sections.rich-text.presets.name",
       "settings": {
-        "image": "shopify://shop_images/Skaermbillede_2026-09-26_kl._15.44.58.jpg",
-        "height": "adapt",
-        "desktop_image_width": "medium",
-        "layout": "image_first",
-        "image_behavior": "none",
-        "content_layout": "no-overlap",
-        "desktop_content_position": "top",
-        "desktop_content_alignment": "left",
-        "mobile_content_alignment": "left",
-        "section_color_scheme": "",
+        "desktop_content_position": "center",
+        "content_alignment": "center",
         "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
       }
     }
   },
@@ -487,6 +530,7 @@
     "image_with_text_cwVPfM",
     "image_with_text_hxGWtx",
     "image_with_text_qreVEY",
-    "image_with_text_mppezF"
+    "image_with_text_mppezF",
+    "rich_text_eB3L7X"
   ]
 }
