@@ -42,7 +42,7 @@
             "perk_icon_1": "shopify://shop_images/LOGO_4.png",
             "perk_1": "<strong>🐾😻 10 måltider for hver trøje – til katte uden et hjem ❤️</strong>",
             "perk_icon_2": "shopify://shop_images/LOGO_5.png",
-            "perk_2": "<strong>Måltiderne gives i denne uge. Din pakke er 4-7 dage undervejs 🐾</strong>",
+            "perk_2": "<strong>Måltiderne gives på mandag. Din pakke er 4-7 dage undervejs 🐾</strong>",
             "perk_icon_3": "shopify://shop_images/LOGO_3.png",
             "perk_3": "<strong>Ikke tilfreds? Madmor og farmand har 30 dage til at fortryde ❤️</strong>",
             "perk_icon_4": "shopify://shop_images/LOGO_8.png",
@@ -69,8 +69,8 @@
         "buy_buttons": {
           "type": "buy_buttons",
           "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true,
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false,
             "show_rating": false,
             "text_above_button": "<p>Trøje nummer to koster 150 kr.<br/><br/>Du kommer aldrig til at mærke sulten igen 🐾❤️</p>",
             "text_below_button": ""
