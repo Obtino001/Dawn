@@ -80,7 +80,7 @@
           "type": "custom_accordion",
           "settings": {
             "heading": "Virker mit køb egentlig?",
-            "content": "<p>Ja. Og du kan se det.<br/><br/>Vi startede ikke Kattehjerte, fordi verden manglede<br/>endnu en trøje. Vi startede, fordi der er katte<br/>uden et hjem, som mangler mad.<br/><br/>Vi giver til Kattens Værn. For hver trøje sender vi<br/>10 måltider afsted.<br/><br/>Kvitteringen lægger vi op hver måned. Ikke et tal<br/>på en hjemmeside — den rigtige kvittering, med<br/>beløb og dato.<br/><br/>Vi er en lille flok katteelskere. Vi er ikke en<br/>forening, og det lader vi heller ikke som om.</p>",
+            "content": "<p>Ja. Og du kan se det.<br/><br/>For hver trøje køber vi foder svarende til 10 måltider og<br/>sender det til Kattens Værn. De driver internater over hele<br/>landet for katte uden et hjem.<br/><br/>Kvitteringen lægger vi op i starten af hver måned. Ikke et<br/>tal på en hjemmeside — den rigtige kvittering, med beløb<br/>og dato.<br/><br/><a href=\"/pages/kvitteringerne\" title=\"Kvitteringerne\">[Se kvitteringerne →]</a></p>",
             "page": "",
             "open_by_default": false
           }
