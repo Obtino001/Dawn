@@ -537,6 +537,49 @@
         "border_thickness": 0,
         "lazy": true
       }
+    },
+    "rich_text_EcedUF": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_4EfGiX": {
+          "type": "heading",
+          "settings": {
+            "heading": "",
+            "heading_size": "h1"
+          }
+        },
+        "text_mPkijx": {
+          "type": "text",
+          "settings": {
+            "text": "<p><a href=\"#MainContent\" title=\"#MainContent\">↑ Vælg din trøje</a></p>"
+          }
+        },
+        "button_47GiMj": {
+          "type": "button",
+          "settings": {
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_4EfGiX",
+        "text_mPkijx",
+        "button_47GiMj"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
@@ -546,6 +589,7 @@
     "sticky_atc",
     "mission_story_WrwPzC",
     "how_it_works_steps_PHbRmE",
-    "ss_testimonial_12_RM4KFN"
+    "ss_testimonial_12_RM4KFN",
+    "rich_text_EcedUF"
   ]
 }
