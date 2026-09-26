@@ -98,3 +98,4 @@
   margin-top: 0.2rem;
   color: rgba(var(--color-foreground), 0.7);
 }
+.price__badge-sale { display: none !important; }
