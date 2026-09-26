@@ -74,7 +74,7 @@
         "text_ABT3cN": {
           "type": "text",
           "settings": {
-            "text": "<p>UGE 38 · 14. september · 9000 kr. · 180 trøjer · 1800 måltider · Kattens Værn</p>",
+            "text": "<p>UGE 38 · 14. september · 9.000 kr. · 180 trøjer · 1800 måltider · Kattens Værn</p>",
             "text_style": "body"
           }
         },
@@ -122,7 +122,7 @@
         "text_AUtdfn": {
           "type": "text",
           "settings": {
-            "text": "<p>UGE 37 · 7. september · 8250 kr. · 165 trøjer ·1650 måltider · Kattens Værn</p>",
+            "text": "<p>UGE 37 · 7. september · 8.250 kr. · 165 trøjer ·1650 måltider · Kattens Værn</p>",
             "text_style": "body"
           }
         },
@@ -170,7 +170,7 @@
         "text_MMQXnF": {
           "type": "text",
           "settings": {
-            "text": "<p>UGE 36 · 31. august · 7000 kr. · 140 trøjer · 1400 måltider · Kattens Værn</p>",
+            "text": "<p>UGE 36 · 31. august · 7.000 kr. · 140 trøjer · 1400 måltider · Kattens Værn</p>",
             "text_style": "body"
           }
         },
@@ -218,7 +218,7 @@
         "text_dbaBEn": {
           "type": "text",
           "settings": {
-            "text": "<p>UGE 35 · 24. august · 6000 kr. · 120 trøjer · 1.200 måltider · Kattens Værn</p>",
+            "text": "<p>UGE 35 · 24. august · 6.000 kr. · 120 trøjer · 1.200 måltider · Kattens Værn</p>",
             "text_style": "body"
           }
         },
@@ -266,7 +266,7 @@
         "text_XDm6UJ": {
           "type": "text",
           "settings": {
-            "text": "<p>UGE 34 · 17. august · 4750 kr. · 95 trøjer · 950 måltider · Kattens Værn</p>",
+            "text": "<p>UGE 34 · 17. august · 4.750 kr. · 95 trøjer · 950 måltider · Kattens Værn</p>",
             "text_style": "body"
           }
         }
@@ -344,7 +344,7 @@
         "text_gEVByN": {
           "type": "text",
           "settings": {
-            "text": "<p>UGE 32 · 3. august · 2000 kr. · 40 trøjer · 400 måltider · Kattens Værn</p>",
+            "text": "<p>UGE 32 · 3. august · 2.000 kr. · 40 trøjer · 400 måltider · Kattens Værn</p>",
             "text_style": "body"
           }
         },
@@ -378,6 +378,54 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "image_with_text_im3aDm": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_qL7WwB": {
+          "type": "heading",
+          "settings": {
+            "heading": "",
+            "heading_size": "h1"
+          }
+        },
+        "text_MPbWXi": {
+          "type": "text",
+          "settings": {
+            "text": "<p>UGE 39 · 21. september · 10.000 kr. · 200 trøjer · 2000 måltider · Kattens Værn</p>",
+            "text_style": "body"
+          }
+        },
+        "button_qnLCzT": {
+          "type": "button",
+          "settings": {
+            "button_label": "Knaptekst",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_qL7WwB",
+        "text_MPbWXi",
+        "button_qnLCzT"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Skaermbillede_2026-09-26_kl._15.36.33.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -389,6 +437,7 @@
     "image_with_text_cwVPfM",
     "image_with_text_hxGWtx",
     "image_with_text_qreVEY",
-    "image_with_text_mppezF"
+    "image_with_text_mppezF",
+    "image_with_text_im3aDm"
   ]
 }
