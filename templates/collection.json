@@ -16,7 +16,7 @@
         "image_desktop_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/banner-poppins.jpg?v=1781818271",
         "image_mobile": "shopify://shop_images/hf_20260911_165531_b859bfd4-d822-4ff5-88ec-05f752149113.jpg",
         "image_mobile_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/banner._new_test_1.jpg?v=1781959840",
-        "alt_text": "ddd",
+        "alt_text": "dddd",
         "link": "",
         "padding_top": 0,
         "padding_bottom": 0
@@ -29,7 +29,7 @@
           "type": "step",
           "settings": {
             "step_number": "1",
-            "title": "Vælg din<br>t-shirt",
+            "title": "Vælg din trøje",
             "icon_svg": "tee"
           }
         },
@@ -37,7 +37,7 @@
           "type": "step",
           "settings": {
             "step_number": "2",
-            "title": "VI KØBER FODER",
+            "title": "VI GIVER TIL KATTENS VÆRN",
             "icon_svg": "bowl"
           }
         },
@@ -45,7 +45,7 @@
           "type": "step",
           "settings": {
             "step_number": "3",
-            "title": "DU GJORDE EN FORSKEL",
+            "title": "Du ser kvitteringen",
             "icon_svg": "cat_heart"
           }
         }
@@ -56,7 +56,7 @@
         "step_3"
       ],
       "settings": {
-        "eyebrow": "Fra t-shirt til madskål",
+        "eyebrow": "Fra trøje til madskål",
         "padding_top": 0,
         "padding_bottom": 0
       }
