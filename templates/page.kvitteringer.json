@@ -15,9 +15,102 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "rich_text_NKyqGf": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_WpPxBe": {
+          "type": "heading",
+          "settings": {
+            "heading": "KVITTERINGER",
+            "heading_size": "h1"
+          }
+        },
+        "text_kmp7kc": {
+          "type": "text",
+          "settings": {
+            "text": "<p>For hver trøje giver vi 10 måltider til Kattens Værn. Kvitteringen lægges op her hver mandag.</p>"
+          }
+        },
+        "button_mHKMqL": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Knaptekst",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_WpPxBe",
+        "text_kmp7kc",
+        "button_mHKMqL"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "image_with_text_mppezF": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_zfJ48j": {
+          "type": "heading",
+          "settings": {
+            "heading": "Billede med tekst",
+            "heading_size": "h1"
+          }
+        },
+        "text_gEVByN": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Kombiner tekst med et billede for at fokusere på dit valgte produkt, din valgte kollektion eller dit valgte blogopslag. Tilføj oplysninger om tilgængelighed, stil og eventuelt også en anmeldelse.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_nUXh7L": {
+          "type": "button",
+          "settings": {
+            "button_label": "Knaptekst",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_zfJ48j",
+        "text_gEVByN",
+        "button_nUXh7L"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "rich_text_NKyqGf",
+    "image_with_text_mppezF"
   ]
 }
