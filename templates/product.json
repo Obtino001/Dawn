@@ -245,27 +245,27 @@
         "step_HF6F6e": {
           "type": "step",
           "settings": {
-            "title": "Vælg din t-shirt",
-            "text": "<p>Vælg din trøje<br/>Hver trøje giver 10 måltider til katte<br/>uden et hjem.</p>",
-            "image": "shopify://shop_images/hf_20260912_213125_f2a4a2b9-41bb-4467-8ad1-ffaaeae447e6_3.jpg",
+            "title": "Vælg din trøje",
+            "text": "<p><br/>Hver trøje giver 10 måltider til katte<br/>uden et hjem.</p>",
+            "image": "shopify://shop_images/hf_20260926_184050_f63c76a9-1229-4ff6-af1f-943943b09854_1.jpg",
             "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/circleremera.png?v=1781830560"
           }
         },
         "step_F7LpkQ": {
           "type": "step",
           "settings": {
-            "title": "Foderet bliver købt",
-            "text": "<p>Vi køber foderet og sender det afsted til<br/>Kattens Værn, som nødfodrer over hele landet.</p>",
-            "image": "shopify://shop_images/hf_20260919_082338_a76c19bd-454b-4745-8103-f1e022b977fe.jpg",
+            "title": "Vi giver til Kattens Værn",
+            "text": "<p>For hver trøje giver vi 10 måltider til Kattens Værn, der tager sig af katte uden et hjem over hele landet.</p>",
+            "image": "shopify://shop_images/hf_20260925_182645_7b5ace22-f4dd-43b2-8ef5-ede50ceac2aa.jpg",
             "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/Logo_KittyKloset_printed_on_tube_202606191255.png?v=1781884657"
           }
         },
         "step_xXcGpq": {
           "type": "step",
           "settings": {
-            "title": "Du får kvitteringen",
-            "text": "<p>Du får kvitteringen<br/>Hver måned lægger vi kvitteringer og<br/>billeder op fra fodringerne.</p>",
-            "image": "shopify://shop_images/hf_20260919_083140_8467937d-1a94-48eb-9275-c8454ae8d782.jpg",
+            "title": "Du ser kvitteringen",
+            "text": "<p>Hver mandag lægger vi kvitteringen op på <a href=\"/pages/kvitteringerne\" title=\"Kvitteringerne\">kattehjerte.dk/kvitteringer</a>.</p>",
+            "image": "shopify://shop_images/Skaermbillede_2026-09-26_kl._13.50.55.png",
             "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/pinky_1.png?v=1781831026"
           }
         }
@@ -277,8 +277,8 @@
       ],
       "name": "3 Simple Steps",
       "settings": {
-        "heading": "Sådan bliver din trøje til mad",
-        "heading_highlight": "i 3 enkle trin",
+        "heading": "Du kan ikke nødfodre dem alle.",
+        "heading_highlight": "Men du kan gøre det her",
         "color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 36
