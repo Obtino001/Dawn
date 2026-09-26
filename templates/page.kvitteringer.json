@@ -133,6 +133,7 @@
       ],
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
+        "image": "shopify://shop_images/Skaermbillede_2026-09-26_kl._14.20.26.jpg",
         "height": "adapt",
         "desktop_image_width": "medium",
         "layout": "image_first",
@@ -151,7 +152,7 @@
   "order": [
     "main",
     "rich_text_NKyqGf",
-    "image_with_text_mppezF",
-    "image_with_text_qreVEY"
+    "image_with_text_qreVEY",
+    "image_with_text_mppezF"
   ]
 }
