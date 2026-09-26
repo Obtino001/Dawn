@@ -88,8 +88,8 @@
         "accordion_materials": {
           "type": "custom_accordion",
           "settings": {
-            "heading": "Hvor går pengene hen?",
-            "content": "<p>Vi giver til Kattens Værn.<br/><br/>De driver internater og tager sig af katte uden et<br/>hjem over hele landet. For hver trøje du køber,<br/>giver vi 10 måltider til deres katte.<br/><br/>Ét måltid koster [X] kr. hos dem. Det er ikke et<br/>rundt tal vi har fundet på — det er deres eget.<br/><br/>Vi lægger kvitteringen op hver måned, så du kan se<br/>præcis hvad der blev sendt afsted. Ikke bare et<br/>tal på en hjemmeside.<br/><br/>Vi er ikke en forening. Vi er en almindelig butik<br/>der giver en del af hvert salg videre. Det synes<br/>vi du skal vide.</p>",
+            "heading": "Hvorfor vi ikke kalder os en forening",
+            "content": "<p>Fordi vi ikke er en. Vi er en almindelig dansk webshop, og vi tjener penge på at sælge trøjer.<br/><br/>Vi siger det direkte, fordi du fortjener at vide det.<br/><br/>Forskellen er, at en fast del af hver trøje går til Kattens<br/>Værn — også i de uger, hvor vi ikke tjener noget. Kvitteringen<br/>ligger på siden, hver mandag, så du kan se det.</p>",
             "page": "",
             "open_by_default": false
           }
@@ -557,6 +557,7 @@
     "main",
     "impact_tracker",
     "related_products",
+    "sticky_atc",
     "mission_story_WrwPzC",
     "how_it_works_steps_PHbRmE",
     "ss_testimonial_12_RM4KFN"
