@@ -494,8 +494,8 @@
         "button_Uw94wN": {
           "type": "button",
           "settings": {
-            "button_label": "Knaptekst",
-            "button_link": "",
+            "button_label": "",
+            "button_link": "shopify://pages/our-story",
             "button_style_secondary": false,
             "button_label_2": "",
             "button_link_2": "",
