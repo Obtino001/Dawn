@@ -29,17 +29,7 @@
     <img class="payment-icon" loading="lazy" src="https://www.georgjensen.com/on/demandware.static/-/Sites-GeorgJensen_Global-Library/default/dwa5522949/payment_icons/visa.png" alt="Visa" width="38" height="24">
   {%- endif -%}
 
-  {%- if settings.payment_icon_applepay != blank -%}
-    {{ settings.payment_icon_applepay | image_url: width: 80 | image_tag: loading: 'lazy', alt: 'Apple Pay', class: 'payment-icon' }}
-  {%- else -%}
-    <img class="payment-icon" loading="lazy" src="https://www.georgjensen.com/on/demandware.static/-/Sites-GeorgJensen_Global-Library/default/dw3229d801/payment_icons/apple_pay.png" alt="Apple Pay" width="38" height="24">
-  {%- endif -%}
 
-  {%- if settings.payment_icon_googlepay != blank -%}
-    {{ settings.payment_icon_googlepay | image_url: width: 80 | image_tag: loading: 'lazy', alt: 'Google Pay', class: 'payment-icon' }}
-  {%- else -%}
-    <img class="payment-icon" loading="lazy" src="https://www.georgjensen.com/on/demandware.static/-/Sites-GeorgJensen_Global-Library/default/dwa24664b4/payment_icons/paywithgoogle.png" alt="Google Pay" width="38" height="24">
-  {%- endif -%}
 
   {%- if settings.payment_icon_paypal != blank -%}
     {{ settings.payment_icon_paypal | image_url: width: 80 | image_tag: loading: 'lazy', alt: 'PayPal', class: 'payment-icon' }}
