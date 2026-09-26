@@ -426,11 +426,60 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "image_with_text_Cj3rNf": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_JgmqHe": {
+          "type": "heading",
+          "settings": {
+            "heading": "",
+            "heading_size": "h1"
+          }
+        },
+        "text_KL8FdR": {
+          "type": "text",
+          "settings": {
+            "text": "<p>UGE 40 · 28. september · 11.000 kr. · 220 trøjer · 2200 måltider · Kattens Værn</p>",
+            "text_style": "body"
+          }
+        },
+        "button_8wFgLH": {
+          "type": "button",
+          "settings": {
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_JgmqHe",
+        "text_KL8FdR",
+        "button_8wFgLH"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Skaermbillede_2026-09-26_kl._15.44.58.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "main",
     "rich_text_NKyqGf",
+    "image_with_text_Cj3rNf",
     "image_with_text_im3aDm",
     "image_with_text_WEM3Fe",
     "image_with_text_JGGQWq",
