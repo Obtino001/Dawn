@@ -88,8 +88,8 @@
         "accordion_materials": {
           "type": "custom_accordion",
           "settings": {
-            "heading": "Hvor går pengene hen?",
-            "content": "<p>Vi giver til Kattens Værn.<br/><br/>De driver internater og tager sig af katte uden et<br/>hjem over hele landet. For hver trøje du køber,<br/>giver vi 10 måltider til deres katte.<br/><br/>Ét måltid koster [X] kr. hos dem. Det er ikke et<br/>rundt tal vi har fundet på — det er deres eget.<br/><br/>Vi lægger kvitteringen op hver måned, så du kan se<br/>præcis hvad der blev sendt afsted. Ikke bare et<br/>tal på en hjemmeside.<br/><br/>Vi er ikke en forening. Vi er en almindelig butik<br/>der giver en del af hvert salg videre. Det synes<br/>vi du skal vide.</p>",
+            "heading": "Hvorfor vi ikke kalder os en forening",
+            "content": "<p>Fordi vi ikke er en. Vi er en almindelig dansk webshop, og vi tjener penge på at sælge trøjer.<br/><br/>Vi siger det direkte, fordi du fortjener at vide det.<br/><br/>Forskellen er, at en fast del af hver trøje går til Kattens<br/>Værn — også i de uger, hvor vi ikke tjener noget. Kvitteringen<br/>ligger på siden, hver mandag, så du kan se det.</p>",
             "page": "",
             "open_by_default": false
           }
@@ -98,7 +98,7 @@
           "type": "custom_accordion",
           "settings": {
             "heading": "Hvornår kommer den?",
-            "content": "<p>4-7 hverdage.<br/><br/>Trøjerne sendes fra vores lager, og du får et<br/>track and trace så snart pakken er afsted.<br/><br/>Måltiderne gives med det samme. Du skal ikke vente på dem!<br/><br/>Er der gået mere end 7 hverdage, så skriv til os. Vi svarer samme dag.</p>",
+            "content": "<p>4-7 hverdage, sporet levering. Du får et trackingnummer så snart pakken er sendt.</p><p>Er der gået mere end 10 hverdage, så skriv. Vi svarer samme dag.</p>",
             "page": "",
             "open_by_default": false
           }
@@ -107,7 +107,7 @@
           "type": "custom_accordion",
           "settings": {
             "heading": "Hvad koster fragten?",
-            "content": "<p>39 kr. ved én trøje.<br/>Fri fragt fra to trøjer og op.<br/><br/>Vi sender med PostNord til døren. </p>",
+            "content": "<p>39 kr. ved én trøje. Fri fragt fra to eller flere.<br/><br/>Fragten fra vores lager koster det samme, uanset om pakken indeholder én eller to trøjer. Derfor koster nummer to kun 150 kr.</p>",
             "page": "",
             "open_by_default": false
           }
@@ -115,8 +115,8 @@
         "accordion_returns": {
           "type": "custom_accordion",
           "settings": {
-            "heading": "Passer den ikke?",
-            "content": "<p>Er du ikke glad for din trøje, får du pengene tilbage. Ingen<br/>diskussion.</p><p>Skriv til os på <a href=\"mailto:kontakt@kattehjerte.dk\" title=\"mailto:kontakt@kattehjerte.dk\">kontakt@kattehjerte.dk</a> inden for 30 dage, så ordner vi det.</p><p>Du har derudover altid 14 dages fortrydelsesret efter dansk lov.</p>",
+            "heading": "Passer den ikke? 30 dage til at fortryde",
+            "content": "<p>Er du ikke glad for din trøje, får du pengene tilbage.&nbsp;</p><p>Skriv til os på <a href=\"mailto:kontakt@kattehjerte.dk\" title=\"mailto:kontakt@kattehjerte.dk\">kontakt@kattehjerte.dk</a> inden for 30 dage.</p><p>Du har derudover altid 14 dages fortrydelsesret efter dansk lovgivning.</p>",
             "page": "",
             "open_by_default": false
           }
@@ -557,6 +557,7 @@
     "main",
     "impact_tracker",
     "related_products",
+    "sticky_atc",
     "mission_story_WrwPzC",
     "how_it_works_steps_PHbRmE",
     "ss_testimonial_12_RM4KFN"
