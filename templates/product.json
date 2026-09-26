@@ -40,7 +40,7 @@
           "type": "perks_list",
           "settings": {
             "perk_icon_1": "shopify://shop_images/LOGO_4.png",
-            "perk_1": "<strong>🐾😻 10 måltider for hver trøje – til katte uden et hjem ❤️</strong>",
+            "perk_1": "<strong>🐾😻 10 måltider for hver trøje – til katte uden et hjem ❤️ </strong><a href=\"/pages/kvitteringerne\" title=\"Kvitteringerne\"><strong>Se kvitteringerne →</strong></a>",
             "perk_icon_2": "shopify://shop_images/LOGO_5.png",
             "perk_2": "<strong>Måltiderne gives på mandag. Din pakke er 4-7 dage undervejs 🐾</strong>",
             "perk_icon_3": "shopify://shop_images/LOGO_3.png",
