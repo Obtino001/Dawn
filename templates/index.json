@@ -251,6 +251,54 @@
         "padding_top": 0,
         "padding_bottom": 12
       }
+    },
+    "image_with_text_33LJc6": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_rrNAPm": {
+          "type": "heading",
+          "settings": {
+            "heading": "KVITTERINGERNE",
+            "heading_size": "h1"
+          }
+        },
+        "text_xq3EE7": {
+          "type": "text",
+          "settings": {
+            "text": "<p>3 august · 2000 kr. · 40 trøjer · 400 måltider · Kattens Værn<br/><br/>Kattehjerte er en almindelig dansk webshop, ikke en forening. Vi tjener penge på at sælge trøjer. Forskellen er, at en fast<br/>del af hver trøje går til Kattens Værn, og at kvitteringen<br/>ligger her. Hver mandag.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_fqbkLD": {
+          "type": "button",
+          "settings": {
+            "button_label": "Se alle kvitteringer",
+            "button_link": "shopify://pages/kvitteringerne",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_rrNAPm",
+        "text_xq3EE7",
+        "button_fqbkLD"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Skaermbillede_2026-09-26_kl._13.50.55.png",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
@@ -260,6 +308,7 @@
     "featured_collection",
     "featured_blog",
     "how_it_works_steps",
-    "mission_story_Uh6ed8"
+    "mission_story_Uh6ed8",
+    "image_with_text_33LJc6"
   ]
 }
