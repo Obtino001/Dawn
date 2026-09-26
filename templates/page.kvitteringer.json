@@ -129,7 +129,7 @@
         "button_qnLCzT": {
           "type": "button",
           "settings": {
-            "button_label": "Knaptekst",
+            "button_label": "",
             "button_link": "",
             "button_style_secondary": false
           }
