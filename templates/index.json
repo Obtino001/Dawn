@@ -36,17 +36,17 @@
             "heading_size": "h1"
           }
         },
-        "text_thrzzq": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Du har set dem. Katten ved naboens dør. Den der pludselig<br/>ikke kom hjem. Den ingen hentede, da familien flyttede.<br/><br/>Kattens Værn tager dem ind, over hele landet. Og foder<br/>koster.<br/><br/>Derfor køber vi foder til dem for hver ordre — og lægger<br/>kvitteringen op hver måned. Ikke et løfte. En kvittering.<br/><br/></p>"
-          }
-        },
         "image_logo": {
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/cat-logo.png",
             "image_height": 90
+          }
+        },
+        "text_thrzzq": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Du har set dem. Katten ved naboens dør. Den der pludselig<br/>ikke kom hjem. Den ingen hentede, da familien flyttede.<br/><br/>Kattens Værn tager dem ind, over hele landet. Og foder<br/>koster.<br/><br/>Derfor køber vi foder til dem for hver ordre — og lægger<br/>kvitteringen op hver måned. Ikke et løfte. En kvittering.<br/><br/></p>"
           }
         },
         "button_UNCPCA": {
@@ -200,7 +200,7 @@
           "type": "column",
           "settings": {
             "title": "3. Du ser kvitteringen",
-            "text": "<p>Den ligger på kattehjerte.dk/kvitteringer istarten af hver måned.</p>",
+            "text": "<p>Den ligger på kattehjerte.dk/kvitteringer i starten af hver måned.</p>",
             "link_label": "",
             "link": ""
           }
