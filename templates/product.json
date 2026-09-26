@@ -213,21 +213,7 @@
     },
     "sticky_atc": {
       "type": "sticky-atc",
-      "settings": {
-        "button_text": "Læg i kurv",
-        "qty_label": "Antal",
-        "sold_out_text": "Udsolgt",
-        "adding_text": "Tilføjer...",
-        "added_text": "Tilføjet ✓",
-        "unavailable_text": "Ikke tilgængelig",
-        "tier_2_pct": 15,
-        "tier_2_label": "spar 15%",
-        "tier_3_pct": 20,
-        "tier_3_label": "spar 20%",
-        "scroll_percent": 12,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
+      "settings": {}
     },
     "mission_story_WrwPzC": {
       "type": "mission-story",
@@ -241,7 +227,7 @@
         "body_text_2": "",
         "stat_number": "",
         "stat_label": "",
-        "image": "shopify://shop_images/KATTEHJERTE_-_STATIC_-_11092026_3.jpg",
+        "image": "shopify://shop_images/hf_20260919_171918_e2f59735-c02e-4d8a-a8fd-910602b42c2e_1.jpg",
         "media_image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/collage_home.jpg?v=1781819895",
         "media_image_alt": "",
         "card_bg_color": "#f4f6ff",
