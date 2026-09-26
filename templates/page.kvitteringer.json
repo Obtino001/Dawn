@@ -61,6 +61,54 @@
         "padding_bottom": 52
       }
     },
+    "image_with_text_im3aDm": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_qL7WwB": {
+          "type": "heading",
+          "settings": {
+            "heading": "",
+            "heading_size": "h1"
+          }
+        },
+        "text_MPbWXi": {
+          "type": "text",
+          "settings": {
+            "text": "<p>UGE 39 · 21. september · 10.000 kr. · 200 trøjer · 2000 måltider · Kattens Værn</p>",
+            "text_style": "body"
+          }
+        },
+        "button_qnLCzT": {
+          "type": "button",
+          "settings": {
+            "button_label": "Knaptekst",
+            "button_link": "",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_qL7WwB",
+        "text_MPbWXi",
+        "button_qnLCzT"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Skaermbillede_2026-09-26_kl._15.36.33.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "image_with_text_WEM3Fe": {
       "type": "image-with-text",
       "blocks": {
@@ -378,66 +426,18 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
-    },
-    "image_with_text_im3aDm": {
-      "type": "image-with-text",
-      "blocks": {
-        "heading_qL7WwB": {
-          "type": "heading",
-          "settings": {
-            "heading": "",
-            "heading_size": "h1"
-          }
-        },
-        "text_MPbWXi": {
-          "type": "text",
-          "settings": {
-            "text": "<p>UGE 39 · 21. september · 10.000 kr. · 200 trøjer · 2000 måltider · Kattens Værn</p>",
-            "text_style": "body"
-          }
-        },
-        "button_qnLCzT": {
-          "type": "button",
-          "settings": {
-            "button_label": "Knaptekst",
-            "button_link": "",
-            "button_style_secondary": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_qL7WwB",
-        "text_MPbWXi",
-        "button_qnLCzT"
-      ],
-      "name": "t:sections.image-with-text.presets.name",
-      "settings": {
-        "image": "shopify://shop_images/Skaermbillede_2026-09-26_kl._15.36.33.jpg",
-        "height": "adapt",
-        "desktop_image_width": "medium",
-        "layout": "image_first",
-        "image_behavior": "none",
-        "content_layout": "no-overlap",
-        "desktop_content_position": "top",
-        "desktop_content_alignment": "left",
-        "mobile_content_alignment": "left",
-        "section_color_scheme": "",
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
     }
   },
   "order": [
     "main",
     "rich_text_NKyqGf",
+    "image_with_text_im3aDm",
     "image_with_text_WEM3Fe",
     "image_with_text_JGGQWq",
     "image_with_text_zf7tYj",
     "image_with_text_cwVPfM",
     "image_with_text_hxGWtx",
     "image_with_text_qreVEY",
-    "image_with_text_mppezF",
-    "image_with_text_im3aDm"
+    "image_with_text_mppezF"
   ]
 }
