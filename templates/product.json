@@ -246,7 +246,7 @@
           "type": "step",
           "settings": {
             "title": "Vælg din trøje",
-            "text": "<p><br/>Hver trøje giver 10 måltider til katte<br/>uden et hjem.</p>",
+            "text": "<p>&nbsp;Som en skål i carporten. Bare nemmere. Trøjen er beviset på, at du ikke så væk.</p>",
             "image": "shopify://shop_images/hf_20260926_184050_f63c76a9-1229-4ff6-af1f-943943b09854_1.jpg",
             "image_url": "https://cdn.shopify.com/s/files/1/0755/0864/6210/files/circleremera.png?v=1781830560"
           }
