@@ -89,17 +89,48 @@
               disabled
             {% endif %}
           >
-            <span>
+            <span id="ProductSubmitButtonText-{{ section_id }}">
               {%- if product.selected_or_first_available_variant == null -%}
                 {{ 'products.product.unavailable' | t }}
               {%- elsif product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
                 {{ 'products.product.sold_out' | t }}
               {%- else -%}
-                {{ 'products.product.add_to_cart' | t }}
+                Læg i kurv · 10 måltider 🐾
               {%- endif -%}
             </span>
             {%- render 'loading-spinner' -%}
           </button>
+          <script>
+            (function() {
+              var sectionId = '{{ section_id }}';
+              var btnSpan = document.getElementById('ProductSubmitButtonText-' + sectionId);
+              if (!btnSpan) return;
+              function updateMeals() {
+                var qtyInput = document.getElementById('Quantity-' + sectionId);
+                var qty = qtyInput ? parseInt(qtyInput.value, 10) : 1;
+                if (isNaN(qty) || qty < 1) qty = 1;
+                var meals = qty * 10;
+                btnSpan.textContent = 'Læg i kurv · ' + meals + ' måltider 🐾';
+              }
+              // Listen for quantity changes (from bundle selector or manual input)
+              var observer = new MutationObserver(function() {
+                var qtyInput = document.getElementById('Quantity-' + sectionId);
+                if (qtyInput) {
+                  qtyInput.addEventListener('change', updateMeals);
+                  qtyInput.addEventListener('input', updateMeals);
+                }
+              });
+              observer.observe(document.body, { childList: true, subtree: true });
+              // Initial bind
+              document.addEventListener('DOMContentLoaded', function() {
+                var qtyInput = document.getElementById('Quantity-' + sectionId);
+                if (qtyInput) {
+                  qtyInput.addEventListener('change', updateMeals);
+                  qtyInput.addEventListener('input', updateMeals);
+                }
+              });
+            })();
+          </script>
           {%- if block.settings.text_below_button != blank -%}
             <div style="color: #333; font-size: 12px; text-align: left; margin-bottom: 12px; margin-top: 12px; line-height: 1.4;">
               {{ block.settings.text_below_button }}
