@@ -103,11 +103,12 @@
           <script>
             (function() {
               var sectionId = '{{ section_id }}';
-              var btnSpan = document.getElementById('ProductSubmitButtonText-' + sectionId);
-              if (!btnSpan) return;
               
               var timer;
               function updateMeals() {
+                var currentBtnSpan = document.getElementById('ProductSubmitButtonText-' + sectionId);
+                if (!currentBtnSpan) return;
+
                 var qty = 1;
                 var qtyInput = document.getElementById('Quantity-' + sectionId) || document.querySelector('input[name="quantity"]');
                 if (qtyInput) {
@@ -129,8 +130,8 @@
                 }
                 
                 var newText = 'Læg i kurv · ' + meals + ' måltider 🐾';
-                if (btnSpan.textContent !== newText) {
-                  btnSpan.textContent = newText;
+                if (currentBtnSpan.textContent !== newText) {
+                  currentBtnSpan.textContent = newText;
                 }
               }
 
