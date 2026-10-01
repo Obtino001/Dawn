@@ -117,7 +117,27 @@
                 }
                 var meals = qty * 10;
                 
-                var kachingSelected = document.querySelector('.kaching-bundles__bundle--selected, [class*="bundle--selected"], .kk-bundle-offer.is-selected');
+                var kachingSelected = null;
+                var kachingElements = document.querySelectorAll('[class*="kaching"], [class*="bundle"], [class*="offer"], [class*="cb_"]');
+                for (var i = 0; i < kachingElements.length; i++) {
+                  var el = kachingElements[i];
+                  if (el.className && typeof el.className === 'string' && el.className.match(/(selected|active)/i) && el.innerText && el.innerText.match(/\d+\s*stk/i)) {
+                    kachingSelected = el;
+                    break;
+                  }
+                }
+                
+                if (!kachingSelected) {
+                  var radios = document.querySelectorAll('input[type="radio"]:checked');
+                  for (var i = 0; i < radios.length; i++) {
+                    var parent = radios[i].closest('label') || radios[i].closest('div');
+                    if (parent && parent.innerText && parent.innerText.match(/\d+\s*stk/i)) {
+                      kachingSelected = parent;
+                      break;
+                    }
+                  }
+                }
+
                 if (kachingSelected) {
                   var text = kachingSelected.innerText;
                   var matchMeals = text.match(/(\d+)\s*måltider\s*til\s*katte/i);
@@ -130,6 +150,11 @@
                 }
                 
                 var newText = 'Læg i kurv · ' + meals + ' måltider 🐾';
+                
+                if (window.variantStrings) {
+                  window.variantStrings.addToCart = newText;
+                }
+                
                 if (currentBtnSpan.textContent !== newText) {
                   currentBtnSpan.textContent = newText;
                 }
