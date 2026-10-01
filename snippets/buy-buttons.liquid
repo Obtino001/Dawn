@@ -105,30 +105,52 @@
               var sectionId = '{{ section_id }}';
               var btnSpan = document.getElementById('ProductSubmitButtonText-' + sectionId);
               if (!btnSpan) return;
+              
+              var timer;
               function updateMeals() {
-                var qtyInput = document.getElementById('Quantity-' + sectionId);
-                var qty = qtyInput ? parseInt(qtyInput.value, 10) : 1;
-                if (isNaN(qty) || qty < 1) qty = 1;
+                var qty = 1;
+                var qtyInput = document.getElementById('Quantity-' + sectionId) || document.querySelector('input[name="quantity"]');
+                if (qtyInput) {
+                  var val = parseInt(qtyInput.value, 10);
+                  if (!isNaN(val) && val > 0) qty = val;
+                }
                 var meals = qty * 10;
-                btnSpan.textContent = 'Læg i kurv · ' + meals + ' måltider 🐾';
+                
+                var kachingSelected = document.querySelector('.kaching-bundles__bundle--selected, [class*="bundle--selected"], .kk-bundle-offer.is-selected');
+                if (kachingSelected) {
+                  var text = kachingSelected.innerText;
+                  var matchMeals = text.match(/(\d+)\s*måltider\s*til\s*katte/i);
+                  var matchStk = text.match(/(\d+)\s*stk/i);
+                  if (matchMeals) {
+                    meals = parseInt(matchMeals[1], 10);
+                  } else if (matchStk) {
+                    meals = parseInt(matchStk[1], 10) * 10;
+                  }
+                }
+                
+                var newText = 'Læg i kurv · ' + meals + ' måltider 🐾';
+                if (btnSpan.textContent !== newText) {
+                  btnSpan.textContent = newText;
+                }
               }
-              // Listen for quantity changes (from bundle selector or manual input)
+
               var observer = new MutationObserver(function() {
-                var qtyInput = document.getElementById('Quantity-' + sectionId);
-                if (qtyInput) {
-                  qtyInput.addEventListener('change', updateMeals);
-                  qtyInput.addEventListener('input', updateMeals);
-                }
+                clearTimeout(timer);
+                timer = setTimeout(updateMeals, 50);
               });
-              observer.observe(document.body, { childList: true, subtree: true });
-              // Initial bind
+              
+              var container = document.querySelector('product-info') || document.body;
+              observer.observe(container, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
+
               document.addEventListener('DOMContentLoaded', function() {
-                var qtyInput = document.getElementById('Quantity-' + sectionId);
+                var qtyInput = document.getElementById('Quantity-' + sectionId) || document.querySelector('input[name="quantity"]');
                 if (qtyInput) {
                   qtyInput.addEventListener('change', updateMeals);
                   qtyInput.addEventListener('input', updateMeals);
                 }
+                updateMeals();
               });
+              updateMeals();
             })();
           </script>
           {%- if block.settings.text_below_button != blank -%}
