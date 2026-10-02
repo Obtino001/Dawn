@@ -89,15 +89,20 @@
                 <circle cx="18.5" cy="18.5" r="2.5"/>
               </svg>
             {%- endif -%}
-            {%- if cart_total >= free_shipping_threshold_cents -%}
-              <span>{{ settings.free_shipping_success_text | default: "Du har opnået GRATIS fragt!" }}</span>
+
+            {%- assign kk_total_qty_shipping = 0 -%}
+            {%- for item in cart.items -%}
+              {%- assign kk_total_qty_shipping = kk_total_qty_shipping | plus: item.quantity -%}
+            {%- endfor -%}
+
+            {%- if kk_total_qty_shipping >= 2 -%}
+              <span>Jeg betaler fragten 🐾</span>
             {%- else -%}
-              {%- assign amount_remaining = free_shipping_threshold_cents | minus: cart_total -%}
-              <span>Læg <strong>{{ amount_remaining | money | replace: ',00', ''}}</strong> mere i kurven for <strong>GRATIS fragt</strong></span>
+              <span>Tager du én trøje mere, bliver det til 20 måltider. Og så betaler jeg fragten 🐾</span>
             {%- endif -%}
           </div>
           <div class="kk-cart-shipping-bar__track">
-            {%- assign progress = cart_total | times: 100 | divided_by: free_shipping_threshold_cents -%}
+            {%- assign progress = kk_total_qty_shipping | times: 100 | divided_by: 2 -%}
             {%- if progress > 100 -%}{%- assign progress = 100 -%}{%- endif -%}
             <div class="kk-cart-shipping-bar__fill" style="width: {{ progress }}%;"></div>
           </div>
