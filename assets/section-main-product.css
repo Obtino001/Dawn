@@ -1512,9 +1512,14 @@ a.product__text {
     margin-bottom: 0 !important;
     width: 100% !important;
     padding: 0 !important;
+    scroll-padding-left: 0 !important;
+  }
+  .product__media-list .product__media-item {
+    width: 100% !important;
   }
   .thumbnail-list.slider {
     padding: 0 !important;
+    scroll-padding-left: 0 !important;
   }
   .thumbnail-list__item.slider__slide {
     width: 25% !important;
