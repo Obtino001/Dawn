@@ -300,14 +300,6 @@
                     {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
                   </li>
                 {%- endfor -%}
-                {%- assign custom_payment_types = 'dankort,apple_pay' | split: ',' -%}
-                {%- for type in custom_payment_types -%}
-                  {%- unless shop.enabled_payment_types contains type -%}
-                    <li class="list-payment__item">
-                      {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
-                    </li>
-                  {%- endunless -%}
-                {%- endfor -%}
               </ul>
             {%- endif -%}
           </div>
