@@ -1498,3 +1498,48 @@ a.product__text {
     border: none;
   }
 }
+
+/* Custom Overrides for Product Media Spacing */
+.product__media-wrapper .slider__slide,
+.thumbnail-list__item.slider__slide {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+@media screen and (max-width: 749px) {
+  .product__media-list {
+    margin-bottom: 0 !important;
+  }
+  .thumbnail-list.slider {
+    padding: 0 !important;
+  }
+  .thumbnail-list__item.slider__slide {
+    width: 33.3333% !important;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .product--thumbnail .product__media-list, 
+  .product--thumbnail_slider .product__media-list {
+    padding-bottom: 0 !important;
+  }
+  .thumbnail-slider .thumbnail-list.slider--tablet-up {
+    padding: 0 !important;
+  }
+  .thumbnail-list.slider--tablet-up .thumbnail-list__item.slider__slide {
+    width: 25% !important;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .product--small .thumbnail-list.slider--tablet-up .thumbnail-list__item.slider__slide {
+    width: 25% !important;
+  }
+  .thumbnail-list.slider--tablet-up .thumbnail-list__item.slider__slide {
+    width: 20% !important;
+  }
+}
+
+.thumbnail-list {
+  grid-gap: 0 !important;
+}
