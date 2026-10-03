@@ -1517,6 +1517,9 @@ a.product__text {
   .product__media-list .product__media-item {
     width: 100% !important;
   }
+  .product__media-list.grid--peek.slider .product__media-item:first-of-type {
+    margin-left: 0 !important;
+  }
   .thumbnail-list.slider {
     padding: 0 !important;
     scroll-padding-left: 0 !important;

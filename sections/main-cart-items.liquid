@@ -51,19 +51,6 @@
       {%- endif -%}
     </div>
 
-    {%- if cart != empty -%}
-      {%- assign kk_total_qty = 0 -%}
-      {%- for item in cart.items -%}
-        {%- assign kk_total_qty = kk_total_qty | plus: item.quantity -%}
-      {%- endfor -%}
-      {%- assign kk_meals = kk_total_qty | times: 10 -%}
-      <div class="kk-cart-mission" style="text-align: center; padding: 20px 0 16px; margin-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,.08);">
-        <p style="margin: 0 0 2px; font-weight: 700; font-size: 15px;">Tak for dig 🐾❤️</p>
-        <p style="margin: 0 0 4px; font-size: 14px;">Din ordre giver <strong>{{ kk_meals }}</strong> måltider til katte uden et hjem.</p>
-
-      </div>
-    {%- endif -%}
-
     <form action="{{ routes.cart_url }}" class="cart__contents critical-hidden" method="post" id="cart">
       <div class="cart__items" id="main-cart-items" data-id="{{ section.id }}">
         <div class="js-contents">
