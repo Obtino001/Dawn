@@ -816,13 +816,6 @@ h6,
   transform: translateY(-1px);
 }
 
-/* In Cart Drawer */
-.cart-drawer .payment-icons {
-  margin-top: 14px;
-  padding-top: 12px;
-  border-top: 1px dashed #e2e5f1;
-}
-
 /* In Footer */
 .footer__payment .payment-icons,
 .footer__payment .list-payment {
