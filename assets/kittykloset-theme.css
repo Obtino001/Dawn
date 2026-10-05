@@ -1827,7 +1827,7 @@ h6,
   align-items: center;
   gap: 8px;
   list-style: none;
-  /* padding: 12px 0 4px; */
+  padding: 0px;
   margin: 0;
 }
 
